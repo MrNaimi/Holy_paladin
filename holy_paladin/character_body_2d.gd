@@ -7,6 +7,12 @@ var pierucounter = 0
 var combo = 1
 var processiterations = 0
 @export var SPEED = 100.0
+@onready var light_attack_1: Area2D = $AttackHitboxes/Light_attack1
+@onready var light_attack_2: Area2D = $AttackHitboxes/Light_attack2
+@onready var light_attack_3: Area2D = $AttackHitboxes/Light_attack3
+var enabled_hitbox
+@onready var hit_box_timer: Timer = $HitBoxTimer
+
 
 var current_speed = 0
 func _ready():
@@ -41,6 +47,9 @@ func _input(event):
 			if combo == 1 and player_animations.animation == "idle":
 				combo_timer.stop()
 				player_animations.play("light_attack1")
+				light_attack_1.get_child(0).disabled = false
+				enabled_hitbox=light_attack_1.get_child(0)
+				hit_box_timer.start()
 				print("attack1 played")
 				combo_timer.start()
 				combo = 2
@@ -49,22 +58,36 @@ func _input(event):
 				combo_timer.stop()
 				player_animations.play("light_attack2")
 				print("attack2 played")
+				light_attack_2.get_child(0).disabled = false
+				enabled_hitbox=light_attack_2.get_child(0)
+				hit_box_timer.start()
 				combo_timer.start()
 				combo = 3
 			elif combo == 3 and player_animations.animation == "idle":
 				combo_timer.stop()
 				player_animations.play("light_attack3")
+				light_attack_3.get_child(0).disabled = false
+				enabled_hitbox=light_attack_3.get_child(0)
+				hit_box_timer.start()
 				print("attack3 played")
 				combo = 1
 func _physics_process(delta: float) -> void:
 	get_input()
 	move_and_slide()
+	if current_speed==0 and player_animations.animation == "walk":
+		player_animations.stop()
 	#Määritän tässä characterin tämänhetkisen nopeuden
 	processiterations += 1
 	current_speed = sqrt(velocity.x*velocity.x+velocity.y*velocity.y)
+	
+	#TÄRKEÄ PIERUÄÄNI
 	if RandomNumberGenerator.new().randi_range(0, 10000)==9:
 		pierucounter+=1
 		pieru.play(0)
 		
 func _on_combo_timer_timeout() -> void:
 	combo = 1
+
+
+func _on_hit_box_timer_timeout() -> void:
+	enabled_hitbox.disabled = true
