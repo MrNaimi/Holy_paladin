@@ -89,3 +89,7 @@ func _physics_process(delta: float) -> void:
 	
 func _on_combo_timer_timeout() -> void:
 	combo = 1
+
+
+func _on_quit_button_pressed() -> void:
+	get_tree().quit()

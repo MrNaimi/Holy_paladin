@@ -1485,7 +1485,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"light_attack1",
-"speed": 10.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1523,7 +1523,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"light_attack2",
-"speed": 10.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1552,7 +1552,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"light_attack3",
-"speed": 10.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1829,6 +1829,17 @@ layout_mode = 2
 text = "0s
 "
 
+[node name="VBoxContainer2" type="VBoxContainer" parent="Player/Camera2D/Control"]
+layout_mode = 0
+offset_left = 528.0
+offset_top = -128.0
+offset_right = 615.0
+offset_bottom = -88.0
+
+[node name="quit_button" type="Button" parent="Player/Camera2D/Control/VBoxContainer2"]
+layout_mode = 2
+text = "Exit Game"
+
 [node name="ComboTimer" type="Timer" parent="Player"]
 wait_time = 1.3
 one_shot = true
@@ -1896,6 +1907,7 @@ texture = ExtResource("16_skmg0")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/Area2D"]
 shape = SubResource("CircleShape2D_qvneb")
 
+[connection signal="pressed" from="Player/Camera2D/Control/VBoxContainer2/quit_button" to="Player" method="_on_quit_button_pressed"]
 [connection signal="timeout" from="Player/ComboTimer" to="Player" method="_on_combo_timer_timeout"]
 [connection signal="timeout" from="Player/AttackHitboxes/Light_attack1/HitBoxTimer" to="Player/AttackHitboxes/Light_attack1" method="_on_hit_box_timer_timeout"]
 [connection signal="timeout" from="Player/AttackHitboxes/Light_attack2/HitBoxTimer" to="Player/AttackHitboxes/Light_attack2" method="_on_hit_box_timer_timeout"]
