@@ -7,11 +7,12 @@ var pierucounter = 0
 var combo = 1
 var processiterations = 0
 @export var SPEED = 100.0
+
+#Viittaukset player attackkeihin
+
 @onready var light_attack_1: Area2D = $AttackHitboxes/Light_attack1
 @onready var light_attack_2: Area2D = $AttackHitboxes/Light_attack2
 @onready var light_attack_3: Area2D = $AttackHitboxes/Light_attack3
-var enabled_hitbox
-@onready var hit_box_timer: Timer = $HitBoxTimer
 
 
 var current_speed = 0
@@ -47,9 +48,7 @@ func _input(event):
 			if combo == 1 and player_animations.animation == "idle":
 				combo_timer.stop()
 				player_animations.play("light_attack1")
-				light_attack_1.get_child(0).disabled = false
-				enabled_hitbox=light_attack_1.get_child(0)
-				hit_box_timer.start()
+				light_attack_1.enableHitBox()
 				print("attack1 played")
 				combo_timer.start()
 				combo = 2
@@ -58,17 +57,13 @@ func _input(event):
 				combo_timer.stop()
 				player_animations.play("light_attack2")
 				print("attack2 played")
-				light_attack_2.get_child(0).disabled = false
-				enabled_hitbox=light_attack_2.get_child(0)
-				hit_box_timer.start()
+				light_attack_2.enableHitBox()
 				combo_timer.start()
 				combo = 3
 			elif combo == 3 and player_animations.animation == "idle":
 				combo_timer.stop()
 				player_animations.play("light_attack3")
-				light_attack_3.get_child(0).disabled = false
-				enabled_hitbox=light_attack_3.get_child(0)
-				hit_box_timer.start()
+				light_attack_3.enableHitBox()
 				print("attack3 played")
 				combo = 1
 func _physics_process(delta: float) -> void:
@@ -81,13 +76,16 @@ func _physics_process(delta: float) -> void:
 	current_speed = sqrt(velocity.x*velocity.x+velocity.y*velocity.y)
 	
 	#TÄRKEÄ PIERUÄÄNI
-	if RandomNumberGenerator.new().randi_range(0, 10000)==9:
+	if RandomNumberGenerator.new().randi_range(0, 1000000)==9:
 		pierucounter+=1
 		pieru.play(0)
+	
+	if get_viewport().get_mouse_position().x >= get_viewport().size.x/2:
+		player_animations.flip_h = false;
+	elif get_viewport().get_mouse_position().x <= get_viewport().size.x/2:
+		player_animations.flip_h = true;
 		
+	GlobalVariables.player_position = position
+	
 func _on_combo_timer_timeout() -> void:
 	combo = 1
-
-
-func _on_hit_box_timer_timeout() -> void:
-	enabled_hitbox.disabled = true

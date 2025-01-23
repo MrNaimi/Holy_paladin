@@ -27,6 +27,6 @@ func _process(delta: float) -> void:
 	character_y.text = "character pos y: "+str(player.position.y)
 	viewportsize.text = "viewport size: "+str(get_viewport().size.x)
 	characterspeed.text = "character speed: "+str(player.current_speed)
-	combotimer.text = "combo time left: "+str(int(combo_timer.time_left))
+	combotimer.text = "combo time left: "+str(float(combo_timer.time_left)).left(4)
 	pierucounter.text = str(player.pierucounter)
 	processpeed.text = str(player.processiterations)
