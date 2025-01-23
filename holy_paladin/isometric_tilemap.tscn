@@ -1,4 +1,4 @@
-[gd_scene load_steps=227 format=4 uid="uid://clmjfv07o664e"]
+x[gd_scene load_steps=227 format=4 uid="uid://clmjfv07o664e"]
 
 [ext_resource type="Texture2D" uid="uid://5tuvcq8srvo2" path="res://assets/tiles/isometric tileset/spritesheet.png" id="1_hhoqc"]
 [ext_resource type="Texture2D" uid="uid://cfo4507x6nau7" path="res://assets/main_char/spr_Attack_strip.png" id="3_2a5je"]
