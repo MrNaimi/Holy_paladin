@@ -1851,7 +1851,7 @@ position = Vector2(0, -6.10352e-05)
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("13_45j0r")
-hitboxtime = 0.75
+hitboxtime = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/AttackHitboxes/Light_attack1"]
 position = Vector2(20.7528, -18.9739)
@@ -1865,7 +1865,7 @@ one_shot = true
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("13_45j0r")
-hitboxtime = 0.9
+hitboxtime = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/AttackHitboxes/Light_attack2"]
 position = Vector2(28.4609, -18.9739)
@@ -1878,6 +1878,8 @@ one_shot = true
 [node name="Light_attack3" type="Area2D" parent="Player/AttackHitboxes" groups=["attack"]]
 light_mask = 2
 visibility_layer = 2
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("13_45j0r")
 hitboxtime = 1.0
 
@@ -1903,6 +1905,8 @@ script = ExtResource("15_0iqsn")
 texture = ExtResource("16_skmg0")
 
 [node name="Area2D" type="Area2D" parent="Enemy"]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/Area2D"]
 shape = SubResource("CircleShape2D_qvneb")
