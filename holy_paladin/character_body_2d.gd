@@ -23,7 +23,7 @@ func get_input():
 	if input_direction.y != 0:
 		player_animations.play("walk")
 	if input_direction.x == 0 && input_direction.y == 0:
-		if player_animations.animation != "light_attack1" && player_animations.animation != "light_attack2":
+		if !player_animations.is_playing():
 			player_animations.play("idle")
 		
 		
