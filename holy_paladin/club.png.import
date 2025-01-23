@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgqlsydtjj8nw"
-path="res://.godot/imported/spr_PaladinAttackWithEffect_strip41.png-a7778784a076d119196b78d04f125d10.ctex"
+uid="uid://bxvxeyigjbn72"
+path="res://.godot/imported/club.png-7e7dd4fa7cb072acd5eafcc8789bdae6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main_char/spr_PaladinAttackWithEffect_strip41.png"
-dest_files=["res://.godot/imported/spr_PaladinAttackWithEffect_strip41.png-a7778784a076d119196b78d04f125d10.ctex"]
+source_file="res://club.png"
+dest_files=["res://.godot/imported/club.png-7e7dd4fa7cb072acd5eafcc8789bdae6.ctex"]
 
 [params]
 

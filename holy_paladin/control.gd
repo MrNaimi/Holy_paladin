@@ -1,9 +1,10 @@
 extends Control
-@onready var x: Label = $x
-@onready var y: Label = $y
-@onready var character_x: Label = $character_x
-@onready var character_y: Label = $character_y
-@onready var viewportsize: Label = $viewportsize
+@onready var x: Label = $VBoxContainer/x
+@onready var y: Label = $VBoxContainer/y
+@onready var character_x: Label = $VBoxContainer/character_x
+@onready var character_y: Label = $VBoxContainer/character_y
+@onready var viewportsize: Label = $VBoxContainer/viewportsize
+@onready var characterspeed: Label = $VBoxContainer/characterspeed
 
 @onready var character_body_2d: CharacterBody2D = $"../.."
 
@@ -20,3 +21,5 @@ func _process(delta: float) -> void:
 	character_x.text = "character pos x: "+str(character_body_2d.position.x)
 	character_y.text = "character pos y: "+str(character_body_2d.position.y)
 	viewportsize.text = "viewport size: "+str(get_viewport().size.x)
+	characterspeed.text = "character speed: "+str(character_body_2d.current_speed)
+	

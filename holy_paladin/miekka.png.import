@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7vrhlpm3p2c4"
-path="res://.godot/imported/spr_PaladinWalkWithBkg_strip10.png-e2b7ecc2b0ad6b50504f6b9f8760aa40.ctex"
+uid="uid://beclm34dnaqem"
+path="res://.godot/imported/miekka.png-601cb01091acc40c73359c2fad2fe3aa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main_char/spr_PaladinWalkWithBkg_strip10.png"
-dest_files=["res://.godot/imported/spr_PaladinWalkWithBkg_strip10.png-e2b7ecc2b0ad6b50504f6b9f8760aa40.ctex"]
+source_file="res://miekka.png"
+dest_files=["res://.godot/imported/miekka.png-601cb01091acc40c73359c2fad2fe3aa.ctex"]
 
 [params]
 
