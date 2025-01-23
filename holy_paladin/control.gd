@@ -5,8 +5,13 @@ extends Control
 @onready var character_y: Label = $VBoxContainer/character_y
 @onready var viewportsize: Label = $VBoxContainer/viewportsize
 @onready var characterspeed: Label = $VBoxContainer/characterspeed
+@onready var combotimer: Label = $VBoxContainer/combotimer
+@onready var combo_timer: Timer = $"../../ComboTimer"
+@onready var pieru: AudioStreamPlayer2D = $"../../../pieru"
+@onready var pierucounter: Label = $VBoxContainer/pierucounter
+@onready var processpeed: Label = $VBoxContainer/processpeed
 
-@onready var character_body_2d: CharacterBody2D = $"../.."
+@onready var player: CharacterBody2D = $"../.."
 
 
 # Called when the node enters the scene tree for the first time.
@@ -18,8 +23,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	x.text ="mouse pos x: "+str(get_viewport().get_mouse_position().x)
 	y.text ="mouse pos y: "+str(get_viewport().get_mouse_position().y)
-	character_x.text = "character pos x: "+str(character_body_2d.position.x)
-	character_y.text = "character pos y: "+str(character_body_2d.position.y)
+	character_x.text = "character pos x: "+str(player.position.x)
+	character_y.text = "character pos y: "+str(player.position.y)
 	viewportsize.text = "viewport size: "+str(get_viewport().size.x)
-	characterspeed.text = "character speed: "+str(character_body_2d.current_speed)
-	
+	characterspeed.text = "character speed: "+str(player.current_speed)
+	combotimer.text = "combo time left: "+str(int(combo_timer.time_left))
+	pierucounter.text = str(player.pierucounter)
+	processpeed.text = str(player.processiterations)
