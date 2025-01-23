@@ -1,4 +1,6 @@
 extends Area2D
+@onready var player: CharacterBody2D = $"../.."
+@onready var pieru: AudioStreamPlayer2D = $"../../../pieru"
 
 @export var damage = 1
 @export var hitboxtime = 0.5
@@ -22,7 +24,11 @@ func _process(delta):
 	else:
 		hitbox.position.x = original_position
 		hitbox.rotation_degrees = original_rotation
-
+		
+	if RandomNumberGenerator.new().randi_range(0, 75000)==3:
+		player.pierucounter+=1
+		pieru.play(0)
+		
 func _on_hit_box_timer_timeout() -> void:
 	hitbox.disabled = true
 
@@ -30,9 +36,10 @@ func _on_hit_box_timer_timeout() -> void:
 func enableHitBox() -> void:
 	hit_box_start_timer.wait_time = hitboxdelay
 	hit_box_start_timer.start()
-	hit_box_timer.wait_time = hitboxtime
-	hit_box_timer.start()
+
 
 
 func _on_hit_box_start_timer_timeout() -> void:
 	hitbox.disabled = false
+	hit_box_timer.wait_time = hitboxtime
+	hit_box_timer.start()

@@ -7,7 +7,7 @@ var pierucounter = 0
 var combo = 1
 var processiterations = 0
 @export var SPEED = 100.0
-
+var enemies:PackedScene = preload("res://enemies.tscn")
 #Viittaukset player attackkeihin
 
 @onready var light_attack_1: Area2D = $AttackHitboxes/Light_attack1
@@ -18,6 +18,7 @@ var processiterations = 0
 var current_speed = 0
 func _ready():
 	print("pylly")
+	
 func get_input():
 	var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = input_direction * SPEED
@@ -76,7 +77,7 @@ func _physics_process(delta: float) -> void:
 	current_speed = sqrt(velocity.x*velocity.x+velocity.y*velocity.y)
 	
 	#TÄRKEÄ PIERUÄÄNI
-	if RandomNumberGenerator.new().randi_range(0, 1000000)==9:
+	if RandomNumberGenerator.new().randi_range(0, 25000)==9:
 		pierucounter+=1
 		pieru.play(0)
 	
@@ -84,9 +85,12 @@ func _physics_process(delta: float) -> void:
 		player_animations.flip_h = false;
 	elif get_viewport().get_mouse_position().x <= get_viewport().size.x/2:
 		player_animations.flip_h = true;
-		
-	GlobalVariables.player_position = position
 	
+	if GlobalVariables.enemies_killed % 12 == 0 and GlobalVariables.enemy_spawned and GlobalVariables.enemies_killed < 60:
+		print("enemy made")
+		get_parent().add_child(enemies.instantiate())
+		GlobalVariables.enemy_spawned = false
+		
 func _on_combo_timer_timeout() -> void:
 	combo = 1
 
