@@ -1,0 +1,252 @@
+[gd_scene load_steps=5 format=3 uid="uid://bg8i7f3pidxny"]
+
+[ext_resource type="Script" path="res://enemy.gd" id="1_q4bsl"]
+[ext_resource type="Texture2D" uid="uid://d05v1nlavhctt" path="res://imp.png" id="2_mcvdq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qvneb"]
+radius = 7.28011
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jsowe"]
+
+[node name="enemies" type="Node2D"]
+position = Vector2(554, 275)
+
+[node name="Enemy" type="CharacterBody2D" parent="."]
+collision_layer = 18
+collision_mask = 18
+script = ExtResource("1_q4bsl")
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy"]
+texture = ExtResource("2_mcvdq")
+
+[node name="Area2D" type="Area2D" parent="Enemy"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/Area2D"]
+shape = SubResource("CircleShape2D_qvneb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
+shape = SubResource("CircleShape2D_jsowe")
+
+[node name="Enemy2" type="CharacterBody2D" parent="."]
+position = Vector2(-51, -10)
+collision_layer = 18
+collision_mask = 18
+script = ExtResource("1_q4bsl")
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy2"]
+texture = ExtResource("2_mcvdq")
+
+[node name="Area2D" type="Area2D" parent="Enemy2"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy2/Area2D"]
+shape = SubResource("CircleShape2D_qvneb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy2"]
+shape = SubResource("CircleShape2D_jsowe")
+
+[node name="Enemy3" type="CharacterBody2D" parent="."]
+position = Vector2(23, -37)
+collision_layer = 18
+collision_mask = 18
+script = ExtResource("1_q4bsl")
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy3"]
+texture = ExtResource("2_mcvdq")
+
+[node name="Area2D" type="Area2D" parent="Enemy3"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy3/Area2D"]
+shape = SubResource("CircleShape2D_qvneb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy3"]
+shape = SubResource("CircleShape2D_jsowe")
+
+[node name="Enemy4" type="CharacterBody2D" parent="."]
+position = Vector2(-119, 123)
+collision_layer = 18
+collision_mask = 18
+script = ExtResource("1_q4bsl")
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy4"]
+texture = ExtResource("2_mcvdq")
+
+[node name="Area2D" type="Area2D" parent="Enemy4"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy4/Area2D"]
+shape = SubResource("CircleShape2D_qvneb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy4"]
+shape = SubResource("CircleShape2D_jsowe")
+
+[node name="Enemy5" type="CharacterBody2D" parent="."]
+position = Vector2(-138, 73)
+collision_layer = 18
+collision_mask = 18
+script = ExtResource("1_q4bsl")
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy5"]
+texture = ExtResource("2_mcvdq")
+
+[node name="Area2D" type="Area2D" parent="Enemy5"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy5/Area2D"]
+shape = SubResource("CircleShape2D_qvneb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy5"]
+shape = SubResource("CircleShape2D_jsowe")
+
+[node name="Enemy6" type="CharacterBody2D" parent="."]
+position = Vector2(-218, -11)
+collision_layer = 18
+collision_mask = 18
+script = ExtResource("1_q4bsl")
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy6"]
+texture = ExtResource("2_mcvdq")
+
+[node name="Area2D" type="Area2D" parent="Enemy6"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy6/Area2D"]
+shape = SubResource("CircleShape2D_qvneb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy6"]
+shape = SubResource("CircleShape2D_jsowe")
+
+[node name="Enemy7" type="CharacterBody2D" parent="."]
+position = Vector2(-144, 185)
+collision_layer = 18
+collision_mask = 18
+script = ExtResource("1_q4bsl")
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy7"]
+texture = ExtResource("2_mcvdq")
+
+[node name="Area2D" type="Area2D" parent="Enemy7"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy7/Area2D"]
+shape = SubResource("CircleShape2D_qvneb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy7"]
+shape = SubResource("CircleShape2D_jsowe")
+
+[node name="Enemy8" type="CharacterBody2D" parent="."]
+position = Vector2(-153, 135)
+collision_layer = 18
+collision_mask = 18
+script = ExtResource("1_q4bsl")
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy8"]
+texture = ExtResource("2_mcvdq")
+
+[node name="Area2D" type="Area2D" parent="Enemy8"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy8/Area2D"]
+shape = SubResource("CircleShape2D_qvneb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy8"]
+shape = SubResource("CircleShape2D_jsowe")
+
+[node name="Enemy9" type="CharacterBody2D" parent="."]
+position = Vector2(-68, 83)
+collision_layer = 18
+collision_mask = 18
+script = ExtResource("1_q4bsl")
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy9"]
+texture = ExtResource("2_mcvdq")
+
+[node name="Area2D" type="Area2D" parent="Enemy9"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy9/Area2D"]
+shape = SubResource("CircleShape2D_qvneb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy9"]
+shape = SubResource("CircleShape2D_jsowe")
+
+[node name="Enemy10" type="CharacterBody2D" parent="."]
+position = Vector2(20, 24)
+collision_layer = 18
+collision_mask = 18
+script = ExtResource("1_q4bsl")
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy10"]
+texture = ExtResource("2_mcvdq")
+
+[node name="Area2D" type="Area2D" parent="Enemy10"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy10/Area2D"]
+shape = SubResource("CircleShape2D_qvneb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy10"]
+shape = SubResource("CircleShape2D_jsowe")
+
+[node name="Enemy11" type="CharacterBody2D" parent="."]
+position = Vector2(126, -40)
+collision_layer = 18
+collision_mask = 18
+script = ExtResource("1_q4bsl")
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy11"]
+texture = ExtResource("2_mcvdq")
+
+[node name="Area2D" type="Area2D" parent="Enemy11"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy11/Area2D"]
+shape = SubResource("CircleShape2D_qvneb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy11"]
+shape = SubResource("CircleShape2D_jsowe")
+
+[node name="Enemy12" type="CharacterBody2D" parent="."]
+position = Vector2(86, -85)
+collision_layer = 18
+collision_mask = 18
+script = ExtResource("1_q4bsl")
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy12"]
+texture = ExtResource("2_mcvdq")
+
+[node name="Area2D" type="Area2D" parent="Enemy12"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy12/Area2D"]
+shape = SubResource("CircleShape2D_qvneb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy12"]
+shape = SubResource("CircleShape2D_jsowe")
+
+[connection signal="area_entered" from="Enemy/Area2D" to="Enemy" method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Enemy2/Area2D" to="Enemy2" method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Enemy3/Area2D" to="Enemy3" method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Enemy4/Area2D" to="Enemy4" method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Enemy5/Area2D" to="Enemy5" method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Enemy6/Area2D" to="Enemy6" method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Enemy7/Area2D" to="Enemy7" method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Enemy8/Area2D" to="Enemy8" method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Enemy9/Area2D" to="Enemy9" method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Enemy10/Area2D" to="Enemy10" method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Enemy11/Area2D" to="Enemy11" method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Enemy12/Area2D" to="Enemy12" method="_on_area_2d_area_entered"]

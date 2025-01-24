@@ -85,7 +85,6 @@ func _physics_process(delta: float) -> void:
 	elif get_viewport().get_mouse_position().x <= get_viewport().size.x/2:
 		player_animations.flip_h = true;
 		
-	GlobalVariables.player_position = position
 	
 func _on_combo_timer_timeout() -> void:
 	combo = 1

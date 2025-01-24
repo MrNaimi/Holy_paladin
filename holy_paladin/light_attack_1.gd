@@ -30,9 +30,8 @@ func _on_hit_box_timer_timeout() -> void:
 func enableHitBox() -> void:
 	hit_box_start_timer.wait_time = hitboxdelay
 	hit_box_start_timer.start()
-	hit_box_timer.wait_time = hitboxtime
-	hit_box_timer.start()
-
-
+	
 func _on_hit_box_start_timer_timeout() -> void:
 	hitbox.disabled = false
+	hit_box_timer.wait_time = hitboxtime
+	hit_box_timer.start()

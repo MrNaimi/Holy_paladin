@@ -1,6 +1,8 @@
 extends CharacterBody2D
 @onready var target: CharacterBody2D = $"../Player"
 
+
+
 var speed = 30
 func _physics_process(delta: float) -> void:
 	var direction = (target.position-position).normalized()
@@ -10,5 +12,6 @@ func _physics_process(delta: float) -> void:
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	print("area entered")
+	GlobalVariables.enemies_killed += 1
 	if area.is_in_group("attack"):
 		queue_free()

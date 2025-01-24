@@ -1,4 +1,4 @@
 extends Node
 
 
-@onready var player_position
+@onready var enemies_killed = 0
