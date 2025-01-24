@@ -1759,7 +1759,7 @@ tile_map_data = PackedByteArray("AAAeAAAACwAIAAIAAAAeAAEACwAIAAIAAAAeAAIACwAIAAI
 tile_set = SubResource("TileSet_df3ou")
 
 [node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(433, 327)
+position = Vector2(445, 325)
 scale = Vector2(0.843261, 0.843261)
 script = ExtResource("4_q412t")
 
@@ -1910,7 +1910,7 @@ one_shot = true
 stream = ExtResource("12_iuuy4")
 
 [node name="Enemy" type="CharacterBody2D" parent="."]
-position = Vector2(554, 275)
+position = Vector2(652, 192)
 collision_layer = 2
 collision_mask = 18
 script = ExtResource("15_0iqsn")
@@ -1928,214 +1928,9 @@ shape = SubResource("CircleShape2D_qvneb")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
 shape = SubResource("CircleShape2D_jsowe")
 
-[node name="Enemy2" type="CharacterBody2D" parent="."]
-position = Vector2(503, 265)
-collision_layer = 2
-collision_mask = 18
-script = ExtResource("15_0iqsn")
-
-[node name="Sprite2D" type="Sprite2D" parent="Enemy2"]
-texture = ExtResource("16_skmg0")
-
-[node name="Area2D" type="Area2D" parent="Enemy2"]
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy2/Area2D"]
-shape = SubResource("CircleShape2D_qvneb")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy2"]
-shape = SubResource("CircleShape2D_jsowe")
-
-[node name="Enemy3" type="CharacterBody2D" parent="."]
-position = Vector2(577, 238)
-collision_layer = 2
-collision_mask = 18
-script = ExtResource("15_0iqsn")
-
-[node name="Sprite2D" type="Sprite2D" parent="Enemy3"]
-texture = ExtResource("16_skmg0")
-
-[node name="Area2D" type="Area2D" parent="Enemy3"]
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy3/Area2D"]
-shape = SubResource("CircleShape2D_qvneb")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy3"]
-shape = SubResource("CircleShape2D_jsowe")
-
-[node name="Enemy4" type="CharacterBody2D" parent="."]
-position = Vector2(435, 398)
-collision_layer = 2
-collision_mask = 18
-script = ExtResource("15_0iqsn")
-
-[node name="Sprite2D" type="Sprite2D" parent="Enemy4"]
-texture = ExtResource("16_skmg0")
-
-[node name="Area2D" type="Area2D" parent="Enemy4"]
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy4/Area2D"]
-shape = SubResource("CircleShape2D_qvneb")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy4"]
-shape = SubResource("CircleShape2D_jsowe")
-
-[node name="Enemy5" type="CharacterBody2D" parent="."]
-position = Vector2(416, 348)
-collision_layer = 2
-collision_mask = 18
-script = ExtResource("15_0iqsn")
-
-[node name="Sprite2D" type="Sprite2D" parent="Enemy5"]
-texture = ExtResource("16_skmg0")
-
-[node name="Area2D" type="Area2D" parent="Enemy5"]
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy5/Area2D"]
-shape = SubResource("CircleShape2D_qvneb")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy5"]
-shape = SubResource("CircleShape2D_jsowe")
-
-[node name="Enemy6" type="CharacterBody2D" parent="."]
-position = Vector2(336, 264)
-collision_layer = 2
-collision_mask = 18
-script = ExtResource("15_0iqsn")
-
-[node name="Sprite2D" type="Sprite2D" parent="Enemy6"]
-texture = ExtResource("16_skmg0")
-
-[node name="Area2D" type="Area2D" parent="Enemy6"]
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy6/Area2D"]
-shape = SubResource("CircleShape2D_qvneb")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy6"]
-shape = SubResource("CircleShape2D_jsowe")
-
-[node name="Enemy7" type="CharacterBody2D" parent="."]
-position = Vector2(410, 460)
-collision_layer = 2
-collision_mask = 18
-script = ExtResource("15_0iqsn")
-
-[node name="Sprite2D" type="Sprite2D" parent="Enemy7"]
-texture = ExtResource("16_skmg0")
-
-[node name="Area2D" type="Area2D" parent="Enemy7"]
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy7/Area2D"]
-shape = SubResource("CircleShape2D_qvneb")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy7"]
-shape = SubResource("CircleShape2D_jsowe")
-
-[node name="Enemy8" type="CharacterBody2D" parent="."]
-position = Vector2(401, 410)
-collision_layer = 2
-collision_mask = 18
-script = ExtResource("15_0iqsn")
-
-[node name="Sprite2D" type="Sprite2D" parent="Enemy8"]
-texture = ExtResource("16_skmg0")
-
-[node name="Area2D" type="Area2D" parent="Enemy8"]
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy8/Area2D"]
-shape = SubResource("CircleShape2D_qvneb")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy8"]
-shape = SubResource("CircleShape2D_jsowe")
-
-[node name="Enemy9" type="CharacterBody2D" parent="."]
-position = Vector2(486, 358)
-collision_layer = 2
-collision_mask = 18
-script = ExtResource("15_0iqsn")
-
-[node name="Sprite2D" type="Sprite2D" parent="Enemy9"]
-texture = ExtResource("16_skmg0")
-
-[node name="Area2D" type="Area2D" parent="Enemy9"]
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy9/Area2D"]
-shape = SubResource("CircleShape2D_qvneb")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy9"]
-shape = SubResource("CircleShape2D_jsowe")
-
-[node name="Enemy10" type="CharacterBody2D" parent="."]
-position = Vector2(574, 299)
-collision_layer = 2
-collision_mask = 18
-script = ExtResource("15_0iqsn")
-
-[node name="Sprite2D" type="Sprite2D" parent="Enemy10"]
-texture = ExtResource("16_skmg0")
-
-[node name="Area2D" type="Area2D" parent="Enemy10"]
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy10/Area2D"]
-shape = SubResource("CircleShape2D_qvneb")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy10"]
-shape = SubResource("CircleShape2D_jsowe")
-
-[node name="Enemy11" type="CharacterBody2D" parent="."]
-position = Vector2(680, 235)
-collision_layer = 2
-collision_mask = 18
-script = ExtResource("15_0iqsn")
-
-[node name="Sprite2D" type="Sprite2D" parent="Enemy11"]
-texture = ExtResource("16_skmg0")
-
-[node name="Area2D" type="Area2D" parent="Enemy11"]
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy11/Area2D"]
-shape = SubResource("CircleShape2D_qvneb")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy11"]
-shape = SubResource("CircleShape2D_jsowe")
-
-[node name="Enemy12" type="CharacterBody2D" parent="."]
-position = Vector2(640, 190)
-collision_layer = 2
-collision_mask = 18
-script = ExtResource("15_0iqsn")
-
-[node name="Sprite2D" type="Sprite2D" parent="Enemy12"]
-texture = ExtResource("16_skmg0")
-
-[node name="Area2D" type="Area2D" parent="Enemy12"]
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy12/Area2D"]
-shape = SubResource("CircleShape2D_qvneb")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy12"]
-shape = SubResource("CircleShape2D_jsowe")
+[node name="RayCast2D" type="RayCast2D" parent="Enemy"]
+position = Vector2(-2, 1)
+target_position = Vector2(34, -29)
 
 [connection signal="pressed" from="Player/Camera2D/Control/VBoxContainer2/quit_button" to="Player" method="_on_quit_button_pressed"]
 [connection signal="timeout" from="Player/ComboTimer" to="Player" method="_on_combo_timer_timeout"]
@@ -2146,14 +1941,3 @@ shape = SubResource("CircleShape2D_jsowe")
 [connection signal="timeout" from="Player/AttackHitboxes/Light_attack3/HitBoxTimer" to="Player/AttackHitboxes/Light_attack3" method="_on_hit_box_timer_timeout"]
 [connection signal="timeout" from="Player/AttackHitboxes/Light_attack3/HitBoxStartTimer" to="Player/AttackHitboxes/Light_attack3" method="_on_hit_box_start_timer_timeout"]
 [connection signal="area_entered" from="Enemy/Area2D" to="Enemy" method="_on_area_2d_area_entered"]
-[connection signal="area_entered" from="Enemy2/Area2D" to="Enemy2" method="_on_area_2d_area_entered"]
-[connection signal="area_entered" from="Enemy3/Area2D" to="Enemy3" method="_on_area_2d_area_entered"]
-[connection signal="area_entered" from="Enemy4/Area2D" to="Enemy4" method="_on_area_2d_area_entered"]
-[connection signal="area_entered" from="Enemy5/Area2D" to="Enemy5" method="_on_area_2d_area_entered"]
-[connection signal="area_entered" from="Enemy6/Area2D" to="Enemy6" method="_on_area_2d_area_entered"]
-[connection signal="area_entered" from="Enemy7/Area2D" to="Enemy7" method="_on_area_2d_area_entered"]
-[connection signal="area_entered" from="Enemy8/Area2D" to="Enemy8" method="_on_area_2d_area_entered"]
-[connection signal="area_entered" from="Enemy9/Area2D" to="Enemy9" method="_on_area_2d_area_entered"]
-[connection signal="area_entered" from="Enemy10/Area2D" to="Enemy10" method="_on_area_2d_area_entered"]
-[connection signal="area_entered" from="Enemy11/Area2D" to="Enemy11" method="_on_area_2d_area_entered"]
-[connection signal="area_entered" from="Enemy12/Area2D" to="Enemy12" method="_on_area_2d_area_entered"]
