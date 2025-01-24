@@ -1,7 +1,7 @@
-[gd_scene load_steps=231 format=3 uid="uid://clmjfv07o664e"]
+[gd_scene load_steps=232 format=3 uid="uid://clmjfv07o664e"]
 
-[ext_resource type="Script" path="res://proc_world_gen.gd" id="1_fv7y4"]
-[ext_resource type="TileSet" uid="uid://cedf6ix21f3gu" path="res://assets/data/isometric_tilemap.tres" id="2_junhv"]
+[ext_resource type="Script" path="res://proc_world_gen.gd" id="1_2xjjt"]
+[ext_resource type="TileSet" uid="uid://bro7myiv2dgl7" path="res://data/isometric_tilemap.tres" id="2_milgb"]
 [ext_resource type="Texture2D" uid="uid://cfo4507x6nau7" path="res://assets/main_char/spr_Attack_strip.png" id="3_2a5je"]
 [ext_resource type="Texture2D" uid="uid://ddiwf2irw3hu8" path="res://assets/tiles/isometric tileset/hell_tileset.png" id="3_j6snf"]
 [ext_resource type="Texture2D" uid="uid://bi0tlkjtfs2y8" path="res://assets/main_char/spr_Dash_strip.png" id="4_dncur"]
@@ -18,19 +18,19 @@
 [ext_resource type="Script" path="res://light_attack_1.gd" id="13_45j0r"]
 [ext_resource type="PackedScene" uid="uid://iaxkev3bc2pn" path="res://enemies.tscn" id="15_lj0jg"]
 
-[sub_resource type="Gradient" id="Gradient_dpl4k"]
+[sub_resource type="Gradient" id="Gradient_20ap8"]
 interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.3, 0.688312)
-colors = PackedColorArray(0.827451, 0.584314, 0, 1, 0.827451, 0.054902, 0, 1, 0.488989, 0.339107, 1.92523e-07, 1)
+offsets = PackedFloat32Array(0, 0.3, 0.9)
+colors = PackedColorArray(0.819608, 0.247059, 0, 1, 0.566092, 1.38376e-06, 3.36915e-07, 1, 0.403922, 0.141176, 0, 1)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_x61n5"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_vv4t0"]
 noise_type = 2
-seed = 2
-frequency = 0.0055
+seed = 4
+frequency = 0.0222
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_sb057"]
-color_ramp = SubResource("Gradient_dpl4k")
-noise = SubResource("FastNoiseLite_x61n5")
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_pd4ah"]
+color_ramp = SubResource("Gradient_20ap8")
+noise = SubResource("FastNoiseLite_vv4t0")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xopwu"]
 size = Vector2(9.22389, 9.22393)
@@ -1754,27 +1754,27 @@ texture_region_size = Vector2i(32, 32)
 9:21/0 = 0
 10:21/0 = 0
 
-[node name="world" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_jsowe"]
+
+[node name="isometric_tilemap" type="Node2D"]
 position = Vector2(-283, 134)
 
 [node name="proc_world_gen" type="Node2D" parent="."]
-script = ExtResource("1_fv7y4")
-noise_height_text = SubResource("NoiseTexture2D_sb057")
+script = ExtResource("1_2xjjt")
+noise_height_text = SubResource("NoiseTexture2D_pd4ah")
+
+[node name="ground" type="TileMapLayer" parent="proc_world_gen"]
+tile_set = ExtResource("2_milgb")
 
 [node name="lava" type="TileMapLayer" parent="proc_world_gen"]
 z_index = -1
-tile_set = ExtResource("2_junhv")
+tile_set = ExtResource("2_milgb")
 
-[node name="ground" type="TileMapLayer" parent="proc_world_gen"]
-z_index = -1
-tile_set = ExtResource("2_junhv")
-
-[node name="rocks" type="TileMapLayer" parent="proc_world_gen"]
-z_index = 1
-tile_set = ExtResource("2_junhv")
+[node name="ground2" type="TileMapLayer" parent="proc_world_gen"]
+tile_set = ExtResource("2_milgb")
 
 [node name="environment" type="TileMapLayer" parent="proc_world_gen"]
-tile_set = ExtResource("2_junhv")
+tile_set = ExtResource("2_milgb")
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(4, 5.99997)
