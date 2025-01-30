@@ -8,6 +8,7 @@ var pierucounter = 0
 var combo = 1
 var processiterations = 0
 @export var SPEED = 100.0
+@onready var hp = 10
 
 #Viittaukset player attackkeihin
 

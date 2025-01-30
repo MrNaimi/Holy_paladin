@@ -33,6 +33,7 @@ func _on_detection_area_body_entered(body: Node2D) -> void:
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
+	print(area.name)
 	if area.is_in_group("attack"):
 		print("IM HURTING :()")
 		health -= 1
@@ -44,4 +45,5 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			enemy_animation.play("death")
 			await get_tree().create_timer(1).timeout
 			imp.queue_free()
-		
+	if area.is_in_group("player"):
+		area.get_parent().hp-=1

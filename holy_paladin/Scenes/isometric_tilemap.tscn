@@ -1,4 +1,4 @@
-[gd_scene load_steps=235 format=4 uid="uid://ccxc8igku0gv2"]
+[gd_scene load_steps=236 format=4 uid="uid://ccxc8igku0gv2"]
 
 [ext_resource type="Script" path="res://Scripts/character_body_2d.gd" id="2_srydx"]
 [ext_resource type="Script" path="res://Scripts/proc_gen_world.gd" id="2_yevhn"]
@@ -1544,6 +1544,8 @@ size = Vector2(14.7435, 38.461)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sv3m8"]
 size = Vector2(17.6637, 46.0516)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yxxps"]
+
 [node name="root" type="Node2D"]
 
 [node name="Node2D" type="TileMapLayer" parent="."]
@@ -1704,6 +1706,12 @@ one_shot = true
 [node name="HitBoxStartTimer" type="Timer" parent="Node2D/Player/AttackHitboxes/Light_attack3"]
 one_shot = true
 
+[node name="Area2D" type="Area2D" parent="Node2D/Player" groups=["player"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Player/Area2D"]
+position = Vector2(2.37174, -14.2305)
+shape = SubResource("CapsuleShape2D_yxxps")
+
 [node name="pieru" type="AudioStreamPlayer2D" parent="Node2D"]
 stream = ExtResource("14_ti6kv")
 
@@ -1797,8 +1805,8 @@ offset_top = 770.0
 offset_right = 433.0
 offset_bottom = 970.0
 scale = Vector2(2, 2)
-step = 0.01
-value = 50.0
+max_value = 10.0
+value = 10.0
 fill_mode = 4
 radial_fill_degrees = 90.0
 radial_center_offset = Vector2(-100, 200)
@@ -1816,8 +1824,9 @@ offset_top = 791.0
 offset_right = 430.0
 offset_bottom = 991.0
 scale = Vector2(1.9, 1.9)
+max_value = 10.0
 step = 0.01
-value = 50.0
+value = 10.0
 fill_mode = 4
 radial_fill_degrees = 90.0
 radial_center_offset = Vector2(-100, 200)

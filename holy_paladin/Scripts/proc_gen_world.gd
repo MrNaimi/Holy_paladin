@@ -37,6 +37,7 @@ func _input(event): #zoom control, helpompi kattoa karttaa
 
 func _ready():
 	noise = noise_height_text.noise
+	#noise.seed = RandomNumberGenerator.new().randi_range(0,200)
 	generate_world()
 
 func generate_world():

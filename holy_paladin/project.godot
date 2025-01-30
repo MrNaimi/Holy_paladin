@@ -27,6 +27,7 @@ window/size/resizable=false
 [global_group]
 
 attack=""
+player=""
 
 [input]
 

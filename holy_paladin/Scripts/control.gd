@@ -27,12 +27,9 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 
-	xp_bar.value+=50*delta
-	if xp_bar.value >= 100:
-		xp_bar.value = 0
-	hp_bar.value-=30*delta
-	if hp_bar.value <= 0:
-		hp_bar.value = 100
+	xp_bar.value=GlobalVariables.xp
+	hp_bar.value=player.hp
+	
 	combotimerbar.value=combo_timer.time_left
 	
 		
