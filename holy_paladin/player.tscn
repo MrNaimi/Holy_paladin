@@ -1523,8 +1523,9 @@ shape = SubResource("RectangleShape2D_xopwu")
 [node name="Player_animations" type="AnimatedSprite2D" parent="."]
 position = Vector2(5.92936, -28.4609)
 sprite_frames = SubResource("SpriteFrames_4mljv")
-animation = &"light_attack3"
-frame_progress = 0.946976
+animation = &"dash"
+frame = 7
+frame_progress = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(7.11524, -8.30109)
