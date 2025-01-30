@@ -1,4 +1,4 @@
-[gd_scene load_steps=229 format=4 uid="uid://ccxc8igku0gv2"]
+[gd_scene load_steps=228 format=4 uid="uid://ccxc8igku0gv2"]
 
 [ext_resource type="Texture2D" uid="uid://5tuvcq8srvo2" path="res://assets/tiles/isometric tileset/spritesheet.png" id="1_engmm"]
 [ext_resource type="Script" path="res://Scripts/character_body_2d.gd" id="2_srydx"]
@@ -15,7 +15,6 @@
 [ext_resource type="Script" path="res://Scripts/light_attack_1.gd" id="13_127up"]
 [ext_resource type="AudioStream" uid="uid://cx3aaej2luowt" path="res://Sounds/pieru.ogg" id="14_ti6kv"]
 [ext_resource type="Texture2D" uid="uid://5sa16mbyiir" path="res://assets/ui_assets/progress-bar-circle.png" id="15_24pg0"]
-[ext_resource type="Texture2D" uid="uid://bxn1843nxm4bs" path="res://assets/ui_assets/actionbackgroundtexture.png" id="15_o3ixj"]
 [ext_resource type="Texture2D" uid="uid://68yo5frgdfu5" path="res://assets/ui_assets/progress-bar-frame.png" id="16_mth5v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fsmtb"]
@@ -1951,15 +1950,6 @@ offset_top = 423.0
 offset_right = -256.0
 offset_bottom = 463.0
 
-[node name="TextureRect" type="TextureRect" parent="Node2D/CanvasLayer/Control/Control"]
-modulate = Color(0.74, 0.74, 0.74, 1)
-layout_mode = 0
-offset_left = 399.0
-offset_top = 2.0
-offset_right = 799.0
-offset_bottom = 402.0
-texture = ExtResource("15_o3ixj")
-
 [node name="XPbar" type="TextureProgressBar" parent="Node2D/CanvasLayer/Control/Control"]
 layout_mode = 0
 offset_right = 400.0
@@ -1972,7 +1962,7 @@ radial_fill_degrees = 90.0
 texture_under = ExtResource("15_24pg0")
 texture_over = ExtResource("16_mth5v")
 texture_progress = ExtResource("15_24pg0")
-tint_under = Color(0.188235, 0.188235, 0.188235, 1)
+tint_under = Color(0, 0, 0, 0.45098)
 tint_over = Color(0, 0, 0, 1)
 tint_progress = Color(0.282987, 5.38824e-05, 0.282985, 1)
 
@@ -1990,9 +1980,16 @@ radial_fill_degrees = 90.0
 texture_under = ExtResource("15_24pg0")
 texture_over = ExtResource("16_mth5v")
 texture_progress = ExtResource("15_24pg0")
-tint_under = Color(0.187176, 0.187176, 0.187176, 1)
+tint_under = Color(0, 0, 0, 0.45098)
 tint_over = Color(0, 0, 0, 1)
 tint_progress = Color(0.776471, 0, 0.0156863, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Node2D/CanvasLayer/Control/Control"]
+layout_mode = 0
+offset_left = 412.0
+offset_top = 191.0
+offset_right = 615.0
+offset_bottom = 401.0
 
 [connection signal="timeout" from="Node2D/Player/ComboTimer" to="Node2D/Player" method="_on_combo_timer_timeout"]
 [connection signal="timeout" from="Node2D/Player/AttackHitboxes/Light_attack1/HitBoxTimer" to="Node2D/Player/AttackHitboxes/Light_attack1" method="_on_hit_box_timer_timeout"]
