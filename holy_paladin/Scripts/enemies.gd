@@ -7,7 +7,8 @@ extends CharacterBody2D
 var speed = 95.0
 var player_chase = false
 var player = null
-var health = 3
+@export var health = 3
+@export var damage = 1
 
 
 
@@ -36,14 +37,14 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	print(area.name)
 	if area.is_in_group("attack"):
 		print("IM HURTING :()")
-		health -= 1
+		health -= area.damage
 		if health > 0:
 			enemy_animation.play("hurt")
-		if health == 0:
+		if health <= 0:
 			print("älä lyö vittu")
 			GlobalVariables.xp += 1
 			enemy_animation.play("death")
 			await get_tree().create_timer(1).timeout
 			imp.queue_free()
 	if area.is_in_group("player"):
-		area.get_parent().hp-=1
+		area.get_parent().hurt(damage)

@@ -29,10 +29,10 @@ var noise_val_arr =[]
 
 func _input(event): #zoom control, helpompi kattoa karttaa 
 	if Input.is_action_just_pressed("zoomout"):
-		var zoom_val = camera_2d.zoom.x - 0.1
+		var zoom_val = camera_2d.zoom.x + 0.1
 		camera_2d.zoom = Vector2(zoom_val,zoom_val)
 	if Input.is_action_just_pressed("zoomin"):
-		var zoom_val = camera_2d.zoom.x + 0.1
+		var zoom_val = camera_2d.zoom.x - 0.1
 		camera_2d.zoom = Vector2(zoom_val,zoom_val)
 
 func _ready():
