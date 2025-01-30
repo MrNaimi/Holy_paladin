@@ -14,6 +14,8 @@ extends Control
 @onready var dashtimer: Label = $VBoxContainer/dashtimer
 
 @onready var player: CharacterBody2D = $"../.."
+@onready var enemieskilled: Label = $enemieskilled
+
 
 
 # Called when the node enters the scene tree for the first time.
@@ -32,5 +34,5 @@ func _process(delta: float) -> void:
 	combotimer.text = "combo time left: "+str(float(combo_timer.time_left)).left(4)
 	pierucounter.text = str(player.pierucounter)
 	processpeed.text = str(player.processiterations)
-	dashtimer.text = "dash timer left: "+str(float(animation_timer.time_left)).left(4)
-	
+	enemieskilled.text = "Enemies killed: "+str(GlobalVariables.enemies_killed)
+	area_cleared.text = "Area cleared: "+str(snapped(GlobalVariables.enemies_killed/60.0,0.0001)*100)+"%"

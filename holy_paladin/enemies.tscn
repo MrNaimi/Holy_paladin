@@ -1,23 +1,110 @@
-[gd_scene load_steps=5 format=3 uid="uid://bg8i7f3pidxny"]
+[gd_scene load_steps=8 format=3 uid="uid://iaxkev3bc2pn"]
 
-[ext_resource type="Script" path="res://enemy.gd" id="1_q4bsl"]
-[ext_resource type="Texture2D" uid="uid://d05v1nlavhctt" path="res://imp.png" id="2_mcvdq"]
+[ext_resource type="Script" path="res://enemy.gd" id="1_2lx7r"]
+[ext_resource type="Texture2D" uid="uid://d05v1nlavhctt" path="res://imp.png" id="2_24ont"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qvneb"]
 radius = 7.28011
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_jsowe"]
+[sub_resource type="Animation" id="Animation_kj0w7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_et47f"]
+resource_name = "death"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.433333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.5708]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.23333, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xfyun"]
+_data = {
+"RESET": SubResource("Animation_kj0w7"),
+"death": SubResource("Animation_et47f")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4l3iw"]
+radius = 5.0
 
 [node name="enemies" type="Node2D"]
-position = Vector2(554, 275)
 
 [node name="Enemy" type="CharacterBody2D" parent="."]
+self_modulate = Color(1, 0, 0, 1)
+position = Vector2(536, 266)
 collision_layer = 18
 collision_mask = 18
-script = ExtResource("1_q4bsl")
+script = ExtResource("1_2lx7r")
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemy"]
-texture = ExtResource("2_mcvdq")
+texture = ExtResource("2_24ont")
 
 [node name="Area2D" type="Area2D" parent="Enemy"]
 collision_layer = 2
@@ -26,17 +113,23 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/Area2D"]
 shape = SubResource("CircleShape2D_qvneb")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Enemy"]
+libraries = {
+"": SubResource("AnimationLibrary_xfyun")
+}
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
-shape = SubResource("CircleShape2D_jsowe")
+shape = SubResource("CircleShape2D_4l3iw")
 
 [node name="Enemy2" type="CharacterBody2D" parent="."]
-position = Vector2(-51, -10)
+self_modulate = Color(1, 0, 0, 1)
+position = Vector2(581, 237)
 collision_layer = 18
 collision_mask = 18
-script = ExtResource("1_q4bsl")
+script = ExtResource("1_2lx7r")
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemy2"]
-texture = ExtResource("2_mcvdq")
+texture = ExtResource("2_24ont")
 
 [node name="Area2D" type="Area2D" parent="Enemy2"]
 collision_layer = 2
@@ -45,17 +138,23 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy2/Area2D"]
 shape = SubResource("CircleShape2D_qvneb")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Enemy2"]
+libraries = {
+"": SubResource("AnimationLibrary_xfyun")
+}
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy2"]
-shape = SubResource("CircleShape2D_jsowe")
+shape = SubResource("CircleShape2D_4l3iw")
 
 [node name="Enemy3" type="CharacterBody2D" parent="."]
-position = Vector2(23, -37)
+self_modulate = Color(1, 0, 0, 1)
+position = Vector2(578, 281)
 collision_layer = 18
 collision_mask = 18
-script = ExtResource("1_q4bsl")
+script = ExtResource("1_2lx7r")
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemy3"]
-texture = ExtResource("2_mcvdq")
+texture = ExtResource("2_24ont")
 
 [node name="Area2D" type="Area2D" parent="Enemy3"]
 collision_layer = 2
@@ -64,17 +163,23 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy3/Area2D"]
 shape = SubResource("CircleShape2D_qvneb")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Enemy3"]
+libraries = {
+"": SubResource("AnimationLibrary_xfyun")
+}
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy3"]
-shape = SubResource("CircleShape2D_jsowe")
+shape = SubResource("CircleShape2D_4l3iw")
 
 [node name="Enemy4" type="CharacterBody2D" parent="."]
-position = Vector2(-119, 123)
+self_modulate = Color(1, 0, 0, 1)
+position = Vector2(468, 343)
 collision_layer = 18
 collision_mask = 18
-script = ExtResource("1_q4bsl")
+script = ExtResource("1_2lx7r")
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemy4"]
-texture = ExtResource("2_mcvdq")
+texture = ExtResource("2_24ont")
 
 [node name="Area2D" type="Area2D" parent="Enemy4"]
 collision_layer = 2
@@ -83,17 +188,23 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy4/Area2D"]
 shape = SubResource("CircleShape2D_qvneb")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Enemy4"]
+libraries = {
+"": SubResource("AnimationLibrary_xfyun")
+}
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy4"]
-shape = SubResource("CircleShape2D_jsowe")
+shape = SubResource("CircleShape2D_4l3iw")
 
 [node name="Enemy5" type="CharacterBody2D" parent="."]
-position = Vector2(-138, 73)
+self_modulate = Color(1, 0, 0, 1)
+position = Vector2(393, 306)
 collision_layer = 18
 collision_mask = 18
-script = ExtResource("1_q4bsl")
+script = ExtResource("1_2lx7r")
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemy5"]
-texture = ExtResource("2_mcvdq")
+texture = ExtResource("2_24ont")
 
 [node name="Area2D" type="Area2D" parent="Enemy5"]
 collision_layer = 2
@@ -102,17 +213,23 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy5/Area2D"]
 shape = SubResource("CircleShape2D_qvneb")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Enemy5"]
+libraries = {
+"": SubResource("AnimationLibrary_xfyun")
+}
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy5"]
-shape = SubResource("CircleShape2D_jsowe")
+shape = SubResource("CircleShape2D_4l3iw")
 
 [node name="Enemy6" type="CharacterBody2D" parent="."]
-position = Vector2(-218, -11)
+self_modulate = Color(1, 0, 0, 1)
+position = Vector2(426, 389)
 collision_layer = 18
 collision_mask = 18
-script = ExtResource("1_q4bsl")
+script = ExtResource("1_2lx7r")
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemy6"]
-texture = ExtResource("2_mcvdq")
+texture = ExtResource("2_24ont")
 
 [node name="Area2D" type="Area2D" parent="Enemy6"]
 collision_layer = 2
@@ -121,17 +238,23 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy6/Area2D"]
 shape = SubResource("CircleShape2D_qvneb")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Enemy6"]
+libraries = {
+"": SubResource("AnimationLibrary_xfyun")
+}
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy6"]
-shape = SubResource("CircleShape2D_jsowe")
+shape = SubResource("CircleShape2D_4l3iw")
 
 [node name="Enemy7" type="CharacterBody2D" parent="."]
-position = Vector2(-144, 185)
+self_modulate = Color(1, 0, 0, 1)
+position = Vector2(345, 261)
 collision_layer = 18
 collision_mask = 18
-script = ExtResource("1_q4bsl")
+script = ExtResource("1_2lx7r")
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemy7"]
-texture = ExtResource("2_mcvdq")
+texture = ExtResource("2_24ont")
 
 [node name="Area2D" type="Area2D" parent="Enemy7"]
 collision_layer = 2
@@ -140,17 +263,23 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy7/Area2D"]
 shape = SubResource("CircleShape2D_qvneb")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Enemy7"]
+libraries = {
+"": SubResource("AnimationLibrary_xfyun")
+}
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy7"]
-shape = SubResource("CircleShape2D_jsowe")
+shape = SubResource("CircleShape2D_4l3iw")
 
 [node name="Enemy8" type="CharacterBody2D" parent="."]
-position = Vector2(-153, 135)
+self_modulate = Color(1, 0, 0, 1)
+position = Vector2(402, 415)
 collision_layer = 18
 collision_mask = 18
-script = ExtResource("1_q4bsl")
+script = ExtResource("1_2lx7r")
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemy8"]
-texture = ExtResource("2_mcvdq")
+texture = ExtResource("2_24ont")
 
 [node name="Area2D" type="Area2D" parent="Enemy8"]
 collision_layer = 2
@@ -159,17 +288,23 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy8/Area2D"]
 shape = SubResource("CircleShape2D_qvneb")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Enemy8"]
+libraries = {
+"": SubResource("AnimationLibrary_xfyun")
+}
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy8"]
-shape = SubResource("CircleShape2D_jsowe")
+shape = SubResource("CircleShape2D_4l3iw")
 
 [node name="Enemy9" type="CharacterBody2D" parent="."]
-position = Vector2(-68, 83)
+self_modulate = Color(1, 0, 0, 1)
+position = Vector2(409, 482)
 collision_layer = 18
 collision_mask = 18
-script = ExtResource("1_q4bsl")
+script = ExtResource("1_2lx7r")
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemy9"]
-texture = ExtResource("2_mcvdq")
+texture = ExtResource("2_24ont")
 
 [node name="Area2D" type="Area2D" parent="Enemy9"]
 collision_layer = 2
@@ -178,17 +313,23 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy9/Area2D"]
 shape = SubResource("CircleShape2D_qvneb")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Enemy9"]
+libraries = {
+"": SubResource("AnimationLibrary_xfyun")
+}
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy9"]
-shape = SubResource("CircleShape2D_jsowe")
+shape = SubResource("CircleShape2D_4l3iw")
 
 [node name="Enemy10" type="CharacterBody2D" parent="."]
-position = Vector2(20, 24)
+self_modulate = Color(1, 0, 0, 1)
+position = Vector2(613, 257)
 collision_layer = 18
 collision_mask = 18
-script = ExtResource("1_q4bsl")
+script = ExtResource("1_2lx7r")
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemy10"]
-texture = ExtResource("2_mcvdq")
+texture = ExtResource("2_24ont")
 
 [node name="Area2D" type="Area2D" parent="Enemy10"]
 collision_layer = 2
@@ -197,17 +338,23 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy10/Area2D"]
 shape = SubResource("CircleShape2D_qvneb")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Enemy10"]
+libraries = {
+"": SubResource("AnimationLibrary_xfyun")
+}
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy10"]
-shape = SubResource("CircleShape2D_jsowe")
+shape = SubResource("CircleShape2D_4l3iw")
 
 [node name="Enemy11" type="CharacterBody2D" parent="."]
-position = Vector2(126, -40)
+self_modulate = Color(1, 0, 0, 1)
+position = Vector2(665, 207)
 collision_layer = 18
 collision_mask = 18
-script = ExtResource("1_q4bsl")
+script = ExtResource("1_2lx7r")
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemy11"]
-texture = ExtResource("2_mcvdq")
+texture = ExtResource("2_24ont")
 
 [node name="Area2D" type="Area2D" parent="Enemy11"]
 collision_layer = 2
@@ -216,17 +363,23 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy11/Area2D"]
 shape = SubResource("CircleShape2D_qvneb")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Enemy11"]
+libraries = {
+"": SubResource("AnimationLibrary_xfyun")
+}
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy11"]
-shape = SubResource("CircleShape2D_jsowe")
+shape = SubResource("CircleShape2D_4l3iw")
 
 [node name="Enemy12" type="CharacterBody2D" parent="."]
-position = Vector2(86, -85)
+self_modulate = Color(1, 0, 0, 1)
+position = Vector2(631, 190)
 collision_layer = 18
 collision_mask = 18
-script = ExtResource("1_q4bsl")
+script = ExtResource("1_2lx7r")
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemy12"]
-texture = ExtResource("2_mcvdq")
+texture = ExtResource("2_24ont")
 
 [node name="Area2D" type="Area2D" parent="Enemy12"]
 collision_layer = 2
@@ -235,8 +388,13 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy12/Area2D"]
 shape = SubResource("CircleShape2D_qvneb")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Enemy12"]
+libraries = {
+"": SubResource("AnimationLibrary_xfyun")
+}
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy12"]
-shape = SubResource("CircleShape2D_jsowe")
+shape = SubResource("CircleShape2D_4l3iw")
 
 [connection signal="area_entered" from="Enemy/Area2D" to="Enemy" method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="Enemy2/Area2D" to="Enemy2" method="_on_area_2d_area_entered"]

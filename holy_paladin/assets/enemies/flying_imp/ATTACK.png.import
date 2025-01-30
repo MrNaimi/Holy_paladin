@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://beclm34dnaqem"
-path="res://.godot/imported/miekka.png-601cb01091acc40c73359c2fad2fe3aa.ctex"
+uid="uid://c86rj0wowkrhs"
+path="res://.godot/imported/ATTACK.png-ad35e3d9b5799de1221f41d3c84c254d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://miekka.png"
-dest_files=["res://.godot/imported/miekka.png-601cb01091acc40c73359c2fad2fe3aa.ctex"]
+source_file="res://assets/enemies/flying_imp/ATTACK.png"
+dest_files=["res://.godot/imported/ATTACK.png-ad35e3d9b5799de1221f41d3c84c254d.ctex"]
 
 [params]
 

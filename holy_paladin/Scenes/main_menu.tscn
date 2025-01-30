@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://bveqtni388phf"]
+
+[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_fm1ic"]
+
+[node name="main_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fm1ic")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.233925, 0.233925, 0.233925, 1)
+
+[node name="quit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 600.0
+offset_top = 435.0
+offset_right = 1325.0
+offset_bottom = 783.0
+text = "QUit Gmae"
+
+[node name="start" type="Button" parent="."]
+layout_mode = 0
+offset_left = 615.0
+offset_top = 172.0
+offset_right = 1286.0
+offset_bottom = 413.0
+text = "Start"
+
+[connection signal="pressed" from="quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="start" to="." method="_on_start_pressed"]

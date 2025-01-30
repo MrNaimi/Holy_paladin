@@ -76,8 +76,8 @@ func _input(event):
 	if current_speed==0:
 		if event.is_action_pressed("attack"):
 			print("mouse clicked")
-			if get_viewport().get_mouse_position().x >= get_viewport().size.x/2:
-				player_animations.flip_h = false;
+			if get_viewport().get_mouse_position().x >= get_viewport().size.x / 2:
+				player_animations.flip_h = false
 			else:
 				player_animations.flip_h = true;
 			if combo == 1 and player_animations.animation == "idle":
@@ -126,13 +126,18 @@ func _physics_process(delta: float) -> void:
 	current_speed = sqrt(velocity.x*velocity.x+velocity.y*velocity.y)
 	
 	#TÄRKEÄ PIERUÄÄNI
-	if RandomNumberGenerator.new().randi_range(0, 1000000)==9:
+	if RandomNumberGenerator.new().randi_range(0, 25000)==9:
 		pierucounter+=1
 		pieru.play(0)
 	camera_2d.position = player_collision.position
 	
 		
 	
+	if GlobalVariables.enemies_killed % 12 == 0 and GlobalVariables.enemy_spawned and GlobalVariables.enemies_killed < 60:
+		print("enemy made")
+		get_parent().add_child(enemies.instantiate())
+		GlobalVariables.enemy_spawned = false
+		
 func _on_combo_timer_timeout() -> void:
 	combo = 1
 	
