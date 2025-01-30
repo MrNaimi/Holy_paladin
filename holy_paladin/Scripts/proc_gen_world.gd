@@ -11,10 +11,9 @@ var width : int = 100
 var height : int = 200
 var source_id = 0 #Tilesetin id
 var lava_atlas = Vector2i(0,8) #lavan kordinaatti tilesetissä
-var land_atlas = Vector2i(0,0) #maan kordinaatti tilesetissä
+var land_atlas = Vector2i(1,0) #maan kordinaatti tilesetissä
 
 @onready var camera_2d = $"../../Player/Camera2D"
-
 @onready var lava_tilemaplayer = $lava
 @onready var ground_tilemaplayer = $ground
 @onready var ground_2_tilemaplayer = $ground2
@@ -42,8 +41,8 @@ func _ready():
 
 func generate_world():
 	#Käydään koko map läpi eli 100 x 200, josta tulee neljö isometric tilet on 32x16. -width/2,width/2 siirtää generoidun kartan keskelle
-	for x in range(-width/2,width/2):
-		for y in range(-height/2, height/2):
+	for x in range(-width,width):
+		for y in range(-height, height):
 			var noise_val : float = noise.get_noise_2d(x,y)
 			noise_val_arr.append(noise_val)
 			
