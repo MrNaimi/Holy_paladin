@@ -9,21 +9,47 @@ extends Node2D
 var noise : Noise #Noise proc_gen_world
 var width : int = 100
 var height : int = 200
-var source_id = 0 #Tilesetin id
+
+var source_id = 0 #helvetti Tilesetin id
 var lava_atlas = Vector2i(0,8) #lavan kordinaatti tilesetissä
 var land_atlas = Vector2i(1,0) #maan kordinaatti tilesetissä
 
+var forest_id = 1
+var tree_id = 2
+var water_atlas = Vector2i(4,8) #veden kordinaatti tilesetissä
+var grass_atlas = Vector2i(5,2) #ruohon kordinaatti tilesetissä
+var tree_atlas = Vector2i(0,0)# puu kordinaatti
+
+#tileset kytkin
+var kohtaus = 1
+
+#kamera, kyl te tiedätte
 @onready var camera_2d = $"../../Player/Camera2D"
+
+#helvetti tilet
 @onready var lava_tilemaplayer = $lava
 @onready var ground_tilemaplayer = $ground
 @onready var ground_2_tilemaplayer = $ground2
 @onready var environment_tilemaplayer = $environment
 
-
+#overworld tilet
+@onready var water_tilemaplayer: TileMapLayer = $water
+@onready var grass_tilemaplayer: TileMapLayer = $grass
+@onready var rocks_tilemaplayer: TileMapLayer = $rocks
+@onready var tree_tilemaplayer: TileMapLayer = $nature
+#helvetti tilet
 var ground_tiles_arr =[] 
 var terrain_ground_int = 1 #Ground tilejen layer numero
 var lava_tiles_arr =[]
 var terrain_lava_int = 0 #Laavan layer numero
+
+#overworld tilet
+var grass_tiles_arr =[]
+var terrain_grass_int = 1
+var water_tiles_arr =[]
+var terrain_water_int = 0
+var tree_tiles_arr = []
+var terrain_tree_int = 3
 
 var noise_val_arr =[]
 
@@ -41,25 +67,49 @@ func _ready():
 	generate_world()
 
 func generate_world():
-	#Käydään koko map läpi eli 100 x 200, josta tulee neljö isometric tilet on 32x16. -width/2,width/2 siirtää generoidun kartan keskelle
-	for x in range(-width,width):
-		for y in range(-height, height):
-			var noise_val : float = noise.get_noise_2d(x,y)
-			noise_val_arr.append(noise_val)
-			
-			#jos generoidun "äänen" arvo on <=-0.5 
-			if noise_val <=-0.4:
-				#place land
-				ground_tiles_arr.append(Vector2i(x,y))
-				ground_tilemaplayer.set_cell(Vector2i(x,y),source_id, land_atlas)
+	#Käydään koko map läpi eli 100 x 200, josta tulee neljö isometric tilet on 32x16. 
+	if kohtaus == 1:
+		for x in range(-width,width):
+			for y in range(-height, height):
+				var noise_val : float = noise.get_noise_2d(x,y)
+				noise_val_arr.append(noise_val)
 				
-			elif noise_val > -0.4:
-				#place lava
-				lava_tiles_arr.append(Vector2i(x,y))
-				lava_tilemaplayer.set_cell(Vector2i(x,y),source_id,lava_atlas)
+				#jos generoidun "äänen" arvo on <=-0.5 
+				if noise_val <=-0.4:
+					#place land
+					ground_tiles_arr.append(Vector2i(x,y))
+					ground_tilemaplayer.set_cell(Vector2i(x,y),source_id, land_atlas)
+					
+				elif noise_val > -0.4:
+					#place lava
+					lava_tiles_arr.append(Vector2i(x,y))
+					lava_tilemaplayer.set_cell(Vector2i(x,y),source_id,lava_atlas)
 	#testinä äänen korkein ja pienin arvo, eri kuvioilla on eri arvot niin pitää säätää elif noise_val > -0.5: if noise_val <=-0.5: sopiviksi
+	if kohtaus == 0:
+		for x in range(-width,width):
+			for y in range(-height, height):
+				var noise_val : float = noise.get_noise_2d(x,y)
+				noise_val_arr.append(noise_val)
+				
+				if noise_val <=-0.45:
+					if noise_val < -0.8:
+						tree_tiles_arr.append(Vector2i(x,y))
+						tree_tilemaplayer.set_cell(Vector2i(x,y),tree_id,tree_atlas)
+					#place grass
+					grass_tiles_arr.append(Vector2i(x,y))
+					grass_tilemaplayer.set_cell(Vector2i(x,y),forest_id, grass_atlas)
+					
+				elif noise_val > -0.45:
+					#place water
+					water_tiles_arr.append(Vector2i(x,y))
+					water_tilemaplayer.set_cell(Vector2i(x,y),forest_id,water_atlas)
+				
 	print("korkein", noise_val_arr.max())
 	print("pienin", noise_val_arr.min())
 	
+	
+	grass_tilemaplayer.set_cells_terrain_connect(grass_tiles_arr,terrain_grass_int,0)
+	water_tilemaplayer.set_cells_terrain_connect(water_tiles_arr,terrain_water_int,0)
+	tree_tilemaplayer.set_cells_terrain_connect(tree_tiles_arr,terrain_tree_int,0)
 	ground_tilemaplayer.set_cells_terrain_connect(ground_tiles_arr,terrain_ground_int,0)
 	lava_tilemaplayer.set_cells_terrain_connect(lava_tiles_arr,terrain_lava_int,0)
