@@ -1,10 +1,39 @@
-[gd_scene load_steps=29 format=3 uid="uid://cj22l1hlo5ktv"]
+[gd_scene load_steps=37 format=3 uid="uid://cj22l1hlo5ktv"]
 
 [ext_resource type="Script" path="res://Scripts/enemies.gd" id="1_1p336"]
 [ext_resource type="Texture2D" uid="uid://ckhqdljircvhb" path="res://assets/enemies/flying_imp/IDLE.png" id="1_pnewx"]
 [ext_resource type="Texture2D" uid="uid://qcq0avvu8sp8" path="res://assets/enemies/flying_imp/FLYING.png" id="2_by7ow"]
+[ext_resource type="Texture2D" uid="uid://b17iooun5cx17" path="res://assets/enemies/flying_imp/DEATH.png" id="2_wcgu0"]
 [ext_resource type="Texture2D" uid="uid://c86rj0wowkrhs" path="res://assets/enemies/flying_imp/ATTACK.png" id="3_eh5qn"]
 [ext_resource type="Texture2D" uid="uid://sv8abaa237pd" path="res://assets/enemies/flying_imp/HURT.png" id="3_vde6m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hbuw3"]
+atlas = ExtResource("2_wcgu0")
+region = Rect2(0, 0, 79, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hvp73"]
+atlas = ExtResource("2_wcgu0")
+region = Rect2(79, 0, 79, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfmas"]
+atlas = ExtResource("2_wcgu0")
+region = Rect2(158, 0, 79, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_btedr"]
+atlas = ExtResource("2_wcgu0")
+region = Rect2(237, 0, 79, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kc0rd"]
+atlas = ExtResource("2_wcgu0")
+region = Rect2(316, 0, 79, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rklfd"]
+atlas = ExtResource("2_wcgu0")
+region = Rect2(395, 0, 79, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kmxp1"]
+atlas = ExtResource("2_wcgu0")
+region = Rect2(474, 0, 79, 69)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o88cb"]
 atlas = ExtResource("2_by7ow")
@@ -88,6 +117,32 @@ region = Rect2(237, 0, 79, 69)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wnwmg"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hbuw3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hvp73")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nfmas")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_btedr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kc0rd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rklfd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kmxp1")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_o88cb")
@@ -182,7 +237,7 @@ script = ExtResource("1_1p336")
 position = Vector2(1, 1)
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_wnwmg")
-animation = &"hawk_tuah"
+animation = &"death"
 
 [node name="Area2D" type="Area2D" parent="enemy_animation"]
 collision_layer = 2
@@ -201,6 +256,7 @@ collision_mask = 128
 position = Vector2(64, 65)
 shape = SubResource("CircleShape2D_pcne2")
 
+[connection signal="animation_finished" from="enemy_animation" to="." method="_on_enemy_animation_animation_finished"]
 [connection signal="area_entered" from="enemy_animation/Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]
