@@ -1,5 +1,5 @@
 extends Control
-var game = preload("res://Scenes/isometric_tilemap.tscn")
+var game = preload("res://isometric_tilemap.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

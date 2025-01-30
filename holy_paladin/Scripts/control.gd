@@ -6,19 +6,12 @@ extends Control
 @onready var viewportsize: Label = $VBoxContainer/viewportsize
 @onready var characterspeed: Label = $VBoxContainer/characterspeed
 @onready var combotimer: Label = $VBoxContainer/combotimer
-@onready var combo_timer: Timer = $"../../Player/ComboTimer"
-
-@onready var xp_bar: TextureProgressBar = $Control/XPbar
-@onready var hp_bar: TextureProgressBar = $Control/HPbar
-
-
+@onready var combo_timer: Timer = $"../../ComboTimer"
 @onready var pieru: AudioStreamPlayer2D = $"../../../pieru"
 @onready var pierucounter: Label = $VBoxContainer/pierucounter
 @onready var processpeed: Label = $VBoxContainer/processpeed
 
-@onready var player: CharacterBody2D = $"../../Player"
-
-
+@onready var player: CharacterBody2D = $"../.."
 
 
 # Called when the node enters the scene tree for the first time.
@@ -28,17 +21,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	
-	xp_bar.value+=50*delta
-	if xp_bar.value >= 100:
-		xp_bar.value = 0
-	hp_bar.value-=30*delta
-	if hp_bar.value <= 0:
-		hp_bar.value = 100
-	
 	x.text ="mouse pos x: "+str(get_viewport().get_mouse_position().x)
 	y.text ="mouse pos y: "+str(get_viewport().get_mouse_position().y)
-	character_x.text = "charactaser pos x: "+str(player.position.x)
+	character_x.text = "character pos x: "+str(player.position.x)
 	character_y.text = "character pos y: "+str(player.position.y)
 	viewportsize.text = "viewport size: "+str(get_viewport().size.x)
 	characterspeed.text = "character speed: "+str(player.current_speed)
