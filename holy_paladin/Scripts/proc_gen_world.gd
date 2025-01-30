@@ -37,7 +37,6 @@ func _input(event): #zoom control, helpompi kattoa karttaa
 
 func _ready():
 	noise = noise_height_text.noise
-	noise.seed=RandomNumberGenerator.new().randi_range(0,300)
 	generate_world()
 
 func generate_world():
@@ -46,7 +45,7 @@ func generate_world():
 		for y in range(-height, height):
 			var noise_val : float = noise.get_noise_2d(x,y)
 			noise_val_arr.append(noise_val)
-
+			
 			#jos generoidun "äänen" arvo on <=-0.5 
 			if noise_val <=-0.4:
 				#place land
