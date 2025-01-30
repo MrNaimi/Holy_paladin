@@ -7,7 +7,7 @@ extends CharacterBody2D
 var speed = 30
 func _physics_process(delta: float) -> void:
 	ray_cast_2d.set_target_position(target.position-position)
-	print(ray_cast_2d.get_collider())
+	#print(ray_cast_2d.get_collider())
 	if ray_cast_2d.get_collider() is not TileMapLayer:
 		var direction = (target.position-position).normalized()
 		velocity = direction*speed

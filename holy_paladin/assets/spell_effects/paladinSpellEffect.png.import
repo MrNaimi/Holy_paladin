@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2i23to0l6r56"
-path="res://.godot/imported/spr_Dash_strip.png-0da7971aeb48b3b93284f5b30881113a.ctex"
+uid="uid://nfnnqhroamrn"
+path="res://.godot/imported/paladinSpellEffect.png-2faf2efb65e42c4703ea11ee9ffae40c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main_char/spr_Dash_strip.png"
-dest_files=["res://.godot/imported/spr_Dash_strip.png-0da7971aeb48b3b93284f5b30881113a.ctex"]
+source_file="res://assets/spell_effects/paladinSpellEffect.png"
+dest_files=["res://.godot/imported/paladinSpellEffect.png-2faf2efb65e42c4703ea11ee9ffae40c.ctex"]
 
 [params]
 

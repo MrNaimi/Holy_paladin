@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2i23to0l6r56"
-path="res://.godot/imported/spr_Dash_strip.png-0da7971aeb48b3b93284f5b30881113a.ctex"
+uid="uid://2jayyeyw67ao"
+path="res://.godot/imported/MediumStar_64x64.png-1a7e299efb82ab0df8e24ce39e5b229c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main_char/spr_Dash_strip.png"
-dest_files=["res://.godot/imported/spr_Dash_strip.png-0da7971aeb48b3b93284f5b30881113a.ctex"]
+source_file="res://assets/spell_effects/MediumStar_64x64.png"
+dest_files=["res://.godot/imported/MediumStar_64x64.png-1a7e299efb82ab0df8e24ce39e5b229c.ctex"]
 
 [params]
 

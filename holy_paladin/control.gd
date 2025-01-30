@@ -10,6 +10,8 @@ extends Control
 @onready var pieru: AudioStreamPlayer2D = $"../../../pieru"
 @onready var pierucounter: Label = $VBoxContainer/pierucounter
 @onready var processpeed: Label = $VBoxContainer/processpeed
+@onready var animation_timer: Timer = $"../../AnimationTimer"
+@onready var dashtimer: Label = $VBoxContainer/dashtimer
 
 @onready var player: CharacterBody2D = $"../.."
 
@@ -30,3 +32,5 @@ func _process(delta: float) -> void:
 	combotimer.text = "combo time left: "+str(float(combo_timer.time_left)).left(4)
 	pierucounter.text = str(player.pierucounter)
 	processpeed.text = str(player.processiterations)
+	dashtimer.text = "dash timer left: "+str(float(animation_timer.time_left)).left(4)
+	

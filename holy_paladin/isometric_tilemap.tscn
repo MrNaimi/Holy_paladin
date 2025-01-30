@@ -1,8 +1,8 @@
-[gd_scene load_steps=230 format=4 uid="uid://clmjfv07o664e"]
+[gd_scene load_steps=240 format=4 uid="uid://clmjfv07o664e"]
 
 [ext_resource type="Texture2D" uid="uid://5tuvcq8srvo2" path="res://assets/tiles/isometric tileset/spritesheet.png" id="1_hhoqc"]
 [ext_resource type="Texture2D" uid="uid://cfo4507x6nau7" path="res://assets/main_char/spr_Attack_strip.png" id="3_2a5je"]
-[ext_resource type="Texture2D" uid="uid://bi0tlkjtfs2y8" path="res://assets/main_char/spr_Dash_strip.png" id="4_dncur"]
+[ext_resource type="Texture2D" uid="uid://b2i23to0l6r56" path="res://assets/main_char/spr_Dash_strip.png" id="4_dncur"]
 [ext_resource type="Script" path="res://character_body_2d.gd" id="4_q412t"]
 [ext_resource type="Texture2D" uid="uid://b8ahb0f75t0o6" path="res://assets/main_char/spr_Death_strip.png" id="5_j5w31"]
 [ext_resource type="Texture2D" uid="uid://cxtiykr3sn7l0" path="res://assets/main_char/spr_Jump_strip.png" id="5_qts7q"]
@@ -14,7 +14,9 @@
 [ext_resource type="Texture2D" uid="uid://bivq4c0rrbutb" path="res://assets/main_char/spr_Walk_strip.png" id="10_74y8g"]
 [ext_resource type="AudioStream" uid="uid://cx3aaej2luowt" path="res://pieru.ogg" id="12_iuuy4"]
 [ext_resource type="Script" path="res://light_attack_1.gd" id="13_45j0r"]
+[ext_resource type="Script" path="res://spell.gd" id="14_casq4"]
 [ext_resource type="Script" path="res://enemy.gd" id="15_0iqsn"]
+[ext_resource type="Texture2D" uid="uid://nfnnqhroamrn" path="res://assets/spell_effects/paladinSpellEffect.png" id="15_exmnm"]
 [ext_resource type="Texture2D" uid="uid://d05v1nlavhctt" path="res://imp.png" id="16_skmg0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fsmtb"]
@@ -1268,7 +1270,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6reo1")
 }],
-"loop": true,
+"loop": false,
 "name": &"flip_attack",
 "speed": 15.0
 }, {
@@ -1748,6 +1750,63 @@ size = Vector2(14.7435, 38.461)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sv3m8"]
 size = Vector2(17.6637, 46.0516)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3nbvi"]
+radius = 11.8587
+height = 33.2044
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u424i"]
+atlas = ExtResource("15_exmnm")
+region = Rect2(0, 0, 126, 67)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_62oe1"]
+atlas = ExtResource("15_exmnm")
+region = Rect2(126, 0, 126, 67)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6rmiq"]
+atlas = ExtResource("15_exmnm")
+region = Rect2(252, 0, 126, 67)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l5xpc"]
+atlas = ExtResource("15_exmnm")
+region = Rect2(378, 0, 126, 67)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n1qod"]
+atlas = ExtResource("15_exmnm")
+region = Rect2(504, 0, 126, 67)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hlyjh"]
+atlas = ExtResource("15_exmnm")
+region = Rect2(630, 0, 126, 67)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2dl5j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u424i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_62oe1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6rmiq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l5xpc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n1qod")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hlyjh")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_qvneb"]
 radius = 7.28011
 
@@ -1773,7 +1832,7 @@ shape = SubResource("RectangleShape2D_xopwu")
 [node name="Player_animations" type="AnimatedSprite2D" parent="Node2D/Player"]
 position = Vector2(5.92936, -28.4609)
 sprite_frames = SubResource("SpriteFrames_4mljv")
-animation = &"light_attack3"
+animation = &"idle"
 
 [node name="Camera2D" type="Camera2D" parent="Node2D/Player"]
 position = Vector2(7.11524, -8.30109)
@@ -1834,6 +1893,10 @@ text = "pierucounter"
 layout_mode = 2
 text = "0s
 "
+
+[node name="dashtimer" type="Label" parent="Node2D/Player/Camera2D/Control/VBoxContainer"]
+layout_mode = 2
+text = "dash"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Node2D/Player/Camera2D/Control"]
 layout_mode = 0
@@ -1908,6 +1971,33 @@ one_shot = true
 [node name="HitBoxStartTimer" type="Timer" parent="Node2D/Player/AttackHitboxes/Light_attack3"]
 one_shot = true
 
+[node name="Spell" type="Area2D" parent="Node2D/Player/AttackHitboxes" groups=["attack"]]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("14_casq4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Player/AttackHitboxes/Spell"]
+position = Vector2(46.249, -14.2304)
+shape = SubResource("CapsuleShape2D_3nbvi")
+
+[node name="HitBoxTimer" type="Timer" parent="Node2D/Player/AttackHitboxes/Spell"]
+one_shot = true
+
+[node name="HitboxStartTimer" type="Timer" parent="Node2D/Player/AttackHitboxes/Spell"]
+one_shot = true
+
+[node name="AnimationTimer" type="Timer" parent="Node2D/Player"]
+process_callback = 0
+wait_time = 0.7
+one_shot = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D/Player"]
+position = Vector2(43.8773, -27.275)
+scale = Vector2(0.678484, 0.923328)
+sprite_frames = SubResource("SpriteFrames_2dl5j")
+frame = 6
+frame_progress = 1.0
+
 [node name="pieru" type="AudioStreamPlayer2D" parent="Node2D"]
 stream = ExtResource("12_iuuy4")
 
@@ -1942,4 +2032,8 @@ target_position = Vector2(34, -29)
 [connection signal="timeout" from="Node2D/Player/AttackHitboxes/Light_attack2/HitBoxStartTimer" to="Node2D/Player/AttackHitboxes/Light_attack2" method="_on_hit_box_start_timer_timeout"]
 [connection signal="timeout" from="Node2D/Player/AttackHitboxes/Light_attack3/HitBoxTimer" to="Node2D/Player/AttackHitboxes/Light_attack3" method="_on_hit_box_timer_timeout"]
 [connection signal="timeout" from="Node2D/Player/AttackHitboxes/Light_attack3/HitBoxStartTimer" to="Node2D/Player/AttackHitboxes/Light_attack3" method="_on_hit_box_start_timer_timeout"]
+[connection signal="timeout" from="Node2D/Player/AttackHitboxes/Spell/HitBoxTimer" to="Node2D/Player/AttackHitboxes/Spell" method="_on_hit_box_timer_timeout"]
+[connection signal="timeout" from="Node2D/Player/AttackHitboxes/Spell/HitboxStartTimer" to="Node2D/Player/AttackHitboxes/Spell" method="_on_hitbox_start_timer_timeout"]
+[connection signal="timeout" from="Node2D/Player/AnimationTimer" to="Node2D/Player" method="_on_animation_timer_timeout"]
+[connection signal="animation_finished" from="Node2D/Player/AnimatedSprite2D" to="Node2D/Player/AttackHitboxes/Spell" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="Node2D/Enemy/Area2D" to="Node2D/Enemy" method="_on_area_2d_area_entered"]
