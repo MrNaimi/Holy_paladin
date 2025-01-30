@@ -1,7 +1,32 @@
 [gd_scene load_steps=5 format=3 uid="uid://bg8i7f3pidxny"]
 
-[ext_resource type="Script" path="res://enemy.gd" id="1_q4bsl"]
-[ext_resource type="Texture2D" uid="uid://d05v1nlavhctt" path="res://imp.png" id="2_mcvdq"]
+[sub_resource type="GDScript" id="GDScript_s2d57"]
+script/source = "extends CharacterBody2D
+
+@onready var target: CharacterBody2D = $\"../Player\"
+
+@onready var ray_cast_2d: RayCast2D = $RayCast2D
+
+var speed = 30
+func _physics_process(delta: float) -> void:
+	ray_cast_2d.set_target_position(target.position-position)
+	print(ray_cast_2d.get_collider())
+	if ray_cast_2d.get_collider() is not TileMapLayer:
+		var direction = (target.position-position).normalized()
+		velocity = direction*speed
+		move_and_slide()
+	else:
+		pass
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	print(\"area entered\")
+	GlobalVariables.enemies_killed += 1
+	if area.is_in_group(\"attack\"):
+		queue_free()
+"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2x0d2"]
+load_path = "res://.godot/imported/imp.png-44d9ec09d7fe35f474e1b3b2f2f7b0af.ctex"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qvneb"]
 radius = 7.28011
@@ -14,10 +39,10 @@ position = Vector2(554, 275)
 [node name="Enemy" type="CharacterBody2D" parent="."]
 collision_layer = 18
 collision_mask = 18
-script = ExtResource("1_q4bsl")
+script = SubResource("GDScript_s2d57")
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemy"]
-texture = ExtResource("2_mcvdq")
+texture = SubResource("CompressedTexture2D_2x0d2")
 
 [node name="Area2D" type="Area2D" parent="Enemy"]
 collision_layer = 2
@@ -33,10 +58,10 @@ shape = SubResource("CircleShape2D_jsowe")
 position = Vector2(-51, -10)
 collision_layer = 18
 collision_mask = 18
-script = ExtResource("1_q4bsl")
+script = SubResource("GDScript_s2d57")
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemy2"]
-texture = ExtResource("2_mcvdq")
+texture = SubResource("CompressedTexture2D_2x0d2")
 
 [node name="Area2D" type="Area2D" parent="Enemy2"]
 collision_layer = 2
@@ -52,10 +77,10 @@ shape = SubResource("CircleShape2D_jsowe")
 position = Vector2(23, -37)
 collision_layer = 18
 collision_mask = 18
-script = ExtResource("1_q4bsl")
+script = SubResource("GDScript_s2d57")
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemy3"]
-texture = ExtResource("2_mcvdq")
+texture = SubResource("CompressedTexture2D_2x0d2")
 
 [node name="Area2D" type="Area2D" parent="Enemy3"]
 collision_layer = 2
@@ -71,10 +96,10 @@ shape = SubResource("CircleShape2D_jsowe")
 position = Vector2(-119, 123)
 collision_layer = 18
 collision_mask = 18
-script = ExtResource("1_q4bsl")
+script = SubResource("GDScript_s2d57")
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemy4"]
-texture = ExtResource("2_mcvdq")
+texture = SubResource("CompressedTexture2D_2x0d2")
 
 [node name="Area2D" type="Area2D" parent="Enemy4"]
 collision_layer = 2
@@ -90,10 +115,10 @@ shape = SubResource("CircleShape2D_jsowe")
 position = Vector2(-138, 73)
 collision_layer = 18
 collision_mask = 18
-script = ExtResource("1_q4bsl")
+script = SubResource("GDScript_s2d57")
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemy5"]
-texture = ExtResource("2_mcvdq")
+texture = SubResource("CompressedTexture2D_2x0d2")
 
 [node name="Area2D" type="Area2D" parent="Enemy5"]
 collision_layer = 2
@@ -109,10 +134,10 @@ shape = SubResource("CircleShape2D_jsowe")
 position = Vector2(-218, -11)
 collision_layer = 18
 collision_mask = 18
-script = ExtResource("1_q4bsl")
+script = SubResource("GDScript_s2d57")
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemy6"]
-texture = ExtResource("2_mcvdq")
+texture = SubResource("CompressedTexture2D_2x0d2")
 
 [node name="Area2D" type="Area2D" parent="Enemy6"]
 collision_layer = 2
@@ -128,10 +153,10 @@ shape = SubResource("CircleShape2D_jsowe")
 position = Vector2(-144, 185)
 collision_layer = 18
 collision_mask = 18
-script = ExtResource("1_q4bsl")
+script = SubResource("GDScript_s2d57")
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemy7"]
-texture = ExtResource("2_mcvdq")
+texture = SubResource("CompressedTexture2D_2x0d2")
 
 [node name="Area2D" type="Area2D" parent="Enemy7"]
 collision_layer = 2
@@ -147,10 +172,10 @@ shape = SubResource("CircleShape2D_jsowe")
 position = Vector2(-153, 135)
 collision_layer = 18
 collision_mask = 18
-script = ExtResource("1_q4bsl")
+script = SubResource("GDScript_s2d57")
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemy8"]
-texture = ExtResource("2_mcvdq")
+texture = SubResource("CompressedTexture2D_2x0d2")
 
 [node name="Area2D" type="Area2D" parent="Enemy8"]
 collision_layer = 2
@@ -166,10 +191,10 @@ shape = SubResource("CircleShape2D_jsowe")
 position = Vector2(-68, 83)
 collision_layer = 18
 collision_mask = 18
-script = ExtResource("1_q4bsl")
+script = SubResource("GDScript_s2d57")
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemy9"]
-texture = ExtResource("2_mcvdq")
+texture = SubResource("CompressedTexture2D_2x0d2")
 
 [node name="Area2D" type="Area2D" parent="Enemy9"]
 collision_layer = 2
@@ -185,10 +210,10 @@ shape = SubResource("CircleShape2D_jsowe")
 position = Vector2(20, 24)
 collision_layer = 18
 collision_mask = 18
-script = ExtResource("1_q4bsl")
+script = SubResource("GDScript_s2d57")
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemy10"]
-texture = ExtResource("2_mcvdq")
+texture = SubResource("CompressedTexture2D_2x0d2")
 
 [node name="Area2D" type="Area2D" parent="Enemy10"]
 collision_layer = 2
@@ -204,10 +229,10 @@ shape = SubResource("CircleShape2D_jsowe")
 position = Vector2(126, -40)
 collision_layer = 18
 collision_mask = 18
-script = ExtResource("1_q4bsl")
+script = SubResource("GDScript_s2d57")
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemy11"]
-texture = ExtResource("2_mcvdq")
+texture = SubResource("CompressedTexture2D_2x0d2")
 
 [node name="Area2D" type="Area2D" parent="Enemy11"]
 collision_layer = 2
@@ -223,10 +248,10 @@ shape = SubResource("CircleShape2D_jsowe")
 position = Vector2(86, -85)
 collision_layer = 18
 collision_mask = 18
-script = ExtResource("1_q4bsl")
+script = SubResource("GDScript_s2d57")
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemy12"]
-texture = ExtResource("2_mcvdq")
+texture = SubResource("CompressedTexture2D_2x0d2")
 
 [node name="Area2D" type="Area2D" parent="Enemy12"]
 collision_layer = 2

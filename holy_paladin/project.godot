@@ -11,13 +11,12 @@ config_version=5
 [application]
 
 config/name="Holy_paladin"
-run/main_scene="res://isometric_tilemap.tscn"
+run/main_scene="res://Scenes/isometric_tilemap.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
 
 [autoload]
 
-GlobalVariables="*res://global_variables.gd"
+GlobalVariables="*res://Scripts/global_variables.gd"
 
 [display]
 
