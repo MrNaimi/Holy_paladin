@@ -1,277 +1,262 @@
-[gd_scene load_steps=5 format=3 uid="uid://bg8i7f3pidxny"]
+[gd_scene load_steps=37 format=3 uid="uid://cj22l1hlo5ktv"]
 
-[sub_resource type="GDScript" id="GDScript_s2d57"]
-script/source = "extends CharacterBody2D
+[ext_resource type="Script" path="res://Scripts/enemies.gd" id="1_1p336"]
+[ext_resource type="Texture2D" uid="uid://ckhqdljircvhb" path="res://assets/enemies/flying_imp/IDLE.png" id="1_pnewx"]
+[ext_resource type="Texture2D" uid="uid://qcq0avvu8sp8" path="res://assets/enemies/flying_imp/FLYING.png" id="2_by7ow"]
+[ext_resource type="Texture2D" uid="uid://b17iooun5cx17" path="res://assets/enemies/flying_imp/DEATH.png" id="2_wcgu0"]
+[ext_resource type="Texture2D" uid="uid://c86rj0wowkrhs" path="res://assets/enemies/flying_imp/ATTACK.png" id="3_eh5qn"]
+[ext_resource type="Texture2D" uid="uid://sv8abaa237pd" path="res://assets/enemies/flying_imp/HURT.png" id="3_vde6m"]
 
-@onready var target: CharacterBody2D = $\"../Player\"
+[sub_resource type="AtlasTexture" id="AtlasTexture_hbuw3"]
+atlas = ExtResource("2_wcgu0")
+region = Rect2(0, 0, 79, 69)
 
-@onready var ray_cast_2d: RayCast2D = $RayCast2D
+[sub_resource type="AtlasTexture" id="AtlasTexture_hvp73"]
+atlas = ExtResource("2_wcgu0")
+region = Rect2(79, 0, 79, 69)
 
-var speed = 30
-func _physics_process(delta: float) -> void:
-	ray_cast_2d.set_target_position(target.position-position)
-	print(ray_cast_2d.get_collider())
-	if ray_cast_2d.get_collider() is not TileMapLayer:
-		var direction = (target.position-position).normalized()
-		velocity = direction*speed
-		move_and_slide()
-	else:
-		pass
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfmas"]
+atlas = ExtResource("2_wcgu0")
+region = Rect2(158, 0, 79, 69)
 
-func _on_area_2d_area_entered(area: Area2D) -> void:
-	print(\"area entered\")
-	GlobalVariables.enemies_killed += 1
-	if area.is_in_group(\"attack\"):
-		queue_free()
-"
+[sub_resource type="AtlasTexture" id="AtlasTexture_btedr"]
+atlas = ExtResource("2_wcgu0")
+region = Rect2(237, 0, 79, 69)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2x0d2"]
-load_path = "res://.godot/imported/imp.png-44d9ec09d7fe35f474e1b3b2f2f7b0af.ctex"
+[sub_resource type="AtlasTexture" id="AtlasTexture_kc0rd"]
+atlas = ExtResource("2_wcgu0")
+region = Rect2(316, 0, 79, 69)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_qvneb"]
-radius = 7.28011
+[sub_resource type="AtlasTexture" id="AtlasTexture_rklfd"]
+atlas = ExtResource("2_wcgu0")
+region = Rect2(395, 0, 79, 69)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_jsowe"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_kmxp1"]
+atlas = ExtResource("2_wcgu0")
+region = Rect2(474, 0, 79, 69)
 
-[node name="enemies" type="Node2D"]
-position = Vector2(554, 275)
+[sub_resource type="AtlasTexture" id="AtlasTexture_o88cb"]
+atlas = ExtResource("2_by7ow")
+region = Rect2(0, 0, 79, 69)
 
-[node name="Enemy" type="CharacterBody2D" parent="."]
-collision_layer = 18
-collision_mask = 18
-script = SubResource("GDScript_s2d57")
+[sub_resource type="AtlasTexture" id="AtlasTexture_vx7en"]
+atlas = ExtResource("2_by7ow")
+region = Rect2(79, 0, 79, 69)
 
-[node name="Sprite2D" type="Sprite2D" parent="Enemy"]
-texture = SubResource("CompressedTexture2D_2x0d2")
+[sub_resource type="AtlasTexture" id="AtlasTexture_40wv8"]
+atlas = ExtResource("2_by7ow")
+region = Rect2(158, 0, 79, 69)
 
-[node name="Area2D" type="Area2D" parent="Enemy"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qoi1r"]
+atlas = ExtResource("2_by7ow")
+region = Rect2(237, 0, 79, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4k4x4"]
+atlas = ExtResource("3_eh5qn")
+region = Rect2(0, 0, 79, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7lqf"]
+atlas = ExtResource("3_eh5qn")
+region = Rect2(79, 0, 79, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41dso"]
+atlas = ExtResource("3_eh5qn")
+region = Rect2(158, 0, 79, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vmo4"]
+atlas = ExtResource("3_eh5qn")
+region = Rect2(237, 0, 79, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmugb"]
+atlas = ExtResource("3_eh5qn")
+region = Rect2(316, 0, 79, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66mfn"]
+atlas = ExtResource("3_eh5qn")
+region = Rect2(395, 0, 79, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_resck"]
+atlas = ExtResource("3_eh5qn")
+region = Rect2(474, 0, 79, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b0eng"]
+atlas = ExtResource("3_eh5qn")
+region = Rect2(553, 0, 79, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wyfa5"]
+atlas = ExtResource("3_vde6m")
+region = Rect2(0, 0, 79, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_je5t3"]
+atlas = ExtResource("3_vde6m")
+region = Rect2(79, 0, 79, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cr130"]
+atlas = ExtResource("3_vde6m")
+region = Rect2(158, 0, 79, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iuirw"]
+atlas = ExtResource("3_vde6m")
+region = Rect2(237, 0, 79, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lek5a"]
+atlas = ExtResource("1_pnewx")
+region = Rect2(0, 0, 79, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6d5p"]
+atlas = ExtResource("1_pnewx")
+region = Rect2(79, 0, 79, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ae3jm"]
+atlas = ExtResource("1_pnewx")
+region = Rect2(158, 0, 79, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gcaim"]
+atlas = ExtResource("1_pnewx")
+region = Rect2(237, 0, 79, 69)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wnwmg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hbuw3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hvp73")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nfmas")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_btedr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kc0rd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rklfd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kmxp1")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o88cb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vx7en")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40wv8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qoi1r")
+}],
+"loop": true,
+"name": &"flying",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4k4x4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7lqf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41dso")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7vmo4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmugb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_66mfn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_resck")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b0eng")
+}],
+"loop": true,
+"name": &"hawk_tuah",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wyfa5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_je5t3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cr130")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iuirw")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lek5a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q6d5p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ae3jm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gcaim")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pnut4"]
+radius = 29.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pcne2"]
+radius = 163.0
+
+[node name="imp" type="CharacterBody2D"]
+script = ExtResource("1_1p336")
+
+[node name="enemy_animation" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, 1)
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_wnwmg")
+animation = &"death"
+
+[node name="Area2D" type="Area2D" parent="enemy_animation"]
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/Area2D"]
-shape = SubResource("CircleShape2D_qvneb")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_animation/Area2D"]
+position = Vector2(-4, 5)
+shape = SubResource("CircleShape2D_pnut4")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
-shape = SubResource("CircleShape2D_jsowe")
+[node name="detection_area" type="Area2D" parent="."]
+position = Vector2(-66, -64)
+collision_layer = 128
+collision_mask = 128
 
-[node name="Enemy2" type="CharacterBody2D" parent="."]
-position = Vector2(-51, -10)
-collision_layer = 18
-collision_mask = 18
-script = SubResource("GDScript_s2d57")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area"]
+position = Vector2(64, 65)
+shape = SubResource("CircleShape2D_pcne2")
 
-[node name="Sprite2D" type="Sprite2D" parent="Enemy2"]
-texture = SubResource("CompressedTexture2D_2x0d2")
-
-[node name="Area2D" type="Area2D" parent="Enemy2"]
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy2/Area2D"]
-shape = SubResource("CircleShape2D_qvneb")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy2"]
-shape = SubResource("CircleShape2D_jsowe")
-
-[node name="Enemy3" type="CharacterBody2D" parent="."]
-position = Vector2(23, -37)
-collision_layer = 18
-collision_mask = 18
-script = SubResource("GDScript_s2d57")
-
-[node name="Sprite2D" type="Sprite2D" parent="Enemy3"]
-texture = SubResource("CompressedTexture2D_2x0d2")
-
-[node name="Area2D" type="Area2D" parent="Enemy3"]
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy3/Area2D"]
-shape = SubResource("CircleShape2D_qvneb")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy3"]
-shape = SubResource("CircleShape2D_jsowe")
-
-[node name="Enemy4" type="CharacterBody2D" parent="."]
-position = Vector2(-119, 123)
-collision_layer = 18
-collision_mask = 18
-script = SubResource("GDScript_s2d57")
-
-[node name="Sprite2D" type="Sprite2D" parent="Enemy4"]
-texture = SubResource("CompressedTexture2D_2x0d2")
-
-[node name="Area2D" type="Area2D" parent="Enemy4"]
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy4/Area2D"]
-shape = SubResource("CircleShape2D_qvneb")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy4"]
-shape = SubResource("CircleShape2D_jsowe")
-
-[node name="Enemy5" type="CharacterBody2D" parent="."]
-position = Vector2(-138, 73)
-collision_layer = 18
-collision_mask = 18
-script = SubResource("GDScript_s2d57")
-
-[node name="Sprite2D" type="Sprite2D" parent="Enemy5"]
-texture = SubResource("CompressedTexture2D_2x0d2")
-
-[node name="Area2D" type="Area2D" parent="Enemy5"]
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy5/Area2D"]
-shape = SubResource("CircleShape2D_qvneb")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy5"]
-shape = SubResource("CircleShape2D_jsowe")
-
-[node name="Enemy6" type="CharacterBody2D" parent="."]
-position = Vector2(-218, -11)
-collision_layer = 18
-collision_mask = 18
-script = SubResource("GDScript_s2d57")
-
-[node name="Sprite2D" type="Sprite2D" parent="Enemy6"]
-texture = SubResource("CompressedTexture2D_2x0d2")
-
-[node name="Area2D" type="Area2D" parent="Enemy6"]
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy6/Area2D"]
-shape = SubResource("CircleShape2D_qvneb")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy6"]
-shape = SubResource("CircleShape2D_jsowe")
-
-[node name="Enemy7" type="CharacterBody2D" parent="."]
-position = Vector2(-144, 185)
-collision_layer = 18
-collision_mask = 18
-script = SubResource("GDScript_s2d57")
-
-[node name="Sprite2D" type="Sprite2D" parent="Enemy7"]
-texture = SubResource("CompressedTexture2D_2x0d2")
-
-[node name="Area2D" type="Area2D" parent="Enemy7"]
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy7/Area2D"]
-shape = SubResource("CircleShape2D_qvneb")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy7"]
-shape = SubResource("CircleShape2D_jsowe")
-
-[node name="Enemy8" type="CharacterBody2D" parent="."]
-position = Vector2(-153, 135)
-collision_layer = 18
-collision_mask = 18
-script = SubResource("GDScript_s2d57")
-
-[node name="Sprite2D" type="Sprite2D" parent="Enemy8"]
-texture = SubResource("CompressedTexture2D_2x0d2")
-
-[node name="Area2D" type="Area2D" parent="Enemy8"]
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy8/Area2D"]
-shape = SubResource("CircleShape2D_qvneb")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy8"]
-shape = SubResource("CircleShape2D_jsowe")
-
-[node name="Enemy9" type="CharacterBody2D" parent="."]
-position = Vector2(-68, 83)
-collision_layer = 18
-collision_mask = 18
-script = SubResource("GDScript_s2d57")
-
-[node name="Sprite2D" type="Sprite2D" parent="Enemy9"]
-texture = SubResource("CompressedTexture2D_2x0d2")
-
-[node name="Area2D" type="Area2D" parent="Enemy9"]
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy9/Area2D"]
-shape = SubResource("CircleShape2D_qvneb")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy9"]
-shape = SubResource("CircleShape2D_jsowe")
-
-[node name="Enemy10" type="CharacterBody2D" parent="."]
-position = Vector2(20, 24)
-collision_layer = 18
-collision_mask = 18
-script = SubResource("GDScript_s2d57")
-
-[node name="Sprite2D" type="Sprite2D" parent="Enemy10"]
-texture = SubResource("CompressedTexture2D_2x0d2")
-
-[node name="Area2D" type="Area2D" parent="Enemy10"]
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy10/Area2D"]
-shape = SubResource("CircleShape2D_qvneb")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy10"]
-shape = SubResource("CircleShape2D_jsowe")
-
-[node name="Enemy11" type="CharacterBody2D" parent="."]
-position = Vector2(126, -40)
-collision_layer = 18
-collision_mask = 18
-script = SubResource("GDScript_s2d57")
-
-[node name="Sprite2D" type="Sprite2D" parent="Enemy11"]
-texture = SubResource("CompressedTexture2D_2x0d2")
-
-[node name="Area2D" type="Area2D" parent="Enemy11"]
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy11/Area2D"]
-shape = SubResource("CircleShape2D_qvneb")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy11"]
-shape = SubResource("CircleShape2D_jsowe")
-
-[node name="Enemy12" type="CharacterBody2D" parent="."]
-position = Vector2(86, -85)
-collision_layer = 18
-collision_mask = 18
-script = SubResource("GDScript_s2d57")
-
-[node name="Sprite2D" type="Sprite2D" parent="Enemy12"]
-texture = SubResource("CompressedTexture2D_2x0d2")
-
-[node name="Area2D" type="Area2D" parent="Enemy12"]
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy12/Area2D"]
-shape = SubResource("CircleShape2D_qvneb")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy12"]
-shape = SubResource("CircleShape2D_jsowe")
-
-[connection signal="area_entered" from="Enemy/Area2D" to="Enemy" method="_on_area_2d_area_entered"]
-[connection signal="area_entered" from="Enemy2/Area2D" to="Enemy2" method="_on_area_2d_area_entered"]
-[connection signal="area_entered" from="Enemy3/Area2D" to="Enemy3" method="_on_area_2d_area_entered"]
-[connection signal="area_entered" from="Enemy4/Area2D" to="Enemy4" method="_on_area_2d_area_entered"]
-[connection signal="area_entered" from="Enemy5/Area2D" to="Enemy5" method="_on_area_2d_area_entered"]
-[connection signal="area_entered" from="Enemy6/Area2D" to="Enemy6" method="_on_area_2d_area_entered"]
-[connection signal="area_entered" from="Enemy7/Area2D" to="Enemy7" method="_on_area_2d_area_entered"]
-[connection signal="area_entered" from="Enemy8/Area2D" to="Enemy8" method="_on_area_2d_area_entered"]
-[connection signal="area_entered" from="Enemy9/Area2D" to="Enemy9" method="_on_area_2d_area_entered"]
-[connection signal="area_entered" from="Enemy10/Area2D" to="Enemy10" method="_on_area_2d_area_entered"]
-[connection signal="area_entered" from="Enemy11/Area2D" to="Enemy11" method="_on_area_2d_area_entered"]
-[connection signal="area_entered" from="Enemy12/Area2D" to="Enemy12" method="_on_area_2d_area_entered"]
+[connection signal="animation_finished" from="enemy_animation" to="." method="_on_enemy_animation_animation_finished"]
+[connection signal="area_entered" from="enemy_animation/Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]

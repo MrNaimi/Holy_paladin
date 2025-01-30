@@ -1,4 +1,4 @@
-[gd_scene load_steps=229 format=4 uid="uid://ccxc8igku0gv2"]
+[gd_scene load_steps=234 format=4 uid="uid://ccxc8igku0gv2"]
 
 [ext_resource type="Script" path="res://Scripts/character_body_2d.gd" id="2_srydx"]
 [ext_resource type="Script" path="res://Scripts/proc_gen_world.gd" id="2_yevhn"]
@@ -15,6 +15,11 @@
 [ext_resource type="Script" path="res://Scripts/control.gd" id="12_vj80x"]
 [ext_resource type="Script" path="res://Scripts/light_attack_1.gd" id="13_127up"]
 [ext_resource type="AudioStream" uid="uid://cx3aaej2luowt" path="res://Sounds/pieru.ogg" id="14_ti6kv"]
+[ext_resource type="Texture2D" uid="uid://diajx13vkcvx1" path="res://assets/ui_assets/side_panel.png" id="16_vxlxv"]
+[ext_resource type="Texture2D" uid="uid://ccq0p45py4klj" path="res://assets/ui_assets/progressbar2.png" id="17_i30bc"]
+[ext_resource type="Texture2D" uid="uid://bvq4enmmx2qan" path="res://assets/ui_assets/progressbarframe2.png" id="18_jlcyx"]
+[ext_resource type="Texture2D" uid="uid://bgpc5hwgc6wte" path="res://assets/ui_assets/swordicon.png" id="19_njt3m"]
+[ext_resource type="Texture2D" uid="uid://bkf8ht2oj1lya" path="res://assets/ui_assets/swordframe.png" id="20_1nm4v"]
 
 [sub_resource type="TileSet" id="TileSet_df3ou"]
 tile_shape = 1
@@ -1584,72 +1589,6 @@ position = Vector2(7.11524, -8.30109)
 scale = Vector2(0.592936, 0.592936)
 zoom = Vector2(5, 5)
 
-[node name="Control" type="Control" parent="Node2D/Player/Camera2D"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -232.0
-offset_top = -86.0001
-offset_right = -188.0
-offset_bottom = -46.0001
-script = ExtResource("12_vj80x")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Node2D/Player/Camera2D/Control"]
-layout_mode = 0
-offset_left = -148.0
-offset_top = -132.0
-offset_right = -58.0
-offset_bottom = -1.00005
-
-[node name="x" type="Label" parent="Node2D/Player/Camera2D/Control/VBoxContainer"]
-layout_mode = 2
-text = "x"
-
-[node name="character_x" type="Label" parent="Node2D/Player/Camera2D/Control/VBoxContainer"]
-layout_mode = 2
-text = "character_x"
-
-[node name="y" type="Label" parent="Node2D/Player/Camera2D/Control/VBoxContainer"]
-layout_mode = 2
-text = "y"
-
-[node name="character_y" type="Label" parent="Node2D/Player/Camera2D/Control/VBoxContainer"]
-layout_mode = 2
-text = "character_x"
-
-[node name="viewportsize" type="Label" parent="Node2D/Player/Camera2D/Control/VBoxContainer"]
-layout_mode = 2
-text = "viewportsize"
-
-[node name="characterspeed" type="Label" parent="Node2D/Player/Camera2D/Control/VBoxContainer"]
-layout_mode = 2
-text = "characterspeed
-"
-
-[node name="combotimer" type="Label" parent="Node2D/Player/Camera2D/Control/VBoxContainer"]
-layout_mode = 2
-text = "0s
-"
-
-[node name="pierucounter" type="Label" parent="Node2D/Player/Camera2D/Control/VBoxContainer"]
-layout_mode = 2
-text = "pierucounter"
-
-[node name="processpeed" type="Label" parent="Node2D/Player/Camera2D/Control/VBoxContainer"]
-layout_mode = 2
-text = "0s
-"
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="Node2D/Player/Camera2D/Control"]
-layout_mode = 0
-offset_left = 528.0
-offset_top = -128.0
-offset_right = 615.0
-offset_bottom = -88.0
-
-[node name="quit_button" type="Button" parent="Node2D/Player/Camera2D/Control/VBoxContainer2"]
-layout_mode = 2
-text = "Exit Game"
-
 [node name="ComboTimer" type="Timer" parent="Node2D/Player"]
 wait_time = 1.3
 one_shot = true
@@ -1715,7 +1654,144 @@ one_shot = true
 [node name="pieru" type="AudioStreamPlayer2D" parent="Node2D"]
 stream = ExtResource("14_ti6kv")
 
-[connection signal="pressed" from="Node2D/Player/Camera2D/Control/VBoxContainer2/quit_button" to="Node2D/Player" method="_on_quit_button_pressed"]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -232.0
+offset_top = -86.0001
+offset_right = -188.0
+offset_bottom = -46.0001
+script = ExtResource("12_vj80x")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 96.0001
+offset_right = 361.0
+offset_bottom = 335.0
+
+[node name="x" type="Label" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+text = "x"
+
+[node name="character_x" type="Label" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+text = "character_x"
+
+[node name="y" type="Label" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+text = "y"
+
+[node name="character_y" type="Label" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+text = "character_x"
+
+[node name="viewportsize" type="Label" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+text = "viewportsize"
+
+[node name="characterspeed" type="Label" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+text = "characterspeed
+"
+
+[node name="combotimer" type="Label" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+text = "0s
+"
+
+[node name="pierucounter" type="Label" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+text = "pierucounter"
+
+[node name="processpeed" type="Label" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+text = "0s
+"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 2058.0
+offset_top = 90.0001
+offset_right = 2145.0
+offset_bottom = 130.0
+
+[node name="quit_button" type="Button" parent="CanvasLayer/Control/VBoxContainer2"]
+layout_mode = 2
+text = "Exit Game"
+
+[node name="Control" type="Control" parent="CanvasLayer/Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/Control"]
+modulate = Color(0.59, 0.59, 0.59, 1)
+layout_mode = 0
+offset_left = 231.0
+offset_top = 770.0
+offset_right = 431.0
+offset_bottom = 970.0
+scale = Vector2(2, 2)
+texture = ExtResource("16_vxlxv")
+
+[node name="XPbar" type="TextureProgressBar" parent="CanvasLayer/Control/Control"]
+layout_mode = 0
+offset_left = 233.0
+offset_top = 770.0
+offset_right = 433.0
+offset_bottom = 970.0
+scale = Vector2(2, 2)
+step = 0.01
+value = 50.0
+fill_mode = 4
+radial_fill_degrees = 90.0
+radial_center_offset = Vector2(-100, 200)
+texture_under = ExtResource("17_i30bc")
+texture_over = ExtResource("18_jlcyx")
+texture_progress = ExtResource("17_i30bc")
+tint_under = Color(0.188235, 0.188235, 0.188235, 1)
+tint_over = Color(0, 0, 0, 1)
+tint_progress = Color(0.4912, 0.069287, 0.52977, 1)
+
+[node name="HPbar" type="TextureProgressBar" parent="CanvasLayer/Control/Control"]
+layout_mode = 0
+offset_left = 230.0
+offset_top = 791.0
+offset_right = 430.0
+offset_bottom = 991.0
+scale = Vector2(1.9, 1.9)
+step = 0.01
+value = 50.0
+fill_mode = 4
+radial_fill_degrees = 90.0
+radial_center_offset = Vector2(-100, 200)
+texture_under = ExtResource("17_i30bc")
+texture_over = ExtResource("18_jlcyx")
+texture_progress = ExtResource("17_i30bc")
+tint_under = Color(0.188235, 0.188235, 0.188235, 1)
+tint_over = Color(0, 0, 0, 1)
+tint_progress = Color(1, 0, 0, 1)
+
+[node name="combotimerbar" type="TextureProgressBar" parent="CanvasLayer/Control/Control"]
+layout_mode = 0
+offset_left = 236.0
+offset_top = 1085.0
+offset_right = 276.0
+offset_bottom = 1125.0
+scale = Vector2(2, 2)
+max_value = 1.3
+step = 0.01
+value = 0.65
+fill_mode = 3
+texture_under = ExtResource("19_njt3m")
+texture_over = ExtResource("20_1nm4v")
+texture_progress = ExtResource("19_njt3m")
+tint_over = Color(0, 0, 0, 1)
+tint_progress = Color(0.23, 1, 0.6535, 1)
+
 [connection signal="timeout" from="Node2D/Player/ComboTimer" to="Node2D/Player" method="_on_combo_timer_timeout"]
 [connection signal="timeout" from="Node2D/Player/AttackHitboxes/Light_attack1/HitBoxTimer" to="Node2D/Player/AttackHitboxes/Light_attack1" method="_on_hit_box_timer_timeout"]
 [connection signal="timeout" from="Node2D/Player/AttackHitboxes/Light_attack1/HitBoxStartTimer" to="Node2D/Player/AttackHitboxes/Light_attack1" method="_on_hit_box_start_timer_timeout"]
@@ -1723,3 +1799,4 @@ stream = ExtResource("14_ti6kv")
 [connection signal="timeout" from="Node2D/Player/AttackHitboxes/Light_attack2/HitBoxStartTimer" to="Node2D/Player/AttackHitboxes/Light_attack2" method="_on_hit_box_start_timer_timeout"]
 [connection signal="timeout" from="Node2D/Player/AttackHitboxes/Light_attack3/HitBoxTimer" to="Node2D/Player/AttackHitboxes/Light_attack3" method="_on_hit_box_timer_timeout"]
 [connection signal="timeout" from="Node2D/Player/AttackHitboxes/Light_attack3/HitBoxStartTimer" to="Node2D/Player/AttackHitboxes/Light_attack3" method="_on_hit_box_start_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer2/quit_button" to="Node2D/Player" method="_on_quit_button_pressed"]
