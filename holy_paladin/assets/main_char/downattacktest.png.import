@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://beclm34dnaqem"
-path="res://.godot/imported/miekka.png-601cb01091acc40c73359c2fad2fe3aa.ctex"
+uid="uid://d2tb868scyiw4"
+path="res://.godot/imported/downattacktest.png-4ee79ea99577aa0baa9a1ce20e92810d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://miekka.png"
-dest_files=["res://.godot/imported/miekka.png-601cb01091acc40c73359c2fad2fe3aa.ctex"]
+source_file="res://assets/main_char/downattacktest.png"
+dest_files=["res://.godot/imported/downattacktest.png-4ee79ea99577aa0baa9a1ce20e92810d.ctex"]
 
 [params]
 

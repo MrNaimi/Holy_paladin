@@ -1,6 +1,6 @@
-[gd_scene load_steps=220 format=3 uid="uid://cjowwj2vrcrrq"]
+[gd_scene load_steps=220 format=3 uid="uid://cueyrv570jtl"]
 
-[ext_resource type="Script" path="res://character_body_2d.gd" id="1_hire5"]
+[ext_resource type="Script" path="res://Scripts/character_body_2d.gd" id="1_hire5"]
 [ext_resource type="Texture2D" uid="uid://bi0tlkjtfs2y8" path="res://assets/main_char/spr_Dash_strip.png" id="2_hcqiy"]
 [ext_resource type="Texture2D" uid="uid://b8ahb0f75t0o6" path="res://assets/main_char/spr_Death_strip.png" id="3_psv1b"]
 [ext_resource type="Texture2D" uid="uid://cxtiykr3sn7l0" path="res://assets/main_char/spr_Jump_strip.png" id="4_nfrqn"]
@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dtv8cwd2jlsfs" path="res://assets/main_char/spr_SpinAttack_strip.png" id="8_prwhg"]
 [ext_resource type="Texture2D" uid="uid://car77rc5f1o1u" path="res://assets/main_char/spr_Taunt_strip.png" id="9_lrkb1"]
 [ext_resource type="Texture2D" uid="uid://bivq4c0rrbutb" path="res://assets/main_char/spr_Walk_strip.png" id="10_k4jrj"]
-[ext_resource type="Script" path="res://control.gd" id="11_6awl3"]
+[ext_resource type="Script" path="res://Scripts/control.gd" id="11_6awl3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xopwu"]
 size = Vector2(9.22389, 9.22393)
@@ -1513,6 +1513,8 @@ size = Vector2(14.7435, 38.461)
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(433, 327)
 scale = Vector2(0.843261, 0.843261)
+collision_layer = 129
+collision_mask = 129
 script = ExtResource("1_hire5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -1523,8 +1525,9 @@ shape = SubResource("RectangleShape2D_xopwu")
 [node name="Player_animations" type="AnimatedSprite2D" parent="."]
 position = Vector2(5.92936, -28.4609)
 sprite_frames = SubResource("SpriteFrames_4mljv")
-animation = &"light_attack3"
-frame_progress = 0.946976
+animation = &"dash"
+frame = 7
+frame_progress = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(7.11524, -8.30109)

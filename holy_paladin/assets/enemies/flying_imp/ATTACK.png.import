@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxvxeyigjbn72"
-path="res://.godot/imported/club.png-7e7dd4fa7cb072acd5eafcc8789bdae6.ctex"
+uid="uid://c86rj0wowkrhs"
+path="res://.godot/imported/ATTACK.png-ad35e3d9b5799de1221f41d3c84c254d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://club.png"
-dest_files=["res://.godot/imported/club.png-7e7dd4fa7cb072acd5eafcc8789bdae6.ctex"]
+source_file="res://assets/enemies/flying_imp/ATTACK.png"
+dest_files=["res://.godot/imported/ATTACK.png-ad35e3d9b5799de1221f41d3c84c254d.ctex"]
 
 [params]
 
