@@ -1,5 +1,7 @@
 extends CharacterBody2D
 @onready var enemy_animation: AnimatedSprite2D = $enemy_animation
+@onready var imp: CharacterBody2D = $"."
+@onready var soft_collision: Area2D = $soft_collision
 
 
 var speed = 95.0
@@ -24,24 +26,22 @@ func _physics_process(delta: float) -> void:
 			position += (player.position - position)/speed
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
-	player = body
-	player_chase = true
+	if body.name == "Player":
+		player = body
+		player_chase = true
 	
-
-
-func _on_detection_area_body_exited(body: Node2D) -> void:
-	player = null
-	player_chase = false
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	print("IM HURTING :()")
-	health -= 1
-	if health > 0:
-		enemy_animation.play("hurt")
-	if health == 0:
-		print("älä lyö vittu")
-		enemy_animation.play("death")
-		await get_tree().create_timer(1).timeout
-		enemy_animation.queue_free()
-	
+	if area.is_in_group("attack"):
+		print("IM HURTING :()")
+		health -= 1
+		if health > 0:
+			enemy_animation.play("hurt")
+		if health == 0:
+			print("älä lyö vittu")
+			GlobalVariables.xp += 1
+			enemy_animation.play("death")
+			await get_tree().create_timer(1).timeout
+			imp.queue_free()
+		

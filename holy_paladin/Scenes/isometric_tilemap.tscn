@@ -1,9 +1,10 @@
-[gd_scene load_steps=234 format=4 uid="uid://ccxc8igku0gv2"]
+[gd_scene load_steps=235 format=4 uid="uid://ccxc8igku0gv2"]
 
 [ext_resource type="Script" path="res://Scripts/character_body_2d.gd" id="2_srydx"]
 [ext_resource type="Script" path="res://Scripts/proc_gen_world.gd" id="2_yevhn"]
 [ext_resource type="Texture2D" uid="uid://bi0tlkjtfs2y8" path="res://assets/main_char/spr_Dash_strip.png" id="3_02vde"]
 [ext_resource type="TileSet" uid="uid://6wmbxw5okxse" path="res://Scenes/data/isometric_tilemap.tres" id="3_kg52b"]
+[ext_resource type="PackedScene" uid="uid://cj22l1hlo5ktv" path="res://Scenes/enemies.tscn" id="3_w0b4a"]
 [ext_resource type="Texture2D" uid="uid://b8ahb0f75t0o6" path="res://assets/main_char/spr_Death_strip.png" id="4_dlpw0"]
 [ext_resource type="Texture2D" uid="uid://cxtiykr3sn7l0" path="res://assets/main_char/spr_Jump_strip.png" id="5_hc5ep"]
 [ext_resource type="Texture2D" uid="uid://dsjtbhpiev1fy" path="res://assets/main_char/spr_Idle_strip.png" id="6_57dje"]
@@ -1569,9 +1570,61 @@ tile_set = ExtResource("3_kg52b")
 [node name="environment" type="TileMapLayer" parent="Node2D/world/proc_gen_world"]
 tile_set = ExtResource("3_kg52b")
 
+[node name="imp" parent="Node2D" instance=ExtResource("3_w0b4a")]
+position = Vector2(639, 215)
+collision_layer = 129
+collision_mask = 129
+
+[node name="imp2" parent="Node2D" instance=ExtResource("3_w0b4a")]
+position = Vector2(566, 121)
+collision_layer = 129
+collision_mask = 129
+
+[node name="imp3" parent="Node2D" instance=ExtResource("3_w0b4a")]
+position = Vector2(420, 112)
+collision_layer = 129
+collision_mask = 129
+
+[node name="imp4" parent="Node2D" instance=ExtResource("3_w0b4a")]
+position = Vector2(316, 135)
+collision_layer = 129
+collision_mask = 129
+
+[node name="imp5" parent="Node2D" instance=ExtResource("3_w0b4a")]
+position = Vector2(157, 197)
+collision_layer = 129
+collision_mask = 129
+
+[node name="imp6" parent="Node2D" instance=ExtResource("3_w0b4a")]
+position = Vector2(120, 320)
+collision_layer = 129
+collision_mask = 129
+
+[node name="imp7" parent="Node2D" instance=ExtResource("3_w0b4a")]
+position = Vector2(174, 447)
+collision_layer = 129
+collision_mask = 129
+
+[node name="imp8" parent="Node2D" instance=ExtResource("3_w0b4a")]
+position = Vector2(350, 479)
+collision_layer = 129
+collision_mask = 129
+
+[node name="imp9" parent="Node2D" instance=ExtResource("3_w0b4a")]
+position = Vector2(507, 481)
+collision_layer = 129
+collision_mask = 129
+
+[node name="imp10" parent="Node2D" instance=ExtResource("3_w0b4a")]
+position = Vector2(683, 403)
+collision_layer = 129
+collision_mask = 129
+
 [node name="Player" type="CharacterBody2D" parent="Node2D"]
 position = Vector2(445, 325)
 scale = Vector2(0.843261, 0.843261)
+collision_layer = 129
+collision_mask = 129
 script = ExtResource("2_srydx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Player"]

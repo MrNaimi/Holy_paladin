@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cj22l1hlo5ktv"]
+[gd_scene load_steps=38 format=3 uid="uid://cj22l1hlo5ktv"]
 
 [ext_resource type="Script" path="res://Scripts/enemies.gd" id="1_1p336"]
 [ext_resource type="Texture2D" uid="uid://ckhqdljircvhb" path="res://assets/enemies/flying_imp/IDLE.png" id="1_pnewx"]
@@ -230,6 +230,9 @@ radius = 29.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_pcne2"]
 radius = 163.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_t5118"]
+radius = 9.0
+
 [node name="imp" type="CharacterBody2D"]
 script = ExtResource("1_1p336")
 
@@ -249,14 +252,23 @@ shape = SubResource("CircleShape2D_pnut4")
 
 [node name="detection_area" type="Area2D" parent="."]
 position = Vector2(-66, -64)
-collision_layer = 128
+collision_layer = 0
 collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area"]
 position = Vector2(64, 65)
 shape = SubResource("CircleShape2D_pcne2")
 
+[node name="stopper" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="stopper"]
+position = Vector2(-1, 2)
+shape = SubResource("CircleShape2D_t5118")
+
 [connection signal="animation_finished" from="enemy_animation" to="." method="_on_enemy_animation_animation_finished"]
 [connection signal="area_entered" from="enemy_animation/Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
-[connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]
+[connection signal="area_entered" from="stopper" to="." method="_on_stopper_area_entered"]
+[connection signal="body_entered" from="stopper" to="." method="_on_stopper_body_entered"]
