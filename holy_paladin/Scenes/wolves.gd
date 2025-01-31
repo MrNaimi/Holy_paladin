@@ -17,7 +17,7 @@ func _physics_process(delta: float) -> void:
 	if is_instance_valid(wolf_animation):
 		if !wolf_animation.is_playing():
 			wolf_animation.play("idle")
-		if player_chase && !wolf_animation.animation == "death" && !wolf_animation.animation == "death":
+		if player_chase && !wolf_animation.animation == "hit" && !wolf_animation.animation == "death":
 			wolf_animation.play("run")
 			velocity = Vector2(1, 0)
 			if player.position[0] > position[0]:
@@ -40,7 +40,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		print("IM HURTING :()")
 		health -= area.damage
 		if health > 0:
-			wolf_animation.play("death")
+			wolf_animation.play("hit")
 		if health <= 0:
 			print("älä lyö vittu")
 			GlobalVariables.xp += 1
