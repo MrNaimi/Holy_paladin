@@ -14,6 +14,7 @@ var player = null
 
 
 func _physics_process(delta: float) -> void:
+	move_and_slide()
 	if is_instance_valid(enemy_animation):
 		if !enemy_animation.is_playing():
 			enemy_animation.play("idle")

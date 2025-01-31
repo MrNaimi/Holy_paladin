@@ -1736,64 +1736,64 @@ tile_set = ExtResource("3_cpsns")
 
 [node name="imp" parent="Node2D" instance=ExtResource("3_w0b4a")]
 position = Vector2(639, 215)
-collision_layer = 129
-collision_mask = 129
+collision_layer = 128
+collision_mask = 128
 
 [node name="imp2" parent="Node2D" instance=ExtResource("3_w0b4a")]
 position = Vector2(566, 121)
-collision_layer = 129
-collision_mask = 129
+collision_layer = 128
+collision_mask = 128
 
 [node name="imp3" parent="Node2D" instance=ExtResource("3_w0b4a")]
 position = Vector2(420, 112)
-collision_layer = 129
-collision_mask = 129
+collision_layer = 128
+collision_mask = 128
 
 [node name="imp4" parent="Node2D" instance=ExtResource("3_w0b4a")]
 position = Vector2(316, 135)
-collision_layer = 129
-collision_mask = 129
+collision_layer = 128
+collision_mask = 128
 
 [node name="imp5" parent="Node2D" instance=ExtResource("3_w0b4a")]
 position = Vector2(157, 197)
-collision_layer = 129
-collision_mask = 129
+collision_layer = 128
+collision_mask = 128
 
 [node name="imp6" parent="Node2D" instance=ExtResource("3_w0b4a")]
 position = Vector2(120, 320)
-collision_layer = 129
-collision_mask = 129
+collision_layer = 128
+collision_mask = 128
 
 [node name="imp7" parent="Node2D" instance=ExtResource("3_w0b4a")]
 position = Vector2(174, 447)
-collision_layer = 129
-collision_mask = 129
+collision_layer = 128
+collision_mask = 128
 
 [node name="imp8" parent="Node2D" instance=ExtResource("3_w0b4a")]
 position = Vector2(350, 479)
-collision_layer = 129
-collision_mask = 129
+collision_layer = 128
+collision_mask = 128
 
 [node name="imp9" parent="Node2D" instance=ExtResource("3_w0b4a")]
 position = Vector2(507, 481)
-collision_layer = 129
-collision_mask = 129
+collision_layer = 128
+collision_mask = 128
 
 [node name="imp10" parent="Node2D" instance=ExtResource("3_w0b4a")]
 position = Vector2(683, 403)
-collision_layer = 129
-collision_mask = 129
+collision_layer = 128
+collision_mask = 128
 
 [node name="Player" type="CharacterBody2D" parent="Node2D"]
 position = Vector2(445, 325)
 scale = Vector2(0.843261, 0.843261)
-collision_layer = 129
-collision_mask = 129
+collision_layer = 128
+collision_mask = 128
 script = ExtResource("2_srydx")
 spell_radius = 45
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Player"]
-position = Vector2(0, -5.3364)
+position = Vector2(2.98041e-08, -5.92937)
 rotation = 0.785398
 shape = SubResource("RectangleShape2D_xopwu")
 
@@ -1870,9 +1870,10 @@ one_shot = true
 one_shot = true
 
 [node name="Area2D" type="Area2D" parent="Node2D/Player" groups=["player"]]
+position = Vector2(-1.18587, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Player/Area2D"]
-position = Vector2(2.37174, -14.2305)
+position = Vector2(1.18587, -14.2305)
 shape = SubResource("CapsuleShape2D_yxxps")
 
 [node name="AnimationTimer" type="Timer" parent="Node2D/Player"]

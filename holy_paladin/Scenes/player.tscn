@@ -1524,7 +1524,7 @@ shape = SubResource("RectangleShape2D_xopwu")
 position = Vector2(5.92936, -28.4609)
 sprite_frames = SubResource("SpriteFrames_4mljv")
 animation = &"dash"
-frame = 7
+frame = 6
 frame_progress = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
