@@ -1750,41 +1750,6 @@ position = Vector2(420, 112)
 collision_layer = 128
 collision_mask = 128
 
-[node name="imp4" parent="Node2D" instance=ExtResource("3_w0b4a")]
-position = Vector2(316, 135)
-collision_layer = 128
-collision_mask = 128
-
-[node name="imp5" parent="Node2D" instance=ExtResource("3_w0b4a")]
-position = Vector2(157, 197)
-collision_layer = 128
-collision_mask = 128
-
-[node name="imp6" parent="Node2D" instance=ExtResource("3_w0b4a")]
-position = Vector2(120, 320)
-collision_layer = 128
-collision_mask = 128
-
-[node name="imp7" parent="Node2D" instance=ExtResource("3_w0b4a")]
-position = Vector2(174, 447)
-collision_layer = 128
-collision_mask = 128
-
-[node name="imp8" parent="Node2D" instance=ExtResource("3_w0b4a")]
-position = Vector2(350, 479)
-collision_layer = 128
-collision_mask = 128
-
-[node name="imp9" parent="Node2D" instance=ExtResource("3_w0b4a")]
-position = Vector2(507, 481)
-collision_layer = 128
-collision_mask = 128
-
-[node name="imp10" parent="Node2D" instance=ExtResource("3_w0b4a")]
-position = Vector2(683, 403)
-collision_layer = 128
-collision_mask = 128
-
 [node name="Wolves" parent="Node2D" instance=ExtResource("5_66pma")]
 
 [node name="Wolves2" parent="Node2D" instance=ExtResource("5_66pma")]

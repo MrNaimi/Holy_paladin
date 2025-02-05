@@ -4,7 +4,7 @@ extends CharacterBody2D
 @onready var soft_collision: Area2D = $soft_collision
 
 
-var speed = 95.0
+var speed = 60
 var player_chase = false
 var player = null
 @export var health = 3
@@ -18,14 +18,18 @@ func _physics_process(delta: float) -> void:
 	if is_instance_valid(enemy_animation):
 		if !enemy_animation.is_playing():
 			enemy_animation.play("idle")
-		if player_chase && !enemy_animation.animation == "hurt" && !enemy_animation.animation == "death":
+		if player_chase && !enemy_animation.animation == "hurt" && !enemy_animation.animation == "death" && !enemy_animation.animation == "hawk_tuah":
 			enemy_animation.play("flying")
 			velocity = Vector2(1, 0)
 			if player.position[0] > position[0]:
 				enemy_animation.flip_h = true
 			else:
 				enemy_animation.flip_h = false
-			position += (player.position - position)/speed
+			var direction = (player.position - position).normalized()
+			position += direction * speed * delta
+			if position.distance_to(player.position) < 75:
+				print("Hawk tuah")
+				enemy_animation.play("hawk_tuah")
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	if body.name == "Player":

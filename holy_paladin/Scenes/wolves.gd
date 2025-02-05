@@ -1,7 +1,8 @@
 extends CharacterBody2D
 @onready var wolves: CharacterBody2D = $"."
 
-
+var returning = false
+var og_position
 var speed = 95.0
 var player_chase = false
 var player = null
@@ -12,6 +13,8 @@ var idle = ""
 var colour = ""
 var rng = RandomNumberGenerator.new()
 func _ready():
+	og_position = position
+	#Annetaan susille numero 1 ja 4 väliltä jonka avulla valitaan suden animaation värit
 	var colour_num = rng.randi_range(1,4)
 	print(colour_num)
 	if colour_num == 1:
@@ -22,28 +25,49 @@ func _ready():
 		colour = "grey"
 	else:
 		colour = "white"
-	
-	var idle = colour + "_idle"
 
 func _physics_process(delta: float) -> void:
 	move_and_slide()
+	
 	if is_instance_valid(wolf_animation):
 		if !wolf_animation.is_playing():
 			wolf_animation.play(colour + "_idle")
-		if player_chase && !wolf_animation.animation == (colour + "_hit") && !wolf_animation.animation == (colour + "_death"):
+		#Kääntää suden idle animaation suunnan 1/1500 todennäköisyydellä per frami
+		if RandomNumberGenerator.new().randi_range(0, 1500)==9 && wolf_animation.animation == colour + "_idle":
+			print("hihii")
+			if wolf_animation.flip_h:
+				wolf_animation.flip_h = false
+			else:
+				wolf_animation.flip_h = true
+		#Pistää suden jahtaamaan pelaajaa
+		if player_chase && !wolf_animation.animation == (colour + "_hit") && !wolf_animation.animation == (colour + "_death") && !wolf_animation.animation == (colour + "_attack"):
 			wolf_animation.play(colour + "_run")
-			print(position)
-			print(player.position)
-			print(player.position - position)
-			print((player.position - position)/speed)
 			velocity = Vector2(1, 0)
-			
 			if player.position[0] > position[0]:
 				wolf_animation.flip_h = true
 			else:
 				wolf_animation.flip_h = false
-			position += (player.position - position)/speed
+			var direction = (player.position - position).normalized()
+			position += direction * speed * delta
+			
+			# Hyökkää pelaajaan jos etäisyys on alle 25
+			if position.distance_to(player.position)<25:
+				print("Hyökkään HAUHAU")
+				wolf_animation.play(colour + "_attack")
+		
+		#Palauttaa suden takaisin alkuperäisellä paikalleen
+		elif returning:
+			if og_position[0] > position[0]:
+				wolf_animation.flip_h = true
+			else:
+				wolf_animation.flip_h = false
+			var direction = (og_position - position).normalized()
+			position += direction * speed * delta
+			if position.distance_to(og_position)<2:
+				wolf_animation.play(colour + "_idle")
+				returning = false
 
+#Antaa signaalin, että on aika lähteä jahtaamaan pelaajaa
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	print("JIppikaijeis")
 	if body.name == "Player":
@@ -51,9 +75,8 @@ func _on_detection_area_body_entered(body: Node2D) -> void:
 		player_chase = true
 	
 
-
+#Susi ottaa damagea kun siihen lyödään ja kuolee kun healtti menee nollaan.
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	print(area.name)
 	if area.is_in_group("attack"):
 		print("IM HURTING :()")
 		health -= area.damage
@@ -67,3 +90,10 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			wolves.queue_free()
 	if area.is_in_group("player"):
 		area.get_parent().hurt(damage)
+
+#Antaa signaalin, jonka jälkeen susi alkaa palaamaan alkuperäiselle paikalleen 
+func _on_aggro_off_body_exited(body: Node2D) -> void:
+	if body.name == "Player":
+		returning = true
+		player_chase = false
+		wolf_animation.play(colour + "_run")

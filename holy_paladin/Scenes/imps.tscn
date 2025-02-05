@@ -185,7 +185,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_b0eng")
 }],
-"loop": true,
+"loop": false,
 "name": &"hawk_tuah",
 "speed": 5.0
 }, {
@@ -243,7 +243,7 @@ script = ExtResource("1_1p336")
 position = Vector2(1, 1)
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_wnwmg")
-animation = &"death"
+animation = &"hawk_tuah"
 
 [node name="Area2D" type="Area2D" parent="enemy_animation"]
 collision_layer = 2
