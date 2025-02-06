@@ -7,11 +7,15 @@ var pierucounter = 0
 var combo = 1
 var processiterations = 0
 var dashing
+var jumping
 @export var SPEED = 100.0
 @onready var hp = 10
 @export var spell_radius = 150
 #Viittaukset player attackkeihin
 
+const LEVEL_UP = preload("res://Scenes/level_up.tscn")
+
+#Viittaukset player attackkeihin
 #@onready var spell_collision: CollisionShape2D = $AttackHitboxes/Spell/CollisionShape2D
 #@onready var spell: Area2D = $AttackHitboxes/Spell
 #@onready var spell_animation: AnimatedSprite2D = $AttackHitboxes/Spell/AnimatedSprite2D
@@ -26,6 +30,7 @@ var dashing
 @onready var invincibility_timer: Timer = $Timers/InvincibilityTimer
 @onready var dash_cooldown_timer: Timer = $Timers/DashCooldownTimer
 @onready var spell_cooldown_timer: Timer = $Timers/SpellCooldownTimer
+@onready var jump_timer: Timer = $Timers/JumpTimer
 
 
 @onready var light_attack_1: Area2D = $AttackHitboxes/Light_attack1
@@ -33,6 +38,7 @@ var dashing
 @onready var light_attack_3: Area2D = $AttackHitboxes/Light_attack3
 #@onready var tween = get_tree().create_tween()
 @onready var tween_direction = 1
+
 
 var current_speed = 0
 func _ready():
@@ -45,17 +51,17 @@ func get_input():
 	velocity = input_direction * SPEED
 	
 	if get_viewport().get_mouse_position().x >= get_viewport().size.x/2 and input_direction.x != 0:
-		if !dashing:
+		if !dashing and !jumping:
 			player_animations.play("walk")
 		else:
 			pass
 	elif get_viewport().get_mouse_position().x <= get_viewport().size.x/2 and input_direction.x != 0:
-		if !dashing:
+		if !dashing and !jumping:
 			player_animations.play("walk")
 		else:
 			pass
 	if input_direction.y != 0:
-		if !dashing:
+		if !dashing and !jumping:
 			player_animations.play("walk")
 		else:
 			pass
@@ -77,6 +83,13 @@ func _input(event):
 		player_animations.play("dash")
 		animation_timer.start()
 		dashing = true
+	
+	if event.is_action_pressed("jump") and jump_timer.is_stopped():
+		jump_timer.start()
+		print("jumped")
+		player_animations.play("jump")
+		animation_timer.start()
+		jumping = true
 			
 	if current_speed==0:
 		if event.is_action_pressed("taunt") and spell_cooldown_timer.is_stopped():
@@ -128,9 +141,11 @@ func _input(event):
 						light_attack_3.enableHitBox()
 						print("attack3 played")
 						combo = 1
-
-				
+			
 func _physics_process(delta: float) -> void:
+	if GlobalVariables.xp >= GlobalVariables.xp_threshold:
+		level_up()
+		
 	get_input()
 	move_and_slide()
 	if current_speed==0 and player_animations.animation == "walk":
@@ -149,6 +164,16 @@ func _physics_process(delta: float) -> void:
 		elif get_viewport().get_mouse_position().x <= get_viewport().size.x/2:
 			player_animations.flip_h = true;
 		
+func level_up():
+	var level_up = LEVEL_UP.instantiate()
+	get_tree().current_scene.add_child(level_up)
+	level_up.global_position = self.global_position + Vector2(0, -40)
+	GlobalVariables.level += 1
+	GlobalVariables.xp_threshold = GlobalVariables.level
+	GlobalVariables.xp = 0
+	GlobalVariables.talentpoints += 1
+	
+
 func hurt(damage):
 	if invincibility_timer.is_stopped():
 		hp -= damage
@@ -167,3 +192,7 @@ func _on_quit_button_pressed() -> void:
 
 func _on_animation_timer_timeout() -> void:
 	dashing = false
+
+
+func _on_jump_timer_timeout() -> void:
+	jumping = false
