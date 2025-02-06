@@ -63,7 +63,7 @@ func shoot_fireball():
 	var fireball = FIREBALL.instantiate()
 	get_tree().current_scene.add_child(fireball)
 	fireball.global_position = global_position
-	fireball.direction = (player.position - position ).normalized()
+	fireball.direction = ((player.position + Vector2(0,-15)) - position ).normalized()
 	#print("Enemy position:", global_position)
 	#print("Player position:", player.global_position)
 	#print("Fireball direction:", fireball.direction)
