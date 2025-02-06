@@ -3,6 +3,9 @@ extends CharacterBody2D
 @onready var player_animations: AnimatedSprite2D = $Player_animations
 @onready var pieru: AudioStreamPlayer2D = $"../pieru"
 @onready var player: CharacterBody2D = $"."
+@onready var minimapicon: Sprite2D = $minimapicon
+
+var copy = false
 var pierucounter = 0
 var combo = 1
 var processiterations = 0
@@ -22,7 +25,8 @@ const LEVEL_UP = preload("res://Scenes/level_up.tscn")
 @onready var spell_collision: CollisionShape2D = $"../Spell/CollisionShape2D"
 @onready var spell: Area2D = $"../Spell"
 @onready var spell_animation: AnimatedSprite2D = $"../Spell/AnimatedSprite2D"
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var animation_player: AnimationPlayer = $Timers/AnimationPlayer
+
 
 #tässä määritellään timereihin viittaus
 @onready var animation_timer: Timer = $Timers/AnimationTimer
@@ -32,6 +36,7 @@ const LEVEL_UP = preload("res://Scenes/level_up.tscn")
 @onready var spell_cooldown_timer: Timer = $Timers/SpellCooldownTimer
 @onready var jump_timer: Timer = $Timers/JumpTimer
 
+@onready var camera_2d: Camera2D = $Camera2D
 
 @onready var light_attack_1: Area2D = $AttackHitboxes/Light_attack1
 @onready var light_attack_2: Area2D = $AttackHitboxes/Light_attack2
@@ -78,8 +83,10 @@ func _input(event):
 		get_tree().create_tween().tween_property(self, "position", Vector2(position.x+velocity.x-10, position.y+velocity.y-10),0.3)
 		if velocity.x > 0:
 			player_animations.flip_h = false
+			GlobalVariables.flip_h = false
 		elif velocity.x < 0:
 			player_animations.flip_h = true
+			GlobalVariables.flip_h = true
 		player_animations.play("dash")
 		animation_timer.start()
 		dashing = true
@@ -91,7 +98,7 @@ func _input(event):
 		animation_timer.start()
 		jumping = true
 			
-	if current_speed==0:
+	if current_speed==0 and !minimapicon.visible:
 		if event.is_action_pressed("taunt") and spell_cooldown_timer.is_stopped():
 			spell_cooldown_timer.start()
 			print("taunted/spellthing")
@@ -111,9 +118,14 @@ func _input(event):
 		if event.is_action_pressed("attack"):
 			print("mouse clicked")
 			if get_viewport().get_mouse_position().x >= get_viewport().size.x / 2:
-				player_animations.flip_h = false
-			else:
-				player_animations.flip_h = true
+				if !copy:
+					GlobalVariables.flip_h = false
+					player_animations.flip_h = false
+				elif !copy:
+					GlobalVariables.flip_h = true
+					player_animations.flip_h = true
+				if copy:
+					player_animations.flip_h = GlobalVariables.flip_h
 			match combo:
 				1:
 					if player_animations.animation == "idle":
@@ -146,6 +158,8 @@ func _physics_process(delta: float) -> void:
 	if GlobalVariables.xp >= GlobalVariables.xp_threshold:
 		level_up()
 		
+	minimapicon.flip_h = GlobalVariables.flip_h
+	GlobalVariables.playerpos = position
 	get_input()
 	move_and_slide()
 	if current_speed==0 and player_animations.animation == "walk":
@@ -160,10 +174,12 @@ func _physics_process(delta: float) -> void:
 		pieru.play(0)
 	if !dashing:
 		if get_viewport().get_mouse_position().x >= get_viewport().size.x/2:
-			player_animations.flip_h = false;
+			player_animations.flip_h = false
 		elif get_viewport().get_mouse_position().x <= get_viewport().size.x/2:
-			player_animations.flip_h = true;
-		
+			player_animations.flip_h = true
+	if !minimapicon.visible:
+		GlobalVariables.flip_h = player_animations.flip_h
+
 func level_up():
 	var level_up = LEVEL_UP.instantiate()
 	get_tree().current_scene.add_child(level_up)
@@ -172,8 +188,7 @@ func level_up():
 	GlobalVariables.xp_threshold = GlobalVariables.level
 	GlobalVariables.xp = 0
 	GlobalVariables.talentpoints += 1
-	
-
+			
 func hurt(damage):
 	if invincibility_timer.is_stopped():
 		hp -= damage

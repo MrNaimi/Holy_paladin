@@ -5,6 +5,7 @@ extends CharacterBody2D
 const FIREBALL = preload("res://Scenes/fireball.tscn")
 
 var fireball
+var copy = false
 var speed = 60
 var player_chase = false
 var player = null
@@ -46,15 +47,18 @@ func _on_detection_area_body_entered(body: Node2D) -> void:
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	print(area.name)
 	if area.is_in_group("attack"):
-		print("IM HURTING :()")
+		#print("IM HURTING :()")
 		health -= area.damage
 		if health > 0:
 			enemy_animation.play("hurt")
 		if health <= 0:
-			print("älä lyö vittu")
+			#print("älä lyö vittu")
 			GlobalVariables.xp += 1
 			enemy_animation.play("death")
 			await get_tree().create_timer(1).timeout
+			GlobalVariables.freed_object_name == self.name
+			GlobalVariables.free_object = true
+			print("nyt tapetaan!" + self.name)
 			imp.queue_free()
 	if area.is_in_group("player"):
 		area.get_parent().hurt(damage)
