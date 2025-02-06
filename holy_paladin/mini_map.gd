@@ -18,9 +18,11 @@ func _ready() -> void:
 			if node is CharacterBody2D:
 				for item in node.get_children():
 					if item.name != "minimapicon":
-						item.visible = false
+						#item.visible = false
+						pass
 					else:
-						item.visible = true
+						#item.visible = true
+						pass
 			
 	sub_viewport.add_child(new_tilemap)
 
