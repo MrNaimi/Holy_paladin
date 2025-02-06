@@ -1,0 +1,71 @@
+[gd_scene load_steps=10 format=3 uid="uid://b3od3wreqhnq0"]
+
+[ext_resource type="Script" path="res://Scenes/fireball.gd" id="1_fln21"]
+[ext_resource type="Texture2D" uid="uid://p5mb5tx7r58" path="res://assets/enemies/flying_imp/fireball.png" id="2_8544v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n6tso"]
+atlas = ExtResource("2_8544v")
+region = Rect2(0, 0, 63, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3uljp"]
+atlas = ExtResource("2_8544v")
+region = Rect2(63, 0, 63, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fdql"]
+atlas = ExtResource("2_8544v")
+region = Rect2(126, 0, 63, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4tbd"]
+atlas = ExtResource("2_8544v")
+region = Rect2(189, 0, 63, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dicj6"]
+atlas = ExtResource("2_8544v")
+region = Rect2(252, 0, 63, 63)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_80ptq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n6tso")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3uljp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fdql")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c4tbd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dicj6")
+}],
+"loop": true,
+"name": &"fireball",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0cfyh"]
+radius = 9.0
+
+[node name="Fireball" type="CharacterBody2D"]
+script = ExtResource("1_fln21")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_80ptq")
+animation = &"fireball"
+
+[node name="Area2D" type="Area2D" parent="AnimatedSprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D"]
+position = Vector2(-1, -1)
+shape = SubResource("CircleShape2D_0cfyh")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 8.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

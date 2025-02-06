@@ -2,17 +2,18 @@ extends CharacterBody2D
 @onready var enemy_animation: AnimatedSprite2D = $enemy_animation
 @onready var imp: CharacterBody2D = $"."
 @onready var soft_collision: Area2D = $soft_collision
+const FIREBALL = preload("res://Scenes/fireball.tscn")
 
-
+var fireball
 var speed = 60
 var player_chase = false
 var player = null
 @export var health = 3
 @export var damage = 1
+var player_cpos
 
-
-
-
+func _ready() -> void:
+	pass
 func _physics_process(delta: float) -> void:
 	move_and_slide()
 	if is_instance_valid(enemy_animation):
@@ -23,13 +24,17 @@ func _physics_process(delta: float) -> void:
 			velocity = Vector2(1, 0)
 			if player.position[0] > position[0]:
 				enemy_animation.flip_h = true
+				
 			else:
 				enemy_animation.flip_h = false
 			var direction = (player.position - position).normalized()
 			position += direction * speed * delta
-			if position.distance_to(player.position) < 75:
+			
+			if position.distance_to(player.position) < 175:
 				print("Hawk tuah")
+				shoot_fireball()
 				enemy_animation.play("hawk_tuah")
+				
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
@@ -53,3 +58,12 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			imp.queue_free()
 	if area.is_in_group("player"):
 		area.get_parent().hurt(damage)
+		
+func shoot_fireball():
+	var fireball = FIREBALL.instantiate()
+	get_tree().current_scene.add_child(fireball)
+	fireball.global_position = global_position
+	fireball.direction = (player.position - position ).normalized()
+	#print("Enemy position:", global_position)
+	#print("Player position:", player.global_position)
+	#print("Fireball direction:", fireball.direction)

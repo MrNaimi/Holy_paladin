@@ -47,7 +47,7 @@ func _physics_process(delta: float) -> void:
 				wolf_animation.flip_h = true
 			else:
 				wolf_animation.flip_h = false
-			var direction = (player.position - position).normalized()
+			var direction = ((player.position-Vector2(0, 20)) - position).normalized()
 			position += direction * speed * delta
 			
 			# Hyökkää pelaajaan jos etäisyys on alle 25

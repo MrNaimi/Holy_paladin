@@ -9,7 +9,7 @@ var processiterations = 0
 var dashing
 @export var SPEED = 100.0
 @onready var hp = 10
-@export var spell_radius = 5
+@export var spell_radius = 150
 #Viittaukset player attackkeihin
 
 #@onready var spell_collision: CollisionShape2D = $AttackHitboxes/Spell/CollisionShape2D
@@ -36,6 +36,7 @@ var dashing
 
 var current_speed = 0
 func _ready():
+	var spell_radius = 150
 	print("pylly")
 	var mouseposition = null
 	

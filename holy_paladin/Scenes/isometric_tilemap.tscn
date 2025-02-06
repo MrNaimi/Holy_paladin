@@ -1756,7 +1756,6 @@ scale = Vector2(0.843261, 0.843261)
 collision_layer = 128
 collision_mask = 128
 script = ExtResource("2_srydx")
-spell_radius = 45
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Player"]
 position = Vector2(2.98041e-08, -5.92937)
