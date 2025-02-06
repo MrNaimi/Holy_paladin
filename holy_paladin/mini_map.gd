@@ -12,7 +12,6 @@ var miniMapPlayer
 func _ready() -> void:
 	#miniMapPlayer = player.duplicate()
 	
-	
 	var new_tilemap = tileMap.duplicate()
 	for node in new_tilemap.get_children():
 		if node.name == "world" or node is CharacterBody2D:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://cj22l1hlo5ktv"]
+[gd_scene load_steps=40 format=3 uid="uid://cj22l1hlo5ktv"]
 
 [ext_resource type="Script" path="res://Scripts/imps.gd" id="1_1p336"]
 [ext_resource type="Texture2D" uid="uid://ckhqdljircvhb" path="res://assets/enemies/flying_imp/IDLE.png" id="1_pnewx"]

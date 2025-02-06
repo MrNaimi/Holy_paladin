@@ -30,7 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://ce55r2wn51p4o" path="res://assets/ui_assets/cooldownframe.png" id="27_mq58b"]
 [ext_resource type="Texture2D" uid="uid://dnd67rq2yqc5o" path="res://assets/ui_assets/spellicon.png" id="28_m34q7"]
 [ext_resource type="Texture2D" uid="uid://b486rd107mtba" path="res://assets/ui_assets/talent-tree.png" id="29_0uu7g"]
-[ext_resource type="PackedScene" uid="uid://c6b1qgbuy8e56" path="res://mini_map.tscn" id="31_o3jgf"]
+[ext_resource type="PackedScene" path="res://mini_map.tscn" id="31_o3jgf"]
 
 [sub_resource type="TileSet" id="TileSet_df3ou"]
 tile_shape = 1
