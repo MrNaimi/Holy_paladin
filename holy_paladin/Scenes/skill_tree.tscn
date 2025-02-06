@@ -1,29 +1,354 @@
-[gd_scene load_steps=2 format=3 uid="uid://bilnehhyjx6rq"]
+[gd_scene load_steps=24 format=3 uid="uid://bilnehhyjx6rq"]
 
 [ext_resource type="PackedScene" uid="uid://b3xkr34ohheb0" path="res://Scenes/skill_button.tscn" id="1_ae22c"]
+[ext_resource type="Script" path="res://Scenes/skill_tree.gd" id="1_tkq7q"]
+[ext_resource type="Texture2D" uid="uid://bjrvyk1o673kv" path="res://assets/ui_assets/paladin_icons/Icon35.png" id="3_n4hk8"]
+[ext_resource type="Texture2D" uid="uid://ca2ancalc5hd" path="res://assets/ui_assets/paladin_icons/Icon6.png" id="4_gsegd"]
+[ext_resource type="Texture2D" uid="uid://bd3m2l4xl8sxi" path="res://assets/ui_assets/paladin_icons/Icon27.png" id="5_fl0g5"]
+[ext_resource type="Texture2D" uid="uid://cr62svagm6wcx" path="res://assets/ui_assets/paladin_icons/Icon14.png" id="6_ua1j0"]
+[ext_resource type="Texture2D" uid="uid://cgt1ubqdjvrdj" path="res://assets/ui_assets/paladin_icons/Icon16.png" id="7_7yxi7"]
+[ext_resource type="Texture2D" uid="uid://dysms1pxug1vo" path="res://assets/ui_assets/paladin_icons/Icon42.png" id="8_jq6t2"]
+[ext_resource type="Texture2D" uid="uid://d17niiwsj54kb" path="res://assets/ui_assets/paladin_icons/Icon45.png" id="9_v3f2v"]
+[ext_resource type="Texture2D" uid="uid://chmmydywjo74x" path="res://assets/ui_assets/paladin_icons/Icon36.png" id="10_2tlk7"]
+[ext_resource type="Texture2D" uid="uid://bdt1c61sjn86q" path="res://assets/ui_assets/paladin_icons/Icon22.png" id="11_wiqs2"]
+[ext_resource type="Texture2D" uid="uid://dw6q3ea56woqe" path="res://assets/ui_assets/paladin_icons/Icon23.png" id="12_by83v"]
+[ext_resource type="Texture2D" uid="uid://d2fhg07mr0tqo" path="res://assets/ui_assets/paladin_icons/Icon7.png" id="13_rxky6"]
+[ext_resource type="Texture2D" uid="uid://bxep4pafj1mbv" path="res://assets/ui_assets/paladin_icons/Icon28.png" id="14_wmteg"]
+[ext_resource type="Texture2D" uid="uid://cr8aawiq7rsgx" path="res://assets/ui_assets/paladin_icons/Icon46.png" id="15_3320k"]
+[ext_resource type="Texture2D" uid="uid://fyplgkgttjii" path="res://assets/ui_assets/paladin_icons/Icon34.png" id="16_6qkyg"]
+[ext_resource type="Texture2D" uid="uid://cpwepxr1y8ojg" path="res://assets/ui_assets/paladin_icons/Icon41.png" id="17_ecbu6"]
+[ext_resource type="Texture2D" uid="uid://dswagiomjhket" path="res://assets/ui_assets/paladin_icons/Icon37.png" id="18_50ymx"]
+[ext_resource type="Texture2D" uid="uid://cpl6mndnx6i37" path="res://assets/ui_assets/paladin_icons/Icon30.png" id="19_dsvtc"]
+[ext_resource type="Texture2D" uid="uid://bqvc0uujrk0h1" path="res://assets/ui_assets/paladin_icons/Icon26.png" id="20_y36gq"]
+[ext_resource type="Texture2D" uid="uid://b4j6t1c2c1tjk" path="res://assets/ui_assets/paladin_icons/Icon38.png" id="21_2yvu8"]
+[ext_resource type="Texture2D" uid="uid://d4fd4dh1ywq3j" path="res://assets/ui_assets/paladin_icons/Icon40.png" id="22_qkgg1"]
+[ext_resource type="Texture2D" uid="uid://clak7nt41pfp8" path="res://assets/ui_assets/paladin_icons/Icon29.png" id="23_sx2qy"]
 
 [node name="SkillTree" type="Control"]
+z_index = 3
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 0
+script = ExtResource("1_tkq7q")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Background" type="ColorRect" parent="."]
+z_index = 4
 layout_mode = 0
-offset_right = 874.0
+offset_left = 640.0
+offset_right = 1280.0
 offset_bottom = 1080.0
+color = Color(0.192157, 0.192157, 0.192157, 0.792157)
 
-[node name="SkillButton" parent="." instance=ExtResource("1_ae22c")]
+[node name="Tier1_1" parent="Background" node_paths=PackedStringArray("sharedChild") instance=ExtResource("1_ae22c")]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 161.0
+offset_top = 72.0
+offset_right = 193.0
+offset_bottom = 104.0
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(2.109, 2.109)
+texture_normal = ExtResource("3_n4hk8")
+MaxLevel = 1
+SkillName = "Dash"
+sharedChild = NodePath("../Tier1_2/Tier2_2")
+
+[node name="Tier2_1" parent="Background/Tier1_1" node_paths=PackedStringArray("sharedChild") instance=ExtResource("1_ae22c")]
+layout_mode = 1
+anchors_preset = 0
+offset_left = -27.0271
+offset_top = 65.434
+offset_right = 1.13292
+offset_bottom = 93.114
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(1.15117, 1.15117)
+disabled = true
+texture_normal = ExtResource("4_gsegd")
+MaxLevel = 1
+sharedChild = NodePath("../../Tier1_2/Tier2_2/Tier3_2")
+
+[node name="Tier3_1" parent="Background/Tier1_1/Tier2_1" node_paths=PackedStringArray("sharedChild") instance=ExtResource("1_ae22c")]
 layout_mode = 0
 anchors_preset = 0
-offset_left = 159.0
-offset_top = 43.0
-offset_right = 191.0
-offset_bottom = 75.0
+offset_left = -16.8877
+offset_top = 62.196
+offset_right = 15.1123
+offset_bottom = 94.196
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(0.897077, 0.897077)
+texture_normal = ExtResource("5_fl0g5")
+MaxLevel = 1
+sharedChild = NodePath("../../../Tier1_2/Tier2_2/Tier3_2/Tier4_1")
 
-[node name="SkillButton" parent="SkillButton" instance=ExtResource("1_ae22c")]
+[node name="Tier1_3" parent="Background" node_paths=PackedStringArray("sharedChild") instance=ExtResource("1_ae22c")]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 377.0
+offset_top = 74.0
+offset_right = 409.0
+offset_bottom = 106.0
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(2.109, 2.109)
+texture_normal = ExtResource("6_ua1j0")
+sharedChild = NodePath("../Tier1_2/Tier2_3")
+
+[node name="Tier2_4" parent="Background/Tier1_3" node_paths=PackedStringArray("sharedChild") instance=ExtResource("1_ae22c")]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 37.9327
+offset_top = 64.4857
+offset_right = 66.0927
+offset_bottom = 92.1657
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(1.15117, 1.15117)
+disabled = true
+texture_normal = ExtResource("7_7yxi7")
+sharedChild = NodePath("../../Tier1_2/Tier2_3/Tier3_4")
+
+[node name="Tier3_5" parent="Background/Tier1_3/Tier2_4" instance=ExtResource("1_ae22c")]
 layout_mode = 0
 anchors_preset = 0
-offset_left = -26.8072
-offset_top = 50.6023
-offset_right = 5.19281
-offset_bottom = 82.6023
-scale = Vector2(1.16338, 1.16338)
+offset_left = 6.17841
+offset_top = 62.196
+offset_right = 38.1784
+offset_bottom = 94.196
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(0.865112, 0.865112)
+texture_normal = ExtResource("8_jq6t2")
+
+[node name="Tier4_4" parent="Background/Tier1_3/Tier2_4/Tier3_5" node_paths=PackedStringArray("sharedParent") instance=ExtResource("1_ae22c")]
+layout_mode = 0
+anchors_preset = 0
+offset_left = -7.14175
+offset_top = 72.3697
+offset_right = 24.8583
+offset_bottom = 104.37
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(0.996551, 0.996551)
+texture_normal = ExtResource("9_v3f2v")
+MaxLevel = 1
+shareParent = true
+sharedParent = NodePath("../../../../Tier1_2/Tier2_3/Tier3_4")
+
+[node name="Tier5_3" parent="Background/Tier1_3/Tier2_4/Tier3_5/Tier4_4" node_paths=PackedStringArray("sharedParent") instance=ExtResource("1_ae22c")]
+layout_mode = 0
+anchors_preset = 0
+offset_left = -38.2212
+offset_top = 73.5757
+offset_right = -6.22117
+offset_bottom = 105.576
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(1.00762, 1.00762)
+texture_normal = ExtResource("10_2tlk7")
+MaxLevel = 2
+shareParent = true
+sharedParent = NodePath("../../../../../Tier1_2/Tier2_3/Tier3_4/Tier4_3")
+
+[node name="Tier6_3" parent="Background/Tier1_3/Tier2_4/Tier3_5/Tier4_4/Tier5_3" instance=ExtResource("1_ae22c")]
+layout_mode = 0
+anchors_preset = 0
+offset_top = 81.0802
+offset_bottom = 113.08
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(1.00613, 1.00613)
+texture_normal = ExtResource("11_wiqs2")
+MaxLevel = 1
+
+[node name="Tier1_2" parent="Background" instance=ExtResource("1_ae22c")]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 269.0
+offset_top = 72.0
+offset_right = 301.0
+offset_bottom = 104.0
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(2.109, 2.109)
+texture_normal = ExtResource("12_by83v")
+
+[node name="Tier2_2" parent="Background/Tier1_2" node_paths=PackedStringArray("sharedParent", "sharedChild") instance=ExtResource("1_ae22c")]
+layout_mode = 1
+anchors_preset = 0
+offset_left = -24.1821
+offset_top = 65.434
+offset_right = 3.97788
+offset_bottom = 93.114
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(1.15117, 1.15117)
+disabled = true
+texture_normal = ExtResource("13_rxky6")
+shareParent = true
+sharedParent = NodePath("../../Tier1_1")
+sharedChild = NodePath("../Tier2_3/Tier3_4")
+
+[node name="Tier3_2" parent="Background/Tier1_2/Tier2_2" node_paths=PackedStringArray("sharedParent", "sharedChild") instance=ExtResource("1_ae22c")]
+layout_mode = 0
+anchors_preset = 0
+offset_left = -23.8898
+offset_top = 62.196
+offset_right = 8.11015
+offset_bottom = 94.196
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(0.881587, 0.881587)
+texture_normal = ExtResource("14_wmteg")
+MaxLevel = 1
+shareParent = true
+sharedParent = NodePath("../../../Tier1_1/Tier2_1")
+sharedChild = NodePath("../Tier3_3/Tier4_2")
+
+[node name="Tier4_1" parent="Background/Tier1_2/Tier2_2/Tier3_2" node_paths=PackedStringArray("sharedParent", "sharedChild") instance=ExtResource("1_ae22c")]
+layout_mode = 0
+anchors_preset = 0
+offset_left = -26.1642
+offset_top = 71.0172
+offset_right = 5.83576
+offset_bottom = 103.017
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(0.983907, 0.983907)
+texture_normal = ExtResource("15_3320k")
+shareParent = true
+sharedParent = NodePath("../../../../Tier1_1/Tier2_1/Tier3_1")
+sharedChild = NodePath("../../Tier3_3/Tier4_2/Tier5_1")
+
+[node name="Tier3_3" parent="Background/Tier1_2/Tier2_2" node_paths=PackedStringArray("sharedParent", "sharedChild") instance=ExtResource("1_ae22c")]
+layout_mode = 0
+anchors_preset = 0
+offset_left = 21.0066
+offset_top = 62.196
+offset_right = 53.0066
+offset_bottom = 94.196
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(0.881587, 0.881587)
+texture_normal = ExtResource("16_6qkyg")
+shareParent = true
+sharedParent = NodePath("../../Tier2_3")
+sharedChild = NodePath("../../Tier2_3/Tier3_4/Tier4_3")
+
+[node name="Tier4_2" parent="Background/Tier1_2/Tier2_2/Tier3_3" node_paths=PackedStringArray("sharedParent", "sharedChild") instance=ExtResource("1_ae22c")]
+layout_mode = 0
+anchors_preset = 0
+offset_left = -23.8281
+offset_top = 71.0172
+offset_right = 8.17185
+offset_bottom = 103.017
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(1.0026, 1.0026)
+texture_normal = ExtResource("17_ecbu6")
+shareParent = true
+sharedParent = NodePath("../../Tier3_2")
+sharedChild = NodePath("../../../Tier2_3/Tier3_4/Tier4_3/Tier5_2")
+
+[node name="Tier5_1" parent="Background/Tier1_2/Tier2_2/Tier3_3/Tier4_2" node_paths=PackedStringArray("sharedParent") instance=ExtResource("1_ae22c")]
+layout_mode = 0
+anchors_preset = 0
+offset_left = -27.0285
+offset_top = 71.7654
+offset_right = 4.97148
+offset_bottom = 103.765
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(0.989955, 0.989955)
+texture_normal = ExtResource("18_50ymx")
+MaxLevel = 2
+shareParent = true
+sharedParent = NodePath("../../../Tier3_2/Tier4_1")
+
+[node name="Tier6_1" parent="Background/Tier1_2/Tier2_2/Tier3_3/Tier4_2/Tier5_1" instance=ExtResource("1_ae22c")]
+layout_mode = 0
+anchors_preset = 0
+offset_left = -0.470737
+offset_top = 82.3791
+offset_right = 31.5293
+offset_bottom = 114.379
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(1.00397, 1.00397)
+texture_normal = ExtResource("19_dsvtc")
+MaxLevel = 1
+
+[node name="Tier2_3" parent="Background/Tier1_2" node_paths=PackedStringArray("sharedParent") instance=ExtResource("1_ae22c")]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 32.717
+offset_top = 65.434
+offset_right = 60.877
+offset_bottom = 93.114
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(1.15117, 1.15117)
+disabled = true
+texture_normal = ExtResource("20_y36gq")
+shareParent = true
+sharedParent = NodePath("../../Tier1_3")
+
+[node name="Tier3_4" parent="Background/Tier1_2/Tier2_3" node_paths=PackedStringArray("sharedParent", "sharedChild") instance=ExtResource("1_ae22c")]
+layout_mode = 0
+anchors_preset = 0
+offset_left = 16.0639
+offset_top = 62.196
+offset_right = 48.0639
+offset_bottom = 94.196
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(0.865792, 0.865792)
+texture_normal = ExtResource("21_2yvu8")
+shareParent = true
+sharedParent = NodePath("../../../Tier1_3/Tier2_4")
+sharedChild = NodePath("../../../Tier1_3/Tier2_4/Tier3_5/Tier4_4")
+
+[node name="Tier4_3" parent="Background/Tier1_2/Tier2_3/Tier3_4" node_paths=PackedStringArray("sharedParent", "sharedChild") instance=ExtResource("1_ae22c")]
+layout_mode = 0
+anchors_preset = 0
+offset_left = -18.5539
+offset_top = 72.3128
+offset_right = 13.4461
+offset_bottom = 104.313
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(0.998377, 0.998377)
+texture_normal = ExtResource("22_qkgg1")
+shareParent = true
+sharedParent = NodePath("../../../Tier2_2/Tier3_3")
+sharedChild = NodePath("../../../../Tier1_3/Tier2_4/Tier3_5/Tier4_4/Tier5_3")
+
+[node name="Tier5_2" parent="Background/Tier1_2/Tier2_3/Tier3_4/Tier4_3" node_paths=PackedStringArray("sharedParent") instance=ExtResource("1_ae22c")]
+layout_mode = 0
+anchors_preset = 0
+offset_left = -32.8796
+offset_top = 73.3834
+offset_right = -0.879566
+offset_bottom = 105.383
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(1.01366, 1.01366)
+shareParent = true
+sharedParent = NodePath("../../../../Tier2_2/Tier3_3/Tier4_2")
+
+[node name="Tier6_2" parent="Background/Tier1_2/Tier2_3/Tier3_4/Tier4_3/Tier5_2" instance=ExtResource("1_ae22c")]
+layout_mode = 0
+anchors_preset = 0
+offset_top = 82.2662
+offset_bottom = 114.266
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(0.988342, 0.988342)
+texture_normal = ExtResource("23_sx2qy")
+MaxLevel = 1

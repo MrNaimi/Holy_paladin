@@ -26,6 +26,7 @@ const LEVEL_UP = preload("res://Scenes/level_up.tscn")
 @onready var spell: Area2D = $"../Spell"
 @onready var spell_animation: AnimatedSprite2D = $"../Spell/AnimatedSprite2D"
 @onready var animation_player: AnimationPlayer = $Timers/AnimationPlayer
+@onready var skill_tree: Control = $Camera2D/SkillTree
 
 
 #tässä määritellään timereihin viittaus
@@ -75,6 +76,13 @@ func get_input():
 			
 #checkaa mouse inputin kun clickaa. toistaa atm vaan animaation kerran
 func _input(event):
+	
+	if event.is_action_pressed("talents"):
+		if skill_tree.visible:
+			skill_tree.visible = false
+		else:
+			skill_tree.visible = true
+	
 	if event.is_action_pressed("dash") and dash_cooldown_timer.is_stopped():
 		dash_cooldown_timer.start()
 		print("Player used dash")
@@ -179,6 +187,7 @@ func _physics_process(delta: float) -> void:
 	if !minimapicon.visible:
 		GlobalVariables.flip_h = player_animations.flip_h
 
+		
 func level_up():
 	var level_up = LEVEL_UP.instantiate()
 	get_tree().current_scene.add_child(level_up)

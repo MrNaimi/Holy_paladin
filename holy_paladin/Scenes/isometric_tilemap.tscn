@@ -1,4 +1,4 @@
-[gd_scene load_steps=260 format=3 uid="uid://ccxc8igku0gv2"]
+[gd_scene load_steps=258 format=3 uid="uid://ccxc8igku0gv2"]
 
 [ext_resource type="Script" path="res://Scripts/character_body_2d.gd" id="2_srydx"]
 [ext_resource type="Script" path="res://Scripts/proc_gen_world.gd" id="2_yevhn"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://duwqunfxnycdr" path="res://assets/ui_assets/minimapicon.png" id="7_b3w5b"]
 [ext_resource type="Texture2D" uid="uid://3bi3uuq2ojh3" path="res://assets/main_char/spr_Leap_strip.png" id="7_psiyu"]
 [ext_resource type="Texture2D" uid="uid://cfo4507x6nau7" path="res://assets/main_char/spr_Attack_strip.png" id="8_pa4up"]
+[ext_resource type="PackedScene" uid="uid://bilnehhyjx6rq" path="res://Scenes/skill_tree.tscn" id="8_quag0"]
 [ext_resource type="Texture2D" uid="uid://dtv8cwd2jlsfs" path="res://assets/main_char/spr_SpinAttack_strip.png" id="9_u6vtu"]
 [ext_resource type="Texture2D" uid="uid://car77rc5f1o1u" path="res://assets/main_char/spr_Taunt_strip.png" id="10_gunjn"]
 [ext_resource type="Texture2D" uid="uid://mwhuujr7qgk6" path="res://assets/main_char/spr_Jump_strip_final.png" id="10_ucwd2"]
@@ -351,18 +352,6 @@ region = Rect2(4400, 0, 220, 96)
 [sub_resource type="AtlasTexture" id="AtlasTexture_pplom"]
 atlas = ExtResource("10_ucwd2")
 region = Rect2(4620, 0, 220, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hnc4g"]
-atlas = ExtResource("10_ucwd2")
-region = Rect2(4840, 0, 220, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lbtjx"]
-atlas = ExtResource("10_ucwd2")
-region = Rect2(5060, 0, 220, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4a6ya"]
-atlas = ExtResource("10_ucwd2")
-region = Rect2(5280, 0, 220, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a70v7"]
 atlas = ExtResource("7_psiyu")
@@ -1103,15 +1092,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pplom")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hnc4g")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lbtjx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4a6ya")
 }],
 "loop": false,
 "name": &"jump",
@@ -1772,6 +1752,14 @@ position = Vector2(7.11523, -8.30109)
 scale = Vector2(0.592936, 0.592936)
 zoom = Vector2(5, 5)
 
+[node name="SkillTree" parent="Node2D/Player/Camera2D" groups=["SkillTree"] instance=ExtResource("8_quag0")]
+visible = false
+offset_left = -196.0
+offset_top = -224.0
+offset_right = -196.0
+offset_bottom = -224.0
+scale = Vector2(0.45, 0.45)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Player"]
 position = Vector2(2.98041e-08, -5.92937)
 rotation = 0.785398
@@ -1780,7 +1768,7 @@ shape = SubResource("RectangleShape2D_xopwu")
 [node name="Player_animations" type="AnimatedSprite2D" parent="Node2D/Player"]
 position = Vector2(5.92936, -28.4609)
 sprite_frames = SubResource("SpriteFrames_4mljv")
-animation = &"jump"
+animation = &"death"
 
 [node name="AttackHitboxes" type="Node2D" parent="Node2D/Player"]
 position = Vector2(0, -6.10352e-05)
@@ -2143,6 +2131,7 @@ texture = ExtResource("29_0uu7g")
 player = NodePath("../Node2D/Player")
 tileMap = NodePath("../Node2D")
 
+[connection signal="animation_finished" from="Node2D/Player/Player_animations" to="Node2D/Player" method="_on_player_animations_animation_finished"]
 [connection signal="timeout" from="Node2D/Player/AttackHitboxes/Light_attack1/HitBoxTimer" to="Node2D/Player/AttackHitboxes/Light_attack1" method="_on_hit_box_timer_timeout"]
 [connection signal="timeout" from="Node2D/Player/AttackHitboxes/Light_attack1/HitBoxStartTimer" to="Node2D/Player/AttackHitboxes/Light_attack1" method="_on_hit_box_start_timer_timeout"]
 [connection signal="timeout" from="Node2D/Player/AttackHitboxes/Light_attack2/HitBoxTimer" to="Node2D/Player/AttackHitboxes/Light_attack2" method="_on_hit_box_timer_timeout"]

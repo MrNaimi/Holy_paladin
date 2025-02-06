@@ -18,11 +18,13 @@ func _ready() -> void:
 			if node is CharacterBody2D:
 				for item in node.get_children():
 					if item.name != "minimapicon":
-						#item.visible = false
-						pass
+						if item is Timer:
+							pass
+						else:
+							item.visible = false
 					else:
-						#item.visible = true
 						pass
+						#item.visible = true
 			
 	sub_viewport.add_child(new_tilemap)
 
