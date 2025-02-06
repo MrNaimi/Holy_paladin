@@ -1,7 +1,6 @@
 extends CharacterBody2D
 @onready var animation_hitbox: AnimationPlayer = $Area2D/animation_hitbox
 @onready var player_animations: AnimatedSprite2D = $Player_animations
-@onready var combo_timer: Timer = $ComboTimer
 @onready var pieru: AudioStreamPlayer2D = $"../pieru"
 @onready var player: CharacterBody2D = $"."
 var pierucounter = 0
@@ -12,7 +11,7 @@ var dashing
 @onready var hp = 10
 @export var spell_radius = 5
 #Viittaukset player attackkeihin
-@onready var animation_timer: Timer = $AnimationTimer
+
 #@onready var spell_collision: CollisionShape2D = $AttackHitboxes/Spell/CollisionShape2D
 #@onready var spell: Area2D = $AttackHitboxes/Spell
 #@onready var spell_animation: AnimatedSprite2D = $AttackHitboxes/Spell/AnimatedSprite2D
@@ -20,7 +19,13 @@ var dashing
 @onready var spell: Area2D = $"../Spell"
 @onready var spell_animation: AnimatedSprite2D = $"../Spell/AnimatedSprite2D"
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var invincibility_timer: Timer = $InvincibilityTimer
+
+#tässä määritellään timereihin viittaus
+@onready var animation_timer: Timer = $Timers/AnimationTimer
+@onready var combo_timer: Timer = $Timers/ComboTimer
+@onready var invincibility_timer: Timer = $Timers/InvincibilityTimer
+@onready var dash_cooldown_timer: Timer = $Timers/DashCooldownTimer
+@onready var spell_cooldown_timer: Timer = $Timers/SpellCooldownTimer
 
 
 @onready var light_attack_1: Area2D = $AttackHitboxes/Light_attack1
@@ -59,26 +64,23 @@ func get_input():
 			
 #checkaa mouse inputin kun clickaa. toistaa atm vaan animaation kerran
 func _input(event):
-	if event.is_action_pressed("dash") and velocity.x != 0:
+	if event.is_action_pressed("dash") and dash_cooldown_timer.is_stopped():
+		dash_cooldown_timer.start()
 		print("dash pressed")
+		invincibility_timer.start()
+		get_tree().create_tween().tween_property(self, "position", Vector2(position.x+velocity.x-10, position.y+velocity.y-10),0.3)
 		if velocity.x > 0:
 			player_animations.flip_h = false
 		elif velocity.x < 0:
 			player_animations.flip_h = true
 		player_animations.play("dash")
-		if !player_animations.flip_h:
-			get_tree().create_tween().tween_property(self, "position", Vector2(position.x+tween_direction*90, position.y),0.3)
-			tween_direction = 1
-		elif player_animations.flip_h:
-			get_tree().create_tween().tween_property(self, "position", Vector2(position.x-tween_direction*90, position.y),0.3)
-			tween_direction = 1
 		animation_timer.start()
 		dashing = true
 			
 	if current_speed==0:
-		if event.is_action_pressed("taunt"):
+		if event.is_action_pressed("taunt") and spell_cooldown_timer.is_stopped():
+			spell_cooldown_timer.start()
 			print("taunted/spellthing")
-			
 			#Seuraa pelaajan hiirtä ja heittää spell hitboxin siihen.
 			var mouse_pos = get_global_mouse_position()
 			var player_pos = player.global_transform.origin + Vector2(0, -15)
@@ -140,12 +142,12 @@ func _physics_process(delta: float) -> void:
 	if RandomNumberGenerator.new().randi_range(0, 1000000)==9:
 		pierucounter+=1
 		pieru.play(0)
-	
-	if get_viewport().get_mouse_position().x >= get_viewport().size.x/2:
-		player_animations.flip_h = false;
-	elif get_viewport().get_mouse_position().x <= get_viewport().size.x/2:
-		player_animations.flip_h = true;
-	
+	if !dashing:
+		if get_viewport().get_mouse_position().x >= get_viewport().size.x/2:
+			player_animations.flip_h = false;
+		elif get_viewport().get_mouse_position().x <= get_viewport().size.x/2:
+			player_animations.flip_h = true;
+		
 func hurt(damage):
 	if invincibility_timer.is_stopped():
 		hp -= damage
