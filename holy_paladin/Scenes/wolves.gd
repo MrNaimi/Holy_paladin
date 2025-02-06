@@ -90,7 +90,8 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			GlobalVariables.xp += 1
 			wolf_animation.play(colour + "_death")
 			await get_tree().create_timer(1).timeout
-			GlobalVariables.freed_object_name == self.name
+			GlobalVariables.free_object_name = str(self.name)
+			GlobalVariables.free_object = true
 			wolves.queue_free()
 	if area.is_in_group("player"):
 		area.get_parent().hurt(damage)
