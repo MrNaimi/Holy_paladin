@@ -1,4 +1,4 @@
-[gd_scene load_steps=257 format=3 uid="uid://ccxc8igku0gv2"]
+[gd_scene load_steps=260 format=3 uid="uid://ccxc8igku0gv2"]
 
 [ext_resource type="Script" path="res://Scripts/character_body_2d.gd" id="2_srydx"]
 [ext_resource type="Script" path="res://Scripts/proc_gen_world.gd" id="2_yevhn"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b8ahb0f75t0o6" path="res://assets/main_char/spr_Death_strip.png" id="4_dlpw0"]
 [ext_resource type="PackedScene" uid="uid://b21qq8m21n2us" path="res://Scenes/wolves.tscn" id="5_66pma"]
 [ext_resource type="Texture2D" uid="uid://dsjtbhpiev1fy" path="res://assets/main_char/spr_Idle_strip.png" id="6_57dje"]
+[ext_resource type="Texture2D" uid="uid://duwqunfxnycdr" path="res://assets/ui_assets/minimapicon.png" id="7_b3w5b"]
 [ext_resource type="Texture2D" uid="uid://3bi3uuq2ojh3" path="res://assets/main_char/spr_Leap_strip.png" id="7_psiyu"]
 [ext_resource type="Texture2D" uid="uid://cfo4507x6nau7" path="res://assets/main_char/spr_Attack_strip.png" id="8_pa4up"]
 [ext_resource type="Texture2D" uid="uid://dtv8cwd2jlsfs" path="res://assets/main_char/spr_SpinAttack_strip.png" id="9_u6vtu"]
@@ -28,6 +29,8 @@
 [ext_resource type="Texture2D" uid="uid://5p8aha2knxya" path="res://assets/ui_assets/dashicon.png" id="26_4ffth"]
 [ext_resource type="Texture2D" uid="uid://ce55r2wn51p4o" path="res://assets/ui_assets/cooldownframe.png" id="27_mq58b"]
 [ext_resource type="Texture2D" uid="uid://dnd67rq2yqc5o" path="res://assets/ui_assets/spellicon.png" id="28_m34q7"]
+[ext_resource type="Texture2D" uid="uid://b486rd107mtba" path="res://assets/ui_assets/talent-tree.png" id="29_0uu7g"]
+[ext_resource type="PackedScene" uid="uid://c6b1qgbuy8e56" path="res://mini_map.tscn" id="31_o3jgf"]
 
 [sub_resource type="TileSet" id="TileSet_df3ou"]
 tile_shape = 1
@@ -1735,7 +1738,7 @@ collision_layer = 128
 collision_mask = 128
 
 [node name="imp3" parent="Node2D" instance=ExtResource("3_w0b4a")]
-position = Vector2(420, 112)
+position = Vector2(-180, 474)
 collision_layer = 128
 collision_mask = 128
 
@@ -1757,6 +1760,17 @@ collision_layer = 128
 collision_mask = 128
 script = ExtResource("2_srydx")
 
+[node name="minimapicon" type="Sprite2D" parent="Node2D/Player"]
+visible = false
+position = Vector2(-9.53674e-07, -14.2305)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_b3w5b")
+
+[node name="Camera2D" type="Camera2D" parent="Node2D/Player"]
+position = Vector2(7.11523, -8.30109)
+scale = Vector2(0.592936, 0.592936)
+zoom = Vector2(5, 5)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Player"]
 position = Vector2(2.98041e-08, -5.92937)
 rotation = 0.785398
@@ -1766,11 +1780,6 @@ shape = SubResource("RectangleShape2D_xopwu")
 position = Vector2(5.92936, -28.4609)
 sprite_frames = SubResource("SpriteFrames_4mljv")
 animation = &"jump"
-
-[node name="Camera2D" type="Camera2D" parent="Node2D/Player"]
-position = Vector2(7.11524, -8.30109)
-scale = Vector2(0.592936, 0.592936)
-zoom = Vector2(5, 5)
 
 [node name="AttackHitboxes" type="Node2D" parent="Node2D/Player"]
 position = Vector2(0, -6.10352e-05)
@@ -1837,11 +1846,6 @@ position = Vector2(-1.18587, 0)
 position = Vector2(1.18587, -14.2305)
 shape = SubResource("CapsuleShape2D_yxxps")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D/Player"]
-libraries = {
-"": SubResource("AnimationLibrary_f11kh")
-}
-
 [node name="Timers" type="Node2D" parent="Node2D/Player"]
 
 [node name="ComboTimer" type="Timer" parent="Node2D/Player/Timers"]
@@ -1866,6 +1870,12 @@ one_shot = true
 [node name="JumpTimer" type="Timer" parent="Node2D/Player/Timers"]
 wait_time = 3.0
 one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D/Player/Timers"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_f11kh")
+}
 
 [node name="pieru" type="AudioStreamPlayer2D" parent="Node2D"]
 stream = ExtResource("14_ti6kv")
@@ -1899,7 +1909,7 @@ frame_progress = 1.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Control" type="Control" parent="CanvasLayer"]
+[node name="BottomLeft" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = -232.0
@@ -1908,69 +1918,69 @@ offset_right = -188.0
 offset_bottom = -46.0001
 script = ExtResource("12_vj80x")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/BottomLeft"]
 layout_mode = 0
-offset_left = 240.0
-offset_top = 96.0001
-offset_right = 361.0
-offset_bottom = 335.0
+offset_left = 2001.0
+offset_top = 136.0
+offset_right = 2122.0
+offset_bottom = 375.0
 
-[node name="x" type="Label" parent="CanvasLayer/Control/VBoxContainer"]
+[node name="x" type="Label" parent="CanvasLayer/BottomLeft/VBoxContainer"]
 layout_mode = 2
 text = "x"
 
-[node name="character_x" type="Label" parent="CanvasLayer/Control/VBoxContainer"]
+[node name="character_x" type="Label" parent="CanvasLayer/BottomLeft/VBoxContainer"]
 layout_mode = 2
 text = "character_x"
 
-[node name="y" type="Label" parent="CanvasLayer/Control/VBoxContainer"]
+[node name="y" type="Label" parent="CanvasLayer/BottomLeft/VBoxContainer"]
 layout_mode = 2
 text = "y"
 
-[node name="character_y" type="Label" parent="CanvasLayer/Control/VBoxContainer"]
+[node name="character_y" type="Label" parent="CanvasLayer/BottomLeft/VBoxContainer"]
 layout_mode = 2
 text = "character_x"
 
-[node name="viewportsize" type="Label" parent="CanvasLayer/Control/VBoxContainer"]
+[node name="viewportsize" type="Label" parent="CanvasLayer/BottomLeft/VBoxContainer"]
 layout_mode = 2
 text = "viewportsize"
 
-[node name="characterspeed" type="Label" parent="CanvasLayer/Control/VBoxContainer"]
+[node name="characterspeed" type="Label" parent="CanvasLayer/BottomLeft/VBoxContainer"]
 layout_mode = 2
 text = "characterspeed
 "
 
-[node name="combotimer" type="Label" parent="CanvasLayer/Control/VBoxContainer"]
+[node name="combotimer" type="Label" parent="CanvasLayer/BottomLeft/VBoxContainer"]
 layout_mode = 2
 text = "0s
 "
 
-[node name="pierucounter" type="Label" parent="CanvasLayer/Control/VBoxContainer"]
+[node name="pierucounter" type="Label" parent="CanvasLayer/BottomLeft/VBoxContainer"]
 layout_mode = 2
 text = "pierucounter"
 
-[node name="processpeed" type="Label" parent="CanvasLayer/Control/VBoxContainer"]
+[node name="processpeed" type="Label" parent="CanvasLayer/BottomLeft/VBoxContainer"]
 layout_mode = 2
 text = "0s
 "
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Control"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/BottomLeft"]
 layout_mode = 0
 offset_left = 2058.0
 offset_top = 90.0001
 offset_right = 2145.0
 offset_bottom = 130.0
 
-[node name="quit_button" type="Button" parent="CanvasLayer/Control/VBoxContainer2"]
+[node name="quit_button" type="Button" parent="CanvasLayer/BottomLeft/VBoxContainer2"]
 layout_mode = 2
 text = "Exit Game"
 
-[node name="progressbars" type="Control" parent="CanvasLayer/Control"]
+[node name="progressbars" type="Control" parent="CanvasLayer/BottomLeft"]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/progressbars"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/BottomLeft/progressbars"]
 modulate = Color(0.59, 0.59, 0.59, 1)
 layout_mode = 0
 offset_left = 231.0
@@ -1980,7 +1990,7 @@ offset_bottom = 970.0
 scale = Vector2(2, 2)
 texture = ExtResource("16_vxlxv")
 
-[node name="XPbar" type="TextureProgressBar" parent="CanvasLayer/Control/progressbars"]
+[node name="XPbar" type="TextureProgressBar" parent="CanvasLayer/BottomLeft/progressbars"]
 layout_mode = 0
 offset_left = 233.0
 offset_top = 770.0
@@ -1999,7 +2009,7 @@ tint_under = Color(0.188235, 0.188235, 0.188235, 1)
 tint_over = Color(0, 0, 0, 1)
 tint_progress = Color(0.4912, 0.069287, 0.52977, 1)
 
-[node name="HPbar" type="TextureProgressBar" parent="CanvasLayer/Control/progressbars"]
+[node name="HPbar" type="TextureProgressBar" parent="CanvasLayer/BottomLeft/progressbars"]
 layout_mode = 0
 offset_left = 230.0
 offset_top = 791.0
@@ -2019,7 +2029,7 @@ tint_under = Color(0.188235, 0.188235, 0.188235, 1)
 tint_over = Color(0, 0, 0, 1)
 tint_progress = Color(1, 0, 0, 1)
 
-[node name="combotimerbar" type="TextureProgressBar" parent="CanvasLayer/Control/progressbars"]
+[node name="combotimerbar" type="TextureProgressBar" parent="CanvasLayer/BottomLeft/progressbars"]
 layout_mode = 0
 offset_left = 270.0
 offset_top = 938.0
@@ -2036,7 +2046,7 @@ texture_progress = ExtResource("19_njt3m")
 tint_over = Color(0, 0, 0, 1)
 tint_progress = Color(0.23, 1, 0.6535, 1)
 
-[node name="dashcooldown" type="TextureProgressBar" parent="CanvasLayer/Control/progressbars"]
+[node name="dashcooldown" type="TextureProgressBar" parent="CanvasLayer/BottomLeft/progressbars"]
 layout_mode = 0
 offset_left = 231.0
 offset_top = 611.0
@@ -2053,17 +2063,18 @@ texture_progress = ExtResource("26_4ffth")
 tint_over = Color(0, 0, 0, 1)
 tint_progress = Color(0.188235, 0.188235, 0.188235, 1)
 
-[node name="dashcooldowntext" type="Label" parent="CanvasLayer/Control/progressbars/dashcooldown"]
+[node name="dashcooldowntext" type="Label" parent="CanvasLayer/BottomLeft/progressbars"]
 layout_mode = 0
-offset_left = 2.0
-offset_top = 2.0
-offset_right = 38.0
-offset_bottom = 38.0
+offset_left = 239.0
+offset_top = 619.0
+offset_right = 382.0
+offset_bottom = 760.0
+theme_override_font_sizes/font_size = 40
 text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="spellcooldown" type="TextureProgressBar" parent="CanvasLayer/Control/progressbars"]
+[node name="spellcooldown" type="TextureProgressBar" parent="CanvasLayer/BottomLeft/progressbars"]
 layout_mode = 0
 offset_left = 391.0
 offset_top = 673.0
@@ -2080,15 +2091,56 @@ texture_progress = ExtResource("28_m34q7")
 tint_over = Color(0, 0, 0, 1)
 tint_progress = Color(0.188235, 0.188235, 0.188235, 1)
 
-[node name="spellcooldowntext" type="Label" parent="CanvasLayer/Control/progressbars/spellcooldown"]
+[node name="spellcooldowntext" type="Label" parent="CanvasLayer/BottomLeft/progressbars"]
 layout_mode = 0
-offset_left = 1.75
-offset_top = 2.25
-offset_right = 37.75
-offset_bottom = 38.25
+offset_left = 398.0
+offset_top = 682.0
+offset_right = 542.0
+offset_bottom = 824.0
+theme_override_font_sizes/font_size = 40
 text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TalentTree" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1880.0
+offset_bottom = -1040.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/TalentTree"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 508.0
+offset_top = 183.0
+offset_right = 1336.0
+offset_bottom = 832.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.34, 0.34, 0.34, 1)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/TalentTree"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 47.825
+anchor_bottom = 27.1
+offset_left = 504.0
+offset_top = 168.0
+offset_right = -1109.0
+offset_bottom = -466.0
+scale = Vector2(3, 3)
+texture = ExtResource("29_0uu7g")
+
+[node name="MiniMap" parent="." node_paths=PackedStringArray("player", "tileMap") instance=ExtResource("31_o3jgf")]
+player = NodePath("../Node2D/Player")
+tileMap = NodePath("../Node2D")
 
 [connection signal="timeout" from="Node2D/Player/AttackHitboxes/Light_attack1/HitBoxTimer" to="Node2D/Player/AttackHitboxes/Light_attack1" method="_on_hit_box_timer_timeout"]
 [connection signal="timeout" from="Node2D/Player/AttackHitboxes/Light_attack1/HitBoxStartTimer" to="Node2D/Player/AttackHitboxes/Light_attack1" method="_on_hit_box_start_timer_timeout"]
@@ -2102,4 +2154,4 @@ vertical_alignment = 1
 [connection signal="timeout" from="Node2D/Spell/HitBoxTimer" to="Node2D/Spell" method="_on_hit_box_timer_timeout"]
 [connection signal="timeout" from="Node2D/Spell/HitBoxStartTimer" to="Node2D/Spell" method="_on_hit_box_start_timer_timeout"]
 [connection signal="animation_finished" from="Node2D/Spell/AnimatedSprite2D" to="Node2D/Spell" method="_on_animated_sprite_2d_animation_finished"]
-[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer2/quit_button" to="Node2D/Player" method="_on_quit_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/BottomLeft/VBoxContainer2/quit_button" to="Node2D/Player" method="_on_quit_button_pressed"]

@@ -30,14 +30,14 @@ func _on_hit_box_timer_timeout() -> void:
 #Tässä määritetään funktio joka enabloi hitboxin ja aloittaa sille ajastimen
 func enableHitBox() -> void:
 	if player_animations.flip_h:
-		tween_direction = -1
+		GlobalVariables.tween_direction = -1
 	else:
-		tween_direction = 1
+		GlobalVariables.tween_direction = 1
 	hit_box_start_timer.wait_time = hitboxdelay
 	hit_box_start_timer.start()
 	
 func _on_hit_box_start_timer_timeout() -> void:
 	hitbox.disabled = false
-	get_tree().create_tween().tween_property(player,"position",Vector2(player.position.x+tween_direction*5,player.position.y),0.1)
+	get_tree().create_tween().tween_property(player,"position",Vector2(player.position.x+GlobalVariables.tween_direction*5,player.position.y),0.1)
 	hit_box_timer.wait_time = hitboxtime
 	hit_box_timer.start()

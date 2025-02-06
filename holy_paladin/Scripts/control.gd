@@ -18,9 +18,9 @@ extends Control
 @onready var hp_bar: TextureProgressBar = $progressbars/HPbar
 @onready var combotimerbar: TextureProgressBar = $progressbars/combotimerbar
 @onready var dashcooldown: TextureProgressBar = $progressbars/dashcooldown
-@onready var dashcooldowntext: Label = $progressbars/dashcooldown/dashcooldowntext
+@onready var dashcooldowntext: Label = $progressbars/dashcooldowntext
 @onready var spellcooldown: TextureProgressBar = $progressbars/spellcooldown
-@onready var spellcooldowntext: Label = $progressbars/spellcooldown/spellcooldowntext
+@onready var spellcooldowntext: Label = $progressbars/spellcooldowntext
 
 
 
