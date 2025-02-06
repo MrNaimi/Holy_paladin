@@ -104,8 +104,8 @@ func generate_world():
 					water_tiles_arr.append(Vector2i(x,y))
 					water_tilemaplayer.set_cell(Vector2i(x,y),forest_id,water_atlas)
 				
-	print("korkein", noise_val_arr.max())
-	print("pienin", noise_val_arr.min())
+	print("Noise map korkein arvo:  ", noise_val_arr.max())
+	print("Noise map pienin arvo: ", noise_val_arr.min())
 	
 	
 	grass_tilemaplayer.set_cells_terrain_connect(grass_tiles_arr,terrain_grass_int,0)

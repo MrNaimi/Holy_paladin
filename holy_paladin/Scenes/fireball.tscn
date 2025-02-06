@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b3od3wreqhnq0"]
+[gd_scene load_steps=13 format=3 uid="uid://b3od3wreqhnq0"]
 
 [ext_resource type="Script" path="res://Scenes/fireball.gd" id="1_fln21"]
 [ext_resource type="Texture2D" uid="uid://p5mb5tx7r58" path="res://assets/enemies/flying_imp/fireball.png" id="2_8544v"]
@@ -49,6 +49,43 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_0cfyh"]
 radius = 9.0
 
+[sub_resource type="Animation" id="Animation_f0kca"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.5, 0.5)]
+}
+
+[sub_resource type="Animation" id="Animation_qw5hf"]
+resource_name = "penis"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.466667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(1e-05, 1e-05)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_aw8in"]
+_data = {
+"RESET": SubResource("Animation_f0kca"),
+"penis": SubResource("Animation_qw5hf")
+}
+
 [node name="Fireball" type="CharacterBody2D"]
 script = ExtResource("1_fln21")
 
@@ -58,14 +95,22 @@ sprite_frames = SubResource("SpriteFrames_80ptq")
 animation = &"fireball"
 
 [node name="Area2D" type="Area2D" parent="AnimatedSprite2D"]
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D"]
 position = Vector2(-1, -1)
 shape = SubResource("CircleShape2D_0cfyh")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 8.0
+wait_time = 4.0
 one_shot = true
 autostart = true
 
+[node name="sizzler" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_aw8in")
+}
+
+[connection signal="area_entered" from="AnimatedSprite2D/Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

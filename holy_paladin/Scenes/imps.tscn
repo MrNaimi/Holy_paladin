@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cj22l1hlo5ktv"]
+[gd_scene load_steps=39 format=3 uid="uid://cj22l1hlo5ktv"]
 
 [ext_resource type="Script" path="res://Scripts/imps.gd" id="1_1p336"]
 [ext_resource type="Texture2D" uid="uid://ckhqdljircvhb" path="res://assets/enemies/flying_imp/IDLE.png" id="1_pnewx"]
@@ -187,7 +187,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"hawk_tuah",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -233,6 +233,9 @@ radius = 163.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_haori"]
 radius = 6.08276
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_4xlm4"]
+radius = 255.159
+
 [node name="imp" type="CharacterBody2D"]
 position = Vector2(8, 0)
 collision_layer = 32
@@ -268,6 +271,20 @@ visibility_layer = 32
 position = Vector2(-2, 5)
 shape = SubResource("CircleShape2D_haori")
 
+[node name="shoot_cd" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="Aggro_off" type="Area2D" parent="."]
+collision_layer = 129
+collision_mask = 129
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Aggro_off"]
+position = Vector2(-1, 2)
+shape = SubResource("CircleShape2D_4xlm4")
+
 [connection signal="animation_finished" from="enemy_animation" to="." method="_on_enemy_animation_animation_finished"]
 [connection signal="area_entered" from="enemy_animation/Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
+[connection signal="timeout" from="shoot_cd" to="." method="_on_shoot_cd_timeout"]
+[connection signal="body_exited" from="Aggro_off" to="." method="_on_aggro_off_body_exited"]

@@ -26,6 +26,7 @@ func _on_hit_box_start_timer_timeout() -> void:
 	hit_box_timer.start()
 	spell_animation.visible = true
 	spell_animation.play("spell")
+	print("Spell has been used")
 
 func _on_hit_box_timer_timeout() -> void:
 	hitbox.disabled = true

@@ -43,7 +43,6 @@ const LEVEL_UP = preload("res://Scenes/level_up.tscn")
 var current_speed = 0
 func _ready():
 	var spell_radius = 150
-	print("pylly")
 	var mouseposition = null
 	
 func get_input():
@@ -73,7 +72,7 @@ func get_input():
 func _input(event):
 	if event.is_action_pressed("dash") and dash_cooldown_timer.is_stopped():
 		dash_cooldown_timer.start()
-		print("dash pressed")
+		print("Player used dash")
 		invincibility_timer.start()
 		get_tree().create_tween().tween_property(self, "position", Vector2(position.x+velocity.x-10, position.y+velocity.y-10),0.3)
 		if velocity.x > 0:
@@ -86,7 +85,7 @@ func _input(event):
 	
 	if event.is_action_pressed("jump") and jump_timer.is_stopped():
 		jump_timer.start()
-		print("jumped")
+		print("Player used jump")
 		player_animations.play("jump")
 		animation_timer.start()
 		jumping = true
@@ -94,7 +93,7 @@ func _input(event):
 	if current_speed==0:
 		if event.is_action_pressed("taunt") and spell_cooldown_timer.is_stopped():
 			spell_cooldown_timer.start()
-			print("taunted/spellthing")
+			print("Player used taunt/spell")
 			#Seuraa pelaajan hiirtä ja heittää spell hitboxin siihen.
 			var mouse_pos = get_global_mouse_position()
 			var player_pos = player.global_transform.origin + Vector2(0, -15)
@@ -109,7 +108,7 @@ func _input(event):
 			spell.enableHitBox()
 			
 		if event.is_action_pressed("attack"):
-			print("mouse clicked")
+			print("Mouse 1 clicked")
 			if get_viewport().get_mouse_position().x >= get_viewport().size.x / 2:
 				player_animations.flip_h = false
 			else:
@@ -122,15 +121,15 @@ func _input(event):
 						if player_animations.flip_h:
 							tween_direction = -1
 						light_attack_1.enableHitBox()
-						print("attack1 played")
+						print("Light attack 1 used")
 						combo_timer.start()
 						combo = 2
-						print("timer started")
+						print("Combo timer started")
 				2:
 					if player_animations.animation == "idle":
 						combo_timer.stop()
 						player_animations.play("light_attack2")
-						print("attack2 played")
+						print("Light attack 2 used")
 						light_attack_2.enableHitBox()
 						combo_timer.start()
 						combo = 3
@@ -139,7 +138,7 @@ func _input(event):
 						combo_timer.stop()
 						player_animations.play("light_attack3")
 						light_attack_3.enableHitBox()
-						print("attack3 played")
+						print("Light attack 3 used")
 						combo = 1
 			
 func _physics_process(delta: float) -> void:
