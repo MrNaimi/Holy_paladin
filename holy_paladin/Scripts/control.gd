@@ -38,6 +38,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 
 	xp_bar.value=GlobalVariables.xp
+	xp_bar.max_value=GlobalVariables.xp_threshold
 	hp_bar.value=player.hp
 	combotimerbar.value=combo_timer.time_left
 	
