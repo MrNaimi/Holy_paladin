@@ -27,7 +27,7 @@ const LEVEL_UP = preload("res://Scenes/level_up.tscn")
 @onready var spell_animation: AnimatedSprite2D = $"../Spell/AnimatedSprite2D"
 @onready var animation_player: AnimationPlayer = $Timers/AnimationPlayer
 @onready var skill_tree: Control = $"../../CanvasLayer/SkillTree"
-
+@onready var viewport = get_viewport()
 
 
 #tässä määritellään timereihin viittaus
