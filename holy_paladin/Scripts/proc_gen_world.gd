@@ -222,7 +222,7 @@ func reconstruct_path(came_from: Dictionary, current: Vector2i) -> void:
 		current = came_from[current]
 
 
-var ROAD_WIDTH = 2  # Set the road width (2x2 tiles around the center)
+var ROAD_WIDTH = 1  # Set the road width (2x2 tiles around the center)
 
 func place_road_tile(pos: Vector2i) -> void:
 	# Place multiple tiles around the current road tile
@@ -234,3 +234,4 @@ func place_road_tile(pos: Vector2i) -> void:
 				ground2_tiles_arr.append(new_pos)
 				ground2_tilemaplayer.set_cell(Vector2i(new_pos.x, new_pos.y), road_id, road_atlas)
 				#print("Placing road tile at:", new_pos)
+	GlobalVariables.roadGenerated = true

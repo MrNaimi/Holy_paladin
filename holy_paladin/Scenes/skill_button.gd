@@ -26,12 +26,12 @@ func _ready() -> void:
 	self.self_modulate = Color(0.5, 0.5, 0.5)
 	SkillLevel.text = str(level) + "/" + str(MaxLevel)
 	if get_parent() is SkillNode:
-		SkillBranch.add_point(self.global_position + Vector2(35, 35) )
-		SkillBranch.add_point(get_parent().global_position + Vector2(35, 35))
+		SkillBranch.add_point(self.global_position+size/2)
+		SkillBranch.add_point(get_parent().global_position+size/2)
 
 	if shareParent:
-		SkillBranch2.add_point(self.global_position + Vector2(35, 35) )
-		SkillBranch2.add_point(sharedParent.global_position + Vector2(35, 35))
+		SkillBranch2.add_point(self.global_position+size/2)
+		SkillBranch2.add_point(sharedParent.global_position+size/2)
 
 @onready var SkillTree = get_tree().get_first_node_in_group("SkillTree")
 

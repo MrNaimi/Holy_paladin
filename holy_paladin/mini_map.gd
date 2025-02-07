@@ -11,25 +11,13 @@ var miniMapPlayer
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#miniMapPlayer = player.duplicate()
-	
-	var new_tilemap = tileMap.duplicate()
-	for node in new_tilemap.get_children():
-		if node.name == "world" or node is CharacterBody2D:
-			if node is CharacterBody2D:
-				for item in node.get_children():
-					if item.name != "minimapicon":
-						if item is Timer:
-							pass
-						else:
-							item.visible = false
-					else:
-						pass
-						#item.visible = true
-			
-	sub_viewport.add_child(new_tilemap)
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if GlobalVariables.roadGenerated:
+		genminimap()
+		GlobalVariables.roadGenerated = false
 	camera_2d.position.x = GlobalVariables.playerpos.x-300
 	camera_2d.position.y = GlobalVariables.playerpos.y+100
 	
@@ -41,3 +29,22 @@ func _process(delta: float) -> void:
 		GlobalVariables.free_object_name = ""
 		GlobalVariables.free_object = false
 		
+
+func genminimap() -> void:
+	
+	var new_tilemap = tileMap.duplicate()
+	for node in new_tilemap.get_children():
+		if node.name == "world" or node is CharacterBody2D:
+			if node is CharacterBody2D:
+				for item in node.get_children():
+					if item.name != "minimapicon":
+						if item is Timer:
+							pass
+						else:
+							pass
+							#item.visible = false
+					else:
+						pass
+						#item.visible = true
+			
+	sub_viewport.add_child(new_tilemap)

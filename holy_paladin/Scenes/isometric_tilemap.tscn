@@ -1,4 +1,4 @@
-[gd_scene load_steps=258 format=3 uid="uid://ccxc8igku0gv2"]
+[gd_scene load_steps=257 format=3 uid="uid://ccxc8igku0gv2"]
 
 [ext_resource type="Script" path="res://Scripts/character_body_2d.gd" id="2_srydx"]
 [ext_resource type="Script" path="res://Scripts/proc_gen_world.gd" id="2_yevhn"]
@@ -31,7 +31,6 @@
 [ext_resource type="Texture2D" uid="uid://ce55r2wn51p4o" path="res://assets/ui_assets/cooldownframe.png" id="27_mq58b"]
 [ext_resource type="Texture2D" uid="uid://dnd67rq2yqc5o" path="res://assets/ui_assets/spellicon.png" id="28_m34q7"]
 [ext_resource type="Texture2D" uid="uid://b486rd107mtba" path="res://assets/ui_assets/talent-tree.png" id="29_0uu7g"]
-[ext_resource type="PackedScene" uid="uid://c6b1qgbuy8e56" path="res://mini_map.tscn" id="31_o3jgf"]
 
 [sub_resource type="TileSet" id="TileSet_df3ou"]
 tile_shape = 1
@@ -1739,7 +1738,6 @@ scale = Vector2(0.843261, 0.843261)
 collision_layer = 192
 collision_mask = 192
 script = ExtResource("2_srydx")
-SPEED = 1000.0
 
 [node name="minimapicon" type="Sprite2D" parent="Node2D/Player"]
 visible = false
@@ -1751,14 +1749,6 @@ texture = ExtResource("7_b3w5b")
 position = Vector2(7.11523, -8.30109)
 scale = Vector2(0.592936, 0.592936)
 zoom = Vector2(5, 5)
-
-[node name="SkillTree" parent="Node2D/Player/Camera2D" groups=["SkillTree"] instance=ExtResource("8_quag0")]
-visible = false
-offset_left = -196.0
-offset_top = -224.0
-offset_right = -196.0
-offset_bottom = -224.0
-scale = Vector2(0.45, 0.45)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Player"]
 position = Vector2(2.98041e-08, -5.92937)
@@ -2127,9 +2117,34 @@ offset_bottom = -466.0
 scale = Vector2(3, 3)
 texture = ExtResource("29_0uu7g")
 
-[node name="MiniMap" parent="." node_paths=PackedStringArray("player", "tileMap") instance=ExtResource("31_o3jgf")]
-player = NodePath("../Node2D/Player")
-tileMap = NodePath("../Node2D")
+[node name="Minimap" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/Minimap"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/Minimap/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(128, 128)
+render_target_update_mode = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Minimap/SubViewportContainer/SubViewport"]
+
+[node name="Camera2D" type="Camera2D" parent="CanvasLayer/Minimap/SubViewportContainer/SubViewport/Sprite2D"]
+
+[node name="Camera3D" type="Camera3D" parent="CanvasLayer/Minimap/SubViewportContainer/SubViewport"]
+
+[node name="SkillTree" parent="CanvasLayer" groups=["SkillTree"] instance=ExtResource("8_quag0")]
+offset_left = 641.0
+offset_top = -7.0
+offset_right = 641.0
+offset_bottom = -7.0
+scale = Vector2(1, 1)
 
 [connection signal="animation_finished" from="Node2D/Player/Player_animations" to="Node2D/Player" method="_on_player_animations_animation_finished"]
 [connection signal="timeout" from="Node2D/Player/AttackHitboxes/Light_attack1/HitBoxTimer" to="Node2D/Player/AttackHitboxes/Light_attack1" method="_on_hit_box_timer_timeout"]

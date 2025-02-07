@@ -10,3 +10,5 @@ extends Node
 @onready var tween_direction
 @onready var playerpos = null
 @onready var flip_h = false
+
+@onready var roadGenerated = false
