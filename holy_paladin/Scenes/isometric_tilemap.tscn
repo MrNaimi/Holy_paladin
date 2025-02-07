@@ -2123,41 +2123,44 @@ script = ExtResource("31_6a4dr")
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/Minimap"]
 layout_mode = 0
-offset_left = -2.0
-offset_right = 276.0
-offset_bottom = 272.0
+offset_left = -3.0
+offset_top = -2.0
+offset_right = 269.0
+offset_bottom = 270.0
 color = Color(0, 0, 0, 1)
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/Minimap"]
 layout_mode = 0
-offset_left = 11.0
-offset_top = 7.0
-offset_right = 267.0
-offset_bottom = 263.0
+offset_left = 5.0
+offset_top = 6.0
+offset_right = 261.0
+offset_bottom = 262.0
 
 [node name="SubViewport" type="SubViewport" parent="CanvasLayer/Minimap/SubViewportContainer"]
+transparent_bg = true
 handle_input_locally = false
 size = Vector2i(256, 256)
 render_target_update_mode = 4
 
 [node name="Camera2D" type="Camera2D" parent="CanvasLayer/Minimap/SubViewportContainer/SubViewport"]
-z_index = -1
-position = Vector2(200, 200)
+light_mask = 0
+visibility_layer = 524288
 
 [node name="centerpoint" type="Label" parent="CanvasLayer/Minimap"]
+visible = false
 layout_mode = 0
-offset_left = 11.0
-offset_top = 7.0
-offset_right = 267.0
-offset_bottom = 263.0
+offset_left = -3.0
+offset_top = 6.0
+offset_right = 253.0
+offset_bottom = 262.0
 text = "x"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="minimapicon" type="Sprite2D" parent="CanvasLayer/Minimap"]
 visibility_layer = 524288
-position = Vector2(137, 136)
-scale = Vector2(0.17, 0.17)
+position = Vector2(132, 134)
+scale = Vector2(0.2, 0.2)
 texture = ExtResource("7_b3w5b")
 
 [node name="SkillTree" parent="CanvasLayer" groups=["SkillTree"] instance=ExtResource("8_quag0")]
