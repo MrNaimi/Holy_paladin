@@ -28,6 +28,7 @@ window/size/resizable=false
 
 attack=""
 player=""
+enemy=""
 
 [input]
 

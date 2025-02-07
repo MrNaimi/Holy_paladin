@@ -948,7 +948,7 @@ radius = 198.091
 [sub_resource type="CircleShape2D" id="CircleShape2D_fso43"]
 radius = 277.18
 
-[node name="Wolves" type="CharacterBody2D"]
+[node name="Wolves" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_3onk2")
 
 [node name="wolf_animation" type="AnimatedSprite2D" parent="."]

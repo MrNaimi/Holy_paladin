@@ -1,4 +1,4 @@
-[gd_scene load_steps=257 format=3 uid="uid://ccxc8igku0gv2"]
+[gd_scene load_steps=258 format=3 uid="uid://ccxc8igku0gv2"]
 
 [ext_resource type="Script" path="res://Scripts/character_body_2d.gd" id="2_srydx"]
 [ext_resource type="Script" path="res://Scripts/proc_gen_world.gd" id="2_yevhn"]
@@ -31,6 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://ce55r2wn51p4o" path="res://assets/ui_assets/cooldownframe.png" id="27_mq58b"]
 [ext_resource type="Texture2D" uid="uid://dnd67rq2yqc5o" path="res://assets/ui_assets/spellicon.png" id="28_m34q7"]
 [ext_resource type="Texture2D" uid="uid://b486rd107mtba" path="res://assets/ui_assets/talent-tree.png" id="29_0uu7g"]
+[ext_resource type="Script" path="res://Scenes/minimap.gd" id="31_6a4dr"]
 
 [sub_resource type="TileSet" id="TileSet_df3ou"]
 tile_shape = 1
@@ -1739,12 +1740,6 @@ collision_layer = 192
 collision_mask = 192
 script = ExtResource("2_srydx")
 
-[node name="minimapicon" type="Sprite2D" parent="Node2D/Player"]
-visible = false
-position = Vector2(-9.53674e-07, -14.2305)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("7_b3w5b")
-
 [node name="Camera2D" type="Camera2D" parent="Node2D/Player"]
 position = Vector2(7.11523, -8.30109)
 scale = Vector2(0.592936, 0.592936)
@@ -2120,24 +2115,53 @@ texture = ExtResource("29_0uu7g")
 [node name="Minimap" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 11.0
+offset_top = 10.0
+offset_right = 51.0
+offset_bottom = 50.0
+script = ExtResource("31_6a4dr")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Minimap"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -2.0
+offset_right = 269.0
+offset_bottom = 270.0
+color = Color(0, 0, 0, 1)
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/Minimap"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 5.0
+offset_top = 6.0
+offset_right = 261.0
+offset_bottom = 262.0
 
 [node name="SubViewport" type="SubViewport" parent="CanvasLayer/Minimap/SubViewportContainer"]
+transparent_bg = true
 handle_input_locally = false
-size = Vector2i(128, 128)
+size = Vector2i(256, 256)
 render_target_update_mode = 4
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Minimap/SubViewportContainer/SubViewport"]
+[node name="Camera2D" type="Camera2D" parent="CanvasLayer/Minimap/SubViewportContainer/SubViewport"]
+light_mask = 0
+visibility_layer = 524288
 
-[node name="Camera2D" type="Camera2D" parent="CanvasLayer/Minimap/SubViewportContainer/SubViewport/Sprite2D"]
+[node name="centerpoint" type="Label" parent="CanvasLayer/Minimap"]
+visible = false
+layout_mode = 0
+offset_left = -3.0
+offset_top = 6.0
+offset_right = 253.0
+offset_bottom = 262.0
+text = "x"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Camera3D" type="Camera3D" parent="CanvasLayer/Minimap/SubViewportContainer/SubViewport"]
+[node name="minimapicon" type="Sprite2D" parent="CanvasLayer/Minimap"]
+visibility_layer = 524288
+position = Vector2(132, 134)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("7_b3w5b")
 
 [node name="SkillTree" parent="CanvasLayer" groups=["SkillTree"] instance=ExtResource("8_quag0")]
 visible = false
