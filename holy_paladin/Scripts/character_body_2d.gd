@@ -28,7 +28,8 @@ const LEVEL_UP = preload("res://Scenes/level_up.tscn")
 @onready var animation_player: AnimationPlayer = $Timers/AnimationPlayer
 @onready var skill_tree: Control = $"../../CanvasLayer/SkillTree"
 
-
+const WOLVES = preload("res://Scenes/wolves.tscn")
+const IMPS = preload("res://Scenes/imps.tscn")
 
 #tässä määritellään timereihin viittaus
 @onready var animation_timer: Timer = $Timers/AnimationTimer
@@ -220,3 +221,5 @@ func _on_animation_timer_timeout() -> void:
 
 func _on_jump_timer_timeout() -> void:
 	jumping = false
+	
+	

@@ -10,6 +10,13 @@ var noise : Noise #Noise proc_gen_world
 var width : int = 150
 var height : int = 150
 
+#ENEMY REFERENCES
+const WOLVES = preload("res://Scenes/wolves.tscn")
+const IMPS = preload("res://Scenes/imps.tscn")
+
+
+var enemies_spawned = []
+var rng = RandomNumberGenerator.new()
 var source_id = 0 #helvetti Tilesetin id
 var lava_atlas = Vector2i(0,8) #lavan kordinaatti tilesetissä
 var land_atlas = Vector2i(1,0) #maan kordinaatti tilesetissä
@@ -46,6 +53,8 @@ var terrain_lava_int = 0 #Laavan layer numero
 var ground2_tiles_arr =[]
 var terrain_ground2_int = 2
 
+
+
 #overworld tilet
 var grass_tiles_arr =[]
 var terrain_grass_int = 1
@@ -68,6 +77,7 @@ func _ready():
 	noise = noise_height_text.noise
 	#noise.seed = RandomNumberGenerator.new().randi_range(0,200)
 	generate_world()
+	get_ground_tile()
 	generate_road(START_POS, END_POS)
 
 func spawn_player():
@@ -95,6 +105,11 @@ func generate_world():
 					#place lava
 					lava_tiles_arr.append(Vector2i(x,y))
 					lava_tilemaplayer.set_cell(Vector2i(x,y),source_id,lava_atlas)
+					
+	
+	
+	
+	
 	#testinä äänen korkein ja pienin arvo, eri kuvioilla on eri arvot niin pitää säätää elif noise_val > -0.5: if noise_val <=-0.5: sopiviksi
 	if kohtaus == 0:
 		for x in range(-width,width):
@@ -235,3 +250,20 @@ func place_road_tile(pos: Vector2i) -> void:
 				ground2_tilemaplayer.set_cell(Vector2i(new_pos.x, new_pos.y), road_id, road_atlas)
 				#print("Placing road tile at:", new_pos)
 	GlobalVariables.roadGenerated = true
+
+
+func spawn_wolf(x):
+	var wolf = WOLVES.instantiate()
+	get_tree().current_scene.add_child(wolf)
+	wolf.global_position = x
+	
+func spawn_imp(x):
+	var imp = IMPS.instantiate()
+	get_tree().current_scene.add_child(imp)
+	imp.global_position = x
+	
+func get_ground_tile():
+	print("One of the ground tiles is: " , ground_tiles_arr[rng.randi_range(0, 1)])
+	
+#ground_tiles_arr.size-1
+#spawn_imp([ground_tiles_arr[rng.randi_range(from: int, to: int)(0, ground_tiles_arr.size-1)]])
