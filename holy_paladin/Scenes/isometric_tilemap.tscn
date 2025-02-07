@@ -1740,13 +1740,6 @@ collision_layer = 192
 collision_mask = 192
 script = ExtResource("2_srydx")
 
-[node name="minimapicon" type="Sprite2D" parent="Node2D/Player"]
-visible = false
-visibility_layer = 524288
-position = Vector2(-9.53674e-07, -14.2305)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("7_b3w5b")
-
 [node name="Camera2D" type="Camera2D" parent="Node2D/Player"]
 position = Vector2(7.11523, -8.30109)
 scale = Vector2(0.592936, 0.592936)
@@ -2130,8 +2123,9 @@ script = ExtResource("31_6a4dr")
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/Minimap"]
 layout_mode = 0
-offset_right = 278.0
-offset_bottom = 276.0
+offset_left = -2.0
+offset_right = 276.0
+offset_bottom = 272.0
 color = Color(0, 0, 0, 1)
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/Minimap"]
@@ -2147,7 +2141,24 @@ size = Vector2i(256, 256)
 render_target_update_mode = 4
 
 [node name="Camera2D" type="Camera2D" parent="CanvasLayer/Minimap/SubViewportContainer/SubViewport"]
+z_index = -1
 position = Vector2(200, 200)
+
+[node name="centerpoint" type="Label" parent="CanvasLayer/Minimap"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 7.0
+offset_right = 267.0
+offset_bottom = 263.0
+text = "x"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="minimapicon" type="Sprite2D" parent="CanvasLayer/Minimap"]
+visibility_layer = 524288
+position = Vector2(137, 136)
+scale = Vector2(0.17, 0.17)
+texture = ExtResource("7_b3w5b")
 
 [node name="SkillTree" parent="CanvasLayer" groups=["SkillTree"] instance=ExtResource("8_quag0")]
 visible = false

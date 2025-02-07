@@ -3,7 +3,6 @@ extends CharacterBody2D
 @onready var player_animations: AnimatedSprite2D = $Player_animations
 @onready var pieru: AudioStreamPlayer2D = $"../pieru"
 @onready var player: CharacterBody2D = $"."
-@onready var minimapicon: Sprite2D = $minimapicon
 
 var copy = false
 var pierucounter = 0
@@ -106,7 +105,7 @@ func _input(event):
 		animation_timer.start()
 		jumping = true
 			
-	if current_speed==0 and !minimapicon.visible:
+	if current_speed==0:
 		if event.is_action_pressed("taunt") and spell_cooldown_timer.is_stopped():
 			spell_cooldown_timer.start()
 			print("Player used taunt/spell")
@@ -166,7 +165,6 @@ func _physics_process(delta: float) -> void:
 	if GlobalVariables.xp >= GlobalVariables.xp_threshold:
 		level_up()
 		
-	minimapicon.flip_h = GlobalVariables.flip_h
 	GlobalVariables.playerpos = position
 	get_input()
 	move_and_slide()
@@ -185,9 +183,6 @@ func _physics_process(delta: float) -> void:
 			player_animations.flip_h = false
 		elif get_viewport().get_mouse_position().x <= get_viewport().size.x/2:
 			player_animations.flip_h = true
-	if !minimapicon.visible:
-		GlobalVariables.flip_h = player_animations.flip_h
-
 		
 func level_up():
 	var level_up = LEVEL_UP.instantiate()
