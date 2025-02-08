@@ -57,8 +57,8 @@ func _process(delta: float) -> void:
 		
 	x.text ="mouse pos x: "+str(get_viewport().get_mouse_position().x)
 	y.text ="mouse pos y: "+str(get_viewport().get_mouse_position().y)
-	character_x.text = "charactaser pos x: "+str(player.position.x)
-	character_y.text = "character pos y: "+str(player.position.y)
+	character_x.text = "charactaser pos x: "+str(player.global_position.x)
+	character_y.text = "character pos y: "+str(player.global_position.y)
 	viewportsize.text = "viewport size: "+str(get_viewport().size.x)
 	characterspeed.text = "character speed: "+str(player.current_speed)
 	combotimer.text = "combo time left: "+str(float(combo_timer.time_left)).left(4)

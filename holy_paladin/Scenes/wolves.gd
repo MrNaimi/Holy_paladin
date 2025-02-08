@@ -35,7 +35,7 @@ func _physics_process(delta: float) -> void:
 		if !wolf_animation.is_playing():
 			wolf_animation.play(colour + "_idle")
 		#Kääntää suden idle animaation suunnan 1/1500 todennäköisyydellä per frami
-		if RandomNumberGenerator.new().randi_range(0, 1500)==9 && wolf_animation.animation == colour + "_idle":
+		if RandomNumberGenerator.new().randi_range(0, 4000)==9 && wolf_animation.animation == colour + "_idle":
 			print("Wolf has turned around")
 			if wolf_animation.flip_h:
 				wolf_animation.flip_h = false

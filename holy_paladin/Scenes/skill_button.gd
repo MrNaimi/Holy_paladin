@@ -21,8 +21,6 @@ var level: int = 0:
 
 func _ready() -> void:
 	process_mode = PROCESS_MODE_INHERIT
-	
-	print(SkillTree)
 	self.self_modulate = Color(0.5, 0.5, 0.5)
 	SkillLevel.text = str(level) + "/" + str(MaxLevel)
 	if get_parent() is SkillNode:

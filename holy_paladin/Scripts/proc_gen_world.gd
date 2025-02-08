@@ -77,7 +77,12 @@ func _ready():
 	noise = noise_height_text.noise
 	#noise.seed = RandomNumberGenerator.new().randi_range(0,200)
 	generate_world()
-	get_ground_tile()
+	#get_ground_tile()
+	for i in 100:
+		spawn_imp(get_ground_tile())
+	for i in 50:
+		spawn_wolf(get_ground_tile())
+		
 	generate_road(START_POS, END_POS)
 
 func spawn_player():
@@ -253,17 +258,25 @@ func place_road_tile(pos: Vector2i) -> void:
 
 
 func spawn_wolf(x):
+	print("Spawning wolf")
 	var wolf = WOLVES.instantiate()
-	get_tree().current_scene.add_child(wolf)
 	wolf.global_position = x
-	
+	add_child(wolf)
+
+
 func spawn_imp(x):
+	print("Spawning imp")
 	var imp = IMPS.instantiate()
-	get_tree().current_scene.add_child(imp)
 	imp.global_position = x
+	add_child(imp)
 	
 func get_ground_tile():
-	print("One of the ground tiles is: " , ground_tiles_arr[rng.randi_range(0, 1)])
+	var max = ground_tiles_arr.size()-1
 	
-#ground_tiles_arr.size-1
-#spawn_imp([ground_tiles_arr[rng.randi_range(from: int, to: int)(0, ground_tiles_arr.size-1)]])
+	# Valitaan random ground tile olemassa olevasta listasta
+	var chosen_tile = ground_tiles_arr[rng.randi_range(0, max)]
+	
+	# Otetaan valitun ground tile:n sijainti map_to_local(Vector2i) functiolla. (Muutetaan Vector2i -> Vector2)
+	var tile_position = ground_tilemaplayer.map_to_local(chosen_tile)
+	print("One of the ground tiles is: " , tile_position)
+	return(tile_position)

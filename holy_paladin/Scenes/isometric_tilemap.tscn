@@ -1673,11 +1673,9 @@ animations = [{
 [node name="root" type="Node2D"]
 
 [node name="Node2D" type="TileMapLayer" parent="."]
-position = Vector2(-283, 134)
 tile_set = SubResource("TileSet_df3ou")
 
 [node name="world" type="Node2D" parent="Node2D"]
-position = Vector2(283, -134)
 
 [node name="proc_gen_world" type="Node2D" parent="Node2D/world"]
 script = ExtResource("2_yevhn")
@@ -1707,25 +1705,16 @@ tile_set = ExtResource("3_cpsns")
 [node name="nature" type="TileMapLayer" parent="Node2D/world/proc_gen_world"]
 tile_set = ExtResource("3_cpsns")
 
-[node name="imp" parent="Node2D" instance=ExtResource("3_w0b4a")]
-position = Vector2(639, 215)
-collision_layer = 128
-collision_mask = 128
-
-[node name="imp2" parent="Node2D" instance=ExtResource("3_w0b4a")]
-position = Vector2(566, 121)
-collision_layer = 128
-collision_mask = 128
-
 [node name="imp3" parent="Node2D" instance=ExtResource("3_w0b4a")]
-position = Vector2(-180, 474)
+position = Vector2(-177, 474)
 collision_layer = 128
 collision_mask = 128
 
 [node name="Wolves" parent="Node2D" instance=ExtResource("5_66pma")]
+position = Vector2(-27, 1)
 
 [node name="Wolves2" parent="Node2D" instance=ExtResource("5_66pma")]
-position = Vector2(-248, 3)
+position = Vector2(-187, -14)
 
 [node name="Wolves3" parent="Node2D" instance=ExtResource("5_66pma")]
 position = Vector2(-372, 185)
@@ -1894,9 +1883,9 @@ script = ExtResource("12_vj80x")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/BottomLeft"]
 layout_mode = 0
-offset_left = 2001.0
+offset_left = 1932.0
 offset_top = 136.0
-offset_right = 2122.0
+offset_right = 2053.0
 offset_bottom = 375.0
 
 [node name="x" type="Label" parent="CanvasLayer/BottomLeft/VBoxContainer"]

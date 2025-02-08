@@ -12,6 +12,6 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	minimapicon.flip_h = player.player_animations.flip_h
-	camera_2d.position.x = player.position.x - 270
-	camera_2d.position.y = player.position.y + 100
+	camera_2d.position.x = player.global_position.x
+	camera_2d.position.y = player.global_position.y
 	
