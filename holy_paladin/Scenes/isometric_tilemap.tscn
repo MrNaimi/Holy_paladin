@@ -1,4 +1,4 @@
-[gd_scene load_steps=276 format=3 uid="uid://ccxc8igku0gv2"]
+[gd_scene load_steps=274 format=3 uid="uid://ccxc8igku0gv2"]
 
 [ext_resource type="Script" path="res://Scripts/character_body_2d.gd" id="2_srydx"]
 [ext_resource type="Script" path="res://Scripts/proc_gen_world.gd" id="2_yevhn"]
