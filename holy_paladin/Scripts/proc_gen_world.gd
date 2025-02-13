@@ -9,10 +9,12 @@ extends Node2D
 var noise : Noise #Noise proc_gen_world
 var width : int = 150
 var height : int = 150
+var y = 1
 
 #ENEMY REFERENCES
 const WOLVES = preload("res://Scenes/wolves.tscn")
 const IMPS = preload("res://Scenes/imps.tscn")
+const EVIL_WIZARD = preload("res://Scenes/evil_wizard.tscn")
 
 var enemies_spawned = []
 var rng = RandomNumberGenerator.new()
@@ -77,11 +79,22 @@ func _ready():
 	noise = noise_height_text.noise
 	#noise.seed = RandomNumberGenerator.new().randi_range(0,200)
 	generate_world()
-	GlobalVariables.player_spawn_location = get_ground_tile()
-	for i in 50:
-		spawn_imp(get_ground_tile())
-	for i in 25:
-		spawn_wolf(get_ground_tile())
+	if kohtaus == 1:
+		GlobalVariables.player_spawn_location = get_ground_tile()
+		for i in 50:
+			spawn_imp(get_ground_tile())
+		for i in 25:
+			spawn_wolf(get_ground_tile())
+		for i in 10:
+			spawn_wizard(get_ground_tile())
+	if kohtaus == 0:
+		GlobalVariables.player_spawn_location = get_grass_tile()
+		for i in 50:
+			spawn_imp(get_grass_tile())
+		for i in 25:
+			spawn_wolf(get_grass_tile())
+		for i in 10:
+			spawn_wizard(get_grass_tile())
 		
 	generate_road(START_POS, END_POS)
 	
@@ -156,7 +169,7 @@ var grid_size: Vector2i = Vector2i(75, 75)  # Adjust based on your map size
 
 func get_noise_value(pos: Vector2i) -> float:
 	var index: int = (pos.y + grid_size.y) * (2 * grid_size.x) + (pos.x + grid_size.x)
-	var noise_value = noise_val_arr[index]  
+	var noise_value = noise_val_arr[index]
 	#print("Noise value at ", pos, ":", noise_value)
 	return noise_value  
 
@@ -268,6 +281,13 @@ func spawn_imp(x):
 	imp.global_position = x
 	add_child(imp)
 	
+func spawn_wizard(x):
+	#print("Spawning imp")
+	var wizard = EVIL_WIZARD.instantiate()
+	wizard.global_position = x
+	add_child(wizard)
+	
+	
 func get_ground_tile():
 	
 	var max = ground_tiles_arr.size()-1
@@ -281,6 +301,10 @@ func get_ground_tile():
 	
 	# Otetaan valitun ground tile:n sijainti map_to_local(Vector2i) functiolla. (Muutetaan Vector2i -> Vector2)
 	var tile_position = ground_tilemaplayer.map_to_local(chosen_tile)
+	
+	while player_close(tile_position):
+		chosen_tile = ground_tiles_arr[rng.randi_range(0, max)]
+		tile_position = ground_tilemaplayer.map_to_local(chosen_tile)
 	#print("One of the ground tiles is: " , tile_position)
 	return(tile_position)
 
@@ -293,3 +317,40 @@ func is_a_mountain(x):
 			pass
 	return(false)
 	
+func get_grass_tile():
+	
+	var max = grass_tiles_arr.size()-1
+	var max_2 = tree_tiles_arr.size()-1
+			
+	# Valitaan random ground tile olemassa olevasta listasta
+	var chosen_tile = grass_tiles_arr[rng.randi_range(0, max)]
+	
+	while is_a_tree(chosen_tile):
+		chosen_tile = grass_tiles_arr[rng.randi_range(0, max)]
+	
+	
+	# Otetaan valitun ground tile:n sijainti map_to_local(Vector2i) functiolla. (Muutetaan Vector2i -> Vector2)
+	var tile_position = grass_tilemaplayer.map_to_local(chosen_tile)
+	
+	while player_close(tile_position):
+		chosen_tile = grass_tiles_arr[rng.randi_range(0, max)]
+		tile_position = grass_tilemaplayer.map_to_local(chosen_tile)
+
+	#print("One of the ground tiles is: " , tile_position)
+	return(tile_position)
+
+func is_a_tree(x):
+	var max_2 = tree_tiles_arr.size()-1
+	for i in range(max_2):
+		if x == tree_tiles_arr[i]:
+			return(true)
+		else:
+			pass
+	return(false)
+
+func player_close(x):
+	var hessu = GlobalVariables.player_spawn_location
+	if (x.x > (hessu.x - 200) && x.x < (hessu.x + 200)) && (x.y > (hessu.y -200) && x.y < (hessu.y + 200)):
+		print("Enemy too close to the player")
+		return true
+	return(false)
