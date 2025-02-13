@@ -49,8 +49,10 @@ const IMPS = preload("res://Scenes/imps.tscn")
 @onready var tween_direction = 1
 
 
+
 var current_speed = 0
 func _ready():
+	player.global_position = GlobalVariables.player_spawn_location
 	var spell_radius = 150
 	var mouseposition = null
 	

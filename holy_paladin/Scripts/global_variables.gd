@@ -1,6 +1,4 @@
 extends Node
-@onready var free_object_name = ""
-@onready var free_object = false
 @onready var xp = 0
 @onready var enemies_killed = 0
 @onready var level = 1
@@ -12,3 +10,4 @@ extends Node
 @onready var flip_h = false
 
 @onready var roadGenerated = false
+@onready var player_spawn_location = Vector2(0,0)

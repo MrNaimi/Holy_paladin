@@ -14,7 +14,6 @@ var height : int = 150
 const WOLVES = preload("res://Scenes/wolves.tscn")
 const IMPS = preload("res://Scenes/imps.tscn")
 
-
 var enemies_spawned = []
 var rng = RandomNumberGenerator.new()
 var source_id = 0 #helvetti Tilesetin id
@@ -46,6 +45,7 @@ var kohtaus = 1
 @onready var rocks_tilemaplayer: TileMapLayer = $rocks
 @onready var tree_tilemaplayer: TileMapLayer = $nature
 #helvetti tilet
+var only_grounds_arr = [] #Pelkät groundtilet, jotka eivät ole vuorien alla
 var ground_tiles_arr =[] 
 var terrain_ground_int = 1 #Ground tilejen layer numero
 var lava_tiles_arr =[]
@@ -77,16 +77,13 @@ func _ready():
 	noise = noise_height_text.noise
 	#noise.seed = RandomNumberGenerator.new().randi_range(0,200)
 	generate_world()
-	#get_ground_tile()
-	for i in 100:
-		spawn_imp(get_ground_tile())
+	GlobalVariables.player_spawn_location = get_ground_tile()
 	for i in 50:
+		spawn_imp(get_ground_tile())
+	for i in 25:
 		spawn_wolf(get_ground_tile())
 		
 	generate_road(START_POS, END_POS)
-
-func spawn_player():
-	pass
 	
 func generate_world():
 	#Käydään koko map läpi eli 100 x 200, josta tulee neljö isometric tilet on 32x16. 
@@ -106,7 +103,8 @@ func generate_world():
 					ground_tiles_arr.append(Vector2i(x,y))
 					ground_tilemaplayer.set_cell(Vector2i(x,y),source_id, land_atlas)
 					
-				elif noise_val > -0.45987845468521:
+				elif noise_val > -0.46:
+					#0.45987845468521
 					#place lava
 					lava_tiles_arr.append(Vector2i(x,y))
 					lava_tilemaplayer.set_cell(Vector2i(x,y),source_id,lava_atlas)
@@ -258,25 +256,40 @@ func place_road_tile(pos: Vector2i) -> void:
 
 
 func spawn_wolf(x):
-	print("Spawning wolf")
+	#print("Spawning wolf")
 	var wolf = WOLVES.instantiate()
 	wolf.global_position = x
 	add_child(wolf)
 
 
 func spawn_imp(x):
-	print("Spawning imp")
+	#print("Spawning imp")
 	var imp = IMPS.instantiate()
 	imp.global_position = x
 	add_child(imp)
 	
 func get_ground_tile():
-	var max = ground_tiles_arr.size()-1
 	
+	var max = ground_tiles_arr.size()-1
+	var max_2 = ground2_tiles_arr.size()-1
+			
 	# Valitaan random ground tile olemassa olevasta listasta
 	var chosen_tile = ground_tiles_arr[rng.randi_range(0, max)]
 	
+	while is_a_mountain(chosen_tile) == true:
+		chosen_tile = ground_tiles_arr[rng.randi_range(0, max)]
+	
 	# Otetaan valitun ground tile:n sijainti map_to_local(Vector2i) functiolla. (Muutetaan Vector2i -> Vector2)
 	var tile_position = ground_tilemaplayer.map_to_local(chosen_tile)
-	print("One of the ground tiles is: " , tile_position)
+	#print("One of the ground tiles is: " , tile_position)
 	return(tile_position)
+
+func is_a_mountain(x):
+	var max_2 = ground2_tiles_arr.size()-1
+	for i in range(max_2):
+		if x == ground2_tiles_arr[i]:
+			return(true)
+		else:
+			pass
+	return(false)
+	

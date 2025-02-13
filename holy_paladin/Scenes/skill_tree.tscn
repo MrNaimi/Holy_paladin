@@ -46,7 +46,6 @@ color = Color(0.192157, 0.192157, 0.192157, 0.792157)
 
 [node name="Tier1_1" parent="Background" node_paths=PackedStringArray("sharedChild") instance=ExtResource("1_ae22c")]
 layout_mode = 1
-anchors_preset = 0
 offset_left = 161.0
 offset_top = 72.0
 offset_right = 193.0
@@ -61,7 +60,6 @@ sharedChild = NodePath("../Tier1_2/Tier2_2")
 
 [node name="Tier2_1" parent="Background/Tier1_1" node_paths=PackedStringArray("sharedChild") instance=ExtResource("1_ae22c")]
 layout_mode = 1
-anchors_preset = 0
 offset_left = -27.0271
 offset_top = 65.434
 offset_right = 1.13292
@@ -76,7 +74,6 @@ sharedChild = NodePath("../../Tier1_2/Tier2_2/Tier3_2")
 
 [node name="Tier3_1" parent="Background/Tier1_1/Tier2_1" node_paths=PackedStringArray("sharedChild") instance=ExtResource("1_ae22c")]
 layout_mode = 0
-anchors_preset = 0
 offset_left = -16.8877
 offset_top = 62.196
 offset_right = 15.1123
@@ -90,7 +87,6 @@ sharedChild = NodePath("../../../Tier1_2/Tier2_2/Tier3_2/Tier4_1")
 
 [node name="Tier1_3" parent="Background" node_paths=PackedStringArray("sharedChild") instance=ExtResource("1_ae22c")]
 layout_mode = 1
-anchors_preset = 0
 offset_left = 377.0
 offset_top = 74.0
 offset_right = 409.0
@@ -103,7 +99,6 @@ sharedChild = NodePath("../Tier1_2/Tier2_3")
 
 [node name="Tier2_4" parent="Background/Tier1_3" node_paths=PackedStringArray("sharedChild") instance=ExtResource("1_ae22c")]
 layout_mode = 1
-anchors_preset = 0
 offset_left = 37.9327
 offset_top = 64.4857
 offset_right = 66.0927
@@ -117,7 +112,6 @@ sharedChild = NodePath("../../Tier1_2/Tier2_3/Tier3_4")
 
 [node name="Tier3_5" parent="Background/Tier1_3/Tier2_4" instance=ExtResource("1_ae22c")]
 layout_mode = 0
-anchors_preset = 0
 offset_left = 6.17841
 offset_top = 62.196
 offset_right = 38.1784
@@ -129,7 +123,6 @@ texture_normal = ExtResource("8_jq6t2")
 
 [node name="Tier4_4" parent="Background/Tier1_3/Tier2_4/Tier3_5" node_paths=PackedStringArray("sharedParent") instance=ExtResource("1_ae22c")]
 layout_mode = 0
-anchors_preset = 0
 offset_left = -7.14175
 offset_top = 72.3697
 offset_right = 24.8583
@@ -144,7 +137,6 @@ sharedParent = NodePath("../../../../Tier1_2/Tier2_3/Tier3_4")
 
 [node name="Tier5_3" parent="Background/Tier1_3/Tier2_4/Tier3_5/Tier4_4" node_paths=PackedStringArray("sharedParent") instance=ExtResource("1_ae22c")]
 layout_mode = 0
-anchors_preset = 0
 offset_left = -38.2212
 offset_top = 73.5757
 offset_right = -6.22117
@@ -159,7 +151,6 @@ sharedParent = NodePath("../../../../../Tier1_2/Tier2_3/Tier3_4/Tier4_3")
 
 [node name="Tier6_3" parent="Background/Tier1_3/Tier2_4/Tier3_5/Tier4_4/Tier5_3" instance=ExtResource("1_ae22c")]
 layout_mode = 0
-anchors_preset = 0
 offset_top = 81.0802
 offset_bottom = 113.08
 grow_horizontal = 1
@@ -170,7 +161,6 @@ MaxLevel = 1
 
 [node name="Tier1_2" parent="Background" instance=ExtResource("1_ae22c")]
 layout_mode = 1
-anchors_preset = 0
 offset_left = 269.0
 offset_top = 72.0
 offset_right = 301.0
@@ -182,7 +172,6 @@ texture_normal = ExtResource("12_by83v")
 
 [node name="Tier2_2" parent="Background/Tier1_2" node_paths=PackedStringArray("sharedParent", "sharedChild") instance=ExtResource("1_ae22c")]
 layout_mode = 1
-anchors_preset = 0
 offset_left = -24.1821
 offset_top = 65.434
 offset_right = 3.97788
@@ -198,7 +187,6 @@ sharedChild = NodePath("../Tier2_3/Tier3_4")
 
 [node name="Tier3_2" parent="Background/Tier1_2/Tier2_2" node_paths=PackedStringArray("sharedParent", "sharedChild") instance=ExtResource("1_ae22c")]
 layout_mode = 0
-anchors_preset = 0
 offset_left = -23.8898
 offset_top = 62.196
 offset_right = 8.11015
@@ -214,7 +202,6 @@ sharedChild = NodePath("../Tier3_3/Tier4_2")
 
 [node name="Tier4_1" parent="Background/Tier1_2/Tier2_2/Tier3_2" node_paths=PackedStringArray("sharedParent", "sharedChild") instance=ExtResource("1_ae22c")]
 layout_mode = 0
-anchors_preset = 0
 offset_left = -26.1642
 offset_top = 71.0172
 offset_right = 5.83576
@@ -229,7 +216,6 @@ sharedChild = NodePath("../../Tier3_3/Tier4_2/Tier5_1")
 
 [node name="Tier3_3" parent="Background/Tier1_2/Tier2_2" node_paths=PackedStringArray("sharedParent", "sharedChild") instance=ExtResource("1_ae22c")]
 layout_mode = 0
-anchors_preset = 0
 offset_left = 21.0066
 offset_top = 62.196
 offset_right = 53.0066
@@ -244,7 +230,6 @@ sharedChild = NodePath("../../Tier2_3/Tier3_4/Tier4_3")
 
 [node name="Tier4_2" parent="Background/Tier1_2/Tier2_2/Tier3_3" node_paths=PackedStringArray("sharedParent", "sharedChild") instance=ExtResource("1_ae22c")]
 layout_mode = 0
-anchors_preset = 0
 offset_left = -23.8281
 offset_top = 71.0172
 offset_right = 8.17185
@@ -259,7 +244,6 @@ sharedChild = NodePath("../../../Tier2_3/Tier3_4/Tier4_3/Tier5_2")
 
 [node name="Tier5_1" parent="Background/Tier1_2/Tier2_2/Tier3_3/Tier4_2" node_paths=PackedStringArray("sharedParent") instance=ExtResource("1_ae22c")]
 layout_mode = 0
-anchors_preset = 0
 offset_left = -27.0285
 offset_top = 71.7654
 offset_right = 4.97148
@@ -274,7 +258,6 @@ sharedParent = NodePath("../../../Tier3_2/Tier4_1")
 
 [node name="Tier6_1" parent="Background/Tier1_2/Tier2_2/Tier3_3/Tier4_2/Tier5_1" instance=ExtResource("1_ae22c")]
 layout_mode = 0
-anchors_preset = 0
 offset_left = -0.470737
 offset_top = 82.3791
 offset_right = 31.5293
@@ -287,7 +270,6 @@ MaxLevel = 1
 
 [node name="Tier2_3" parent="Background/Tier1_2" node_paths=PackedStringArray("sharedParent") instance=ExtResource("1_ae22c")]
 layout_mode = 1
-anchors_preset = 0
 offset_left = 32.717
 offset_top = 65.434
 offset_right = 60.877
@@ -302,7 +284,6 @@ sharedParent = NodePath("../../Tier1_3")
 
 [node name="Tier3_4" parent="Background/Tier1_2/Tier2_3" node_paths=PackedStringArray("sharedParent", "sharedChild") instance=ExtResource("1_ae22c")]
 layout_mode = 0
-anchors_preset = 0
 offset_left = 16.0639
 offset_top = 62.196
 offset_right = 48.0639
@@ -317,7 +298,6 @@ sharedChild = NodePath("../../../Tier1_3/Tier2_4/Tier3_5/Tier4_4")
 
 [node name="Tier4_3" parent="Background/Tier1_2/Tier2_3/Tier3_4" node_paths=PackedStringArray("sharedParent", "sharedChild") instance=ExtResource("1_ae22c")]
 layout_mode = 0
-anchors_preset = 0
 offset_left = -18.5539
 offset_top = 72.3128
 offset_right = 13.4461
@@ -332,7 +312,6 @@ sharedChild = NodePath("../../../../Tier1_3/Tier2_4/Tier3_5/Tier4_4/Tier5_3")
 
 [node name="Tier5_2" parent="Background/Tier1_2/Tier2_3/Tier3_4/Tier4_3" node_paths=PackedStringArray("sharedParent") instance=ExtResource("1_ae22c")]
 layout_mode = 0
-anchors_preset = 0
 offset_left = -32.8796
 offset_top = 73.3834
 offset_right = -0.879566
@@ -345,7 +324,6 @@ sharedParent = NodePath("../../../../Tier2_2/Tier3_3/Tier4_2")
 
 [node name="Tier6_2" parent="Background/Tier1_2/Tier2_3/Tier3_4/Tier4_3/Tier5_2" instance=ExtResource("1_ae22c")]
 layout_mode = 0
-anchors_preset = 0
 offset_top = 82.2662
 offset_bottom = 114.266
 grow_horizontal = 1

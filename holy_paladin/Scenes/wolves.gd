@@ -35,7 +35,7 @@ func _physics_process(delta: float) -> void:
 		if !wolf_animation.is_playing():
 			wolf_animation.play(colour + "_idle")
 		#Kääntää suden idle animaation suunnan 1/1500 todennäköisyydellä per frami
-		if RandomNumberGenerator.new().randi_range(0, 4000)==9 && wolf_animation.animation == colour + "_idle":
+		if RandomNumberGenerator.new().randi_range(0, 10000)==9 && wolf_animation.animation == colour + "_idle":
 			print("Wolf has turned around")
 			if wolf_animation.flip_h:
 				wolf_animation.flip_h = false
@@ -92,8 +92,6 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			GlobalVariables.xp += 1
 			wolf_animation.play(colour + "_death")
 			await get_tree().create_timer(1).timeout
-			GlobalVariables.free_object_name = str(self.name)
-			GlobalVariables.free_object = true
 			wolves.queue_free()
 	if area.is_in_group("player"):
 		area.get_parent().hurt(damage)

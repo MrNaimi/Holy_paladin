@@ -1,13 +1,11 @@
-[gd_scene load_steps=258 format=3 uid="uid://ccxc8igku0gv2"]
+[gd_scene load_steps=256 format=3 uid="uid://ccxc8igku0gv2"]
 
 [ext_resource type="Script" path="res://Scripts/character_body_2d.gd" id="2_srydx"]
 [ext_resource type="Script" path="res://Scripts/proc_gen_world.gd" id="2_yevhn"]
 [ext_resource type="Texture2D" uid="uid://bi0tlkjtfs2y8" path="res://assets/main_char/spr_Dash_strip.png" id="3_02vde"]
 [ext_resource type="TileSet" uid="uid://cdawm2arl6lxb" path="res://Scenes/data/forest.tres" id="3_cpsns"]
 [ext_resource type="TileSet" uid="uid://6wmbxw5okxse" path="res://Scenes/data/isometric_tilemap.tres" id="3_kg52b"]
-[ext_resource type="PackedScene" uid="uid://cj22l1hlo5ktv" path="res://Scenes/imps.tscn" id="3_w0b4a"]
 [ext_resource type="Texture2D" uid="uid://b8ahb0f75t0o6" path="res://assets/main_char/spr_Death_strip.png" id="4_dlpw0"]
-[ext_resource type="PackedScene" uid="uid://b21qq8m21n2us" path="res://Scenes/wolves.tscn" id="5_66pma"]
 [ext_resource type="Texture2D" uid="uid://dsjtbhpiev1fy" path="res://assets/main_char/spr_Idle_strip.png" id="6_57dje"]
 [ext_resource type="Texture2D" uid="uid://duwqunfxnycdr" path="res://assets/ui_assets/minimapicon.png" id="7_b3w5b"]
 [ext_resource type="Texture2D" uid="uid://3bi3uuq2ojh3" path="res://assets/main_char/spr_Leap_strip.png" id="7_psiyu"]
@@ -1704,23 +1702,6 @@ tile_set = ExtResource("3_cpsns")
 
 [node name="nature" type="TileMapLayer" parent="Node2D/world/proc_gen_world"]
 tile_set = ExtResource("3_cpsns")
-
-[node name="imp3" parent="Node2D" instance=ExtResource("3_w0b4a")]
-position = Vector2(-177, 474)
-collision_layer = 128
-collision_mask = 128
-
-[node name="Wolves" parent="Node2D" instance=ExtResource("5_66pma")]
-position = Vector2(-27, 1)
-
-[node name="Wolves2" parent="Node2D" instance=ExtResource("5_66pma")]
-position = Vector2(-187, -14)
-
-[node name="Wolves3" parent="Node2D" instance=ExtResource("5_66pma")]
-position = Vector2(-372, 185)
-
-[node name="Wolves4" parent="Node2D" instance=ExtResource("5_66pma")]
-position = Vector2(-168, 285)
 
 [node name="Player" type="CharacterBody2D" parent="Node2D"]
 position = Vector2(445, 325)
