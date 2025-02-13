@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var damage = 1
+@onready var damage = GlobalVariables.basicAttackDamage
 @export var hitboxtime = 0.5
 @export var hitboxdelay = 0.2
 @onready var hit_box_timer: Timer = $HitBoxTimer

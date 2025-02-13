@@ -39,7 +39,7 @@ func _process(delta: float) -> void:
 
 	xp_bar.value=GlobalVariables.xp
 	xp_bar.max_value=GlobalVariables.xp_threshold
-	hp_bar.value=player.hp
+	hp_bar.value=GlobalVariables.playerHealth
 	combotimerbar.value=combo_timer.time_left
 	
 	
@@ -60,7 +60,7 @@ func _process(delta: float) -> void:
 	character_x.text = "charactaser pos x: "+str(player.global_position.x)
 	character_y.text = "character pos y: "+str(player.global_position.y)
 	viewportsize.text = "viewport size: "+str(get_viewport().size.x)
-	characterspeed.text = "character speed: "+str(player.current_speed)
+	characterspeed.text = "character speed: "+str(GlobalVariables.playerSpeed)
 	combotimer.text = "combo time left: "+str(float(combo_timer.time_left)).left(4)
 	pierucounter.text = str(player.pierucounter)
 	processpeed.text = str(player.processiterations)

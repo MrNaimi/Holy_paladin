@@ -1528,7 +1528,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mi1sv"]
-size = Vector2(41.5055, 7.11526)
+size = Vector2(48.6207, 15.4164)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2lqxd"]
 size = Vector2(14.7435, 38.461)
@@ -1741,7 +1741,9 @@ shape = SubResource("RectangleShape2D_xopwu")
 [node name="Player_animations" type="AnimatedSprite2D" parent="Node2D/Player"]
 position = Vector2(5.92936, -28.4609)
 sprite_frames = SubResource("SpriteFrames_4mljv")
-animation = &"death"
+animation = &"light_attack1"
+frame = 10
+frame_progress = 1.0
 
 [node name="AttackHitboxes" type="Node2D" parent="Node2D/Player"]
 position = Vector2(0, -6.10352e-05)
@@ -1754,7 +1756,7 @@ script = ExtResource("13_127up")
 hitboxtime = 0.2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Player/AttackHitboxes/Light_attack1"]
-position = Vector2(20.7528, -18.9739)
+position = Vector2(24.3104, -18.381)
 shape = SubResource("RectangleShape2D_mi1sv")
 disabled = true
 

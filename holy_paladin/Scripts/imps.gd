@@ -12,7 +12,7 @@ var og_position
 
 var player = null
 @export var health = 3
-@export var damage = 1
+@export var damage = 10
 var player_cpos
 @onready var shoot_cd: Timer = $shoot_cd
 

@@ -44,6 +44,17 @@ offset_right = 1280.0
 offset_bottom = 1080.0
 color = Color(0.192157, 0.192157, 0.192157, 0.792157)
 
+[node name="SkillPoints" type="Label" parent="Background"]
+layout_mode = 0
+offset_left = 159.0
+offset_top = 960.0
+offset_right = 418.0
+offset_bottom = 1009.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 35
+text = "Skillpoints left: "
+
 [node name="Tier1_1" parent="Background" node_paths=PackedStringArray("sharedChild") instance=ExtResource("1_ae22c")]
 layout_mode = 1
 offset_left = 161.0
@@ -70,6 +81,7 @@ scale = Vector2(1.15117, 1.15117)
 disabled = true
 texture_normal = ExtResource("4_gsegd")
 MaxLevel = 1
+SkillName = "+5% Movement Speed"
 sharedChild = NodePath("../../Tier1_2/Tier2_2/Tier3_2")
 
 [node name="Tier3_1" parent="Background/Tier1_1/Tier2_1" node_paths=PackedStringArray("sharedChild") instance=ExtResource("1_ae22c")]
@@ -83,6 +95,7 @@ grow_vertical = 1
 scale = Vector2(0.897077, 0.897077)
 texture_normal = ExtResource("5_fl0g5")
 MaxLevel = 1
+SkillName = "Jump"
 sharedChild = NodePath("../../../Tier1_2/Tier2_2/Tier3_2/Tier4_1")
 
 [node name="Tier1_3" parent="Background" node_paths=PackedStringArray("sharedChild") instance=ExtResource("1_ae22c")]
@@ -95,6 +108,8 @@ grow_horizontal = 1
 grow_vertical = 1
 scale = Vector2(2.109, 2.109)
 texture_normal = ExtResource("6_ua1j0")
+MaxLevel = 1
+SkillName = "Holy Projectile"
 sharedChild = NodePath("../Tier1_2/Tier2_3")
 
 [node name="Tier2_4" parent="Background/Tier1_3" node_paths=PackedStringArray("sharedChild") instance=ExtResource("1_ae22c")]
@@ -108,18 +123,22 @@ grow_vertical = 1
 scale = Vector2(1.15117, 1.15117)
 disabled = true
 texture_normal = ExtResource("7_7yxi7")
+MaxLevel = 1
+SkillName = "5% Cooldown Reduction"
 sharedChild = NodePath("../../Tier1_2/Tier2_3/Tier3_4")
 
 [node name="Tier3_5" parent="Background/Tier1_3/Tier2_4" instance=ExtResource("1_ae22c")]
 layout_mode = 0
 offset_left = 6.17841
 offset_top = 62.196
-offset_right = 38.1784
+offset_right = 40.8557
 offset_bottom = 94.196
 grow_horizontal = 1
 grow_vertical = 1
 scale = Vector2(0.865112, 0.865112)
 texture_normal = ExtResource("8_jq6t2")
+MaxLevel = 1
+SkillName = "Holy Shield"
 
 [node name="Tier4_4" parent="Background/Tier1_3/Tier2_4/Tier3_5" node_paths=PackedStringArray("sharedParent") instance=ExtResource("1_ae22c")]
 layout_mode = 0
@@ -132,10 +151,11 @@ grow_vertical = 1
 scale = Vector2(0.996551, 0.996551)
 texture_normal = ExtResource("9_v3f2v")
 MaxLevel = 1
+SkillName = "+5% Spell Damage"
 shareParent = true
 sharedParent = NodePath("../../../../Tier1_2/Tier2_3/Tier3_4")
 
-[node name="Tier5_3" parent="Background/Tier1_3/Tier2_4/Tier3_5/Tier4_4" node_paths=PackedStringArray("sharedParent") instance=ExtResource("1_ae22c")]
+[node name="Tier5_3" parent="Background/Tier1_3/Tier2_4/Tier3_5/Tier4_4" instance=ExtResource("1_ae22c")]
 layout_mode = 0
 offset_left = -38.2212
 offset_top = 73.5757
@@ -145,9 +165,8 @@ grow_horizontal = 1
 grow_vertical = 1
 scale = Vector2(1.00762, 1.00762)
 texture_normal = ExtResource("10_2tlk7")
-MaxLevel = 2
-shareParent = true
-sharedParent = NodePath("../../../../../Tier1_2/Tier2_3/Tier3_4/Tier4_3")
+MaxLevel = 1
+SkillName = "Holy Shield Buff"
 
 [node name="Tier6_3" parent="Background/Tier1_3/Tier2_4/Tier3_5/Tier4_4/Tier5_3" instance=ExtResource("1_ae22c")]
 layout_mode = 0
@@ -158,6 +177,7 @@ grow_vertical = 1
 scale = Vector2(1.00613, 1.00613)
 texture_normal = ExtResource("11_wiqs2")
 MaxLevel = 1
+SkillName = "AoE"
 
 [node name="Tier1_2" parent="Background" instance=ExtResource("1_ae22c")]
 layout_mode = 1
@@ -169,8 +189,10 @@ grow_horizontal = 1
 grow_vertical = 1
 scale = Vector2(2.109, 2.109)
 texture_normal = ExtResource("12_by83v")
+MaxLevel = 1
+SkillName = "+10% Attack Damage"
 
-[node name="Tier2_2" parent="Background/Tier1_2" node_paths=PackedStringArray("sharedParent", "sharedChild") instance=ExtResource("1_ae22c")]
+[node name="Tier2_2" parent="Background/Tier1_2" node_paths=PackedStringArray("sharedParent") instance=ExtResource("1_ae22c")]
 layout_mode = 1
 offset_left = -24.1821
 offset_top = 65.434
@@ -181,11 +203,12 @@ grow_vertical = 1
 scale = Vector2(1.15117, 1.15117)
 disabled = true
 texture_normal = ExtResource("13_rxky6")
+MaxLevel = 1
+SkillName = "+5% Health"
 shareParent = true
 sharedParent = NodePath("../../Tier1_1")
-sharedChild = NodePath("../Tier2_3/Tier3_4")
 
-[node name="Tier3_2" parent="Background/Tier1_2/Tier2_2" node_paths=PackedStringArray("sharedParent", "sharedChild") instance=ExtResource("1_ae22c")]
+[node name="Tier3_2" parent="Background/Tier1_2/Tier2_2" node_paths=PackedStringArray("sharedParent") instance=ExtResource("1_ae22c")]
 layout_mode = 0
 offset_left = -23.8898
 offset_top = 62.196
@@ -196,9 +219,9 @@ grow_vertical = 1
 scale = Vector2(0.881587, 0.881587)
 texture_normal = ExtResource("14_wmteg")
 MaxLevel = 1
+SkillName = "10% Non-Spell Cooldown Reduction"
 shareParent = true
 sharedParent = NodePath("../../../Tier1_1/Tier2_1")
-sharedChild = NodePath("../Tier3_3/Tier4_2")
 
 [node name="Tier4_1" parent="Background/Tier1_2/Tier2_2/Tier3_2" node_paths=PackedStringArray("sharedParent", "sharedChild") instance=ExtResource("1_ae22c")]
 layout_mode = 0
@@ -210,11 +233,13 @@ grow_horizontal = 1
 grow_vertical = 1
 scale = Vector2(0.983907, 0.983907)
 texture_normal = ExtResource("15_3320k")
+MaxLevel = 1
+SkillName = "+5% Attack Damage 2"
 shareParent = true
 sharedParent = NodePath("../../../../Tier1_1/Tier2_1/Tier3_1")
-sharedChild = NodePath("../../Tier3_3/Tier4_2/Tier5_1")
+sharedChild = NodePath("Tier5_1")
 
-[node name="Tier3_3" parent="Background/Tier1_2/Tier2_2" node_paths=PackedStringArray("sharedParent", "sharedChild") instance=ExtResource("1_ae22c")]
+[node name="Tier5_1" parent="Background/Tier1_2/Tier2_2/Tier3_2/Tier4_1" instance=ExtResource("1_ae22c")]
 layout_mode = 0
 offset_left = 21.0066
 offset_top = 62.196
@@ -252,11 +277,10 @@ grow_horizontal = 1
 grow_vertical = 1
 scale = Vector2(0.989955, 0.989955)
 texture_normal = ExtResource("18_50ymx")
-MaxLevel = 2
-shareParent = true
-sharedParent = NodePath("../../../Tier3_2/Tier4_1")
+MaxLevel = 1
+SkillName = "Extra Dash"
 
-[node name="Tier6_1" parent="Background/Tier1_2/Tier2_2/Tier3_3/Tier4_2/Tier5_1" instance=ExtResource("1_ae22c")]
+[node name="Tier6_1" parent="Background/Tier1_2/Tier2_2/Tier3_2/Tier4_1/Tier5_1" instance=ExtResource("1_ae22c")]
 layout_mode = 0
 offset_left = -0.470737
 offset_top = 82.3791
@@ -267,6 +291,76 @@ grow_vertical = 1
 scale = Vector2(1.00397, 1.00397)
 texture_normal = ExtResource("19_dsvtc")
 MaxLevel = 1
+SkillName = "Leap"
+
+[node name="Tier3_3" parent="Background/Tier1_2/Tier2_2" node_paths=PackedStringArray("sharedParent") instance=ExtResource("1_ae22c")]
+layout_mode = 0
+offset_left = 21.0066
+offset_top = 62.196
+offset_right = 53.0066
+offset_bottom = 94.196
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(0.881587, 0.881587)
+texture_normal = ExtResource("16_6qkyg")
+MaxLevel = 1
+SkillName = "Taunt"
+shareParent = true
+sharedParent = NodePath("../../Tier2_3")
+
+[node name="Tier4_2" parent="Background/Tier1_2/Tier2_2/Tier3_3" node_paths=PackedStringArray("sharedChild") instance=ExtResource("1_ae22c")]
+layout_mode = 0
+offset_left = -23.8281
+offset_top = 71.0172
+offset_right = 8.17185
+offset_bottom = 103.017
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(1.0026, 1.0026)
+texture_normal = ExtResource("17_ecbu6")
+MaxLevel = 1
+SkillName = "+10% Health"
+sharedChild = NodePath("../Tier4_3/Tier5_2")
+
+[node name="Tier4_3" parent="Background/Tier1_2/Tier2_2/Tier3_3" instance=ExtResource("1_ae22c")]
+layout_mode = 0
+offset_left = 32.2381
+offset_top = 71.0172
+offset_right = 64.2381
+offset_bottom = 103.017
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(0.998377, 0.998377)
+texture_normal = ExtResource("22_qkgg1")
+MaxLevel = 1
+SkillName = "+5% Attack Damage 3"
+
+[node name="Tier5_2" parent="Background/Tier1_2/Tier2_2/Tier3_3/Tier4_3" node_paths=PackedStringArray("sharedParent") instance=ExtResource("1_ae22c")]
+layout_mode = 0
+offset_left = -32.8796
+offset_top = 73.3834
+offset_right = -0.879566
+offset_bottom = 105.383
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(1.01366, 1.01366)
+MaxLevel = 1
+SkillName = "Taunt Buff"
+shareParent = true
+sharedParent = NodePath("../../Tier4_2")
+
+[node name="Tier6_2" parent="Background/Tier1_2/Tier2_2/Tier3_3/Tier4_3/Tier5_2" instance=ExtResource("1_ae22c")]
+layout_mode = 0
+offset_left = 0.581089
+offset_top = 77.6478
+offset_right = 32.5811
+offset_bottom = 109.648
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(0.988342, 0.988342)
+texture_normal = ExtResource("23_sx2qy")
+MaxLevel = 1
+SkillName = "Spin"
 
 [node name="Tier2_3" parent="Background/Tier1_2" node_paths=PackedStringArray("sharedParent") instance=ExtResource("1_ae22c")]
 layout_mode = 1
@@ -279,6 +373,8 @@ grow_vertical = 1
 scale = Vector2(1.15117, 1.15117)
 disabled = true
 texture_normal = ExtResource("20_y36gq")
+MaxLevel = 1
+SkillName = "+5% Attack Damage"
 shareParent = true
 sharedParent = NodePath("../../Tier1_3")
 
@@ -292,6 +388,8 @@ grow_horizontal = 1
 grow_vertical = 1
 scale = Vector2(0.865792, 0.865792)
 texture_normal = ExtResource("21_2yvu8")
+MaxLevel = 1
+SkillName = "+10% Armor"
 shareParent = true
 sharedParent = NodePath("../../../Tier1_3/Tier2_4")
 sharedChild = NodePath("../../../Tier1_3/Tier2_4/Tier3_5/Tier4_4")

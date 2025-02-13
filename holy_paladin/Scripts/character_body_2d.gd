@@ -10,8 +10,8 @@ var combo = 1
 var processiterations = 0
 var dashing
 var jumping
-@export var SPEED = 100.0
-@onready var hp = 10
+@onready var SPEED = GlobalVariables.playerSpeed
+@onready var hp = GlobalVariables.playerHealth
 @export var spell_radius = 150
 #Viittaukset player attackkeihin
 
@@ -59,6 +59,7 @@ func _ready():
 func get_input():
 	var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = input_direction * SPEED
+
 	
 	if get_viewport().get_mouse_position().x >= get_viewport().size.x/2 and input_direction.x != 0:
 		if !dashing and !jumping:
@@ -88,7 +89,7 @@ func _input(event):
 		else:
 			skill_tree.visible = true
 	
-	if event.is_action_pressed("dash") and dash_cooldown_timer.is_stopped():
+	if event.is_action_pressed("dash") and dash_cooldown_timer.is_stopped() and skill_tree.checkSkill("Dash"):
 		dash_cooldown_timer.start()
 		print("Player used dash")
 		invincibility_timer.start()
@@ -127,7 +128,7 @@ func _input(event):
 			player_animations.play("taunt")
 			spell.enableHitBox()
 			
-		if event.is_action_pressed("attack"):
+		if event.is_action_pressed("attack") and !skill_tree.visible:
 			print("Mouse 1 clicked")
 			if get_viewport().get_mouse_position().x >= get_viewport().size.x / 2:
 				if !copy:
@@ -167,6 +168,8 @@ func _input(event):
 						combo = 1
 			
 func _physics_process(delta: float) -> void:
+	SPEED = GlobalVariables.playerSpeed
+	hp = GlobalVariables.playerHealth
 	if GlobalVariables.xp >= GlobalVariables.xp_threshold:
 		level_up()
 		
@@ -197,6 +200,7 @@ func level_up():
 	GlobalVariables.xp_threshold = GlobalVariables.level
 	GlobalVariables.xp = 0
 	GlobalVariables.talentpoints += 1
+	GlobalVariables.skillpoints += 1
 			
 func hurt(damage):
 	if invincibility_timer.is_stopped():
@@ -220,5 +224,4 @@ func _on_animation_timer_timeout() -> void:
 
 func _on_jump_timer_timeout() -> void:
 	jumping = false
-	
 	
