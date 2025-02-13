@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://c1wj1wpmy3c3l"]
+
+[node name="dev_stats" type="VBoxContainer"]
+offset_left = 1932.0
+offset_top = 136.0
+offset_right = 2053.0
+offset_bottom = 375.0
+
+[node name="x" type="Label" parent="."]
+layout_mode = 2
+text = "x"
+
+[node name="character_x" type="Label" parent="."]
+layout_mode = 2
+text = "character_x"
+
+[node name="y" type="Label" parent="."]
+layout_mode = 2
+text = "y"
+
+[node name="character_y" type="Label" parent="."]
+layout_mode = 2
+text = "character_x"
+
+[node name="viewportsize" type="Label" parent="."]
+layout_mode = 2
+text = "viewportsize"
+
+[node name="characterspeed" type="Label" parent="."]
+layout_mode = 2
+text = "characterspeed
+"
+
+[node name="combotimer" type="Label" parent="."]
+layout_mode = 2
+text = "0s
+"
+
+[node name="pierucounter" type="Label" parent="."]
+layout_mode = 2
+text = "pierucounter"
+
+[node name="processpeed" type="Label" parent="."]
+layout_mode = 2
+text = "0s
+"
