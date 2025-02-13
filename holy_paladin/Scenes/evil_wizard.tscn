@@ -279,6 +279,7 @@ radius = 253.198
 
 [node name="evil_wizard" type="CharacterBody2D"]
 script = ExtResource("1_x7cq1")
+damage = 10
 
 [node name="wizard_animation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_b2x8r")

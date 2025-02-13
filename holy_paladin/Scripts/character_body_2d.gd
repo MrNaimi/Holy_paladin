@@ -204,7 +204,7 @@ func level_up():
 			
 func hurt(damage):
 	if invincibility_timer.is_stopped():
-		hp -= damage
+		GlobalVariables.playerHealth -= damage
 		animation_player.play("hit")
 		invincibility_timer.start()
 	else:

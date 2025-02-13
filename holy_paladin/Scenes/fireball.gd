@@ -2,7 +2,7 @@ extends CharacterBody2D
 @export var speed: int = 120
 var direction: Vector2 = Vector2.ZERO
 @onready var sizzler: AnimationPlayer = $sizzler
-var damage = 1
+var damage = 10
 
 func _physics_process(delta):
 	velocity = direction * speed
