@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2i23to0l6r56"
-path="res://.godot/imported/spr_Dash_strip.png-0da7971aeb48b3b93284f5b30881113a.ctex"
+uid="uid://jssujmqwh67w"
+path="res://.godot/imported/TornadoStatic_96x96.png-738b32e17e92d0c9c27d582152306fa5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main_char/spr_Dash_strip.png"
-dest_files=["res://.godot/imported/spr_Dash_strip.png-0da7971aeb48b3b93284f5b30881113a.ctex"]
+source_file="res://assets/spell_effects/TornadoStatic_96x96.png"
+dest_files=["res://.godot/imported/TornadoStatic_96x96.png-738b32e17e92d0c9c27d582152306fa5.ctex"]
 
 [params]
 

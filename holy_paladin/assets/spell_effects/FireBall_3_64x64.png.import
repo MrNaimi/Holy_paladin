@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2i23to0l6r56"
-path="res://.godot/imported/spr_Dash_strip.png-0da7971aeb48b3b93284f5b30881113a.ctex"
+uid="uid://d55vlxplvckd"
+path="res://.godot/imported/FireBall_3_64x64.png-8be9e50c43c130c11e10e679d2964fac.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main_char/spr_Dash_strip.png"
-dest_files=["res://.godot/imported/spr_Dash_strip.png-0da7971aeb48b3b93284f5b30881113a.ctex"]
+source_file="res://assets/spell_effects/FireBall_3_64x64.png"
+dest_files=["res://.godot/imported/FireBall_3_64x64.png-8be9e50c43c130c11e10e679d2964fac.ctex"]
 
 [params]
 

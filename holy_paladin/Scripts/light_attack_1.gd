@@ -1,4 +1,6 @@
 extends Area2D
+@onready var player: CharacterBody2D = $"../.."
+@onready var pieru: AudioStreamPlayer2D = $"../../../pieru"
 
 @onready var damage = GlobalVariables.basicAttackDamage
 @export var hitboxtime = 0.5

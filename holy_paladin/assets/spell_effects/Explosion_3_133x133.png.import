@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://exvxufprnrjy"
-path="res://.godot/imported/hell_tileset.png-955163d23180477f0f4ab13c798fb866.ctex"
+uid="uid://bcs0n8bw1hqw"
+path="res://.godot/imported/Explosion_3_133x133.png-a8d756b8537940e7fa9dbf0460f7658e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tiles/isometric tileset/hell_tileset.png"
-dest_files=["res://.godot/imported/hell_tileset.png-955163d23180477f0f4ab13c798fb866.ctex"]
+source_file="res://assets/spell_effects/Explosion_3_133x133.png"
+dest_files=["res://.godot/imported/Explosion_3_133x133.png-a8d756b8537940e7fa9dbf0460f7658e.ctex"]
 
 [params]
 
