@@ -15,6 +15,7 @@ var y = 1
 const WOLVES = preload("res://Scenes/wolves.tscn")
 const IMPS = preload("res://Scenes/imps.tscn")
 const EVIL_WIZARD = preload("res://Scenes/evil_wizard.tscn")
+const CERBERUS = preload("res://Scenes/cerberus.tscn")
 
 var enemies_spawned = []
 var rng = RandomNumberGenerator.new()
@@ -79,6 +80,7 @@ func _ready():
 	noise = noise_height_text.noise
 	#noise.seed = RandomNumberGenerator.new().randi_range(0,200)
 	generate_world()
+	spawn_cerberus(Vector2(0,0))
 	if kohtaus == 1:
 		GlobalVariables.player_spawn_location = get_ground_tile()
 		for i in 50:
@@ -286,7 +288,12 @@ func spawn_wizard(x):
 	var wizard = EVIL_WIZARD.instantiate()
 	wizard.global_position = x
 	add_child(wizard)
-	
+
+func spawn_cerberus(x):
+	#print("Spawning imp")
+	var cerberus = CERBERUS.instantiate()
+	cerberus.global_position = x
+	add_child(cerberus)	
 	
 func get_ground_tile():
 	
