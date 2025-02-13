@@ -156,6 +156,7 @@ func _on_bottomlefthider_timeout() -> void:
 func _on_toplefthider_timeout() -> void:
 	minimaptutorial.visible = false
 	petergotohell.visible = true
+	petergotohellhider.start()
 
 
 func _on_petergotohellhider_timeout() -> void:
