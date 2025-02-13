@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://c23jplw2vgict"]
+
+[ext_resource type="Texture2D" uid="uid://cvfwtnor3oym5" path="res://assets/cinematics/animation.png" id="1_1j3fq"]
+[ext_resource type="Script" path="res://camera_2d.gd" id="2_i3koq"]
+
+[node name="Cinematics" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -250.0
+offset_top = -62.0
+offset_right = -210.0
+offset_bottom = -22.0
+scale = Vector2(36.2959, 12.0315)
+color = Color(0, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(484, 151)
+texture = ExtResource("1_1j3fq")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-6, 154)
+scale = Vector2(0.2, 0.2)
+zoom = Vector2(4, 4)
+script = ExtResource("2_i3koq")
