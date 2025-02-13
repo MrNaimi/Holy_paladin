@@ -241,38 +241,10 @@ sharedChild = NodePath("Tier5_1")
 
 [node name="Tier5_1" parent="Background/Tier1_2/Tier2_2/Tier3_2/Tier4_1" instance=ExtResource("1_ae22c")]
 layout_mode = 0
-offset_left = 21.0066
-offset_top = 62.196
-offset_right = 53.0066
-offset_bottom = 94.196
-grow_horizontal = 1
-grow_vertical = 1
-scale = Vector2(0.881587, 0.881587)
-texture_normal = ExtResource("16_6qkyg")
-shareParent = true
-sharedParent = NodePath("../../Tier2_3")
-sharedChild = NodePath("../../Tier2_3/Tier3_4/Tier4_3")
-
-[node name="Tier4_2" parent="Background/Tier1_2/Tier2_2/Tier3_3" node_paths=PackedStringArray("sharedParent", "sharedChild") instance=ExtResource("1_ae22c")]
-layout_mode = 0
-offset_left = -23.8281
-offset_top = 71.0172
-offset_right = 8.17185
-offset_bottom = 103.017
-grow_horizontal = 1
-grow_vertical = 1
-scale = Vector2(1.0026, 1.0026)
-texture_normal = ExtResource("17_ecbu6")
-shareParent = true
-sharedParent = NodePath("../../Tier3_2")
-sharedChild = NodePath("../../../Tier2_3/Tier3_4/Tier4_3/Tier5_2")
-
-[node name="Tier5_1" parent="Background/Tier1_2/Tier2_2/Tier3_3/Tier4_2" node_paths=PackedStringArray("sharedParent") instance=ExtResource("1_ae22c")]
-layout_mode = 0
-offset_left = -27.0285
-offset_top = 71.7654
-offset_right = 4.97148
-offset_bottom = 103.765
+offset_left = 26.592
+offset_top = 73.1288
+offset_right = 58.592
+offset_bottom = 105.128
 grow_horizontal = 1
 grow_vertical = 1
 scale = Vector2(0.989955, 0.989955)
@@ -393,39 +365,3 @@ SkillName = "+10% Armor"
 shareParent = true
 sharedParent = NodePath("../../../Tier1_3/Tier2_4")
 sharedChild = NodePath("../../../Tier1_3/Tier2_4/Tier3_5/Tier4_4")
-
-[node name="Tier4_3" parent="Background/Tier1_2/Tier2_3/Tier3_4" node_paths=PackedStringArray("sharedParent", "sharedChild") instance=ExtResource("1_ae22c")]
-layout_mode = 0
-offset_left = -18.5539
-offset_top = 72.3128
-offset_right = 13.4461
-offset_bottom = 104.313
-grow_horizontal = 1
-grow_vertical = 1
-scale = Vector2(0.998377, 0.998377)
-texture_normal = ExtResource("22_qkgg1")
-shareParent = true
-sharedParent = NodePath("../../../Tier2_2/Tier3_3")
-sharedChild = NodePath("../../../../Tier1_3/Tier2_4/Tier3_5/Tier4_4/Tier5_3")
-
-[node name="Tier5_2" parent="Background/Tier1_2/Tier2_3/Tier3_4/Tier4_3" node_paths=PackedStringArray("sharedParent") instance=ExtResource("1_ae22c")]
-layout_mode = 0
-offset_left = -32.8796
-offset_top = 73.3834
-offset_right = -0.879566
-offset_bottom = 105.383
-grow_horizontal = 1
-grow_vertical = 1
-scale = Vector2(1.01366, 1.01366)
-shareParent = true
-sharedParent = NodePath("../../../../Tier2_2/Tier3_3/Tier4_2")
-
-[node name="Tier6_2" parent="Background/Tier1_2/Tier2_3/Tier3_4/Tier4_3/Tier5_2" instance=ExtResource("1_ae22c")]
-layout_mode = 0
-offset_top = 82.2662
-offset_bottom = 114.266
-grow_horizontal = 1
-grow_vertical = 1
-scale = Vector2(0.988342, 0.988342)
-texture_normal = ExtResource("23_sx2qy")
-MaxLevel = 1
