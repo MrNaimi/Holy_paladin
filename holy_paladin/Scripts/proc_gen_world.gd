@@ -80,7 +80,7 @@ func _ready():
 	noise = noise_height_text.noise
 	#noise.seed = RandomNumberGenerator.new().randi_range(0,200)
 	generate_world()
-	spawn_cerberus(Vector2(0,0))
+	#spawn_cerberus(Vector2(0,0))
 	if kohtaus == 1:
 		GlobalVariables.player_spawn_location = get_ground_tile()
 		for i in 50:
