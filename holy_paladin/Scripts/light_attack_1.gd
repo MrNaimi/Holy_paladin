@@ -25,10 +25,12 @@ func _process(delta):
 		hitbox.rotation_degrees = original_rotation
 		
 func _on_hit_box_timer_timeout() -> void:
+	player.attacking = false
 	hitbox.disabled = true
 
 #Tässä määritetään funktio joka enabloi hitboxin ja aloittaa sille ajastimen
 func enableHitBox() -> void:
+	player.attacking = true
 	if player_animations.flip_h:
 		GlobalVariables.tween_direction = -1
 	else:

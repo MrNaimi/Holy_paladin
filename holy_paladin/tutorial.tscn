@@ -370,29 +370,29 @@ position = Vector2(-3, 309)
 texture = ExtResource("16_d1fbx")
 
 [node name="Label" type="Label" parent="bottomlefttutorial/Bottomlefthighlight"]
-offset_left = -790.0
-offset_top = 201.0
-offset_right = -230.0
-offset_bottom = 243.0
+offset_left = -643.0
+offset_top = 195.0
+offset_right = -284.0
+offset_bottom = 237.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
 text = "Here you can see your"
 
 [node name="hpbar" type="Label" parent="bottomlefttutorial/Bottomlefthighlight"]
-offset_left = -505.0
-offset_top = 481.0
-offset_right = 55.0
-offset_bottom = 523.0
+offset_left = -513.0
+offset_top = 449.0
+offset_right = 47.0
+offset_bottom = 491.0
 theme_override_colors/font_color = Color(0.92549, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
 text = "HP Bar"
 
 [node name="hpbar2" type="Label" parent="bottomlefttutorial/Bottomlefthighlight"]
-offset_left = -591.0
-offset_top = 425.0
-offset_right = -479.0
-offset_bottom = 563.0
+offset_left = -599.0
+offset_top = 393.0
+offset_right = -487.0
+offset_bottom = 531.0
 theme_override_colors/font_color = Color(0.92549, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 100
@@ -407,17 +407,6 @@ theme_override_colors/font_color = Color(0.435294, 0.0588235, 0.462745, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 100
 text = "← "
-
-[node name="Label4" type="Label" parent="bottomlefttutorial/Bottomlefthighlight"]
-visible = false
-offset_left = -632.0
-offset_top = 118.0
-offset_right = -72.0
-offset_bottom = 160.0
-theme_override_colors/font_color = Color(0.129412, 0.560784, 0.364706, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
-text = "-Abilities and Cooldowns"
 
 [node name="xpbar" type="Label" parent="bottomlefttutorial/Bottomlefthighlight"]
 offset_left = -550.0
@@ -438,12 +427,12 @@ wait_time = 5.0
 one_shot = true
 
 [node name="minimaptutorial" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Toplefthighlight" type="Sprite2D" parent="minimaptutorial"]
-visible = false
 self_modulate = Color(0.188235, 0.188235, 0.188235, 0.596078)
 position = Vector2(-4, 313)
 texture = ExtResource("17_5dwsg")
@@ -474,11 +463,13 @@ wait_time = 5.0
 one_shot = true
 
 [node name="petergotohell" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="ColorRect" type="ColorRect" parent="petergotohell"]
+visible = false
 layout_mode = 0
 offset_left = -970.0
 offset_top = -235.0
@@ -491,6 +482,7 @@ wait_time = 5.0
 one_shot = true
 
 [node name="Petergotohell" type="Sprite2D" parent="petergotohell"]
+visible = false
 position = Vector2(-11, 215)
 scale = Vector2(3, 3)
 texture = ExtResource("18_cvk4f")
@@ -501,5 +493,5 @@ texture = ExtResource("18_cvk4f")
 [connection signal="timeout" from="restofthecontrols/background3/controlshider" to="." method="_on_controlshider_timeout"]
 [connection signal="timeout" from="bottomlefttutorial/bottomlefthider" to="." method="_on_bottomlefthider_timeout"]
 [connection signal="timeout" from="minimaptutorial/Toplefthighlight/toplefthider" to="." method="_on_toplefthider_timeout"]
-[connection signal="timeout" from="petergotohell/petergotohellhider" to="." method="_on_petergotohellhider_timeout"]
 [connection signal="timeout" from="petergotohell/petergotohellhider" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="petergotohell/petergotohellhider" to="." method="_on_petergotohellhider_timeout"]

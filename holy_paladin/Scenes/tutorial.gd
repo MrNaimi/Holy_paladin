@@ -116,12 +116,6 @@ func _process(delta: float) -> void:
 			
 		if buttonspressed>=2 && controlshider.is_stopped():
 			controlshider.start()
-			 	
-	if !bottomlefthider.is_stopped():
-		bottomlefttutorial.visible=true
-	
-	if !toplefthider.is_stopped():
-		minimaptutorial.visible=true
 		
 func _on_tutorialhider_timeout() -> void:
 	movetutorial.visible = false

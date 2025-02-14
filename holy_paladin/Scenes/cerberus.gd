@@ -10,8 +10,8 @@ var og_position
 var speed = 250.0
 var player_chase = false
 var player = null
-@export var health = 3
-@export var damage = 1
+@export var health = 20
+@export var damage = 5
 var idle = ""
 @onready var wolf_animation: AnimatedSprite2D = $wolf_animation
 var colour = ""

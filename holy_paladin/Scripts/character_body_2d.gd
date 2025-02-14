@@ -47,7 +47,7 @@ const IMPS = preload("res://Scenes/imps.tscn")
 @onready var light_attack_3: Area2D = $AttackHitboxes/Light_attack3
 #@onready var tween = get_tree().create_tween()
 @onready var tween_direction = 1
-
+var attacking = false
 
 
 var current_speed = 0
@@ -62,17 +62,17 @@ func get_input():
 
 	
 	if get_viewport().get_mouse_position().x >= get_viewport().size.x/2 and input_direction.x != 0:
-		if !dashing and !jumping:
+		if !dashing and !jumping and !attacking:
 			player_animations.play("walk")
 		else:
 			pass
 	elif get_viewport().get_mouse_position().x <= get_viewport().size.x/2 and input_direction.x != 0:
-		if !dashing and !jumping:
+		if !dashing and !jumping and !attacking:
 			player_animations.play("walk")
 		else:
 			pass
 	if input_direction.y != 0:
-		if !dashing and !jumping:
+		if !dashing and !jumping and !attacking:
 			player_animations.play("walk")
 		else:
 			pass
@@ -111,7 +111,7 @@ func _input(event):
 		animation_timer.start()
 		jumping = true
 			
-	if current_speed==0:
+	if true:
 		if event.is_action_pressed("taunt") and spell_cooldown_timer.is_stopped():
 			spell_cooldown_timer.start()
 			print("Player used taunt/spell")
@@ -141,7 +141,7 @@ func _input(event):
 					player_animations.flip_h = GlobalVariables.flip_h
 			match combo:
 				1:
-					if player_animations.animation == "idle":
+					if player_animations.animation in ["idle", "walk"]:
 						combo_timer.stop()
 						player_animations.play("light_attack1")
 						if player_animations.flip_h:
@@ -152,7 +152,7 @@ func _input(event):
 						combo = 2
 						print("Combo timer started")
 				2:
-					if player_animations.animation == "idle":
+					if player_animations.animation in ["idle", "walk"]:
 						combo_timer.stop()
 						player_animations.play("light_attack2")
 						print("Light attack 2 used")
@@ -160,7 +160,7 @@ func _input(event):
 						combo_timer.start()
 						combo = 3
 				3:
-					if player_animations.animation == "idle":
+					if player_animations.animation in ["idle", "walk"]:
 						combo_timer.stop()
 						player_animations.play("light_attack3")
 						light_attack_3.enableHitBox()
