@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://b2xx8mxpxmx6u"]
+[gd_scene load_steps=46 format=3 uid="uid://b2xx8mxpxmx6u"]
 
 [ext_resource type="Script" path="res://Scenes/cerberus.gd" id="1_ar32v"]
 [ext_resource type="Texture2D" uid="uid://baf4uh7dl7fet" path="res://assets/enemies/Cerberus/cerberus_attack.png" id="2_jo6yc"]
@@ -125,6 +125,18 @@ region = Rect2(0, 32, 48, 32)
 atlas = ExtResource("6_eoi42")
 region = Rect2(48, 32, 48, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ms6on"]
+atlas = ExtResource("4_ccavs")
+region = Rect2(0, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mi0we"]
+atlas = ExtResource("4_ccavs")
+region = Rect2(96, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3o77"]
+atlas = ExtResource("4_ccavs")
+region = Rect2(144, 0, 48, 64)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_7hcg4"]
 animations = [{
 "frames": [{
@@ -238,6 +250,20 @@ animations = [{
 "loop": true,
 "name": &"black_run",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ms6on")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mi0we")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e3o77")
+}],
+"loop": false,
+"name": &"break",
+"speed": 2.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vojvr"]
@@ -258,7 +284,7 @@ script = ExtResource("1_ar32v")
 [node name="wolf_animation" type="AnimatedSprite2D" parent="."]
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_7hcg4")
-animation = &"black_idle"
+animation = &"break"
 
 [node name="Area2D" type="Area2D" parent="wolf_animation"]
 collision_layer = 2

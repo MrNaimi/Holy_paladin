@@ -7,7 +7,7 @@ var cerb_charged = true
 var copy = false
 var returning = false
 var og_position
-var speed = 200.0
+var speed = 250.0
 var player_chase = false
 var player = null
 @export var health = 3
@@ -34,12 +34,14 @@ func _physics_process(delta: float) -> void:
 			else:
 				wolf_animation.flip_h = true
 		#Pistää suden jahtaamaan pelaajaa
-		if player_chase && !wolf_animation.animation == (colour + "_hit") && !wolf_animation.animation == (colour + "_death") && !wolf_animation.animation == (colour + "_attack"):
+		if player_chase and wolf_animation.animation not in [colour + "_hit", colour + "_death", colour + "_attack", "break"]:
 			wolf_animation.play(colour + "_run")
 			velocity = Vector2(1, 0)
 			if  cerb_charged:
+				speed = 250
 				print("CERB CHARGING")
 				timer.start()
+				
 				if player.position[0] > position[0]:
 					wolf_animation.flip_h = true
 				else:
@@ -50,12 +52,6 @@ func _physics_process(delta: float) -> void:
 				cerb_charged = false
 			
 			position += charg_d * speed * delta
-			
-			
-			# Hyökkää pelaajaan jos etäisyys on alle 25
-			if position.distance_to(player.position)<25:
-				print("Wolf attacked player")
-				wolf_animation.play(colour + "_attack")
 		
 		#Palauttaa suden takaisin alkuperäisellä paikalleen
 		elif returning:
@@ -86,8 +82,6 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("attack"):
 		print("Wolf has taken damage")
 		health -= area.damage
-		if health > 0:
-			wolf_animation.play(colour + "_hit")
 		if health <= 0:
 			print("Wolf has died")
 			GlobalVariables.xp += 1
@@ -106,4 +100,8 @@ func _on_aggro_off_body_exited(body: Node2D) -> void:
 
 
 func _on_timer_timeout() -> void:
+	speed = 0
+	wolf_animation.stop()
+	wolf_animation.play("break")
+	await get_tree().create_timer(1).timeout
 	cerb_charged = true

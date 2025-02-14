@@ -80,15 +80,15 @@ func _ready():
 	noise = noise_height_text.noise
 	#noise.seed = RandomNumberGenerator.new().randi_range(0,200)
 	generate_world()
-	#spawn_cerberus(Vector2(0,0))
+	spawn_cerberus(Vector2(0,0))
 	if kohtaus == 1:
 		GlobalVariables.player_spawn_location = get_ground_tile()
-		for i in 50:
-			spawn_imp(get_ground_tile())
-		for i in 25:
-			spawn_wolf(get_ground_tile())
-		for i in 10:
-			spawn_wizard(get_ground_tile())
+		#for i in 50:
+			#spawn_imp(get_ground_tile())
+		#for i in 25:
+			#spawn_wolf(get_ground_tile())
+		#for i in 10:
+			#spawn_wizard(get_ground_tile())
 	if kohtaus == 0:
 		GlobalVariables.player_spawn_location = get_grass_tile()
 		for i in 50:
