@@ -21,6 +21,7 @@ func _ready():
 	og_position = position
 	colour = "black"
 func _physics_process(delta: float) -> void:
+	GlobalVariables.cerberus_health = health
 	move_and_slide()
 	
 	if is_instance_valid(wolf_animation):
@@ -74,19 +75,22 @@ func _on_detection_area_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		player = body
 		player_chase = true
+		GlobalVariables.cerb_hp_bar = true
 		#boss_sound.play(0)
 	
 
 #Susi ottaa damagea kun siihen lyödään ja kuolee kun healtti menee nollaan.
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("attack"):
-		print("Wolf has taken damage")
+		print("Cerb has taken damage")
+		print(GlobalVariables.cerberus_health)
 		health -= area.damage
 		if health <= 0:
 			print("Wolf has died")
 			GlobalVariables.xp += 1
 			wolf_animation.play(colour + "_death")
 			await get_tree().create_timer(1).timeout
+			GlobalVariables.cerb_hp_bar = false
 			wolves.queue_free()
 	if area.is_in_group("player"):
 		area.get_parent().hurt(damage)

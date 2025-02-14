@@ -31,7 +31,7 @@ var grass_atlas = Vector2i(5,2) #ruohon kordinaatti tilesetissä
 var tree_atlas = Vector2i(0,0)# puu kordinaatti
 
 #tileset kytkin
-var kohtaus = 1
+@export var kohtaus = 0
 
 #kamera, kyl te tiedätte
 @onready var camera_2d = $"../../Player/Camera2D"
@@ -91,12 +91,12 @@ func _ready():
 			#spawn_wizard(get_ground_tile())
 	if kohtaus == 0:
 		GlobalVariables.player_spawn_location = get_grass_tile()
-		for i in 50:
-			spawn_imp(get_grass_tile())
-		for i in 25:
-			spawn_wolf(get_grass_tile())
-		for i in 10:
-			spawn_wizard(get_grass_tile())
+		#for i in 50:
+			#spawn_imp(get_grass_tile())
+		#for i in 25:
+			#spawn_wolf(get_grass_tile())
+		#for i in 10:
+			#spawn_wizard(get_grass_tile())
 		
 	generate_road(START_POS, END_POS)
 	
@@ -130,20 +130,20 @@ func generate_world():
 	
 	#testinä äänen korkein ja pienin arvo, eri kuvioilla on eri arvot niin pitää säätää elif noise_val > -0.5: if noise_val <=-0.5: sopiviksi
 	if kohtaus == 0:
-		for x in range(-width,width):
-			for y in range(-height, height):
+		for x in range(-width/2,width/2):
+			for y in range(-height/2, height/2):
 				var noise_val : float = noise.get_noise_2d(x,y)
 				noise_val_arr.append(noise_val)
 				
-				if noise_val <=-0.45:
-					if noise_val < -0.80:
+				if noise_val <=-0.40:
+					if noise_val < -0.70:
 						tree_tiles_arr.append(Vector2i(x,y))
 						tree_tilemaplayer.set_cell(Vector2i(x,y),tree_id,tree_atlas)
 					#place grass
 					grass_tiles_arr.append(Vector2i(x,y))
 					grass_tilemaplayer.set_cell(Vector2i(x,y),forest_id, grass_atlas)
 					
-				elif noise_val > -0.45:
+				elif noise_val > -0.46:
 					#place water
 					water_tiles_arr.append(Vector2i(x,y))
 					water_tilemaplayer.set_cell(Vector2i(x,y),forest_id,water_atlas)
@@ -167,7 +167,7 @@ const INF = 999999999999.0
 var START_POS = Vector2i(0,0)  # Replace with actual start position
 var END_POS = Vector2i(74, 60)  # Replace with actual end position
 
-var grid_size: Vector2i = Vector2i(75, 75)  # Adjust based on your map size
+var grid_size: Vector2i = Vector2i(width/2, height/2)  # Adjust based on your map size
 
 func get_noise_value(pos: Vector2i) -> float:
 	var index: int = (pos.y + grid_size.y) * (2 * grid_size.x) + (pos.x + grid_size.x)
@@ -255,7 +255,7 @@ func reconstruct_path(came_from: Dictionary, current: Vector2i) -> void:
 		current = came_from[current]
 
 
-var ROAD_WIDTH = 1  # Set the road width (2x2 tiles around the center)
+var ROAD_WIDTH = 2  # Set the road width (2x2 tiles around the center)
 
 func place_road_tile(pos: Vector2i) -> void:
 	# Place multiple tiles around the current road tile
@@ -264,8 +264,12 @@ func place_road_tile(pos: Vector2i) -> void:
 			var new_pos = pos + Vector2i(dx, dy)
 			# Ensure the tile is within bounds and valid
 			if is_valid_tile(new_pos):
-				ground2_tiles_arr.append(new_pos)
-				ground2_tilemaplayer.set_cell(Vector2i(new_pos.x, new_pos.y), road_id, road_atlas)
+				if kohtaus == 1:
+					ground2_tiles_arr.append(new_pos)
+					ground2_tilemaplayer.set_cell(Vector2i(new_pos.x, new_pos.y), road_id, road_atlas)
+				elif kohtaus == 0:
+					tree_tiles_arr.append(new_pos)
+					tree_tilemaplayer.set_cell(Vector2i(new_pos.x, new_pos.y), road_id, road_atlas)
 				#print("Placing road tile at:", new_pos)
 	GlobalVariables.roadGenerated = true
 

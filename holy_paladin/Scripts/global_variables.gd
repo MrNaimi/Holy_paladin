@@ -14,5 +14,8 @@ extends Node
 @onready var playerpos = null
 @onready var flip_h = false
 
+@onready var cerberus_health = 20
+@onready var cerb_hp_bar = false
+
 @onready var roadGenerated = false
 @onready var player_spawn_location = Vector2(0,0)

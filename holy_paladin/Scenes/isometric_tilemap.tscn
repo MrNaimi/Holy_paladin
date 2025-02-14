@@ -1,4 +1,4 @@
-[gd_scene load_steps=257 format=3 uid="uid://ccxc8igku0gv2"]
+[gd_scene load_steps=261 format=3 uid="uid://ccxc8igku0gv2"]
 
 [ext_resource type="Script" path="res://Scripts/character_body_2d.gd" id="2_srydx"]
 [ext_resource type="Script" path="res://Scripts/proc_gen_world.gd" id="2_yevhn"]
@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://dy7py0ogwtnt3" path="res://assets/main_char/spell_effect.png" id="16_hwrqj"]
 [ext_resource type="Texture2D" uid="uid://diajx13vkcvx1" path="res://assets/ui_assets/side_panel.png" id="16_vxlxv"]
 [ext_resource type="Texture2D" uid="uid://ccq0p45py4klj" path="res://assets/ui_assets/progressbar2.png" id="17_i30bc"]
+[ext_resource type="Script" path="res://Scenes/boss_health.gd" id="18_5ctoa"]
 [ext_resource type="Texture2D" uid="uid://bvq4enmmx2qan" path="res://assets/ui_assets/progressbarframe2.png" id="18_jlcyx"]
 [ext_resource type="Texture2D" uid="uid://bgpc5hwgc6wte" path="res://assets/ui_assets/swordicon.png" id="19_njt3m"]
 [ext_resource type="Texture2D" uid="uid://bkf8ht2oj1lya" path="res://assets/ui_assets/swordframe.png" id="20_1nm4v"]
@@ -1669,6 +1670,15 @@ animations = [{
 "speed": 15.0
 }]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gdefn"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_484rr"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3nlwv"]
+bg_color = Color(1, 1, 1, 1)
+
 [node name="root" type="Node2D"]
 
 [node name="Node2D" type="TileMapLayer" parent="."]
@@ -1855,6 +1865,32 @@ frame = 10
 frame_progress = 1.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="boss_health" type="ProgressBar" parent="CanvasLayer"]
+z_index = 6
+z_as_relative = false
+offset_left = 597.0
+offset_top = 76.0
+offset_right = 1430.0
+offset_bottom = 114.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_gdefn")
+max_value = 20.0
+step = 1.0
+value = 15.0
+show_percentage = false
+script = ExtResource("18_5ctoa")
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/boss_health"]
+visible = false
+z_index = -1
+layout_mode = 0
+offset_right = 832.0
+offset_bottom = 38.0
+theme_override_styles/background = SubResource("StyleBoxFlat_484rr")
+theme_override_styles/fill = SubResource("StyleBoxFlat_3nlwv")
+max_value = 20.0
+step = 1.0
+value = 18.0
 
 [node name="BottomLeft" type="Control" parent="CanvasLayer"]
 layout_mode = 3
