@@ -1164,7 +1164,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_vojvr"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_do47e"]
+radius = 14.0357
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5882t"]
 radius = 198.091
@@ -1180,14 +1181,15 @@ damage = 10
 
 [node name="wolf_animation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_7hcg4")
-animation = &"mushroom_hit"
+animation = &"mushroom_attack"
 
 [node name="Area2D" type="Area2D" parent="wolf_animation"]
 collision_layer = 2
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="wolf_animation/Area2D"]
-shape = SubResource("CircleShape2D_vojvr")
+position = Vector2(-1, 7)
+shape = SubResource("CircleShape2D_do47e")
 
 [node name="detection_area" type="Area2D" parent="."]
 position = Vector2(59, 1)
@@ -1199,6 +1201,7 @@ position = Vector2(-58, -2)
 shape = SubResource("CircleShape2D_5882t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 11)
 shape = SubResource("CircleShape2D_3wmkj")
 
 [node name="Aggro_off" type="Area2D" parent="."]

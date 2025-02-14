@@ -43,13 +43,13 @@ func _physics_process(delta: float) -> void:
 			position += direction * speed * delta
 			
 			# Hyökkää pelaajaan jos etäisyys on alle 25
-			if position.distance_to(player.position)<60:
+			if position.distance_to(player.position)<80:
 				print("Wizard attacked player")
 				wizard_animation.play("attack")
 				direction = ((player.position-Vector2(0, 20)) - position).normalized()
 				speed = 30
 
-			if position.distance_to(player.position)>100:
+			if position.distance_to(player.position)>120:
 				wizard_animation.play("run")
 				speed = 75
 			

@@ -83,6 +83,10 @@ func get_input():
 #checkaa mouse inputin kun clickaa. toistaa atm vaan animaation kerran
 func _input(event):
 	
+	if event.is_action_pressed("esc"):
+		if skill_tree.visible:
+				skill_tree.visible = false
+				
 	if event.is_action_pressed("talents"):
 		if skill_tree.visible:
 			skill_tree.visible = false

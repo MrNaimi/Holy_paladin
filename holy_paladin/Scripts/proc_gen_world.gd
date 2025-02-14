@@ -296,13 +296,11 @@ func spawn_cerberus(x):
 	add_child(cerberus)	
 	
 func get_ground_tile():
-	
 	var max = ground_tiles_arr.size()-1
 	var max_2 = ground2_tiles_arr.size()-1
 			
 	# Valitaan random ground tile olemassa olevasta listasta
 	var chosen_tile = ground_tiles_arr[rng.randi_range(0, max)]
-	
 	while is_a_mountain(chosen_tile) == true:
 		chosen_tile = ground_tiles_arr[rng.randi_range(0, max)]
 	
