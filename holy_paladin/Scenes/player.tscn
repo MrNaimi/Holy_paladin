@@ -1,4 +1,4 @@
-[gd_scene load_steps=220 format=3 uid="uid://cueyrv570jtl"]
+[gd_scene load_steps=219 format=3 uid="uid://cueyrv570jtl"]
 
 [ext_resource type="Script" path="res://Scripts/character_body_2d.gd" id="1_hire5"]
 [ext_resource type="Texture2D" uid="uid://bi0tlkjtfs2y8" path="res://assets/main_char/spr_Dash_strip.png" id="2_hcqiy"]
@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://dtv8cwd2jlsfs" path="res://assets/main_char/spr_SpinAttack_strip.png" id="8_prwhg"]
 [ext_resource type="Texture2D" uid="uid://car77rc5f1o1u" path="res://assets/main_char/spr_Taunt_strip.png" id="9_lrkb1"]
 [ext_resource type="Texture2D" uid="uid://bivq4c0rrbutb" path="res://assets/main_char/spr_Walk_strip.png" id="10_k4jrj"]
-[ext_resource type="Script" path="res://Scripts/control.gd" id="11_6awl3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xopwu"]
 size = Vector2(9.22389, 9.22393)
@@ -1531,61 +1530,6 @@ frame_progress = 1.0
 position = Vector2(7.11524, -8.30109)
 scale = Vector2(0.592936, 0.592936)
 zoom = Vector2(5, 5)
-
-[node name="Control" type="Control" parent="Camera2D"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -232.0
-offset_top = -86.0001
-offset_right = -188.0
-offset_bottom = -46.0001
-script = ExtResource("11_6awl3")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Camera2D/Control"]
-layout_mode = 0
-offset_left = -148.0
-offset_top = -132.0
-offset_right = -58.0
-offset_bottom = -1.00005
-
-[node name="x" type="Label" parent="Camera2D/Control/VBoxContainer"]
-layout_mode = 2
-text = "x"
-
-[node name="character_x" type="Label" parent="Camera2D/Control/VBoxContainer"]
-layout_mode = 2
-text = "character_x"
-
-[node name="y" type="Label" parent="Camera2D/Control/VBoxContainer"]
-layout_mode = 2
-text = "y"
-
-[node name="character_y" type="Label" parent="Camera2D/Control/VBoxContainer"]
-layout_mode = 2
-text = "character_x"
-
-[node name="viewportsize" type="Label" parent="Camera2D/Control/VBoxContainer"]
-layout_mode = 2
-text = "viewportsize"
-
-[node name="characterspeed" type="Label" parent="Camera2D/Control/VBoxContainer"]
-layout_mode = 2
-text = "characterspeed
-"
-
-[node name="combotimer" type="Label" parent="Camera2D/Control/VBoxContainer"]
-layout_mode = 2
-text = "0s
-"
-
-[node name="pierucounter" type="Label" parent="Camera2D/Control/VBoxContainer"]
-layout_mode = 2
-text = "pierucounter"
-
-[node name="processpeed" type="Label" parent="Camera2D/Control/VBoxContainer"]
-layout_mode = 2
-text = "0s
-"
 
 [node name="ComboTimer" type="Timer" parent="."]
 one_shot = true

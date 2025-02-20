@@ -493,5 +493,5 @@ texture = ExtResource("18_cvk4f")
 [connection signal="timeout" from="restofthecontrols/background3/controlshider" to="." method="_on_controlshider_timeout"]
 [connection signal="timeout" from="bottomlefttutorial/bottomlefthider" to="." method="_on_bottomlefthider_timeout"]
 [connection signal="timeout" from="minimaptutorial/Toplefthighlight/toplefthider" to="." method="_on_toplefthider_timeout"]
-[connection signal="timeout" from="petergotohell/petergotohellhider" to="." method="_on_petergotohellhider_timeout"]
 [connection signal="timeout" from="petergotohell/petergotohellhider" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="petergotohell/petergotohellhider" to="." method="_on_petergotohellhider_timeout"]

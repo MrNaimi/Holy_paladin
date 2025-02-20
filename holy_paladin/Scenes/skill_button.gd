@@ -5,6 +5,7 @@ class_name SkillNode
 @onready var SkillBranch: Line2D = $SkillBranch
 @export var MaxLevel:int = 3
 @onready var skill_tree: Control = $"../.."
+@onready var skillinfo: Label = $skillinfo
 
 @export var SkillName: String
 @export var shareParent: bool
@@ -25,6 +26,7 @@ var level: int = 0:
 		SkillLevel.text = str(level) + "/" + str(MaxLevel)
 
 func _ready() -> void:
+	skillinfo.visible=false
 	unlocked = false
 	process_mode = PROCESS_MODE_INHERIT
 	self.self_modulate = Color(0.5, 0.5, 0.5)
@@ -169,9 +171,18 @@ func check_all_skills(SkillName : String) -> void:
 			"5% Cooldown Reduction":
 				if SkillTree.Skills[SkillName]["unlock"]:
 					print("cooldowns reduced")
-					dash_cooldown_timer.wait_time = dash_cooldown_timer.wait_time * 0.95
-					spell_cooldown_timer.wait_time = spell_cooldown_timer.wait_time * 0.95
+					if dash_cooldown_timer != null:
+						dash_cooldown_timer.wait_time = dash_cooldown_timer.wait_time * 0.95
+						spell_cooldown_timer.wait_time = spell_cooldown_timer.wait_time * 0.95
 				else:
 					print("cooldowns normal")
 					dash_cooldown_timer.wait_time = dash_cooldown_timer.wait_time * 1.05
 					spell_cooldown_timer.wait_time = spell_cooldown_timer.wait_time * 1.05
+
+
+func _on_mouse_entered() -> void:
+	skillinfo.visible = true
+	skillinfo.text = SkillName
+
+func _on_mouse_exited() -> void:
+	skillinfo.visible = false

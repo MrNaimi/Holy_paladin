@@ -7,8 +7,8 @@ extends Node2D
 # sopivat arvot if-lauseisiin
 @export var noise_height_text : NoiseTexture2D
 var noise : Noise #Noise proc_gen_world
-var width : int = 150
-var height : int = 150
+var width : int = 600
+var height : int = 600
 var y = 1
 
 #ENEMY REFERENCES
