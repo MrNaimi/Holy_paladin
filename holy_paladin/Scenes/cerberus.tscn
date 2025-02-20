@@ -1,11 +1,11 @@
 [gd_scene load_steps=46 format=3 uid="uid://b2xx8mxpxmx6u"]
 
 [ext_resource type="Script" path="res://Scenes/cerberus.gd" id="1_ar32v"]
-[ext_resource type="Texture2D" uid="uid://baf4uh7dl7fet" path="res://assets/enemies/Cerberus/cerberus_attack.png" id="2_jo6yc"]
-[ext_resource type="Texture2D" uid="uid://b1yir01igm2e" path="res://assets/enemies/Cerberus/cerberus_hit.png" id="3_nfi3v"]
-[ext_resource type="Texture2D" uid="uid://biwbmsmd22ga" path="res://assets/enemies/Cerberus/cerberus_death.png" id="4_ccavs"]
-[ext_resource type="Texture2D" uid="uid://ctyukoei38gul" path="res://assets/enemies/Cerberus/cerberus_idle.png" id="5_tfvqy"]
-[ext_resource type="Texture2D" uid="uid://c7aohxb687vwx" path="res://assets/enemies/Cerberus/cerberus_run.png" id="6_eoi42"]
+[ext_resource type="Texture2D" uid="uid://baf4uh7dl7fet" path="res://assets/tiles/isometric tileset/Cerberus/cerberus_attack.png" id="2_jo6yc"]
+[ext_resource type="Texture2D" uid="uid://b1yir01igm2e" path="res://assets/tiles/isometric tileset/Cerberus/cerberus_hit.png" id="3_nfi3v"]
+[ext_resource type="Texture2D" uid="uid://biwbmsmd22ga" path="res://assets/tiles/isometric tileset/Cerberus/cerberus_death.png" id="4_ccavs"]
+[ext_resource type="Texture2D" uid="uid://ctyukoei38gul" path="res://assets/tiles/isometric tileset/Cerberus/cerberus_idle.png" id="5_tfvqy"]
+[ext_resource type="Texture2D" uid="uid://c7aohxb687vwx" path="res://assets/tiles/isometric tileset/Cerberus/cerberus_run.png" id="6_eoi42"]
 [ext_resource type="AudioStream" uid="uid://cx3aaej2luowt" path="res://Sounds/pieru.ogg" id="8_56gsk"]
 [ext_resource type="Texture2D" uid="uid://bnarrg080m3de" path="res://assets/ui_assets/enemyicon.png" id="27_ysfik"]
 
