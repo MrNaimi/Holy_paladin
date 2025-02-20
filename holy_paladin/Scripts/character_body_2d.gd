@@ -227,5 +227,6 @@ func _on_animation_timer_timeout() -> void:
 
 
 func _on_jump_timer_timeout() -> void:
+	player.global_position = (Vector2(1974, 2272))
 	jumping = false
 	

@@ -76,7 +76,7 @@ func _on_detection_area_body_entered(body: Node2D) -> void:
 		player = body
 		player_chase = true
 		GlobalVariables.cerb_hp_bar = true
-		#boss_sound.play(0)
+		boss_sound.play(0)
 	
 
 #Susi ottaa damagea kun siihen lyödään ja kuolee kun healtti menee nollaan.

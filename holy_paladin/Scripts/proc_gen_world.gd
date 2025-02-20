@@ -79,50 +79,57 @@ func _input(event): #zoom control, helpompi kattoa karttaa
 func _ready():
 	noise = noise_height_text.noise
 	#noise.seed = RandomNumberGenerator.new().randi_range(0,200)
-	generate_world()
-	spawn_cerberus(Vector2(0,0))
+	#kohtaus = 1
+	
+	generate_world(0)
+	kohtaus = 1
+	generate_world(-200)
+	kohtaus = 0
+	spawn_cerberus(Vector2(2512,1915))
 	if kohtaus == 1:
 		GlobalVariables.player_spawn_location = get_ground_tile()
-		#for i in 50:
-			#spawn_imp(get_ground_tile())
-		#for i in 25:
-			#spawn_wolf(get_ground_tile())
-		#for i in 10:
-			#spawn_wizard(get_ground_tile())
+	
 	if kohtaus == 0:
 		GlobalVariables.player_spawn_location = get_grass_tile()
-		#for i in 50:
-			#spawn_imp(get_grass_tile())
-		#for i in 25:
-			#spawn_wolf(get_grass_tile())
-		#for i in 10:
-			#spawn_wizard(get_grass_tile())
+	for i in 50:
+		spawn_imp(get_grass_tile())
+	for i in 25:
+		spawn_wolf(get_grass_tile())
 		
+	for i in 50:
+		spawn_imp(get_ground_tile())
+	for i in 10:
+		spawn_wizard(get_ground_tile())
+	
 	generate_road(START_POS, END_POS)
 	
-func generate_world():
+func generate_world(offset):
 	#Käydään koko map läpi eli 100 x 200, josta tulee neljö isometric tilet on 32x16. 
 	if kohtaus == 1:
+		var i
+		var j
 		for x in range(-width/2, width/2):
+			i = x + offset
 			for y in range(-height/2, height/2):
-				var noise_val: float = noise.get_noise_2d(x, y)
+				j = y + offset
+				var noise_val: float = noise.get_noise_2d(i, j)
 				#print("Noise value at position ", Vector2i(x, y), ": ", noise_val)
 				noise_val_arr.append(noise_val)
 				
 				#jos generoidun "äänen" arvo on <=-0.5 
 				if noise_val <=-0.4:
 					if noise_val <=-0.70:
-						ground2_tiles_arr.append(Vector2i(x,y))
-						ground2_tilemaplayer.set_cell(Vector2i(x,y), source_id, ground2_atlas)
+						ground2_tiles_arr.append(Vector2i(i,j))
+						ground2_tilemaplayer.set_cell(Vector2i(i,j), source_id, ground2_atlas)
 					#place land
-					ground_tiles_arr.append(Vector2i(x,y))
-					ground_tilemaplayer.set_cell(Vector2i(x,y),source_id, land_atlas)
+					ground_tiles_arr.append(Vector2i(i,j))
+					ground_tilemaplayer.set_cell(Vector2i(i,j),source_id, land_atlas)
 					
 				elif noise_val > -0.46:
 					#0.45987845468521
 					#place lava
-					lava_tiles_arr.append(Vector2i(x,y))
-					lava_tilemaplayer.set_cell(Vector2i(x,y),source_id,lava_atlas)
+					lava_tiles_arr.append(Vector2i(i,j))
+					lava_tilemaplayer.set_cell(Vector2i(i,j),source_id,lava_atlas)
 					
 	
 	
@@ -130,7 +137,7 @@ func generate_world():
 	
 	#testinä äänen korkein ja pienin arvo, eri kuvioilla on eri arvot niin pitää säätää elif noise_val > -0.5: if noise_val <=-0.5: sopiviksi
 	if kohtaus == 0:
-		for x in range(-width/2,width/2):
+		for x in range(-width/2, width/2):
 			for y in range(-height/2, height/2):
 				var noise_val : float = noise.get_noise_2d(x,y)
 				noise_val_arr.append(noise_val)
@@ -318,7 +325,7 @@ func get_ground_tile():
 	return(tile_position)
 
 func is_a_mountain(x):
-	var max_2 = ground2_tiles_arr.size()-1
+	var max_2 = ground2_tiles_arr.size()
 	for i in range(max_2):
 		if x == ground2_tiles_arr[i]:
 			return(true)
@@ -328,28 +335,22 @@ func is_a_mountain(x):
 	
 func get_grass_tile():
 	
-	var max = grass_tiles_arr.size()-1
-	var max_2 = tree_tiles_arr.size()-1
-			
 	# Valitaan random ground tile olemassa olevasta listasta
-	var chosen_tile = grass_tiles_arr[rng.randi_range(0, max)]
-	
+	var chosen_tile = grass_tiles_arr.pick_random()
 	while is_a_tree(chosen_tile):
-		chosen_tile = grass_tiles_arr[rng.randi_range(0, max)]
-	
-	
+		chosen_tile = grass_tiles_arr.pick_random()
 	# Otetaan valitun ground tile:n sijainti map_to_local(Vector2i) functiolla. (Muutetaan Vector2i -> Vector2)
 	var tile_position = grass_tilemaplayer.map_to_local(chosen_tile)
 	
 	while player_close(tile_position):
-		chosen_tile = grass_tiles_arr[rng.randi_range(0, max)]
+		chosen_tile = grass_tiles_arr.pick_random()
 		tile_position = grass_tilemaplayer.map_to_local(chosen_tile)
 
 	#print("One of the ground tiles is: " , tile_position)
 	return(tile_position)
 
 func is_a_tree(x):
-	var max_2 = tree_tiles_arr.size()-1
+	var max_2 = tree_tiles_arr.size()
 	for i in range(max_2):
 		if x == tree_tiles_arr[i]:
 			return(true)
