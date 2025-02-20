@@ -34,6 +34,7 @@
 [ext_resource type="Texture2D" uid="uid://b486rd107mtba" path="res://assets/ui_assets/talent-tree.png" id="29_0uu7g"]
 [ext_resource type="Script" path="res://Scenes/minimap.gd" id="31_6a4dr"]
 [ext_resource type="PackedScene" uid="uid://dhobm16afu2ww" path="res://tutorial.tscn" id="31_w85f4"]
+[ext_resource type="PackedScene" uid="uid://cevx55vdb0mcw" path="res://pause_menu.tscn" id="33_3m1pa"]
 
 [sub_resource type="TileSet" id="TileSet_df3ou"]
 tile_shape = 1
@@ -2515,6 +2516,7 @@ frame = 10
 frame_progress = 1.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
 
 [node name="boss_health" type="ProgressBar" parent="CanvasLayer"]
 z_index = 6
@@ -2830,6 +2832,23 @@ offset_bottom = -7.0
 scale = Vector2(1, 1)
 
 [node name="Tutorial" parent="CanvasLayer" instance=ExtResource("31_w85f4")]
+visible = false
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("33_3m1pa")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1117.0
+offset_top = -708.0
+offset_right = -1117.0
+offset_bottom = -708.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(2, 2)
+size_flags_horizontal = 4
+metadata/_edit_use_anchors_ = true
 
 [connection signal="animation_finished" from="Node2D/Player/Player_animations" to="Node2D/Player" method="_on_player_animations_animation_finished"]
 [connection signal="timeout" from="Node2D/Player/AttackHitboxes/Light_attack1/HitBoxTimer" to="Node2D/Player/AttackHitboxes/Light_attack1" method="_on_hit_box_timer_timeout"]

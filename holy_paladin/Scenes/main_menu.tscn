@@ -1,6 +1,37 @@
-[gd_scene load_steps=2 format=3 uid="uid://bveqtni388phf"]
+[gd_scene load_steps=15 format=3 uid="uid://bveqtni388phf"]
 
 [ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_fm1ic"]
+[ext_resource type="Texture2D" uid="uid://tsobgtmg6m3g" path="res://assets/ui_assets/mainmenu/peterbanner.png" id="2_hc5s4"]
+[ext_resource type="FontFile" uid="uid://ofihhycy11m7" path="res://assets/fonts/scarbes.regular.ttf" id="3_7a48f"]
+[ext_resource type="Texture2D" uid="uid://hlqvq5oy0d15" path="res://assets/ui_assets/mainmenu/button_pressed.png" id="4_thiuo"]
+[ext_resource type="Texture2D" uid="uid://tichhr4w04i7" path="res://assets/ui_assets/mainmenu/button.png" id="5_x3pvd"]
+
+[sub_resource type="Theme" id="Theme_addtk"]
+default_font = ExtResource("3_7a48f")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0ob0a"]
+texture = ExtResource("4_thiuo")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0mv0j"]
+texture = ExtResource("4_thiuo")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ob1qi"]
+texture = ExtResource("4_thiuo")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c6p5n"]
+texture = ExtResource("5_x3pvd")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_khfw5"]
+texture = ExtResource("5_x3pvd")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_agbk7"]
+texture = ExtResource("4_thiuo")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jwds8"]
+texture = ExtResource("4_thiuo")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wqfwm"]
+texture = ExtResource("5_x3pvd")
 
 [node name="main_menu" type="Control"]
 layout_mode = 3
@@ -20,21 +51,71 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.233925, 0.233925, 0.233925, 1)
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+scale = Vector2(1.07383, 0.866774)
+texture = ExtResource("2_hc5s4")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 892.0
+offset_top = 42.0
+offset_right = -21.0
+offset_bottom = -830.0
+theme = SubResource("Theme_addtk")
+theme_override_colors/font_color = Color(1, 0.151344, 0.108333, 1)
+theme_override_constants/shadow_offset_x = 23
+theme_override_constants/outline_size = 18
+theme_override_constants/shadow_outline_size = 23
+theme_override_fonts/font = ExtResource("3_7a48f")
+theme_override_font_sizes/font_size = 200
+text = "Peter, go to hell!"
+
 [node name="quit" type="Button" parent="."]
-layout_mode = 0
-offset_left = 600.0
-offset_top = 435.0
-offset_right = 1325.0
-offset_bottom = 783.0
-text = "QUit Gmae"
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1050.0
+offset_top = 700.0
+offset_right = -270.0
+offset_bottom = -130.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("3_7a48f")
+theme_override_font_sizes/font_size = 150
+theme_override_styles/focus = SubResource("StyleBoxTexture_0ob0a")
+theme_override_styles/hover = SubResource("StyleBoxTexture_0mv0j")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ob1qi")
+theme_override_styles/normal = SubResource("StyleBoxTexture_c6p5n")
+text = "Quit Game"
 
 [node name="start" type="Button" parent="."]
-layout_mode = 0
-offset_left = 615.0
-offset_top = 172.0
-offset_right = 1286.0
-offset_bottom = 413.0
-text = "Start"
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1050.0
+offset_top = 400.0
+offset_right = -270.0
+offset_bottom = -430.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("3_7a48f")
+theme_override_font_sizes/font_size = 150
+theme_override_styles/focus = SubResource("StyleBoxTexture_khfw5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_agbk7")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_jwds8")
+theme_override_styles/normal = SubResource("StyleBoxTexture_wqfwm")
+text = "Play"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(959, 540)
 
 [connection signal="pressed" from="quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="start" to="." method="_on_start_pressed"]

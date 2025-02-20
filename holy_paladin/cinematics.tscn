@@ -13,6 +13,17 @@ offset_bottom = -22.0
 scale = Vector2(36.2959, 12.0315)
 color = Color(0, 0, 0, 1)
 
+[node name="Label" type="Label" parent="."]
+offset_left = 984.0
+offset_top = 30.0
+offset_right = 2026.0
+offset_bottom = 720.0
+theme_override_font_sizes/font_size = 50
+text = "And to 
+hell 
+he goes 
+..."
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(484, 151)
 texture = ExtResource("1_1j3fq")

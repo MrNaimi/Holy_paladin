@@ -29,6 +29,10 @@ const LEVEL_UP = preload("res://Scenes/level_up.tscn")
 
 const WOLVES = preload("res://Scenes/wolves.tscn")
 const IMPS = preload("res://Scenes/imps.tscn")
+
+@onready var pause_menu: Control = $"../../CanvasLayer/PauseMenu"
+
+
 @onready var viewport = get_viewport()
 
 
@@ -82,7 +86,6 @@ func get_input():
 			
 #checkaa mouse inputin kun clickaa. toistaa atm vaan animaation kerran
 func _input(event):
-	
 	if event.is_action_pressed("esc"):
 		if skill_tree.visible:
 			skill_tree.visible = false
