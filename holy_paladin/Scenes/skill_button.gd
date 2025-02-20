@@ -12,8 +12,6 @@ class_name SkillNode
 @export var sharedParent: SkillNode
 @export var sharedChild: SkillNode
 @onready var SkillBranch2: Line2D = $SkillBranch2
-@onready var dash_cooldown_timer: Timer = $Node2D/Player/Timers/DashCooldownTimer
-@onready var spell_cooldown_timer: Timer = $Node2D/Player/Timers/SpellCooldownTimer
 
 
 var unlocked
@@ -124,6 +122,7 @@ func _on_pressed() -> void:
 	
 	
 	var skills = get_children()
+
 	
 	skills.append(sharedChild)
 	
@@ -170,16 +169,71 @@ func check_all_skills(SkillName : String) -> void:
 					print("dmg lowered again")
 			"5% Cooldown Reduction":
 				if SkillTree.Skills[SkillName]["unlock"]:
-					print("cooldowns reduced")
-					if dash_cooldown_timer != null:
-						dash_cooldown_timer.wait_time = dash_cooldown_timer.wait_time * 0.95
-						spell_cooldown_timer.wait_time = spell_cooldown_timer.wait_time * 0.95
+					print("Spell cooldowns reduced")
+					GlobalVariables.spellTimer = GlobalVariables.spellTimer * 0.95
 				else:
-					print("cooldowns normal")
-					dash_cooldown_timer.wait_time = dash_cooldown_timer.wait_time * 1.05
-					spell_cooldown_timer.wait_time = spell_cooldown_timer.wait_time * 1.05
-
-
+					print("Spell cooldowns normal")
+					GlobalVariables.spellTimer = GlobalVariables.spellTimer * 1.05
+			"Jump":
+				pass
+			"10% Non-Spell Cooldown Reduction":
+				if SkillTree.Skills[SkillName]["unlock"]:
+					print("Non-Spell Cooldowns reduced")
+					GlobalVariables.dashTimer = GlobalVariables.dashTimer * 0.95
+				else:
+					print("Non-Spell Cooldowns normal")
+					GlobalVariables.dashTimer = GlobalVariables.dashTimer * 1.05
+			"Taunt":
+				pass
+			"+10% Armor":
+				if SkillTree.Skills[SkillName]["unlock"]:
+					print("Armor Increased")
+					GlobalVariables.playerArmor = GlobalVariables.playerArmor * 1.1
+				else:
+					print("Armor Decreased")
+					GlobalVariables.playerArmor = GlobalVariables.playerArmor * 0.9
+			"Holy Shield":
+				pass
+			"+5% Attack Damage 2":
+				if SkillTree.Skills[SkillName]["unlock"]:
+					GlobalVariables.basicAttackDamage = GlobalVariables.basicAttackDamage * 1.05
+					print("Dmg added once again")
+				else:
+					GlobalVariables.basicAttackDamage = GlobalVariables.baseBasicAttackDamage * 0.95
+					print("Dmg lowered once again")
+			"+10% Health":
+				if SkillTree.Skills[SkillName]["unlock"]:
+					GlobalVariables.playerHealth = GlobalVariables.playerHealth * 1.1
+					print("Health Increased")
+				else:
+					GlobalVariables.playerHealth = GlobalVariables.playerHealth * 0.9
+					print("Health Decreased")
+			"+5% Attack Damage 3":
+				if SkillTree.Skills[SkillName]["unlock"]:
+					GlobalVariables.basicAttackDamage = GlobalVariables.basicAttackDamage * 1.05
+					print("Damage added OOOONCE again!")
+				else:
+					GlobalVariables.basicAttackDamage = GlobalVariables.baseBasicAttackDamage * 0.95
+					print("Damage reduced again again again.")
+			"+5% Spell Damage":
+				if SkillTree.Skills[SkillName]["unlock"]:
+					GlobalVariables.spellDamage = GlobalVariables.spellDamage * 1.05
+					print("Spell damage increased.")
+				else:
+					GlobalVariables.spellDamage = GlobalVariables.spellDamage * 0.95
+					print("Spell damage reduced.")
+			"Extra Dash":
+				pass
+			"Taunt Buff":
+				pass
+			"Holy Shield Buff":
+				pass
+			"Leap":
+				pass
+			"Spin":
+				pass
+			"AoE":
+				pass
 func _on_mouse_entered() -> void:
 	skillinfo.visible = true
 	skillinfo.text = SkillName

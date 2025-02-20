@@ -95,45 +95,8 @@ func _input(event):
 			skill_tree.visible = false
 		else:
 			skill_tree.visible = true
-	
-	if event.is_action_pressed("dash") and dash_cooldown_timer.is_stopped() and skill_tree.checkSkill("Dash"):
-		dash_cooldown_timer.start()
-		print("Player used dash")
-		invincibility_timer.start()
-		get_tree().create_tween().tween_property(self, "position", Vector2(position.x+velocity.x-10, position.y+velocity.y-10),0.3)
-		if velocity.x > 0:
-			player_animations.flip_h = false
-			GlobalVariables.flip_h = false
-		elif velocity.x < 0:
-			player_animations.flip_h = true
-			GlobalVariables.flip_h = true
-		player_animations.play("dash")
-		animation_timer.start()
-		dashing = true
-	
-	if event.is_action_pressed("jump") and jump_timer.is_stopped():
-		jump_timer.start()
-		print("Player used jump")
-		player_animations.play("jump")
-		animation_timer.start()
-		jumping = true
 			
 	if true:
-		if event.is_action_pressed("taunt") and spell_cooldown_timer.is_stopped():
-			spell_cooldown_timer.start()
-			print("Player used taunt/spell")
-			#Seuraa pelaajan hiirtä ja heittää spell hitboxin siihen.
-			var mouse_pos = get_global_mouse_position()
-			var player_pos = player.global_transform.origin + Vector2(0, -15)
-			var distance = player_pos.distance_to(mouse_pos)
-			var mouse_dir = (mouse_pos-player_pos).normalized()
-			if distance > spell_radius:
-				mouse_pos = player_pos + (mouse_dir*spell_radius)
-			spell_collision.global_transform.origin = mouse_pos
-			spell_animation.global_transform.origin = mouse_pos + Vector2(-27, 4)
-			
-			player_animations.play("taunt")
-			spell.enableHitBox()
 			
 		if event.is_action_pressed("attack") and !skill_tree.visible:
 			print("Mouse 1 clicked")
@@ -232,4 +195,76 @@ func _on_animation_timer_timeout() -> void:
 func _on_jump_timer_timeout() -> void:
 	player.global_position = (Vector2(1974, 2272))
 	jumping = false
+
+
+
+
+func useAbility(ability : String):
 	
+	#DASH KÄYTTÖ
+	if ability == "Dash":
+		if dash_cooldown_timer.is_stopped() and skill_tree.checkSkill("Dash"):
+			dash_cooldown_timer.start()
+			print("Player used dash")
+			invincibility_timer.start()
+			get_tree().create_tween().tween_property(self, "position", Vector2(position.x+velocity.x-10, position.y+velocity.y-10),0.3)
+			if velocity.x > 0:
+				player_animations.flip_h = false
+				GlobalVariables.flip_h = false
+			elif velocity.x < 0:
+				player_animations.flip_h = true
+				GlobalVariables.flip_h = true
+			player_animations.play("dash")
+			animation_timer.start()
+			dashing = true
+	if ability == "Holy Projectile":
+		if spell_cooldown_timer.is_stopped():
+			spell_cooldown_timer.start()
+			print("Player used taunt/spell")
+			#Seuraa pelaajan hiirtä ja heittää spell hitboxin siihen.
+			var mouse_pos = get_global_mouse_position()
+			var player_pos = player.global_transform.origin + Vector2(0, -15)
+			var distance = player_pos.distance_to(mouse_pos)
+			var mouse_dir = (mouse_pos-player_pos).normalized()
+			if distance > spell_radius:
+				mouse_pos = player_pos + (mouse_dir*spell_radius)
+			spell_collision.global_transform.origin = mouse_pos
+			spell_animation.global_transform.origin = mouse_pos + Vector2(-27, 4)
+			
+			player_animations.play("taunt")
+			spell.enableHitBox()
+	if ability == "Jump":
+		if jump_timer.is_stopped():
+			jump_timer.start()
+			print("Player used jump")
+			invincibility_timer.start()
+			get_tree().create_tween().tween_property(self, "position", Vector2(position.x+velocity.x-5, position.y+velocity.y-5),1)
+			if velocity.x > 0:
+				player_animations.flip_h = false
+				GlobalVariables.flip_h = false
+			elif velocity.x < 0:
+				player_animations.flip_h = true
+				GlobalVariables.flip_h = true
+			player_animations.play("jump")
+			animation_timer.start()
+			jumping = true
+
+func _on_action_1_pressed() -> void:
+	if !GlobalVariables.unlockedSkills.is_empty():
+		useAbility(GlobalVariables.unlockedSkills[0])
+
+func _on_action_2_pressed() -> void:
+	if GlobalVariables.unlockedSkills.size() >= 2:
+		useAbility(GlobalVariables.unlockedSkills[1])
+
+func _on_action_3_pressed() -> void:
+	if GlobalVariables.unlockedSkills.size() >= 3:
+		useAbility(GlobalVariables.unlockedSkills[2])
+
+func _on_action_4_pressed() -> void:
+	if GlobalVariables.unlockedSkills.size() >= 4:
+		useAbility(GlobalVariables.unlockedSkills[3])
+
+func _on_action_5_pressed() -> void:
+	if GlobalVariables.unlockedSkills.size() == 5:
+		useAbility(GlobalVariables.unlockedSkills[4])

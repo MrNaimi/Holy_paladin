@@ -21,6 +21,8 @@
 [ext_resource type="Script" path="res://Scripts/light_attack_1.gd" id="13_127up"]
 [ext_resource type="AudioStream" uid="uid://cx3aaej2luowt" path="res://Sounds/pieru.ogg" id="14_ti6kv"]
 [ext_resource type="Script" path="res://Scenes/spell.gd" id="15_61hig"]
+[ext_resource type="Script" path="res://Scenes/dash_cooldown_timer.gd" id="15_jysi1"]
+[ext_resource type="Script" path="res://Scenes/spell_cooldown_timer.gd" id="16_fxrdo"]
 [ext_resource type="Texture2D" uid="uid://dy7py0ogwtnt3" path="res://assets/main_char/spell_effect.png" id="16_hwrqj"]
 [ext_resource type="Texture2D" uid="uid://diajx13vkcvx1" path="res://assets/ui_assets/side_panel.png" id="16_vxlxv"]
 [ext_resource type="Texture2D" uid="uid://ccq0p45py4klj" path="res://assets/ui_assets/progressbar2.png" id="17_i30bc"]
@@ -30,7 +32,9 @@
 [ext_resource type="Texture2D" uid="uid://bkf8ht2oj1lya" path="res://assets/ui_assets/swordframe.png" id="20_1nm4v"]
 [ext_resource type="Texture2D" uid="uid://5p8aha2knxya" path="res://assets/ui_assets/dashicon.png" id="26_4ffth"]
 [ext_resource type="Texture2D" uid="uid://ce55r2wn51p4o" path="res://assets/ui_assets/cooldownframe.png" id="27_mq58b"]
+[ext_resource type="Script" path="res://Scenes/action_bar.gd" id="28_8xgnj"]
 [ext_resource type="Texture2D" uid="uid://dnd67rq2yqc5o" path="res://assets/ui_assets/spellicon.png" id="28_m34q7"]
+[ext_resource type="PackedScene" uid="uid://dhs2r34b1plbb" path="res://Scenes/actionBarButton.tscn" id="28_ulse0"]
 [ext_resource type="Texture2D" uid="uid://b486rd107mtba" path="res://assets/ui_assets/talent-tree.png" id="29_0uu7g"]
 [ext_resource type="Script" path="res://Scenes/minimap.gd" id="31_6a4dr"]
 [ext_resource type="PackedScene" uid="uid://dhobm16afu2ww" path="res://tutorial.tscn" id="31_w85f4"]
@@ -2165,6 +2169,9 @@ size = Vector2(14.7435, 38.461)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sv3m8"]
 size = Vector2(17.6637, 46.0516)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_foms1"]
+radius = 26.0892
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yxxps"]
 
 [sub_resource type="Animation" id="Animation_b50fd"]
@@ -2385,8 +2392,8 @@ shape = SubResource("RectangleShape2D_xopwu")
 [node name="Player_animations" type="AnimatedSprite2D" parent="Node2D/Player"]
 position = Vector2(5.92936, -28.4609)
 sprite_frames = SubResource("SpriteFrames_4mljv")
-animation = &"light_attack1"
-frame = 10
+animation = &"jump"
+frame = 21
 frame_progress = 1.0
 
 [node name="AttackHitboxes" type="Node2D" parent="Node2D/Player"]
@@ -2447,6 +2454,18 @@ one_shot = true
 [node name="HitBoxStartTimer" type="Timer" parent="Node2D/Player/AttackHitboxes/Light_attack3"]
 one_shot = true
 
+[node name="JumpHitBox" type="Area2D" parent="Node2D/Player/AttackHitboxes"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Player/AttackHitboxes/JumpHitBox"]
+position = Vector2(21.3457, 0)
+shape = SubResource("CircleShape2D_foms1")
+
+[node name="HitBoxTimer" type="Timer" parent="Node2D/Player/AttackHitboxes/JumpHitBox"]
+one_shot = true
+
+[node name="HitBoxStartTimer" type="Timer" parent="Node2D/Player/AttackHitboxes/JumpHitBox"]
+one_shot = true
+
 [node name="Area2D" type="Area2D" parent="Node2D/Player" groups=["player"]]
 position = Vector2(-1.18587, 0)
 
@@ -2470,10 +2489,12 @@ wait_time = 0.7
 [node name="DashCooldownTimer" type="Timer" parent="Node2D/Player/Timers"]
 wait_time = 3.0
 one_shot = true
+script = ExtResource("15_jysi1")
 
 [node name="SpellCooldownTimer" type="Timer" parent="Node2D/Player/Timers"]
 wait_time = 5.0
 one_shot = true
+script = ExtResource("16_fxrdo")
 
 [node name="JumpTimer" type="Timer" parent="Node2D/Player/Timers"]
 wait_time = 3.0
@@ -2736,6 +2757,72 @@ text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="ActionBar" type="Control" parent="CanvasLayer/BottomLeft/progressbars"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("28_8xgnj")
+
+[node name="Action1" parent="CanvasLayer/BottomLeft/progressbars/ActionBar" instance=ExtResource("28_ulse0")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 264.0
+offset_top = 568.0
+offset_right = 247.0
+offset_bottom = 551.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Action2" parent="CanvasLayer/BottomLeft/progressbars/ActionBar" instance=ExtResource("28_ulse0")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 433.0
+offset_top = 622.0
+offset_right = 416.0
+offset_bottom = 605.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Action3" parent="CanvasLayer/BottomLeft/progressbars/ActionBar" instance=ExtResource("28_ulse0")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 589.0
+offset_top = 719.0
+offset_right = 572.0
+offset_bottom = 702.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Action4" parent="CanvasLayer/BottomLeft/progressbars/ActionBar" instance=ExtResource("28_ulse0")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 719.0
+offset_top = 857.0
+offset_right = 702.0
+offset_bottom = 840.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Action5" parent="CanvasLayer/BottomLeft/progressbars/ActionBar" instance=ExtResource("28_ulse0")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 755.0
+offset_top = 1030.0
+offset_right = 738.0
+offset_bottom = 1013.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="TalentTree" type="Control" parent="CanvasLayer"]
 visible = false
 layout_mode = 3
@@ -2864,3 +2951,8 @@ metadata/_edit_use_anchors_ = true
 [connection signal="timeout" from="Node2D/Spell/HitBoxStartTimer" to="Node2D/Spell" method="_on_hit_box_start_timer_timeout"]
 [connection signal="animation_finished" from="Node2D/Spell/AnimatedSprite2D" to="Node2D/Spell" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="pressed" from="CanvasLayer/BottomLeft/VBoxContainer2/quit_button" to="Node2D/Player" method="_on_quit_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/BottomLeft/progressbars/ActionBar/Action1" to="Node2D/Player" method="_on_action_1_pressed"]
+[connection signal="pressed" from="CanvasLayer/BottomLeft/progressbars/ActionBar/Action2" to="Node2D/Player" method="_on_action_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/BottomLeft/progressbars/ActionBar/Action3" to="Node2D/Player" method="_on_action_3_pressed"]
+[connection signal="pressed" from="CanvasLayer/BottomLeft/progressbars/ActionBar/Action4" to="Node2D/Player" method="_on_action_4_pressed"]
+[connection signal="pressed" from="CanvasLayer/BottomLeft/progressbars/ActionBar/Action5" to="Node2D/Player" method="_on_action_5_pressed"]

@@ -7,8 +7,16 @@ extends Node
 @onready var skillpoints = 3
 @onready var basicAttackDamage = 1
 @onready var baseBasicAttackDamage = 1
+@onready var spellDamage = 3
 @onready var playerSpeed = Vector2(100, 100)
 @onready var playerHealth = 100
+@onready var playerArmor = 50
+
+#Cooldown timers
+@onready var dashTimer = 3.0
+@onready var spellTimer = 5.0
+
+@onready var unlockedSkills = []
 
 @onready var tween_direction
 @onready var playerpos = null

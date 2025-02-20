@@ -1,0 +1,90 @@
+[gd_scene load_steps=6 format=3 uid="uid://dhs2r34b1plbb"]
+
+[ext_resource type="Texture2D" uid="uid://df4dvj5gw5qcx" path="res://assets/ui_assets/paladin_icons/Icon13.png" id="1_0fk0a"]
+[ext_resource type="Script" path="res://Scenes/action_bar_button.gd" id="2_06ywg"]
+[ext_resource type="Texture2D" uid="uid://dqv18lv1iktov" path="res://assets/ui_assets/spell-frame.png" id="3_4b8f6"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_k7fox"]
+
+[sub_resource type="Shortcut" id="Shortcut_f5px4"]
+events = [SubResource("InputEventKey_k7fox")]
+
+[node name="ActionBarButton" type="TextureButton"]
+anchors_preset = -1
+anchor_right = 0.083
+anchor_bottom = 0.148
+offset_right = -136.36
+offset_bottom = -136.84
+scale = Vector2(5, 5)
+shortcut = SubResource("Shortcut_f5px4")
+texture_normal = ExtResource("1_0fk0a")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("2_06ywg")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.35
+offset_top = -11.4
+offset_right = 19.65
+offset_bottom = 20.6
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.75, 0.75)
+step = 0.01
+fill_mode = 5
+texture_progress = ExtResource("1_0fk0a")
+tint_progress = Color(0.160784, 0.160784, 0.160784, 0.584314)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="Time" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Key" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -49.2
+offset_right = 40.0
+offset_bottom = -26.2
+grow_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+vertical_alignment = 2
+
+[node name="Border" type="TextureRect" parent="."]
+modulate = Color(0.158472, 0.158472, 0.158472, 1)
+layout_mode = 0
+offset_left = -6.4
+offset_top = -6.4
+offset_right = 37.6
+offset_bottom = 37.6
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("3_4b8f6")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
