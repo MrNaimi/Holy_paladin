@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://h5wegxwjyhii"]
+[gd_scene load_steps=3 format=3 uid="uid://h5wegxwjyhii"]
 
 [ext_resource type="Script" path="res://Scenes/death.gd" id="1_h0qg6"]
+[ext_resource type="FontFile" uid="uid://ofihhycy11m7" path="res://assets/fonts/scarbes.regular.ttf" id="2_pgd3n"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_h0qg6")
@@ -11,21 +12,57 @@ offset_bottom = 1087.0
 color = Color(0, 0, 0, 1)
 
 [node name="Label" type="Label" parent="ColorRect"]
-layout_mode = 0
-offset_left = 694.0
-offset_top = 467.0
-offset_right = 1292.0
-offset_bottom = 599.0
-theme_override_font_sizes/font_size = 66
-text = "Peter has died..."
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -567.5
+offset_top = -343.5
+offset_right = 567.5
+offset_bottom = -211.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_pgd3n")
+theme_override_font_sizes/font_size = 150
+text = "Unfortunately, Peter has perished..."
 
-[node name="Button" type="Button" parent="ColorRect"]
-layout_mode = 0
-offset_left = 702.0
-offset_top = 590.0
-offset_right = 1188.0
-offset_bottom = 721.0
-theme_override_font_sizes/font_size = 55
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.5
+offset_top = -77.0
+offset_right = 125.5
+offset_bottom = 77.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Try Again" type="Button" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("2_pgd3n")
+theme_override_font_sizes/font_size = 100
 text = "Try again"
 
-[connection signal="pressed" from="ColorRect/Button" to="." method="_on_button_pressed"]
+[node name="Main Menu" type="Button" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("2_pgd3n")
+theme_override_font_sizes/font_size = 100
+text = "Main Menu"
+
+[node name="Quit Game" type="Button" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("2_pgd3n")
+theme_override_font_sizes/font_size = 100
+text = "Quit Game"
+
+[connection signal="pressed" from="ColorRect/VBoxContainer/Try Again" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/Main Menu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/Quit Game" to="." method="_on_quit_game_pressed"]

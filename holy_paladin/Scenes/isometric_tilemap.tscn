@@ -1,4 +1,4 @@
-[gd_scene load_steps=266 format=4 uid="uid://ccxc8igku0gv2"]
+[gd_scene load_steps=274 format=4 uid="uid://ccxc8igku0gv2"]
 
 [ext_resource type="Script" path="res://Scripts/character_body_2d.gd" id="2_srydx"]
 [ext_resource type="Script" path="res://Scripts/proc_gen_world.gd" id="2_yevhn"]
@@ -30,6 +30,8 @@
 [ext_resource type="Texture2D" uid="uid://bvq4enmmx2qan" path="res://assets/ui_assets/progressbarframe2.png" id="18_jlcyx"]
 [ext_resource type="Texture2D" uid="uid://bgpc5hwgc6wte" path="res://assets/ui_assets/swordicon.png" id="19_njt3m"]
 [ext_resource type="Texture2D" uid="uid://bkf8ht2oj1lya" path="res://assets/ui_assets/swordframe.png" id="20_1nm4v"]
+[ext_resource type="Texture2D" uid="uid://cmsofhsoq8gxm" path="res://assets/ui_assets/bosshealthbarkoriste.png" id="23_rm0xe"]
+[ext_resource type="FontFile" uid="uid://ofihhycy11m7" path="res://assets/fonts/scarbes.regular.ttf" id="23_wf48i"]
 [ext_resource type="Texture2D" uid="uid://5p8aha2knxya" path="res://assets/ui_assets/dashicon.png" id="26_4ffth"]
 [ext_resource type="Texture2D" uid="uid://ce55r2wn51p4o" path="res://assets/ui_assets/cooldownframe.png" id="27_mq58b"]
 [ext_resource type="Script" path="res://Scenes/action_bar.gd" id="28_8xgnj"]
@@ -2546,12 +2548,18 @@ offset_left = 597.0
 offset_top = 76.0
 offset_right = 1430.0
 offset_bottom = 114.0
+theme_override_constants/outline_size = 20
 theme_override_styles/fill = SubResource("StyleBoxFlat_gdefn")
 max_value = 20.0
 step = 1.0
 value = 15.0
 show_percentage = false
 script = ExtResource("18_5ctoa")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/boss_health"]
+position = Vector2(-13, 17)
+scale = Vector2(3.56818, 2.59848)
+texture = ExtResource("23_rm0xe")
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/boss_health"]
 visible = false
@@ -2564,6 +2572,19 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_3nlwv")
 max_value = 20.0
 step = 1.0
 value = 18.0
+
+[node name="Boss_name" type="Label" parent="CanvasLayer/boss_health"]
+layout_mode = 0
+offset_top = -54.0
+offset_right = 835.0
+offset_bottom = 1.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = 0
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("23_wf48i")
+theme_override_font_sizes/font_size = 60
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="BottomLeft" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -2922,20 +2943,7 @@ scale = Vector2(1, 1)
 visible = false
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("33_3m1pa")]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -1117.0
-offset_top = -708.0
-offset_right = -1117.0
-offset_bottom = -708.0
-grow_horizontal = 0
-grow_vertical = 0
 scale = Vector2(2, 2)
-size_flags_horizontal = 4
-metadata/_edit_use_anchors_ = true
 
 [connection signal="animation_finished" from="Node2D/Player/Player_animations" to="Node2D/Player" method="_on_player_animations_animation_finished"]
 [connection signal="timeout" from="Node2D/Player/AttackHitboxes/Light_attack1/HitBoxTimer" to="Node2D/Player/AttackHitboxes/Light_attack1" method="_on_hit_box_timer_timeout"]

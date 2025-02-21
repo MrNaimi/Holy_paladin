@@ -1,6 +1,36 @@
-[gd_scene load_steps=2 format=3 uid="uid://cevx55vdb0mcw"]
+[gd_scene load_steps=14 format=3 uid="uid://cevx55vdb0mcw"]
 
 [ext_resource type="Script" path="res://pause_menu.gd" id="1_uu3rk"]
+[ext_resource type="FontFile" uid="uid://ofihhycy11m7" path="res://assets/fonts/scarbes.regular.ttf" id="2_73bpl"]
+[ext_resource type="Texture2D" uid="uid://hlqvq5oy0d15" path="res://assets/ui_assets/mainmenu/button_pressed.png" id="3_54mvp"]
+[ext_resource type="Texture2D" uid="uid://tichhr4w04i7" path="res://assets/ui_assets/mainmenu/button.png" id="4_twqu3"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ifvdt"]
+texture = ExtResource("3_54mvp")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vf0gl"]
+texture = ExtResource("3_54mvp")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_if7h8"]
+texture = ExtResource("4_twqu3")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s68wq"]
+texture = ExtResource("3_54mvp")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fr382"]
+texture = ExtResource("3_54mvp")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m8wnu"]
+texture = ExtResource("4_twqu3")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jadeb"]
+texture = ExtResource("3_54mvp")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bgc22"]
+texture = ExtResource("3_54mvp")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1vfjx"]
+texture = ExtResource("4_twqu3")
 
 [node name="PauseMenu" type="Control"]
 layout_mode = 3
@@ -11,38 +41,78 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
 script = ExtResource("1_uu3rk")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 0
-offset_left = -21.0
-offset_top = -19.0
-offset_right = 141.0
-offset_bottom = 184.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -175.0
+offset_right = 150.0
+offset_bottom = 175.0
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(1, 1.00254)
-color = Color(0.129822, 0.235251, 0.128543, 1)
+color = Color(0.345098, 0.0862745, 0.0745098, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 0
-offset_right = 70.0
-offset_bottom = 113.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -132.0
+offset_right = 128.0
+offset_bottom = 132.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 
 [node name="Resume" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("2_73bpl")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/hover = SubResource("StyleBoxTexture_ifvdt")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_vf0gl")
+theme_override_styles/normal = SubResource("StyleBoxTexture_if7h8")
 text = "Resume	"
+
+[node name="MainMenu" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("2_73bpl")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/hover = SubResource("StyleBoxTexture_s68wq")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_fr382")
+theme_override_styles/normal = SubResource("StyleBoxTexture_m8wnu")
+text = "Main Menu"
 
 [node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("2_73bpl")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/hover = SubResource("StyleBoxTexture_jadeb")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_bgc22")
+theme_override_styles/normal = SubResource("StyleBoxTexture_1vfjx")
 text = "Quit"
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("2_73bpl")
+theme_override_font_sizes/font_size = 60
 text = "Volume"
 horizontal_alignment = 1
 
@@ -50,4 +120,5 @@ horizontal_alignment = 1
 layout_mode = 2
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
