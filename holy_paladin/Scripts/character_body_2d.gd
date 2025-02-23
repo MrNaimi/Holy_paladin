@@ -46,6 +46,8 @@ const IMPS = preload("res://Scenes/imps.tscn")
 
 @onready var camera_2d: Camera2D = $Camera2D
 
+@onready var spin_hit_box: Area2D = $AttackHitboxes/SpinHitBox
+@onready var jump_hit_box: Area2D = $AttackHitboxes/JumpHitBox
 @onready var light_attack_1: Area2D = $AttackHitboxes/Light_attack1
 @onready var light_attack_2: Area2D = $AttackHitboxes/Light_attack2
 @onready var light_attack_3: Area2D = $AttackHitboxes/Light_attack3
@@ -193,7 +195,7 @@ func _on_animation_timer_timeout() -> void:
 
 
 func _on_jump_timer_timeout() -> void:
-	player.global_position = (Vector2(1974, 2272))
+	#player.global_position = (Vector2(1974, 2272))
 	jumping = false
 
 
@@ -248,6 +250,37 @@ func useAbility(ability : String):
 			player_animations.play("jump")
 			animation_timer.start()
 			jumping = true
+			jump_hit_box.enableHitBox()
+			
+	if ability == "Taunt":
+		#Needs to be implemented
+		pass
+	if ability == "Holy Shield":
+		#Needs to be implemented
+		pass
+	if ability == "Leap":
+		#Needs to be implemented
+		pass
+	if ability == "Spin":
+		if jump_timer.is_stopped():
+			jump_timer.start()
+			print("Player used Spin")
+			invincibility_timer.start()
+			get_tree().create_tween().tween_property(self, "position", Vector2(position.x+velocity.x-5, position.y+velocity.y-5),0.8)
+			if velocity.x > 0:
+				player_animations.flip_h = false
+				GlobalVariables.flip_h = false
+			elif velocity.x < 0:
+				player_animations.flip_h = true
+				GlobalVariables.flip_h = true
+			player_animations.play("spin_attack")
+			animation_timer.start()
+			jumping = true
+			spin_hit_box.enableHitBox()
+			
+	if ability == "AoE":
+		#Needs to be implemented
+		pass
 
 func _on_action_1_pressed() -> void:
 	if !GlobalVariables.unlockedSkills.is_empty():

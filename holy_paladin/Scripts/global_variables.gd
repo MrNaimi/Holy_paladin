@@ -4,7 +4,7 @@ extends Node
 @onready var level = 1
 @onready var xp_threshold = 1
 @onready var talentpoints = 0
-@onready var skillpoints = 3
+@onready var skillpoints = 10
 @onready var basicAttackDamage = 1
 @onready var baseBasicAttackDamage = 1
 @onready var spellDamage = 3
