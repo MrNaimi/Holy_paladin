@@ -1,4 +1,4 @@
-[gd_scene load_steps=314 format=4 uid="uid://ccxc8igku0gv2"]
+[gd_scene load_steps=324 format=4 uid="uid://ccxc8igku0gv2"]
 
 [ext_resource type="Texture2D" uid="uid://c1u7xxtpn8piw" path="res://Scenes/isometric_tilemap.tres" id="2_s8kvc"]
 [ext_resource type="Script" path="res://Scripts/character_body_2d.gd" id="2_srydx"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://exvxufprnrjy" path="res://assets/tiles/isometric tileset/hell_tileset.png" id="5_yiccv"]
 [ext_resource type="Texture2D" uid="uid://dsjtbhpiev1fy" path="res://assets/main_char/spr_Idle_strip.png" id="6_57dje"]
 [ext_resource type="Texture2D" uid="uid://duwqunfxnycdr" path="res://assets/ui_assets/minimapicon.png" id="7_b3w5b"]
+[ext_resource type="PackedScene" uid="uid://dayv5ugvahe68" path="res://Scenes/holy_projectile.tscn" id="8_l8xyx"]
 [ext_resource type="Texture2D" uid="uid://cfo4507x6nau7" path="res://assets/main_char/spr_Attack_strip.png" id="8_pa4up"]
 [ext_resource type="PackedScene" uid="uid://bilnehhyjx6rq" path="res://Scenes/skill_tree.tscn" id="8_quag0"]
 [ext_resource type="Texture2D" uid="uid://car77rc5f1o1u" path="res://assets/main_char/spr_Taunt_strip.png" id="10_gunjn"]
@@ -26,6 +27,7 @@
 [ext_resource type="Script" path="res://Scenes/spell_cooldown_timer.gd" id="16_fxrdo"]
 [ext_resource type="Texture2D" uid="uid://dy7py0ogwtnt3" path="res://assets/main_char/spell_effect.png" id="16_hwrqj"]
 [ext_resource type="Texture2D" uid="uid://diajx13vkcvx1" path="res://assets/ui_assets/side_panel.png" id="16_vxlxv"]
+[ext_resource type="Texture2D" uid="uid://w55iapkw6ded" path="res://assets/ui_assets/heal_icon.png" id="17_ebpba"]
 [ext_resource type="Texture2D" uid="uid://ccq0p45py4klj" path="res://assets/ui_assets/progressbar2.png" id="17_i30bc"]
 [ext_resource type="Script" path="res://Scenes/jump_hit_box.gd" id="17_jnte3"]
 [ext_resource type="Script" path="res://Scenes/boss_health.gd" id="18_5ctoa"]
@@ -36,6 +38,7 @@
 [ext_resource type="AudioStream" uid="uid://cbmisck6ptdtk" path="res://assets/audio_assets/lightattack2.ogg" id="19_q63cc"]
 [ext_resource type="Texture2D" uid="uid://bkf8ht2oj1lya" path="res://assets/ui_assets/swordframe.png" id="20_1nm4v"]
 [ext_resource type="AudioStream" uid="uid://nto6ujb7mnd5" path="res://assets/audio_assets/lightattack3.ogg" id="20_svidj"]
+[ext_resource type="Script" path="res://Scenes/leap_hit_box.gd" id="22_4i4f4"]
 [ext_resource type="AudioStream" uid="uid://b1xuq3eadjvff" path="res://assets/audio_assets/spin.ogg" id="23_0u27o"]
 [ext_resource type="Texture2D" uid="uid://cmsofhsoq8gxm" path="res://assets/ui_assets/bosshealthbarkoriste.png" id="23_rm0xe"]
 [ext_resource type="FontFile" uid="uid://ofihhycy11m7" path="res://assets/fonts/scarbes.regular.ttf" id="23_wf48i"]
@@ -847,6 +850,18 @@ region = Rect2(6460, 0, 170, 96)
 atlas = ExtResource("4_dlpw0")
 region = Rect2(6630, 0, 170, 96)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_508mc"]
+atlas = ExtResource("8_pa4up")
+region = Rect2(340, 0, 170, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdfba"]
+atlas = ExtResource("8_pa4up")
+region = Rect2(170, 0, 170, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6waja"]
+atlas = ExtResource("8_pa4up")
+region = Rect2(0, 0, 170, 96)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_b4ruw"]
 atlas = ExtResource("6_57dje")
 region = Rect2(0, 0, 170, 96)
@@ -1158,18 +1173,6 @@ region = Rect2(9880, 0, 260, 128)
 [sub_resource type="AtlasTexture" id="AtlasTexture_12nqm"]
 atlas = ExtResource("11_m73rl")
 region = Rect2(10140, 0, 260, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6waja"]
-atlas = ExtResource("8_pa4up")
-region = Rect2(0, 0, 170, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bdfba"]
-atlas = ExtResource("8_pa4up")
-region = Rect2(170, 0, 170, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_508mc"]
-atlas = ExtResource("8_pa4up")
-region = Rect2(340, 0, 170, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0oiem"]
 atlas = ExtResource("8_pa4up")
@@ -1597,6 +1600,20 @@ animations = [{
 }],
 "loop": false,
 "name": &"death",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_508mc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bdfba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6waja")
+}],
+"loop": false,
+"name": &"holy_projectile",
 "speed": 10.0
 }, {
 "frames": [{
@@ -2399,6 +2416,49 @@ animations = [{
 "speed": 15.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_xjjpx"]
+atlas = ExtResource("17_ebpba")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e0cov"]
+atlas = ExtResource("17_ebpba")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6subj"]
+atlas = ExtResource("17_ebpba")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6bjfq"]
+atlas = ExtResource("17_ebpba")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_85tgc"]
+atlas = ExtResource("17_ebpba")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v6rao"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xjjpx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e0cov")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6subj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6bjfq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_85tgc")
+}],
+"loop": false,
+"name": &"heal",
+"speed": 12.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mi1sv"]
 size = Vector2(48.6207, 15.4164)
 
@@ -2413,6 +2473,10 @@ radius = 26.0892
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yck88"]
 radius = 30.9237
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5403s"]
+radius = 15.4164
+height = 56.922
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yxxps"]
 
@@ -2621,6 +2685,7 @@ scale = Vector2(0.843261, 0.843261)
 collision_layer = 196
 collision_mask = 196
 script = ExtResource("2_srydx")
+holy_projectile = ExtResource("8_l8xyx")
 
 [node name="Camera2D" type="Camera2D" parent="Node2D/Player"]
 position = Vector2(7.11523, -8.30109)
@@ -2635,12 +2700,24 @@ shape = SubResource("RectangleShape2D_xopwu")
 [node name="Player_animations" type="AnimatedSprite2D" parent="Node2D/Player"]
 position = Vector2(5.92936, -28.4609)
 sprite_frames = SubResource("SpriteFrames_4mljv")
-animation = &"spin_attack"
+animation = &"holy_projectile"
+frame = 2
+frame_progress = 1.0
 
 [node name="Leap_animation" type="AnimatedSprite2D" parent="Node2D/Player"]
 position = Vector2(4.74335, -43.8773)
 sprite_frames = SubResource("SpriteFrames_52jme")
 animation = &"leap"
+frame = 37
+frame_progress = 1.0
+
+[node name="Heal_animation" type="AnimatedSprite2D" parent="Node2D/Player"]
+position = Vector2(-1.17651, -34.3811)
+scale = Vector2(0.703821, 0.703821)
+sprite_frames = SubResource("SpriteFrames_v6rao")
+animation = &"heal"
+frame = 4
+frame_progress = 1.0
 
 [node name="AttackHitboxes" type="Node2D" parent="Node2D/Player"]
 position = Vector2(0, -6.10352e-05)
@@ -2745,6 +2822,23 @@ position = Vector2(0, 6.10352e-05)
 stream = ExtResource("23_0u27o")
 bus = &"SFX"
 
+[node name="LeapHitBox" type="Area2D" parent="Node2D/Player/AttackHitboxes" groups=["attack"]]
+script = ExtResource("22_4i4f4")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Node2D/Player/AttackHitboxes/LeapHitBox"]
+position = Vector2(-0.00012207, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_5403s")
+debug_color = Color(0.982914, 0, 0.357863, 0.42)
+
+[node name="LeapHitBoxTimer2" type="Timer" parent="Node2D/Player/AttackHitboxes/LeapHitBox"]
+wait_time = 0.7
+one_shot = true
+
+[node name="LeapHitBoxStartTimer2" type="Timer" parent="Node2D/Player/AttackHitboxes/LeapHitBox"]
+wait_time = 2.0
+one_shot = true
+
 [node name="Area2D" type="Area2D" parent="Node2D/Player" groups=["player"]]
 position = Vector2(-1.18587, 0)
 
@@ -2775,6 +2869,14 @@ wait_time = 5.0
 one_shot = true
 script = ExtResource("16_fxrdo")
 
+[node name="HealCooldownTimer" type="Timer" parent="Node2D/Player/Timers"]
+wait_time = 5.0
+one_shot = true
+
+[node name="HolyProjectileCooldownTimer" type="Timer" parent="Node2D/Player/Timers"]
+wait_time = 3.0
+one_shot = true
+
 [node name="JumpTimer" type="Timer" parent="Node2D/Player/Timers"]
 wait_time = 2.0
 one_shot = true
@@ -2793,7 +2895,7 @@ libraries = {
 "": SubResource("AnimationLibrary_f11kh")
 }
 
-[node name="HealCooldownTimer" type="Timer" parent="Node2D/Player/Timers"]
+[node name="HealCooldownTimer2" type="Timer" parent="Node2D/Player/Timers"]
 wait_time = 5.0
 one_shot = true
 
@@ -3247,6 +3349,7 @@ division_amount = 40
 
 [connection signal="animation_finished" from="Node2D/Player/Player_animations" to="Node2D/Player" method="_on_player_animations_animation_finished"]
 [connection signal="animation_finished" from="Node2D/Player/Leap_animation" to="Node2D/Player" method="_on_leap_animation_animation_finished"]
+[connection signal="animation_finished" from="Node2D/Player/Heal_animation" to="Node2D/Player" method="_on_heal_animation_animation_finished"]
 [connection signal="timeout" from="Node2D/Player/AttackHitboxes/Light_attack1/HitBoxTimer" to="Node2D/Player/AttackHitboxes/Light_attack1" method="_on_hit_box_timer_timeout"]
 [connection signal="timeout" from="Node2D/Player/AttackHitboxes/Light_attack1/HitBoxStartTimer" to="Node2D/Player/AttackHitboxes/Light_attack1" method="_on_hit_box_start_timer_timeout"]
 [connection signal="timeout" from="Node2D/Player/AttackHitboxes/Light_attack2/HitBoxTimer" to="Node2D/Player/AttackHitboxes/Light_attack2" method="_on_hit_box_timer_timeout"]
@@ -3257,6 +3360,8 @@ division_amount = 40
 [connection signal="timeout" from="Node2D/Player/AttackHitboxes/JumpHitBox/JumpHitBoxStartTimer" to="Node2D/Player/AttackHitboxes/JumpHitBox" method="_on_jump_hit_box_start_timer_timeout"]
 [connection signal="timeout" from="Node2D/Player/AttackHitboxes/SpinHitBox/SpinHitBoxTimer" to="Node2D/Player/AttackHitboxes/SpinHitBox" method="_on_spin_hit_box_timer_timeout"]
 [connection signal="timeout" from="Node2D/Player/AttackHitboxes/SpinHitBox/SpinHitBoxStartTimer" to="Node2D/Player/AttackHitboxes/SpinHitBox" method="_on_spin_hit_box_start_timer_timeout"]
+[connection signal="timeout" from="Node2D/Player/AttackHitboxes/LeapHitBox/LeapHitBoxTimer2" to="Node2D/Player/AttackHitboxes/LeapHitBox" method="_on_leap_hit_box_timer_2_timeout"]
+[connection signal="timeout" from="Node2D/Player/AttackHitboxes/LeapHitBox/LeapHitBoxStartTimer2" to="Node2D/Player/AttackHitboxes/LeapHitBox" method="_on_leap_hit_box_start_timer_2_timeout"]
 [connection signal="timeout" from="Node2D/Player/Timers/ComboTimer" to="Node2D/Player" method="_on_combo_timer_timeout"]
 [connection signal="timeout" from="Node2D/Player/Timers/AnimationTimer" to="Node2D/Player" method="_on_animation_timer_timeout"]
 [connection signal="timeout" from="Node2D/Player/Timers/JumpTimer" to="Node2D/Player" method="_on_jump_timer_timeout"]

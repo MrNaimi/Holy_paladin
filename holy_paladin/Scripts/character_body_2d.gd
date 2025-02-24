@@ -27,6 +27,8 @@ const LEVEL_UP = preload("res://Scenes/level_up.tscn")
 @onready var spell: Area2D = $"../Spell"
 @onready var spell_animation: AnimatedSprite2D = $"../Spell/AnimatedSprite2D"
 @onready var leap_animation: AnimatedSprite2D = $Leap_animation
+@onready var heal_animation: AnimatedSprite2D = $Heal_animation
+
 @onready var animation_player: AnimationPlayer = $Timers/AnimationPlayer
 @onready var skill_tree: Control = $"../../CanvasLayer/SkillTree"
 
@@ -46,6 +48,8 @@ const IMPS = preload("res://Scenes/imps.tscn")
 @onready var dash_cooldown_timer: Timer = $Timers/DashCooldownTimer
 @onready var spell_cooldown_timer: Timer = $Timers/SpellCooldownTimer
 @onready var heal_cooldown_timer: Timer = $Timers/HealCooldownTimer
+@onready var holy_projectile_cooldown_timer: Timer = $Timers/HolyProjectileCooldownTimer
+
 
 @onready var jump_timer: Timer = $Timers/JumpTimer
 @onready var leap_timer: Timer = $Timers/LeapTimer
@@ -55,6 +59,8 @@ const IMPS = preload("res://Scenes/imps.tscn")
 
 @onready var spin_hit_box: Area2D = $AttackHitboxes/SpinHitBox
 @onready var jump_hit_box: Area2D = $AttackHitboxes/JumpHitBox
+@onready var leap_hit_box: Area2D = $AttackHitboxes/LeapHitBox
+
 @onready var light_attack_1: Area2D = $AttackHitboxes/Light_attack1
 @onready var light_attack_2: Area2D = $AttackHitboxes/Light_attack2
 @onready var light_attack_3: Area2D = $AttackHitboxes/Light_attack3
@@ -64,6 +70,7 @@ var attacking = false
 
 @onready var walking: AudioStreamPlayer2D = $audios/walking
 
+@export var holy_projectile: PackedScene
 
 var current_speed = 0
 func _ready():
@@ -71,6 +78,7 @@ func _ready():
 	var spell_radius = 150
 	var mouseposition = null
 	leap_animation.visible = false
+	heal_animation.visible = false
 	
 func get_input():
 	var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -116,6 +124,23 @@ func _input(event):
 			skill_tree.visible = false
 		else:
 			skill_tree.visible = true
+		
+	if event.is_action_pressed("heavy_attack"):
+		if spell_cooldown_timer.is_stopped():
+				spell_cooldown_timer.start()
+				print("Player used taunt/spell")
+				#Seuraa pelaajan hiirtä ja heittää spell hitboxin siihen.
+				var mouse_pos = get_global_mouse_position()
+				var player_pos = player.global_transform.origin + Vector2(0, -15)
+				var distance = player_pos.distance_to(mouse_pos)
+				var mouse_dir = (mouse_pos-player_pos).normalized()
+				if distance > spell_radius:
+					mouse_pos = player_pos + (mouse_dir*spell_radius)
+				spell_collision.global_transform.origin = mouse_pos
+				spell_animation.global_transform.origin = mouse_pos + Vector2(-27, 4)
+				
+				player_animations.play("taunt")
+				spell.enableHitBox()
 			
 	if true:
 			
@@ -224,7 +249,8 @@ func _on_leap_timer_timeout() -> void:
 	
 func _on_spin_timer_timeout() -> void:
 	spinning = false
-
+	
+@export var charge = 0
 
 func useAbility(ability : String):
 	
@@ -245,21 +271,19 @@ func useAbility(ability : String):
 			animation_timer.start()
 			dashing = true
 	if ability == "Holy Projectile":
-		if spell_cooldown_timer.is_stopped():
-			spell_cooldown_timer.start()
-			print("Player used taunt/spell")
-			#Seuraa pelaajan hiirtä ja heittää spell hitboxin siihen.
-			var mouse_pos = get_global_mouse_position()
-			var player_pos = player.global_transform.origin + Vector2(0, -15)
-			var distance = player_pos.distance_to(mouse_pos)
-			var mouse_dir = (mouse_pos-player_pos).normalized()
-			if distance > spell_radius:
-				mouse_pos = player_pos + (mouse_dir*spell_radius)
-			spell_collision.global_transform.origin = mouse_pos
-			spell_animation.global_transform.origin = mouse_pos + Vector2(-27, 4)
-			
-			player_animations.play("taunt")
-			spell.enableHitBox()
+		if holy_projectile_cooldown_timer.is_stopped():
+			if charge < 5:
+				charge = charge + 1
+				print(charge)
+				player_animations.play("holy_projectile")
+				var h = holy_projectile.instantiate()
+				add_child(h)
+				h.position.y -= 15
+				h.move_direction = player.global_position.direction_to(get_global_mouse_position())
+			else:
+				holy_projectile_cooldown_timer.start()
+				charge = 0
+		
 	if ability == "Jump":
 		if jump_timer.is_stopped():
 			jump_timer.start()
@@ -284,9 +308,13 @@ func useAbility(ability : String):
 			player_animations.play("taunt")
 			if GlobalVariables.playerHealth <= 95:
 				GlobalVariables.playerHealth += 5
+				heal_animation.visible = true
+				heal_animation.play("heal")
 				print("Health is now", GlobalVariables.playerHealth)
 			elif GlobalVariables.playerHealth > 95 and GlobalVariables.playerHealth < 100:
 				GlobalVariables.playerHealth = 100
+				heal_animation.visible = true
+				heal_animation.play("heal")
 				print("Health is now", GlobalVariables.playerHealth)
 			else:
 				pass
@@ -313,6 +341,13 @@ func useAbility(ability : String):
 			player_animations.visible = false
 			leap_animation.play("leap")
 			leaping = true
+			leap_hit_box.enableHitBox()
+			await get_tree().create_timer(1.7).timeout
+			if leap_animation.flip_h:
+				get_tree().create_tween().tween_property(self, "position", Vector2(position.x-90, position.y),0.1)
+			else:
+				get_tree().create_tween().tween_property(self, "position", Vector2(position.x+90, position.y),0.1)
+			
 	if ability == "Spin":
 		if spin_timer.is_stopped():
 			spin_timer.start()
@@ -366,3 +401,7 @@ func tp_hell(x):
 func _on_leap_animation_animation_finished() -> void:
 	player_animations.visible = true
 	leap_animation.visible = false
+
+
+func _on_heal_animation_animation_finished() -> void:
+	heal_animation.visible = false
