@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://dny6hegjabm6k"]
+[gd_scene load_steps=46 format=3 uid="uid://dny6hegjabm6k"]
 
 [ext_resource type="Texture2D" uid="uid://cjumo7jwc2yg" path="res://assets/enemies/evil_wizard/Attack.png" id="1_c5v3q"]
 [ext_resource type="Script" path="res://Scenes/evil_wizard.gd" id="1_x7cq1"]
@@ -269,6 +269,10 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ehy8n"]
 height = 42.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gl8wf"]
+radius = 13.0
+height = 48.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_nlkx4"]
 radius = 164.247
 
@@ -290,8 +294,21 @@ collision_layer = 2
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="wizard_animation/Area2D"]
-position = Vector2(4, 3)
+position = Vector2(-2, 3)
 shape = SubResource("CapsuleShape2D_ehy8n")
+
+[node name="fire_area" type="Area2D" parent="wizard_animation" groups=["enemy"]]
+collision_layer = 255
+collision_mask = 255
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wizard_animation/fire_area"]
+position = Vector2(38, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_gl8wf")
+debug_color = Color(0.854902, 0, 0.933333, 1)
+
+[node name="Timer" type="Timer" parent="wizard_animation/fire_area"]
+wait_time = 0.3
 
 [node name="detection_area" type="Area2D" parent="."]
 collision_layer = 129
@@ -299,6 +316,7 @@ collision_mask = 129
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area"]
 shape = SubResource("CircleShape2D_nlkx4")
+debug_color = Color(0, 0.6, 0.701961, 0.0235294)
 
 [node name="Aggro_off" type="Area2D" parent="."]
 collision_layer = 129
@@ -306,11 +324,15 @@ collision_mask = 129
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Aggro_off"]
 shape = SubResource("CircleShape2D_qjvlt")
+debug_color = Color(0, 0.6, 0.701961, 0.054902)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 16)
 shape = SubResource("CircleShape2D_mf8lj")
 
 [connection signal="area_entered" from="wizard_animation/Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="wizard_animation/fire_area" to="." method="_on_fire_area_area_entered"]
+[connection signal="area_exited" from="wizard_animation/fire_area" to="." method="_on_fire_area_area_exited"]
+[connection signal="timeout" from="wizard_animation/fire_area/Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="Aggro_off" to="." method="_on_aggro_off_body_exited"]

@@ -18,6 +18,7 @@ extends Node
 
 @onready var unlockedSkills = []
 
+@onready var helled = false
 @onready var tween_direction
 @onready var playerpos = null
 @onready var flip_h = false

@@ -1199,6 +1199,7 @@ collision_mask = 129
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area"]
 position = Vector2(-58, -2)
 shape = SubResource("CircleShape2D_5882t")
+debug_color = Color(0, 0.6, 0.701961, 0.0313726)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, 11)
@@ -1211,6 +1212,7 @@ collision_mask = 129
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Aggro_off"]
 position = Vector2(3, 2)
 shape = SubResource("CircleShape2D_fso43")
+debug_color = Color(0, 0.6, 0.701961, 0.113725)
 
 [node name="minimapicon" type="Sprite2D" parent="."]
 visible = false

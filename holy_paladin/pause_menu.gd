@@ -1,4 +1,5 @@
 extends Control
+@onready var skill_tree: Control = $"../SkillTree"
 
 @onready var margin_container: MarginContainer = $MarginContainer
 #@onready var margin_value = 5
@@ -19,7 +20,7 @@ func _process(delta: float) -> void:
 		get_tree().paused = false
 		
 func _input(event):
-	if event.is_action_pressed("pause"):
+	if event.is_action_pressed("pause") && !skill_tree.visible:
 		visible = not visible
 
 func _on_resume_pressed() -> void:

@@ -1,5 +1,10 @@
 extends CharacterBody2D
 @onready var wolves: CharacterBody2D = $"."
+@onready var hitbox: CollisionShape2D = $wizard_animation/fire_area/CollisionShape2D
+@onready var original_position = hitbox.position.x
+@onready var flipped_position = original_position * -1
+
+@onready var fire_area: Area2D = $wizard_animation/fire_area
 
 var copy = false
 var returning = false
@@ -28,6 +33,7 @@ func _physics_process(delta: float) -> void:
 			print("Wizard has turned around")
 			if wizard_animation.flip_h:
 				wizard_animation.flip_h = true
+				
 			else:
 				wizard_animation.flip_h = false
 		#Pistää suden jahtaamaan pelaajaa
@@ -37,14 +43,15 @@ func _physics_process(delta: float) -> void:
 			velocity = Vector2(1, 0)
 			if player.position[0] > position[0]:
 				wizard_animation.flip_h = false
+				hitbox.position.x = original_position
 			else:
+				hitbox.position.x = flipped_position
 				wizard_animation.flip_h = true
 			var direction = ((player.position-Vector2(0, 20)) - position).normalized()
 			position += direction * speed * delta
 			
 			# Hyökkää pelaajaan jos etäisyys on alle 25
 			if position.distance_to(player.position)<80:
-				print("Wizard attacked player")
 				wizard_animation.play("attack")
 				direction = ((player.position-Vector2(0, 20)) - position).normalized()
 				speed = 30
@@ -90,8 +97,6 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			wizard_animation.play("death")
 			await get_tree().create_timer(1).timeout
 			wolves.queue_free()
-	if area.is_in_group("player"):
-		area.get_parent().hurt(damage)
 
 #Antaa signaalin, jonka jälkeen susi alkaa palaamaan alkuperäiselle paikalleen 
 func _on_aggro_off_body_exited(body: Node2D) -> void:
@@ -99,3 +104,11 @@ func _on_aggro_off_body_exited(body: Node2D) -> void:
 		returning = true
 		player_chase = false
 		wizard_animation.play("run")
+
+
+func _on_fire_area_area_entered(area: Area2D) -> void:
+	if area.is_in_group("player"):
+		area.get_parent().hurt(damage)
+
+func _on_fire_area_area_exited(area: Area2D) -> void:
+	pass # Replace with function body.

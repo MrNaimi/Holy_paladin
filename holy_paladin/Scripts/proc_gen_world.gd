@@ -11,6 +11,7 @@ var width : int = 150
 var height : int = 150
 var y = 1
 
+@export var devmode = true
 #ENEMY REFERENCES
 const WOLVES = preload("res://Scenes/wolves.tscn")
 const IMPS = preload("res://Scenes/imps.tscn")
@@ -35,6 +36,7 @@ var tree_atlas = Vector2i(0,0)# puu kordinaatti
 
 #kamera, kyl te tiedätte
 @onready var camera_2d = $"../../Player/Camera2D"
+@onready var player: CharacterBody2D = $"../../Player"
 
 #helvetti tilet
 @onready var lava_tilemaplayer = $lava
@@ -69,12 +71,13 @@ var terrain_tree_int = 3
 var noise_val_arr =[]
 
 func _input(event): #zoom control, helpompi kattoa karttaa 
-	if Input.is_action_just_pressed("zoomout"):
-		var zoom_val = camera_2d.zoom.x + 0.1
-		camera_2d.zoom = Vector2(zoom_val,zoom_val)
-	if Input.is_action_just_pressed("zoomin"):
-		var zoom_val = camera_2d.zoom.x - 0.1
-		camera_2d.zoom = Vector2(zoom_val,zoom_val)
+	if devmode:
+		if Input.is_action_just_pressed("zoomout"):
+			var zoom_val = camera_2d.zoom.x + 0.1
+			camera_2d.zoom = Vector2(zoom_val,zoom_val)
+		if Input.is_action_just_pressed("zoomin"):
+			var zoom_val = camera_2d.zoom.x - 0.1
+			camera_2d.zoom = Vector2(zoom_val,zoom_val)
 
 func _ready():
 	noise = noise_height_text.noise
@@ -91,18 +94,22 @@ func _ready():
 	
 	if kohtaus == 0:
 		GlobalVariables.player_spawn_location = get_grass_tile()
-	for i in 50:
-		spawn_imp(get_grass_tile())
-	for i in 25:
-		spawn_wolf(get_grass_tile())
-		
-	for i in 50:
-		spawn_imp(get_ground_tile())
+	#for i in 50:
+		#spawn_imp(get_grass_tile())
+	#for i in 25:
+		#spawn_wolf(get_grass_tile())
 	for i in 10:
-		spawn_wizard(get_ground_tile())
+		spawn_wizard(get_grass_tile())	
+	#for i in 50:
+		#spawn_imp(get_ground_tile())
+	#for i in 10:
+		#spawn_wizard(get_ground_tile())
 	
 	generate_road(START_POS, END_POS)
-	
+
+func _process(delta: float) -> void:
+	if GlobalVariables.helled:
+		player.global_position = get_ground_tile()
 func generate_world(offset):
 	#Käydään koko map läpi eli 100 x 200, josta tulee neljö isometric tilet on 32x16. 
 	if kohtaus == 1:

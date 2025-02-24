@@ -1,5 +1,6 @@
 [gd_scene load_steps=277 format=4 uid="uid://ccxc8igku0gv2"]
 
+[ext_resource type="Texture2D" uid="uid://c1u7xxtpn8piw" path="res://Scenes/isometric_tilemap.tres" id="2_s8kvc"]
 [ext_resource type="Script" path="res://Scripts/character_body_2d.gd" id="2_srydx"]
 [ext_resource type="Script" path="res://Scripts/proc_gen_world.gd" id="2_yevhn"]
 [ext_resource type="Texture2D" uid="uid://bi0tlkjtfs2y8" path="res://assets/main_char/spr_Dash_strip.png" id="3_02vde"]
@@ -42,7 +43,7 @@
 [ext_resource type="Texture2D" uid="uid://b486rd107mtba" path="res://assets/ui_assets/talent-tree.png" id="29_0uu7g"]
 [ext_resource type="Script" path="res://Scenes/minimap.gd" id="31_6a4dr"]
 [ext_resource type="PackedScene" uid="uid://dhobm16afu2ww" path="res://tutorial.tscn" id="31_w85f4"]
-[ext_resource type="PackedScene" uid="uid://cevx55vdb0mcw" path="res://pause_menu.tscn" id="33_3m1pa"]
+[ext_resource type="PackedScene" path="res://pause_menu.tscn" id="33_3m1pa"]
 
 [sub_resource type="TileSet" id="TileSet_df3ou"]
 tile_shape = 1
@@ -51,19 +52,6 @@ tile_offset_axis = 1
 tile_size = Vector2i(32, 16)
 physics_layer_0/collision_layer = 17
 physics_layer_0/collision_mask = 17
-
-[sub_resource type="Gradient" id="Gradient_4w8rv"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.3, 0.9)
-colors = PackedColorArray(0.996078, 0.388235, 0, 1, 0.996078, 0, 0, 1, 0.32549, 0.172549, 0, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_6qjvh"]
-noise_type = 2
-seed = 100
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_w7ki4"]
-color_ramp = SubResource("Gradient_4w8rv")
-noise = SubResource("FastNoiseLite_6qjvh")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_je4q7"]
 texture = ExtResource("4_cd0dx")
@@ -2350,7 +2338,7 @@ tile_set = SubResource("TileSet_df3ou")
 
 [node name="proc_gen_world" type="Node2D" parent="Node2D/world"]
 script = ExtResource("2_yevhn")
-noise_height_text = SubResource("NoiseTexture2D_w7ki4")
+noise_height_text = ExtResource("2_s8kvc")
 
 [node name="lava" type="TileMapLayer" parent="Node2D/world/proc_gen_world"]
 tile_set = ExtResource("3_kg52b")
@@ -2383,16 +2371,17 @@ tile_map_data = PackedByteArray("AADGADIAAAACAAYAAADGADMAAAACAAYAAADGADQAAAACAAY
 tile_set = SubResource("TileSet_ol03m")
 
 [node name="Player" type="CharacterBody2D" parent="Node2D"]
+z_index = 3
 position = Vector2(445, 325)
 scale = Vector2(0.843261, 0.843261)
-collision_layer = 193
-collision_mask = 193
+collision_layer = 196
+collision_mask = 196
 script = ExtResource("2_srydx")
 
 [node name="Camera2D" type="Camera2D" parent="Node2D/Player"]
 position = Vector2(7.11523, -8.30109)
 scale = Vector2(0.592936, 0.592936)
-zoom = Vector2(5, 5)
+zoom = Vector2(4, 4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Player"]
 position = Vector2(2.98041e-08, -5.92937)
