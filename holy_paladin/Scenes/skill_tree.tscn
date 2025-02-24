@@ -190,7 +190,7 @@ grow_vertical = 1
 scale = Vector2(2.109, 2.109)
 texture_normal = ExtResource("12_by83v")
 MaxLevel = 1
-SkillName = "+10% Attack Damage"
+SkillName = "Heal"
 
 [node name="Tier2_2" parent="Background/Tier1_2" node_paths=PackedStringArray("sharedParent") instance=ExtResource("1_ae22c")]
 layout_mode = 1
@@ -276,7 +276,7 @@ grow_vertical = 1
 scale = Vector2(0.881587, 0.881587)
 texture_normal = ExtResource("16_6qkyg")
 MaxLevel = 1
-SkillName = "Taunt"
+SkillName = "+10% Attack Damage"
 shareParent = true
 sharedParent = NodePath("../../Tier2_3")
 

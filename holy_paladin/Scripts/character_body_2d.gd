@@ -10,6 +10,8 @@ var combo = 1
 var processiterations = 0
 var dashing
 var jumping
+var leaping
+var spinning
 @onready var SPEED = GlobalVariables.playerSpeed
 @onready var hp = GlobalVariables.playerHealth
 @export var spell_radius = 150
@@ -24,6 +26,7 @@ const LEVEL_UP = preload("res://Scenes/level_up.tscn")
 @onready var spell_collision: CollisionShape2D = $"../Spell/CollisionShape2D"
 @onready var spell: Area2D = $"../Spell"
 @onready var spell_animation: AnimatedSprite2D = $"../Spell/AnimatedSprite2D"
+@onready var leap_animation: AnimatedSprite2D = $Leap_animation
 @onready var animation_player: AnimationPlayer = $Timers/AnimationPlayer
 @onready var skill_tree: Control = $"../../CanvasLayer/SkillTree"
 
@@ -42,7 +45,11 @@ const IMPS = preload("res://Scenes/imps.tscn")
 @onready var invincibility_timer: Timer = $Timers/InvincibilityTimer
 @onready var dash_cooldown_timer: Timer = $Timers/DashCooldownTimer
 @onready var spell_cooldown_timer: Timer = $Timers/SpellCooldownTimer
+@onready var heal_cooldown_timer: Timer = $Timers/HealCooldownTimer
+
 @onready var jump_timer: Timer = $Timers/JumpTimer
+@onready var leap_timer: Timer = $Timers/LeapTimer
+@onready var spin_timer: Timer = $Timers/SpinTimer
 
 @onready var camera_2d: Camera2D = $Camera2D
 
@@ -61,6 +68,7 @@ func _ready():
 	player.global_position = GlobalVariables.player_spawn_location
 	var spell_radius = 150
 	var mouseposition = null
+	leap_animation.visible = false
 	
 func get_input():
 	var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -68,17 +76,17 @@ func get_input():
 
 	
 	if get_viewport().get_mouse_position().x >= get_viewport().size.x/2 and input_direction.x != 0:
-		if !dashing and !jumping and !attacking:
+		if !dashing and !jumping and !attacking and !leaping and !spinning:
 			player_animations.play("walk")
 		else:
 			pass
 	elif get_viewport().get_mouse_position().x <= get_viewport().size.x/2 and input_direction.x != 0:
-		if !dashing and !jumping and !attacking:
+		if !dashing and !jumping and !attacking and !leaping and !spinning:
 			player_animations.play("walk")
 		else:
 			pass
 	if input_direction.y != 0:
-		if !dashing and !jumping and !attacking:
+		if !dashing and !jumping and !attacking and !leaping and !spinning:
 			player_animations.play("walk")
 		else:
 			pass
@@ -193,12 +201,15 @@ func _on_quit_button_pressed() -> void:
 func _on_animation_timer_timeout() -> void:
 	dashing = false
 
-
 func _on_jump_timer_timeout() -> void:
 	#player.global_position = (Vector2(1974, 2272))
 	jumping = false
 
-
+func _on_leap_timer_timeout() -> void:
+	leaping = false
+	
+func _on_spin_timer_timeout() -> void:
+	spinning = false
 
 
 func useAbility(ability : String):
@@ -252,18 +263,45 @@ func useAbility(ability : String):
 			jumping = true
 			jump_hit_box.enableHitBox()
 			
-	if ability == "Taunt":
+	if ability == "Heal":
 		#Needs to be implemented
-		pass
+		if heal_cooldown_timer.is_stopped():
+			heal_cooldown_timer.start()
+			player_animations.play("taunt")
+			if GlobalVariables.playerHealth <= 95:
+				GlobalVariables.playerHealth += 5
+				print("Health is now", GlobalVariables.playerHealth)
+			elif GlobalVariables.playerHealth > 95 and GlobalVariables.playerHealth < 100:
+				GlobalVariables.playerHealth = 100
+				print("Health is now", GlobalVariables.playerHealth)
+			else:
+				pass
+			
 	if ability == "Holy Shield":
 		#Needs to be implemented
 		pass
 	if ability == "Leap":
 		#Needs to be implemented
-		pass
+		if leap_timer.is_stopped():
+			leap_timer.start()
+			print("Player used Leap")
+			invincibility_timer.start()
+			if velocity.x > 0:
+				leap_animation.flip_h = false
+			elif velocity.x < 0:
+				leap_animation.flip_h = true
+			elif velocity.x == 0:
+				if player_animations.flip_h:
+					leap_animation.flip_h = true
+				else:
+					leap_animation.flip_h = false
+			leap_animation.visible = true
+			player_animations.visible = false
+			leap_animation.play("leap")
+			leaping = true
 	if ability == "Spin":
-		if jump_timer.is_stopped():
-			jump_timer.start()
+		if spin_timer.is_stopped():
+			spin_timer.start()
 			print("Player used Spin")
 			invincibility_timer.start()
 			get_tree().create_tween().tween_property(self, "position", Vector2(position.x+velocity.x-5, position.y+velocity.y-5),0.8)
@@ -275,7 +313,7 @@ func useAbility(ability : String):
 				GlobalVariables.flip_h = true
 			player_animations.play("spin_attack")
 			animation_timer.start()
-			jumping = true
+			spinning = true
 			spin_hit_box.enableHitBox()
 			
 	if ability == "AoE":
@@ -309,3 +347,8 @@ func tp_boss():
 
 func tp_hell(x):
 	GlobalVariables.helled = true
+
+
+func _on_leap_animation_animation_finished() -> void:
+	player_animations.visible = true
+	leap_animation.visible = false
