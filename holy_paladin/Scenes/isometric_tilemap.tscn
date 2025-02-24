@@ -56,7 +56,7 @@
 [ext_resource type="Texture2D" uid="uid://b486rd107mtba" path="res://assets/ui_assets/talent-tree.png" id="29_0uu7g"]
 [ext_resource type="Script" path="res://Scenes/minimap.gd" id="31_6a4dr"]
 [ext_resource type="PackedScene" uid="uid://dhobm16afu2ww" path="res://tutorial.tscn" id="31_w85f4"]
-[ext_resource type="PackedScene" uid="uid://cevx55vdb0mcw" path="res://pause_menu.tscn" id="33_3m1pa"]
+[ext_resource type="PackedScene" path="res://pause_menu.tscn" id="33_3m1pa"]
 
 [sub_resource type="TileSet" id="TileSet_df3ou"]
 tile_shape = 1
