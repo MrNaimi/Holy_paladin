@@ -98,6 +98,9 @@ func _input(event):
 		else:
 			skill_tree.visible = true
 			
+	if event.is_action_pressed("portal") && GlobalVariables.tp_boss:
+		tp_boss()
+		
 	if true:
 			
 		if event.is_action_pressed("attack") and !skill_tree.visible:
@@ -202,7 +205,6 @@ func _on_jump_timer_timeout() -> void:
 
 
 func useAbility(ability : String):
-	
 	#DASH KÄYTTÖ
 	if ability == "Dash":
 		if dash_cooldown_timer.is_stopped() and skill_tree.checkSkill("Dash"):
@@ -301,9 +303,10 @@ func _on_action_4_pressed() -> void:
 func _on_action_5_pressed() -> void:
 	if GlobalVariables.unlockedSkills.size() == 5:
 		useAbility(GlobalVariables.unlockedSkills[4])
+		
 func tp_boss():
-	player_animations.play("jump")
 	player.global_position = (Vector2(1974, 2272))
+	GlobalVariables.tp_boss = false
 
 func tp_hell(x):
 	GlobalVariables.helled = true

@@ -1,6 +1,11 @@
 extends CharacterBody2D
 @onready var wolves: CharacterBody2D = $"."
 @onready var boss_sound: AudioStreamPlayer2D = $Boss_sound
+
+const FIREBALL = preload("res://Scenes/fireball.tscn")
+var shoot = true
+var fireball
+
 var direction = Vector2(0, 0)
 var charg_d = Vector2(0,0)
 var cerb_charged = true
@@ -27,30 +32,37 @@ func _physics_process(delta: float) -> void:
 	if is_instance_valid(wolf_animation):
 		if !wolf_animation.is_playing():
 			wolf_animation.play(colour + "_idle")
-		#Kääntää suden idle animaation suunnan 1/1500 todennäköisyydellä per frami
-		if RandomNumberGenerator.new().randi_range(0, 10000)==9 && wolf_animation.animation == colour + "_idle":
-			print("Cerberus turned")
-			if wolf_animation.flip_h:
-				wolf_animation.flip_h = false
-			else:
-				wolf_animation.flip_h = true
-		#Pistää suden jahtaamaan pelaajaa
+			
 		if player_chase and wolf_animation.animation not in [colour + "_hit", colour + "_death", colour + "_attack", "break"]:
-			wolf_animation.play(colour + "_run")
-			velocity = Vector2(1, 0)
-			if  cerb_charged:
-				speed = 250
-				print("CERB CHARGING")
-				timer.start()
+			
+			
+			
+			if cerb_charged:
+				var x = RandomNumberGenerator.new().randi_range(0, 1)
+				if x == 2:
+					wolf_animation.play(colour + "_run")
+					velocity = Vector2(1, 0)
+					#var x = RandomNumberGenerator.new().randi_range(0, 1)
+					#if x == 1:
+					speed = 250
+					#Runs straight at the player for the timers amount
+					timer.start()
+					# Runs to the right direction
+					if player.position[0] > position[0]:
+						wolf_animation.flip_h = true
+					else:
+						wolf_animation.flip_h = false
 				
-				if player.position[0] > position[0]:
-					wolf_animation.flip_h = true
+					direction = ((player.position-Vector2(0, 20)) - position).normalized()
+					charg_d = direction
+					cerb_charged = false
 				else:
-					wolf_animation.flip_h = false
-				
-				direction = ((player.position-Vector2(0, 20)) - position).normalized()
-				charg_d = direction
-				cerb_charged = false
+					for i in range(4):
+						shoot_fireball(i)
+					
+					wolf_animation.play("break")
+					#cerb_charged = false
+	
 			
 			position += charg_d * speed * delta
 		
@@ -76,7 +88,7 @@ func _on_detection_area_body_entered(body: Node2D) -> void:
 		player = body
 		player_chase = true
 		GlobalVariables.cerb_hp_bar = true
-		boss_sound.play(0)
+		#boss_sound.play(0)
 	
 
 #Susi ottaa damagea kun siihen lyödään ja kuolee kun healtti menee nollaan.
@@ -109,3 +121,22 @@ func _on_timer_timeout() -> void:
 	wolf_animation.play("break")
 	await get_tree().create_timer(1).timeout
 	cerb_charged = true
+
+func shoot_fireball(x):
+	shoot = false
+	var fireball = FIREBALL.instantiate()
+	get_tree().current_scene.add_child(fireball)
+	fireball.global_position = global_position
+	#fireball.direction = ((player.position + Vector2(0,-15) - position)+ x).normalized()
+	if x == 1:
+		fireball.direction = (Vector2(0 , 90)).normalized()
+	if x == 2:
+		fireball.direction =(Vector2(45 , 45)).normalized()
+	if x == 3:
+		fireball.direction =(Vector2(-90 , 0)).normalized()
+	if x == 4:
+		fireball.direction =(Vector2(45 , -45)).normalized()
+	print(fireball.direction)
+	#print("Enemy position:", global_position)
+	#print("Player position:", player.global_position)
+	#print("Fireball direction:", fireball.direction)

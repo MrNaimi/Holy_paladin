@@ -34,6 +34,17 @@ var tree_atlas = Vector2i(0,0)# puu kordinaatti
 #tileset kytkin
 @export var kohtaus = 0
 
+@onready var portal: Node2D = $"../../portal"
+@onready var portal_2: Node2D = $"../../portal2"
+@onready var portal_3: Node2D = $"../../portal3"
+@onready var portal_4: Node2D = $"../../portal4"
+
+#portalit
+@onready var portal_1_d
+@onready var portal_2_d
+@onready var portal_3_d
+@onready var portal_4_d
+
 #kamera, kyl te tiedätte
 @onready var camera_2d = $"../../Player/Camera2D"
 @onready var player: CharacterBody2D = $"../../Player"
@@ -85,31 +96,49 @@ func _ready():
 	#kohtaus = 1
 	
 	generate_world(0)
-	kohtaus = 1
-	generate_world(-200)
-	kohtaus = 0
+	#kohtaus = 1
+	#generate_world(-200)
+	#kohtaus = 0
 	spawn_cerberus(Vector2(2512,1915))
 	if kohtaus == 1:
 		GlobalVariables.player_spawn_location = get_ground_tile()
 	
 	if kohtaus == 0:
 		GlobalVariables.player_spawn_location = get_grass_tile()
-	#for i in 50:
-		#spawn_imp(get_grass_tile())
-	#for i in 25:
-		#spawn_wolf(get_grass_tile())
-	for i in 10:
-		spawn_wizard(get_grass_tile())	
-	#for i in 50:
-		#spawn_imp(get_ground_tile())
-	#for i in 10:
-		#spawn_wizard(get_ground_tile())
+		print("PLayer position is ", GlobalVariables.player_spawn_location)
+		#Tässä on joku ongelma, ettei ikinä ota portal_1 tai 3
+		portal_1_d = Vector2(22,1105).distance_to(GlobalVariables.player_spawn_location)
+		portal_2_d = Vector2(1775,-166).distance_to(GlobalVariables.player_spawn_location)
+		portal_3_d = Vector2(23,-1147).distance_to(GlobalVariables.player_spawn_location)
+		portal_4_d = Vector2(-2154,2).distance_to(GlobalVariables.player_spawn_location)
+		
+		print("Portal 1 ", portal_1_d)
+		print("Portal 2 ", portal_2_d)
+		print("Portal 3 ", portal_3_d)
+		print("Portal 4 ", portal_4_d)
+		
+		var current_portal = max(portal_1_d, portal_2_d, portal_4_d, portal_3_d)
+		if current_portal == portal_1_d:
+			print("Portal 1")
+			portal.visible = true
+		elif current_portal == portal_2_d:
+			print("Portal 2")
+			portal_2.visible = true
+		elif current_portal == portal_3_d:
+			print("Portal 3")
+			portal_3.visible = true
+		elif current_portal == portal_4_d:
+			print("Portal 4")
+			portal_4.visible = true
+		print("Current portal is ", current_portal)
+
 	
 	generate_road(START_POS, END_POS)
 
 func _process(delta: float) -> void:
-	if GlobalVariables.helled:
-		player.global_position = get_ground_tile()
+	pass
+	#if GlobalVariables.helled:
+		#player.global_position = get_ground_tile()
 func generate_world(offset):
 	#Käydään koko map läpi eli 100 x 200, josta tulee neljö isometric tilet on 32x16. 
 	if kohtaus == 1:

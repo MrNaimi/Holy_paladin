@@ -24,6 +24,10 @@ func _ready():
 		colour = "brown"
 	elif colour_num == 3:
 		colour = "mushroom"
+	elif colour_num == 4:
+		colour = "mushroom"
+	elif colour_num == 5:
+		colour = "mushroom"
 	else:
 		colour = "white"
 	print("Wolves colour is " + colour)
@@ -35,12 +39,12 @@ func _physics_process(delta: float) -> void:
 		if !wolf_animation.is_playing():
 			wolf_animation.play(colour + "_idle")
 		#Kääntää suden idle animaation suunnan 1/1500 todennäköisyydellä per frami
-		if RandomNumberGenerator.new().randi_range(0, 10000)==9 && wolf_animation.animation == colour + "_idle":
-			print("Wolf has turned around")
-			if wolf_animation.flip_h:
-				wolf_animation.flip_h = false
-			else:
-				wolf_animation.flip_h = true
+		#if RandomNumberGenerator.new().randi_range(0, 10000)==9 && wolf_animation.animation == colour + "_idle":
+			#print("Wolf has turned around")
+			#if wolf_animation.flip_h:
+				#wolf_animation.flip_h = false
+			#else:
+				#wolf_animation.flip_h = true
 		#Pistää suden jahtaamaan pelaajaa
 		if player_chase && !wolf_animation.animation == (colour + "_hit") && !wolf_animation.animation == (colour + "_death") && !wolf_animation.animation == (colour + "_attack"):
 			wolf_animation.play(colour + "_run")

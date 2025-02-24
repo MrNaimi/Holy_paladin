@@ -8,8 +8,9 @@ extends Node
 @onready var basicAttackDamage = 1
 @onready var baseBasicAttackDamage = 1
 @onready var spellDamage = 3
-@onready var playerSpeed = Vector2(100, 100)
+@onready var playerSpeed = Vector2(500, 500)
 @onready var playerHealth = 100
+
 @onready var playerArmor = 50
 
 #Cooldown timers
@@ -26,5 +27,7 @@ extends Node
 @onready var cerberus_health = 20
 @onready var cerb_hp_bar = false
 
+@onready var portal_text = false
+@onready var tp_boss = false
 @onready var roadGenerated = false
 @onready var player_spawn_location = Vector2(0,0)

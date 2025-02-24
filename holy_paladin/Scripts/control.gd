@@ -27,6 +27,7 @@ extends Control
 @onready var pieru: AudioStreamPlayer2D = $"../../../pieru"
 @onready var pierucounter: Label = $VBoxContainer/pierucounter
 @onready var processpeed: Label = $VBoxContainer/processpeed
+@onready var portal_text: Label = $VBoxContainer/portal_text
 
 
 
@@ -53,6 +54,7 @@ func _process(delta: float) -> void:
 		dashcooldowntext.text = ""
 	if spell_cooldown_timer.is_stopped():
 		spellcooldowntext.text = ""
+	
 		
 		
 	x.text ="mouse pos x: "+str(get_viewport().get_mouse_position().x)
