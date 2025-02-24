@@ -299,8 +299,10 @@ func _on_action_4_pressed() -> void:
 		useAbility(GlobalVariables.unlockedSkills[3])
 
 func _on_action_5_pressed() -> void:
+	tp_boss()
 	if GlobalVariables.unlockedSkills.size() == 5:
 		useAbility(GlobalVariables.unlockedSkills[4])
+		
 func tp_boss():
 	player_animations.play("jump")
 	player.global_position = (Vector2(1974, 2272))

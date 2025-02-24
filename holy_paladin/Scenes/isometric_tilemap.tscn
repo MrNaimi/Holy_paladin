@@ -1,4 +1,4 @@
-[gd_scene load_steps=277 format=4 uid="uid://ccxc8igku0gv2"]
+[gd_scene load_steps=275 format=4 uid="uid://ccxc8igku0gv2"]
 
 [ext_resource type="Texture2D" uid="uid://c1u7xxtpn8piw" path="res://Scenes/isometric_tilemap.tres" id="2_s8kvc"]
 [ext_resource type="Script" path="res://Scripts/character_body_2d.gd" id="2_srydx"]
@@ -43,7 +43,7 @@
 [ext_resource type="Texture2D" uid="uid://b486rd107mtba" path="res://assets/ui_assets/talent-tree.png" id="29_0uu7g"]
 [ext_resource type="Script" path="res://Scenes/minimap.gd" id="31_6a4dr"]
 [ext_resource type="PackedScene" uid="uid://dhobm16afu2ww" path="res://tutorial.tscn" id="31_w85f4"]
-[ext_resource type="PackedScene" path="res://pause_menu.tscn" id="33_3m1pa"]
+[ext_resource type="PackedScene" uid="uid://cevx55vdb0mcw" path="res://pause_menu.tscn" id="33_3m1pa"]
 
 [sub_resource type="TileSet" id="TileSet_df3ou"]
 tile_shape = 1
@@ -2565,7 +2565,6 @@ offset_bottom = 114.0
 theme_override_constants/outline_size = 20
 theme_override_styles/fill = SubResource("StyleBoxFlat_gdefn")
 max_value = 20.0
-step = 1.0
 value = 15.0
 show_percentage = false
 script = ExtResource("18_5ctoa")
@@ -2576,7 +2575,6 @@ scale = Vector2(3.56818, 2.59848)
 texture = ExtResource("23_rm0xe")
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/boss_health"]
-visible = false
 z_index = -1
 layout_mode = 0
 offset_right = 832.0
@@ -2584,8 +2582,8 @@ offset_bottom = 38.0
 theme_override_styles/background = SubResource("StyleBoxFlat_484rr")
 theme_override_styles/fill = SubResource("StyleBoxFlat_3nlwv")
 max_value = 20.0
-step = 1.0
 value = 18.0
+show_percentage = false
 
 [node name="Boss_name" type="Label" parent="CanvasLayer/boss_health"]
 layout_mode = 0
@@ -2599,6 +2597,9 @@ theme_override_fonts/font = ExtResource("23_wf48i")
 theme_override_font_sizes/font_size = 60
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="damagetimer" type="Timer" parent="CanvasLayer/boss_health"]
+one_shot = true
 
 [node name="BottomLeft" type="Control" parent="CanvasLayer"]
 layout_mode = 3
