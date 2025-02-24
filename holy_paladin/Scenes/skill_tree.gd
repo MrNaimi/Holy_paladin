@@ -47,7 +47,7 @@ var Skills: Dictionary = {
 		"level": 0,
 		"ability": false
 	},
-	"Taunt":{
+	"Heal":{
 		"unlock": false,
 		"level": 0,
 		"ability": true

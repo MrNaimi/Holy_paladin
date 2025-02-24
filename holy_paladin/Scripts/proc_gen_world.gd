@@ -55,6 +55,10 @@ var tree_atlas = Vector2i(0,0)# puu kordinaatti
 @onready var ground2_tilemaplayer = $ground2
 @onready var environment_tilemaplayer = $environment
 
+#void tile
+@onready var void_tilemaplayer = $void
+
+
 #overworld tilet
 @onready var water_tilemaplayer: TileMapLayer = $water
 @onready var grass_tilemaplayer: TileMapLayer = $grass
@@ -69,8 +73,11 @@ var terrain_lava_int = 0 #Laavan layer numero
 var ground2_tiles_arr =[]
 var terrain_ground2_int = 2
 
-
-
+#Void tile
+var void_id = 9
+var void_tiles_arr =[]
+var void_tiles_int = 0
+var void_tile_atlas =Vector2i(0,0)
 #overworld tilet
 var grass_tiles_arr =[]
 var terrain_grass_int = 1
@@ -133,75 +140,75 @@ func _ready():
 		print("Current portal is ", current_portal)
 
 	
-	generate_road(START_POS, END_POS)
+	#Tien generointi
+	#generate_road(START_POS, END_POS)
 
 func _process(delta: float) -> void:
 	pass
 	#if GlobalVariables.helled:
 		#player.global_position = get_ground_tile()
 func generate_world(offset):
-	#Käydään koko map läpi eli 100 x 200, josta tulee neljö isometric tilet on 32x16. 
+	var border_thickness = 15  # void zone thickness
+
+	# Käydään koko map läpi eli 75 x 75, josta tulee neliö isometric tilet on 32x16.  
 	if kohtaus == 1:
 		var i
 		var j
-		for x in range(-width/2, width/2):
+		for x in range(-width/2 - border_thickness, width/2 + border_thickness):
 			i = x + offset
-			for y in range(-height/2, height/2):
+			for y in range(-height/2 - border_thickness, height/2 + border_thickness):
 				j = y + offset
+				
+				# check border
+				if x < -width/2 or x >= width/2 or y < -height/2 or y >= height/2:
+					void_tilemaplayer.set_cell(Vector2i(i,j), void_id, void_tile_atlas)
+					continue 
+				
 				var noise_val: float = noise.get_noise_2d(i, j)
-				#print("Noise value at position ", Vector2i(x, y), ": ", noise_val)
 				noise_val_arr.append(noise_val)
 				
-				#jos generoidun "äänen" arvo on <=-0.5 
-				if noise_val <=-0.4:
-					if noise_val <=-0.70:
+				if noise_val <= -0.4:
+					if noise_val <= -0.70:
 						ground2_tiles_arr.append(Vector2i(i,j))
 						ground2_tilemaplayer.set_cell(Vector2i(i,j), source_id, ground2_atlas)
-					#place land
 					ground_tiles_arr.append(Vector2i(i,j))
-					ground_tilemaplayer.set_cell(Vector2i(i,j),source_id, land_atlas)
-					
+					ground_tilemaplayer.set_cell(Vector2i(i,j), source_id, land_atlas)
 				elif noise_val > -0.46:
-					#0.45987845468521
-					#place lava
 					lava_tiles_arr.append(Vector2i(i,j))
-					lava_tilemaplayer.set_cell(Vector2i(i,j),source_id,lava_atlas)
-					
+					lava_tilemaplayer.set_cell(Vector2i(i,j), source_id, lava_atlas)
 	
-	
-	
-	
-	#testinä äänen korkein ja pienin arvo, eri kuvioilla on eri arvot niin pitää säätää elif noise_val > -0.5: if noise_val <=-0.5: sopiviksi
 	if kohtaus == 0:
-		for x in range(-width/2, width/2):
-			for y in range(-height/2, height/2):
-				var noise_val : float = noise.get_noise_2d(x,y)
-				noise_val_arr.append(noise_val)
+		print("Generating world for kohtaus = 0")
+		for x in range(-width/2 - border_thickness, width/2 + border_thickness):
+			for y in range(-height/2 - border_thickness, height/2 + border_thickness):
+				if x < -width/2 or x >= width/2 or y < -height/2 or y >= height/2:
+					void_tilemaplayer.set_cell(Vector2i(x,y), void_id, void_tile_atlas)
+					continue
 				
-				if noise_val <=-0.40:
+				var noise_val: float = noise.get_noise_2d(x,y)
+				noise_val_arr.append(noise_val)
+				print("Noise value at", Vector2i(x, y), ":", noise_val)
+				
+				if noise_val <= -0.40:
 					if noise_val < -0.70:
 						tree_tiles_arr.append(Vector2i(x,y))
-						tree_tilemaplayer.set_cell(Vector2i(x,y),tree_id,tree_atlas)
-					#place grass
+						tree_tilemaplayer.set_cell(Vector2i(x,y), tree_id, tree_atlas)
 					grass_tiles_arr.append(Vector2i(x,y))
-					grass_tilemaplayer.set_cell(Vector2i(x,y),forest_id, grass_atlas)
-					
+					grass_tilemaplayer.set_cell(Vector2i(x,y), forest_id, grass_atlas)
 				elif noise_val > -0.46:
-					#place water
 					water_tiles_arr.append(Vector2i(x,y))
-					water_tilemaplayer.set_cell(Vector2i(x,y),forest_id,water_atlas)
-				
+					water_tilemaplayer.set_cell(Vector2i(x,y), forest_id, water_atlas)
+	
 	print("Noise map korkein arvo:  ", noise_val_arr.max())
 	print("Noise map pienin arvo: ", noise_val_arr.min())
 	
-	grass_tilemaplayer.set_cells_terrain_connect(grass_tiles_arr,terrain_grass_int,0)
-	water_tilemaplayer.set_cells_terrain_connect(water_tiles_arr,terrain_water_int,0)
-	tree_tilemaplayer.set_cells_terrain_connect(tree_tiles_arr,terrain_tree_int,0)
-	ground_tilemaplayer.set_cells_terrain_connect(ground_tiles_arr,terrain_ground_int,0)
-	lava_tilemaplayer.set_cells_terrain_connect(lava_tiles_arr,terrain_lava_int,0)
-	ground2_tilemaplayer.set_cells_terrain_connect(ground2_tiles_arr,terrain_ground2_int,0)
-
-
+	grass_tilemaplayer.set_cells_terrain_connect(grass_tiles_arr, terrain_grass_int, 0)
+	water_tilemaplayer.set_cells_terrain_connect(water_tiles_arr, terrain_water_int, 0)
+	tree_tilemaplayer.set_cells_terrain_connect(tree_tiles_arr, terrain_tree_int, 0)
+	ground_tilemaplayer.set_cells_terrain_connect(ground_tiles_arr, terrain_ground_int, 0)
+	lava_tilemaplayer.set_cells_terrain_connect(lava_tiles_arr, terrain_lava_int, 0)
+	void_tilemaplayer.set_cells_terrain_connect(void_tiles_arr,void_tiles_int,0)
+	
 var road_tiles_arr = 2
 var road_id = 5
 var road_atlas = Vector2i(6,5)

@@ -119,7 +119,7 @@ func _on_timer_timeout() -> void:
 	speed = 0
 	wolf_animation.stop()
 	wolf_animation.play("break")
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(2).timeout
 	cerb_charged = true
 
 func shoot_fireball(x):

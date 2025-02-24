@@ -9,6 +9,7 @@ extends Area2D
 @onready var hit_box_start_timer: Timer = $HitBoxStartTimer
 @onready var player: CharacterBody2D = $"../.."
 @onready var tween_direction = 1
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 @onready var original_position = hitbox.position.x
 @onready var original_rotation = hitbox.rotation_degrees
@@ -40,6 +41,7 @@ func enableHitBox() -> void:
 	
 func _on_hit_box_start_timer_timeout() -> void:
 	hitbox.disabled = false
+	audio_stream_player_2d.play(0.0)
 	get_tree().create_tween().tween_property(player,"position",Vector2(player.position.x+GlobalVariables.tween_direction*5,player.position.y),0.1)
 	hit_box_timer.wait_time = hitboxtime
 	hit_box_timer.start()

@@ -365,8 +365,10 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Bottomlefthighlight" type="Sprite2D" parent="bottomlefttutorial"]
+visible = false
 self_modulate = Color(0.188, 0.188, 0.188, 0.595)
-position = Vector2(-3, 309)
+position = Vector2(1.5, 309)
+scale = Vector2(1.00469, 1)
 texture = ExtResource("16_d1fbx")
 
 [node name="Label" type="Label" parent="bottomlefttutorial/Bottomlefthighlight"]
@@ -427,14 +429,14 @@ wait_time = 5.0
 one_shot = true
 
 [node name="minimaptutorial" type="Control" parent="."]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Toplefthighlight" type="Sprite2D" parent="minimaptutorial"]
 self_modulate = Color(0.188235, 0.188235, 0.188235, 0.596078)
-position = Vector2(-4, 313)
+position = Vector2(2.75, 313)
+scale = Vector2(1.00703, 1)
 texture = ExtResource("17_5dwsg")
 
 [node name="Label" type="Label" parent="minimaptutorial/Toplefthighlight"]
