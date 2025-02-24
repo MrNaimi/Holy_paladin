@@ -1,4 +1,4 @@
-[gd_scene load_steps=318 format=4 uid="uid://ccxc8igku0gv2"]
+[gd_scene load_steps=314 format=4 uid="uid://ccxc8igku0gv2"]
 
 [ext_resource type="Texture2D" uid="uid://c1u7xxtpn8piw" path="res://Scenes/isometric_tilemap.tres" id="2_s8kvc"]
 [ext_resource type="Script" path="res://Scripts/character_body_2d.gd" id="2_srydx"]
@@ -36,6 +36,7 @@
 [ext_resource type="AudioStream" uid="uid://cbmisck6ptdtk" path="res://assets/audio_assets/lightattack2.ogg" id="19_q63cc"]
 [ext_resource type="Texture2D" uid="uid://bkf8ht2oj1lya" path="res://assets/ui_assets/swordframe.png" id="20_1nm4v"]
 [ext_resource type="AudioStream" uid="uid://nto6ujb7mnd5" path="res://assets/audio_assets/lightattack3.ogg" id="20_svidj"]
+[ext_resource type="AudioStream" uid="uid://b1xuq3eadjvff" path="res://assets/audio_assets/spin.ogg" id="23_0u27o"]
 [ext_resource type="Texture2D" uid="uid://cmsofhsoq8gxm" path="res://assets/ui_assets/bosshealthbarkoriste.png" id="23_rm0xe"]
 [ext_resource type="FontFile" uid="uid://ofihhycy11m7" path="res://assets/fonts/scarbes.regular.ttf" id="23_wf48i"]
 [ext_resource type="AudioStream" uid="uid://dc8vkeh8kc0fe" path="res://assets/audio_assets/walking.ogg" id="25_ch77j"]
@@ -1374,26 +1375,6 @@ region = Rect2(3910, 0, 170, 96)
 atlas = ExtResource("13_mc170")
 region = Rect2(4080, 0, 170, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_md3ik"]
-atlas = ExtResource("13_mc170")
-region = Rect2(4250, 0, 170, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_koedp"]
-atlas = ExtResource("13_mc170")
-region = Rect2(4420, 0, 170, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_m3bj2"]
-atlas = ExtResource("13_mc170")
-region = Rect2(4590, 0, 170, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_amcs8"]
-atlas = ExtResource("13_mc170")
-region = Rect2(4760, 0, 170, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_crdmo"]
-atlas = ExtResource("13_mc170")
-region = Rect2(4930, 0, 170, 96)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_7306c"]
 atlas = ExtResource("10_gunjn")
 region = Rect2(0, 0, 170, 96)
@@ -2050,21 +2031,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_s5q0h")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_md3ik")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_koedp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_m3bj2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_amcs8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_crdmo")
 }],
 "loop": false,
 "name": &"spin_attack",
@@ -2669,9 +2635,7 @@ shape = SubResource("RectangleShape2D_xopwu")
 [node name="Player_animations" type="AnimatedSprite2D" parent="Node2D/Player"]
 position = Vector2(5.92936, -28.4609)
 sprite_frames = SubResource("SpriteFrames_4mljv")
-animation = &"leap"
-frame = 39
-frame_progress = 1.0
+animation = &"spin_attack"
 
 [node name="Leap_animation" type="AnimatedSprite2D" parent="Node2D/Player"]
 position = Vector2(4.74335, -43.8773)
@@ -2776,6 +2740,11 @@ one_shot = true
 [node name="SpinHitBoxStartTimer" type="Timer" parent="Node2D/Player/AttackHitboxes/SpinHitBox"]
 one_shot = true
 
+[node name="spinattack" type="AudioStreamPlayer2D" parent="Node2D/Player/AttackHitboxes/SpinHitBox"]
+position = Vector2(0, 6.10352e-05)
+stream = ExtResource("23_0u27o")
+bus = &"SFX"
+
 [node name="Area2D" type="Area2D" parent="Node2D/Player" groups=["player"]]
 position = Vector2(-1.18587, 0)
 
@@ -2815,7 +2784,7 @@ wait_time = 2.0
 one_shot = true
 
 [node name="SpinTimer" type="Timer" parent="Node2D/Player/Timers"]
-wait_time = 2.0
+wait_time = 1.2
 one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D/Player/Timers"]
@@ -2828,7 +2797,9 @@ libraries = {
 wait_time = 5.0
 one_shot = true
 
-[node name="walking" type="AudioStreamPlayer2D" parent="Node2D/Player"]
+[node name="audios" type="Node2D" parent="Node2D/Player"]
+
+[node name="walking" type="AudioStreamPlayer2D" parent="Node2D/Player/audios"]
 stream = ExtResource("25_ch77j")
 volume_db = -15.0
 bus = &"SFX"

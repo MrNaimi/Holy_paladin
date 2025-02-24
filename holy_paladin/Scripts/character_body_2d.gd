@@ -61,7 +61,8 @@ const IMPS = preload("res://Scenes/imps.tscn")
 #@onready var tween = get_tree().create_tween()
 @onready var tween_direction = 1
 var attacking = false
-@onready var walking: AudioStreamPlayer2D = $walking
+
+@onready var walking: AudioStreamPlayer2D = $audios/walking
 
 
 var current_speed = 0

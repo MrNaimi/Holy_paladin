@@ -13,6 +13,7 @@ extends Area2D
 
 @onready var flipped_position = original_position * -1
 @onready var flipped_rotation = original_rotation * -1
+@onready var spinattack: AudioStreamPlayer2D = $spinattack
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -33,6 +34,7 @@ func enableHitBox():
 	
 func _on_spin_hit_box_start_timer_timeout() -> void:
 	print("hitbox starttimer timeout")
+	spinattack.play()
 	hitbox.disabled = false
 	spin_hit_box_timer.wait_time = hitboxtime
 	spin_hit_box_timer.start()
@@ -41,3 +43,4 @@ func _on_spin_hit_box_start_timer_timeout() -> void:
 func _on_spin_hit_box_timer_timeout() -> void:
 	print("hitbox timer timeout")
 	hitbox.disabled = true
+	#player_animations.play("walk")
