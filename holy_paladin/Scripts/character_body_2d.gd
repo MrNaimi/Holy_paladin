@@ -61,6 +61,7 @@ const IMPS = preload("res://Scenes/imps.tscn")
 #@onready var tween = get_tree().create_tween()
 @onready var tween_direction = 1
 var attacking = false
+@onready var walking: AudioStreamPlayer2D = $walking
 
 
 var current_speed = 0
@@ -78,16 +79,25 @@ func get_input():
 	if get_viewport().get_mouse_position().x >= get_viewport().size.x/2 and input_direction.x != 0:
 		if !dashing and !jumping and !attacking and !leaping and !spinning:
 			player_animations.play("walk")
+			if !walking.playing:
+				walking.pitch_scale=RandomNumberGenerator.new().randf_range(0.9, 1.2)
+				walking.play()
 		else:
 			pass
 	elif get_viewport().get_mouse_position().x <= get_viewport().size.x/2 and input_direction.x != 0:
 		if !dashing and !jumping and !attacking and !leaping and !spinning:
 			player_animations.play("walk")
+			if !walking.playing:
+				walking.pitch_scale=RandomNumberGenerator.new().randf_range(0.9, 1.2)
+				walking.play()
 		else:
 			pass
 	if input_direction.y != 0:
 		if !dashing and !jumping and !attacking and !leaping and !spinning:
 			player_animations.play("walk")
+			if !walking.playing:
+				walking.pitch_scale=RandomNumberGenerator.new().randf_range(0.9, 1.2)
+				walking.play()
 		else:
 			pass
 	if input_direction.x == 0 && input_direction.y == 0:
@@ -148,6 +158,8 @@ func _input(event):
 						combo = 1
 			
 func _physics_process(delta: float) -> void:
+	if current_speed==0:
+		walking.stop()
 	SPEED = GlobalVariables.playerSpeed
 	hp = GlobalVariables.playerHealth
 	if GlobalVariables.xp >= GlobalVariables.xp_threshold:
@@ -171,7 +183,8 @@ func _physics_process(delta: float) -> void:
 			player_animations.flip_h = false
 		elif get_viewport().get_mouse_position().x <= get_viewport().size.x/2:
 			player_animations.flip_h = true
-		
+	
+
 func level_up():
 	var level_up = LEVEL_UP.instantiate()
 	get_tree().current_scene.add_child(level_up)

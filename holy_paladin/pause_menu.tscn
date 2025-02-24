@@ -52,9 +52,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -150.0
-offset_top = -175.0
+offset_top = -214.0
 offset_right = 150.0
-offset_bottom = 175.0
+offset_bottom = 223.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1, 1.00254)
@@ -77,6 +77,11 @@ grow_vertical = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+
+[node name="Button" type="Sprite2D" parent="MarginContainer/VBoxContainer"]
+position = Vector2(138.5, 294.5)
+scale = Vector2(4.45313, 3.67969)
+texture = ExtResource("4_twqu3")
 
 [node name="Resume" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -108,16 +113,48 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_bgc22")
 theme_override_styles/normal = SubResource("StyleBoxTexture_1vfjx")
 text = "Quit"
 
+[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("2_73bpl")
+theme_override_font_sizes/font_size = 10
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("2_73bpl")
+theme_override_font_sizes/font_size = 60
+text = "Master volume"
+horizontal_alignment = 1
+
+[node name="Masterbusvolume" type="HSlider" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+value = 50.0
+
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/outline_size = 20
 theme_override_fonts/font = ExtResource("2_73bpl")
 theme_override_font_sizes/font_size = 60
-text = "Volume"
+text = "SFX volume"
 horizontal_alignment = 1
 
-[node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer"]
+[node name="SFXbusvolume" type="HSlider" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+value = 50.0
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("2_73bpl")
+theme_override_font_sizes/font_size = 60
+text = "Music volume"
+horizontal_alignment = 1
+
+[node name="Musicbusvolume" type="HSlider" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+value = 50.0
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]

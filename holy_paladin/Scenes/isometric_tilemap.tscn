@@ -1,4 +1,4 @@
-[gd_scene load_steps=314 format=4 uid="uid://ccxc8igku0gv2"]
+[gd_scene load_steps=318 format=4 uid="uid://ccxc8igku0gv2"]
 
 [ext_resource type="Texture2D" uid="uid://c1u7xxtpn8piw" path="res://Scenes/isometric_tilemap.tres" id="2_s8kvc"]
 [ext_resource type="Script" path="res://Scripts/character_body_2d.gd" id="2_srydx"]
@@ -31,10 +31,14 @@
 [ext_resource type="Script" path="res://Scenes/boss_health.gd" id="18_5ctoa"]
 [ext_resource type="Texture2D" uid="uid://bvq4enmmx2qan" path="res://assets/ui_assets/progressbarframe2.png" id="18_jlcyx"]
 [ext_resource type="Script" path="res://Scenes/spin_hit_box.gd" id="18_krn7l"]
+[ext_resource type="AudioStream" uid="uid://b1ukmwtdyfmv4" path="res://assets/audio_assets/lightattack1.ogg" id="18_pdgsy"]
 [ext_resource type="Texture2D" uid="uid://bgpc5hwgc6wte" path="res://assets/ui_assets/swordicon.png" id="19_njt3m"]
+[ext_resource type="AudioStream" uid="uid://cbmisck6ptdtk" path="res://assets/audio_assets/lightattack2.ogg" id="19_q63cc"]
 [ext_resource type="Texture2D" uid="uid://bkf8ht2oj1lya" path="res://assets/ui_assets/swordframe.png" id="20_1nm4v"]
+[ext_resource type="AudioStream" uid="uid://nto6ujb7mnd5" path="res://assets/audio_assets/lightattack3.ogg" id="20_svidj"]
 [ext_resource type="Texture2D" uid="uid://cmsofhsoq8gxm" path="res://assets/ui_assets/bosshealthbarkoriste.png" id="23_rm0xe"]
 [ext_resource type="FontFile" uid="uid://ofihhycy11m7" path="res://assets/fonts/scarbes.regular.ttf" id="23_wf48i"]
+[ext_resource type="AudioStream" uid="uid://dc8vkeh8kc0fe" path="res://assets/audio_assets/walking.ogg" id="25_ch77j"]
 [ext_resource type="Texture2D" uid="uid://5p8aha2knxya" path="res://assets/ui_assets/dashicon.png" id="26_4ffth"]
 [ext_resource type="Texture2D" uid="uid://ce55r2wn51p4o" path="res://assets/ui_assets/cooldownframe.png" id="27_mq58b"]
 [ext_resource type="Script" path="res://Scenes/action_bar.gd" id="28_8xgnj"]
@@ -2695,6 +2699,10 @@ one_shot = true
 [node name="HitBoxStartTimer" type="Timer" parent="Node2D/Player/AttackHitboxes/Light_attack1"]
 one_shot = true
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Node2D/Player/AttackHitboxes/Light_attack1"]
+stream = ExtResource("18_pdgsy")
+bus = &"SFX"
+
 [node name="Light_attack2" type="Area2D" parent="Node2D/Player/AttackHitboxes" groups=["attack"]]
 collision_layer = 2
 collision_mask = 2
@@ -2711,6 +2719,10 @@ one_shot = true
 
 [node name="HitBoxStartTimer" type="Timer" parent="Node2D/Player/AttackHitboxes/Light_attack2"]
 one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Node2D/Player/AttackHitboxes/Light_attack2"]
+stream = ExtResource("19_q63cc")
+bus = &"SFX"
 
 [node name="Light_attack3" type="Area2D" parent="Node2D/Player/AttackHitboxes" groups=["attack"]]
 light_mask = 2
@@ -2731,6 +2743,10 @@ one_shot = true
 
 [node name="HitBoxStartTimer" type="Timer" parent="Node2D/Player/AttackHitboxes/Light_attack3"]
 one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Node2D/Player/AttackHitboxes/Light_attack3"]
+stream = ExtResource("20_svidj")
+bus = &"SFX"
 
 [node name="JumpHitBox" type="Area2D" parent="Node2D/Player/AttackHitboxes" groups=["attack"]]
 script = ExtResource("17_jnte3")
@@ -2811,6 +2827,11 @@ libraries = {
 [node name="HealCooldownTimer" type="Timer" parent="Node2D/Player/Timers"]
 wait_time = 5.0
 one_shot = true
+
+[node name="walking" type="AudioStreamPlayer2D" parent="Node2D/Player"]
+stream = ExtResource("25_ch77j")
+volume_db = -15.0
+bus = &"SFX"
 
 [node name="pieru" type="AudioStreamPlayer2D" parent="Node2D"]
 stream = ExtResource("14_ti6kv")
@@ -3249,7 +3270,9 @@ scale = Vector2(1, 1)
 visible = false
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("33_3m1pa")]
+visible = false
 scale = Vector2(2, 2)
+division_amount = 40
 
 [connection signal="animation_finished" from="Node2D/Player/Player_animations" to="Node2D/Player" method="_on_player_animations_animation_finished"]
 [connection signal="animation_finished" from="Node2D/Player/Leap_animation" to="Node2D/Player" method="_on_leap_animation_animation_finished"]
