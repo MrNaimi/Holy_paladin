@@ -39,7 +39,7 @@ func _physics_process(delta: float) -> void:
 			
 			if cerb_charged:
 				var x = RandomNumberGenerator.new().randi_range(0, 1)
-				if x == 2:
+				if x == 1:
 					wolf_animation.play(colour + "_run")
 					velocity = Vector2(1, 0)
 					#var x = RandomNumberGenerator.new().randi_range(0, 1)
@@ -57,7 +57,11 @@ func _physics_process(delta: float) -> void:
 					charg_d = direction
 					cerb_charged = false
 				else:
-					for i in range(4):
+					if player.position[0] > position[0]:
+						wolf_animation.flip_h = true
+					else:
+						wolf_animation.flip_h = false
+					for i in range(8):
 						shoot_fireball(i)
 					
 					wolf_animation.play("break")
@@ -127,15 +131,24 @@ func shoot_fireball(x):
 	var fireball = FIREBALL.instantiate()
 	get_tree().current_scene.add_child(fireball)
 	fireball.global_position = global_position
-	#fireball.direction = ((player.position + Vector2(0,-15) - position)+ x).normalized()
+	#fireball.direction = ((player.position + Vector2(0,-15) - position)).normalized()
+	#print("Tää on se mikä normalizedaa, ", (player.position + Vector2(0,-15) - position))
+	if x == 0:
+		fireball.direction =(Vector2(-45 , -45)).normalized()
 	if x == 1:
 		fireball.direction = (Vector2(0 , 90)).normalized()
 	if x == 2:
-		fireball.direction =(Vector2(45 , 45)).normalized()
-	if x == 3:
-		fireball.direction =(Vector2(-90 , 0)).normalized()
-	if x == 4:
 		fireball.direction =(Vector2(45 , -45)).normalized()
+	if x == 3:
+		fireball.direction =(Vector2(0 , -90)).normalized()
+	if x == 4:
+		fireball.direction = (Vector2(90 , 0)).normalized()
+	if x == 5:
+		fireball.direction =(Vector2(45 , 45)).normalized()
+	if x == 6:
+		fireball.direction =(Vector2(-90 , 0)).normalized()
+	if x == 7:
+		fireball.direction =(Vector2(-45 , 45)).normalized()
 	print(fireball.direction)
 	#print("Enemy position:", global_position)
 	#print("Player position:", player.global_position)

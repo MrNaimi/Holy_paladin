@@ -1,4 +1,4 @@
-[gd_scene load_steps=324 format=4 uid="uid://ccxc8igku0gv2"]
+[gd_scene load_steps=331 format=4 uid="uid://ccxc8igku0gv2"]
 
 [ext_resource type="Script" path="res://Scenes/world.gd" id="1_hw8ua"]
 [ext_resource type="Texture2D" uid="uid://c1u7xxtpn8piw" path="res://Scenes/isometric_tilemap.tres" id="2_s8kvc"]
@@ -13,7 +13,6 @@
 [ext_resource type="Texture2D" uid="uid://exvxufprnrjy" path="res://assets/tiles/isometric tileset/hell_tileset.png" id="5_yiccv"]
 [ext_resource type="Texture2D" uid="uid://dsjtbhpiev1fy" path="res://assets/main_char/spr_Idle_strip.png" id="6_57dje"]
 [ext_resource type="Texture2D" uid="uid://duwqunfxnycdr" path="res://assets/ui_assets/minimapicon.png" id="7_b3w5b"]
-[ext_resource type="Texture2D" uid="uid://3bi3uuq2ojh3" path="res://assets/main_char/spr_Leap_strip.png" id="7_psiyu"]
 [ext_resource type="PackedScene" uid="uid://biguv6isco6ni" path="res://Scenes/portal.tscn" id="7_totj2"]
 [ext_resource type="PackedScene" uid="uid://dayv5ugvahe68" path="res://Scenes/holy_projectile.tscn" id="8_l8xyx"]
 [ext_resource type="Texture2D" uid="uid://cfo4507x6nau7" path="res://assets/main_char/spr_Attack_strip.png" id="8_pa4up"]
@@ -56,7 +55,7 @@
 [ext_resource type="Texture2D" uid="uid://b486rd107mtba" path="res://assets/ui_assets/talent-tree.png" id="29_0uu7g"]
 [ext_resource type="Script" path="res://Scenes/minimap.gd" id="31_6a4dr"]
 [ext_resource type="PackedScene" uid="uid://dhobm16afu2ww" path="res://tutorial.tscn" id="31_w85f4"]
-[ext_resource type="PackedScene" path="res://pause_menu.tscn" id="33_3m1pa"]
+[ext_resource type="PackedScene" uid="uid://cevx55vdb0mcw" path="res://pause_menu.tscn" id="33_3m1pa"]
 
 [sub_resource type="TileSet" id="TileSet_df3ou"]
 tile_shape = 1
