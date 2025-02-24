@@ -119,10 +119,10 @@ func _ready():
 		portal_3_d = Vector2(23,-1147).distance_to(GlobalVariables.player_spawn_location)
 		portal_4_d = Vector2(-2154,2).distance_to(GlobalVariables.player_spawn_location)
 		
-		print("Portal 1 ", portal_1_d)
-		print("Portal 2 ", portal_2_d)
-		print("Portal 3 ", portal_3_d)
-		print("Portal 4 ", portal_4_d)
+		#print("Portal 1 ", portal_1_d)
+		#print("Portal 2 ", portal_2_d)
+		#print("Portal 3 ", portal_3_d)
+		#print("Portal 4 ", portal_4_d)
 		
 		var current_portal = max(portal_1_d, portal_2_d, portal_4_d, portal_3_d)
 		if current_portal == portal_1_d:
@@ -138,7 +138,12 @@ func _ready():
 			print("Portal 4")
 			portal_4.visible = true
 		print("Current portal is ", current_portal)
-
+		for i in range (50):
+			spawn_wolf(get_grass_tile())
+		for i in range(20):
+			spawn_imp(get_grass_tile())
+		for i in range(5):
+			spawn_wizard(get_grass_tile())
 	
 	#Tien generointi
 	#generate_road(START_POS, END_POS)
@@ -187,7 +192,7 @@ func generate_world(offset):
 				
 				var noise_val: float = noise.get_noise_2d(x,y)
 				noise_val_arr.append(noise_val)
-				print("Noise value at", Vector2i(x, y), ":", noise_val)
+				#print("Noise value at", Vector2i(x, y), ":", noise_val)
 				
 				if noise_val <= -0.40:
 					if noise_val < -0.70:

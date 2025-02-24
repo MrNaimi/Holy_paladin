@@ -8,7 +8,7 @@ extends Node
 @onready var basicAttackDamage = 1
 @onready var baseBasicAttackDamage = 1
 @onready var spellDamage = 3
-@onready var playerSpeed = Vector2(500, 500)
+@onready var playerSpeed = Vector2(100, 100)
 @onready var playerHealth = 100
 
 @onready var playerArmor = 50
