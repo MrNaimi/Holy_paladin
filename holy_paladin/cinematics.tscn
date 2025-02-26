@@ -1,7 +1,45 @@
-[gd_scene load_steps=3 format=3 uid="uid://c23jplw2vgict"]
+[gd_scene load_steps=8 format=3 uid="uid://c23jplw2vgict"]
 
 [ext_resource type="Texture2D" uid="uid://cvfwtnor3oym5" path="res://assets/cinematics/animation.png" id="1_1j3fq"]
 [ext_resource type="Script" path="res://camera_2d.gd" id="2_i3koq"]
+[ext_resource type="AudioStream" uid="uid://i3artsis04s7" path="res://assets/audio_assets/traimory-mega-horn-angry-siren-f-cinematic-trailer-sound-effects-193408.mp3" id="3_o8uws"]
+[ext_resource type="AudioStream" uid="uid://bs1b2jdcgfxtf" path="res://assets/audio_assets/epic-hybrid-logo-157092.mp3" id="4_ru2oh"]
+
+[sub_resource type="Animation" id="Animation_5jylp"]
+resource_name = "fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_skvh5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xfdum"]
+_data = {
+"RESET": SubResource("Animation_skvh5"),
+"fade": SubResource("Animation_5jylp")
+}
 
 [node name="Cinematics" type="Node2D"]
 
@@ -33,3 +71,21 @@ position = Vector2(-6, 154)
 scale = Vector2(0.2, 0.2)
 zoom = Vector2(4, 4)
 script = ExtResource("2_i3koq")
+
+[node name="sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_o8uws")
+
+[node name="sound2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_ru2oh")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = -250.0
+offset_top = -62.0
+offset_right = 1233.0
+offset_bottom = 425.0
+color = Color(0, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect2"]
+libraries = {
+"": SubResource("AnimationLibrary_xfdum")
+}

@@ -28,11 +28,13 @@ extends Control
 @onready var pierucounter: Label = $VBoxContainer/pierucounter
 @onready var processpeed: Label = $VBoxContainer/processpeed
 @onready var portal_text: Label = $VBoxContainer/portal_text
+@onready var animation_player: AnimationPlayer = $"../AnimationPlayer"
 
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	animation_player.play("fadein")
 	dashcooldown.max_value=dash_cooldown_timer.wait_time
 	spellcooldown.max_value=spell_cooldown_timer.wait_time
 # Called every frame. 'delta' is the elapsed time since the previous frame.

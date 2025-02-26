@@ -34,7 +34,6 @@ script = ExtResource("1_1xys8")
 modulate_color = Color(0.032, 100, 0.026, 1)
 
 [node name="movetutorial" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
