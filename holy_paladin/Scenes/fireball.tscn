@@ -95,15 +95,15 @@ sprite_frames = SubResource("SpriteFrames_80ptq")
 animation = &"fireball"
 
 [node name="Area2D" type="Area2D" parent="AnimatedSprite2D"]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 0
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D"]
 position = Vector2(-1, -1)
 shape = SubResource("CircleShape2D_0cfyh")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 4.0
+wait_time = 2.0
 one_shot = true
 autostart = true
 

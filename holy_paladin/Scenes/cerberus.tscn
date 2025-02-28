@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://b2xx8mxpxmx6u"]
+[gd_scene load_steps=45 format=3 uid="uid://b2xx8mxpxmx6u"]
 
 [ext_resource type="Script" path="res://Scenes/cerberus.gd" id="1_ar32v"]
 [ext_resource type="Texture2D" uid="uid://baf4uh7dl7fet" path="res://assets/enemies/Cerberus/cerberus_attack.png" id="2_jo6yc"]
@@ -275,9 +275,6 @@ radius = 198.091
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2v7q2"]
 size = Vector2(94, 61)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_fso43"]
-radius = 710.011
-
 [node name="Cerberus" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_ar32v")
 
@@ -307,14 +304,6 @@ shape = SubResource("CircleShape2D_5882t")
 position = Vector2(-12, 15.5)
 shape = SubResource("RectangleShape2D_2v7q2")
 
-[node name="Aggro_off" type="Area2D" parent="."]
-collision_layer = 129
-collision_mask = 129
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Aggro_off"]
-position = Vector2(-2, 5)
-shape = SubResource("CircleShape2D_fso43")
-
 [node name="minimapicon" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource("27_ysfik")
@@ -328,5 +317,4 @@ one_shot = true
 
 [connection signal="area_entered" from="wolf_animation/Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
-[connection signal="body_exited" from="Aggro_off" to="." method="_on_aggro_off_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

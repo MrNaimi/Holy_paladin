@@ -13,6 +13,8 @@ var y = 1
 
 @export var devmode = true
 #ENEMY REFERENCES
+
+const PORTAL = preload("res://Scenes/portal.tscn")
 const WOLVES = preload("res://Scenes/wolves.tscn")
 const IMPS = preload("res://Scenes/imps.tscn")
 const EVIL_WIZARD = preload("res://Scenes/evil_wizard.tscn")
@@ -72,6 +74,7 @@ var lava_tiles_arr =[]
 var terrain_lava_int = 0 #Laavan layer numero
 var ground2_tiles_arr =[]
 var terrain_ground2_int = 2
+var enemy_spawn_locations = []
 
 #Void tile
 var void_id = 9
@@ -118,32 +121,28 @@ func _ready():
 		portal_2_d = Vector2(1775,-166).distance_to(GlobalVariables.player_spawn_location)
 		portal_3_d = Vector2(23,-1147).distance_to(GlobalVariables.player_spawn_location)
 		portal_4_d = Vector2(-2154,2).distance_to(GlobalVariables.player_spawn_location)
-		
-		#print("Portal 1 ", portal_1_d)
-		#print("Portal 2 ", portal_2_d)
-		#print("Portal 3 ", portal_3_d)
-		#print("Portal 4 ", portal_4_d)
-		
+
 		var current_portal = max(portal_1_d, portal_2_d, portal_4_d, portal_3_d)
 		if current_portal == portal_1_d:
 			print("Portal 1")
-			portal.visible = true
+			spawn_portal(Vector2(22,1105))
 		elif current_portal == portal_2_d:
 			print("Portal 2")
-			portal_2.visible = true
+			spawn_portal(Vector2(1775, -166))
 		elif current_portal == portal_3_d:
 			print("Portal 3")
-			portal_3.visible = true
+			spawn_portal(Vector2(23, -1147))
 		elif current_portal == portal_4_d:
 			print("Portal 4")
-			portal_4.visible = true
-		print("Current portal is ", current_portal)
-		for i in range (50):
-			spawn_wolf(get_grass_tile())
-		for i in range(20):
-			spawn_imp(get_grass_tile())
-		for i in range(5):
-			spawn_wizard(get_grass_tile())
+			spawn_portal(Vector2(-2154,2))
+			
+		print("Current distance to portal is ", current_portal)
+	for i in range (50):
+		spawn_wolf(get_grass_tile())
+	for i in range(20):
+		spawn_imp(get_grass_tile())
+	for i in range(5):
+		spawn_wizard(get_grass_tile())
 	
 	#Tien generointi
 	#generate_road(START_POS, END_POS)
@@ -335,6 +334,10 @@ func spawn_wolf(x):
 	wolf.global_position = x
 	add_child(wolf)
 
+func spawn_portal(x):
+	var portal = PORTAL.instantiate()
+	portal.global_position = x
+	add_child(portal)
 
 func spawn_imp(x):
 	#print("Spawning imp")

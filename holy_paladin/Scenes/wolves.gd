@@ -30,7 +30,7 @@ func _ready():
 		colour = "mushroom"
 	else:
 		colour = "white"
-	print("Wolves colour is " + colour)
+	#print("Wolves colour is " + colour)
 
 func _physics_process(delta: float) -> void:
 	move_and_slide()

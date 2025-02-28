@@ -61,8 +61,8 @@ func _physics_process(delta: float) -> void:
 						wolf_animation.flip_h = true
 					else:
 						wolf_animation.flip_h = false
-					for i in range(8):
-						shoot_fireball(i)
+					for i in range(13):
+						shoot_fireball()
 					
 					wolf_animation.play("break")
 					#cerb_charged = false
@@ -70,21 +70,6 @@ func _physics_process(delta: float) -> void:
 			
 			position += charg_d * speed * delta
 		
-		#Palauttaa suden takaisin alkuperäisellä paikalleen
-		elif returning:
-			if og_position[0] > position[0]:
-				wolf_animation.flip_h = true
-			else:
-				wolf_animation.flip_h = false
-			var direction = (og_position - position).normalized()
-			position += direction * speed * delta
-			
-			#if velocity == Vector2(0,0):
-				#wolf_animation.play(colour + "_idle")
-				
-			if position.distance_to(og_position)<2:
-				wolf_animation.play(colour + "_idle")
-				returning = false
 
 #Antaa signaalin, että on aika lähteä jahtaamaan pelaajaa
 func _on_detection_area_body_entered(body: Node2D) -> void:
@@ -126,30 +111,21 @@ func _on_timer_timeout() -> void:
 	await get_tree().create_timer(2).timeout
 	cerb_charged = true
 
-func shoot_fireball(x):
+func shoot_fireball():
 	shoot = false
-	var fireball = FIREBALL.instantiate()
-	get_tree().current_scene.add_child(fireball)
-	fireball.global_position = global_position
-	#fireball.direction = ((player.position + Vector2(0,-15) - position)).normalized()
-	#print("Tää on se mikä normalizedaa, ", (player.position + Vector2(0,-15) - position))
-	if x == 0:
-		fireball.direction =(Vector2(-45 , -45)).normalized()
-	if x == 1:
-		fireball.direction = (Vector2(0 , 90)).normalized()
-	if x == 2:
-		fireball.direction =(Vector2(45 , -45)).normalized()
-	if x == 3:
-		fireball.direction =(Vector2(0 , -90)).normalized()
-	if x == 4:
-		fireball.direction = (Vector2(90 , 0)).normalized()
-	if x == 5:
-		fireball.direction =(Vector2(45 , 45)).normalized()
-	if x == 6:
-		fireball.direction =(Vector2(-90 , 0)).normalized()
-	if x == 7:
-		fireball.direction =(Vector2(-45 , 45)).normalized()
-	print(fireball.direction)
+	var num_directions = 12  # Number of fireballs
+	var angle_step = TAU / num_directions  # TAU is 2 * PI (full circle)
+
+	for i in range(num_directions):
+		var fireball = FIREBALL.instantiate()
+		get_tree().current_scene.add_child(fireball)
+		fireball.global_position = global_position
+
+		# Calculate the angle for each fireball
+		var angle = i * angle_step  
+		fireball.direction = Vector2(cos(angle), sin(angle))  # Normalized by default
+
+		#print("Fireball", i, "Direction:", fireball.direction)
 	#print("Enemy position:", global_position)
 	#print("Player position:", player.global_position)
 	#print("Fireball direction:", fireball.direction)

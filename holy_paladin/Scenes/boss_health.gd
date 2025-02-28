@@ -23,6 +23,6 @@ func _process(delta: float) -> void:
 			damagetimer.start()
 		previousvalue = GlobalVariables.cerberus_health
 		if damagetimer.is_stopped():
-			print("hurtbar pitäisi nyt toimia")
+			#print("hurtbar pitäisi nyt toimia")
 			progress_bar.value -= delta*10
-			print(progress_bar.value)
+			#print(progress_bar.value)

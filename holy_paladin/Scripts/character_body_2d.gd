@@ -3,7 +3,11 @@ extends CharacterBody2D
 @onready var player_animations: AnimatedSprite2D = $Player_animations
 @onready var pieru: AudioStreamPlayer2D = $"../pieru"
 @onready var player: CharacterBody2D = $"."
+@onready var shadow: Sprite2D = $Player_animations/shadow
 
+var first_time = true
+var shadow_changeable2 = true
+var shadow_changeable = true
 var copy = false
 var pierucounter = 0
 var combo = 1
@@ -209,9 +213,22 @@ func _physics_process(delta: float) -> void:
 		pieru.play(0)
 	if !dashing:
 		if get_viewport().get_mouse_position().x >= get_viewport().size.x/2:
+			if first_time:
+				shadow.global_position += Vector2(8,0)
+				first_time = false
+			if shadow_changeable2 and !first_time:
+				shadow.global_position += Vector2(-8,0)
+				shadow_changeable2 = false
+				shadow_changeable =true
 			player_animations.flip_h = false
 		elif get_viewport().get_mouse_position().x <= get_viewport().size.x/2:
 			player_animations.flip_h = true
+			if shadow_changeable:
+				shadow.global_position += Vector2(8,0)
+				shadow_changeable = false
+				shadow_changeable2 = true
+			first_time = false
+			
 	
 
 func level_up():
@@ -355,7 +372,7 @@ func useAbility(ability : String):
 			spin_timer.start()
 			print("Player used Spin")
 			invincibility_timer.start()
-			get_tree().create_tween().tween_property(self, "position", Vector2(position.x+velocity.x-5, position.y+velocity.y-5),0.8)
+			#get_tree().create_tween().tween_property(self, "position", Vector2(position.x+velocity.x-5, position.y+velocity.y-5),0.8)
 			if velocity.x > 0:
 				player_animations.flip_h = false
 				GlobalVariables.flip_h = false

@@ -1,6 +1,7 @@
-[gd_scene load_steps=219 format=3 uid="uid://cueyrv570jtl"]
+[gd_scene load_steps=220 format=3 uid="uid://cueyrv570jtl"]
 
 [ext_resource type="Script" path="res://Scripts/character_body_2d.gd" id="1_hire5"]
+[ext_resource type="Texture2D" uid="uid://cuq8kl7orvmyt" path="res://assets/main_char/shadow.png" id="2_0iic2"]
 [ext_resource type="Texture2D" uid="uid://bi0tlkjtfs2y8" path="res://assets/main_char/spr_Dash_strip.png" id="2_hcqiy"]
 [ext_resource type="Texture2D" uid="uid://b8ahb0f75t0o6" path="res://assets/main_char/spr_Death_strip.png" id="3_psv1b"]
 [ext_resource type="Texture2D" uid="uid://cxtiykr3sn7l0" path="res://assets/main_char/spr_Jump_strip.png" id="4_nfrqn"]
@@ -1513,6 +1514,12 @@ size = Vector2(14.7435, 38.461)
 position = Vector2(433, 327)
 scale = Vector2(0.843261, 0.843261)
 script = ExtResource("1_hire5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 10
+position = Vector2(1.18586, 5.36442e-06)
+scale = Vector2(0.590623, 0.521056)
+texture = ExtResource("2_0iic2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -5.3364)
