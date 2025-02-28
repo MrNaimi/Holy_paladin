@@ -6,6 +6,7 @@ extends Area2D
 @onready var jump_hit_box_timer: Timer = $JumpHitBoxTimer
 @onready var jump_hit_box_start_timer: Timer = $JumpHitBoxStartTimer
 @onready var player_animations: AnimatedSprite2D = $"../../Player_animations"
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 
 @onready var original_position = hitbox.position.x
@@ -36,8 +37,10 @@ func _on_jump_hit_box_start_timer_timeout() -> void:
 	hitbox.disabled = false
 	jump_hit_box_timer.wait_time = hitboxtime
 	jump_hit_box_timer.start()
-
+	await get_tree().create_timer(0.5).timeout
+	audio_stream_player_2d.play()
 
 func _on_jump_hit_box_timer_timeout() -> void:
 	print("hitbox timer timeout")
 	hitbox.disabled = true
+	
