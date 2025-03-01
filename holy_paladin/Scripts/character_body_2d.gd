@@ -44,6 +44,13 @@ const IMPS = preload("res://Scenes/imps.tscn")
 
 @onready var viewport = get_viewport()
 
+#Action bar buttons
+@onready var action_1: TextureButton = $"../../CanvasLayer/BottomLeft/progressbars/ActionBar/Action1"
+@onready var action_2: TextureButton = $"../../CanvasLayer/BottomLeft/progressbars/ActionBar/Action2"
+@onready var action_3: TextureButton = $"../../CanvasLayer/BottomLeft/progressbars/ActionBar/Action3"
+@onready var action_4: TextureButton = $"../../CanvasLayer/BottomLeft/progressbars/ActionBar/Action4"
+@onready var action_5: TextureButton = $"../../CanvasLayer/BottomLeft/progressbars/ActionBar/Action5"
+
 
 #tässä määritellään timereihin viittaus
 @onready var animation_timer: Timer = $Timers/AnimationTimer
@@ -53,6 +60,7 @@ const IMPS = preload("res://Scenes/imps.tscn")
 @onready var spell_cooldown_timer: Timer = $Timers/SpellCooldownTimer
 @onready var heal_cooldown_timer: Timer = $Timers/HealCooldownTimer
 @onready var holy_projectile_cooldown_timer: Timer = $Timers/HolyProjectileCooldownTimer
+@onready var AOE_cooldown_timer: Timer = $Timers/AoECooldownTimer
 
 
 @onready var jump_timer: Timer = $Timers/JumpTimer
@@ -276,6 +284,7 @@ func useAbility(ability : String):
 	#DASH KÄYTTÖ
 	if ability == "Dash":
 		if dash_cooldown_timer.is_stopped() and skill_tree.checkSkill("Dash"):
+			dash_cooldown_timer.wait_time = GlobalVariables.dashTimer
 			dash_cooldown_timer.start()
 			print("Player used dash")
 			invincibility_timer.start()
@@ -291,6 +300,7 @@ func useAbility(ability : String):
 			dashing = true
 	if ability == "Holy Projectile":
 		if holy_projectile_cooldown_timer.is_stopped():
+			holy_projectile_cooldown_timer.wait_time = GlobalVariables.projectileTimer
 			if charge < 5:
 				charge = charge + 1
 				print(charge)
@@ -305,6 +315,7 @@ func useAbility(ability : String):
 		
 	if ability == "Jump":
 		if jump_timer.is_stopped():
+			jump_timer.wait_time = GlobalVariables.jumpTimer
 			jump_timer.start()
 			print("Player used jump")
 			invincibility_timer.start()
@@ -323,6 +334,7 @@ func useAbility(ability : String):
 	if ability == "Heal":
 		#Needs to be implemented
 		if heal_cooldown_timer.is_stopped():
+			heal_cooldown_timer.wait_time = GlobalVariables.healTimer
 			heal_cooldown_timer.start()
 			player_animations.play("taunt")
 			if GlobalVariables.playerHealth <= 95:
@@ -344,6 +356,7 @@ func useAbility(ability : String):
 	if ability == "Leap":
 		#Needs to be implemented
 		if leap_timer.is_stopped():
+			leap_timer.wait_time = GlobalVariables.leapTimer
 			leap_timer.start()
 			print("Player used Leap")
 			invincibility_timer.start()
@@ -369,6 +382,7 @@ func useAbility(ability : String):
 			
 	if ability == "Spin":
 		if spin_timer.is_stopped():
+			spin_timer.wait_time = GlobalVariables.spinTimer
 			spin_timer.start()
 			print("Player used Spin")
 			invincibility_timer.start()
@@ -386,28 +400,54 @@ func useAbility(ability : String):
 			
 	if ability == "AoE":
 		#Needs to be implemented
-		pass
-
+		if AOE_cooldown_timer.is_stopped():
+			AOE_cooldown_timer.wait_time = GlobalVariables.AoETimer
+			player_animations.play("taunt")
+			await get_tree().create_timer(1).timeout
+			AOE_cooldown_timer.start()
+			# Define the offsets as a list of vectors
+			var directions = [
+				Vector2(0, -20),
+				Vector2(20, -20),
+				Vector2(20, 0),
+				Vector2(20, 20),
+				Vector2(0, 20),
+				Vector2(-20, 20),
+				Vector2(-20, 0),
+				Vector2(-20, -20)
+			]
+			# Loop through each direction and instantiate a projectile
+			for direction in directions:
+				var projectile = holy_projectile.instantiate()
+				add_child(projectile)
+				projectile.position.y -= 15
+				projectile.move_direction = player.global_position.direction_to(player.global_position + direction)
+				
 func _on_action_1_pressed() -> void:
 	if !GlobalVariables.unlockedSkills.is_empty():
 		useAbility(GlobalVariables.unlockedSkills[0])
+		action_1.changeTexture(GlobalVariables.unlockedSkillsTextures[0])
 
 func _on_action_2_pressed() -> void:
 	if GlobalVariables.unlockedSkills.size() >= 2:
 		useAbility(GlobalVariables.unlockedSkills[1])
-
+		action_2.changeTexture(GlobalVariables.unlockedSkillsTextures[1])
+		
 func _on_action_3_pressed() -> void:
 	if GlobalVariables.unlockedSkills.size() >= 3:
 		useAbility(GlobalVariables.unlockedSkills[2])
+		action_3.changeTexture(GlobalVariables.unlockedSkillsTextures[2])
 
 func _on_action_4_pressed() -> void:
 	if GlobalVariables.unlockedSkills.size() >= 4:
 		useAbility(GlobalVariables.unlockedSkills[3])
+		action_4.changeTexture(GlobalVariables.unlockedSkillsTextures[3])
 
 func _on_action_5_pressed() -> void:
 	tp_boss()
 	if GlobalVariables.unlockedSkills.size() == 5:
 		useAbility(GlobalVariables.unlockedSkills[4])
+		action_5.changeTexture(GlobalVariables.unlockedSkillsTextures[4])
 		
 func tp_boss():
 	player.global_position = (Vector2(1974, 2272))

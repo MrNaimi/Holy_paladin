@@ -28,7 +28,7 @@ func _process(_delta):
 
 func _on_pressed() -> void:
 	timer.start()
-	disabled = false
+	disabled = true
 	set_process(true)
 
 
@@ -36,3 +36,7 @@ func _on_timer_timeout() -> void:
 	disabled = false
 	time.text = ""
 	set_process(false)
+	
+func changeTexture(texture):
+	texture_progress_bar.texture_progress = texture
+	texture_normal = texture

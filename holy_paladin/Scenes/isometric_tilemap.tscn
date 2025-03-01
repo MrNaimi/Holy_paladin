@@ -1,4 +1,4 @@
-[gd_scene load_steps=331 format=4 uid="uid://ccxc8igku0gv2"]
+[gd_scene load_steps=335 format=4 uid="uid://ccxc8igku0gv2"]
 
 [ext_resource type="Script" path="res://Scenes/world.gd" id="1_hw8ua"]
 [ext_resource type="Texture2D" uid="uid://c1u7xxtpn8piw" path="res://Scenes/isometric_tilemap.tres" id="2_s8kvc"]
@@ -2666,21 +2666,6 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3nlwv"]
 bg_color = Color(1, 1, 1, 1)
 
-[sub_resource type="Animation" id="Animation_k32sj"]
-resource_name = "fadein"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_s833q"]
 length = 0.001
 tracks/0/type = "value"
@@ -2694,6 +2679,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_k32sj"]
+resource_name = "fadein"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_q32tn"]
@@ -2983,6 +2983,10 @@ libraries = {
 
 [node name="HealCooldownTimer2" type="Timer" parent="Node2D/Player/Timers"]
 wait_time = 5.0
+one_shot = true
+
+[node name="AoECooldownTimer" type="Timer" parent="Node2D/Player/Timers"]
+wait_time = 10.0
 one_shot = true
 
 [node name="audios" type="Node2D" parent="Node2D/Player"]

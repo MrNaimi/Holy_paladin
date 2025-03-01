@@ -14,10 +14,18 @@ extends Node
 @onready var playerArmor = 50
 
 #Cooldown timers
-@onready var dashTimer = 3.0
 @onready var spellTimer = 5.0
+@onready var dashTimer = 3.0
+@onready var healTimer = 5.0
+@onready var projectileTimer = 3.0
+@onready var jumpTimer = 2.0
+@onready var holyShieldTimer = 6.0
+@onready var leapTimer = 10.0
+@onready var spinTimer = 10.0
+@onready var AoETimer = 10.0
 
 @onready var unlockedSkills = []
+@onready var unlockedSkillsTextures = []
 
 @onready var helled = false
 @onready var tween_direction
