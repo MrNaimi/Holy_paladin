@@ -3,6 +3,8 @@ extends CharacterBody2D
 @onready var hitbox: CollisionShape2D = $wizard_animation/fire_area/CollisionShape2D
 @onready var original_position = hitbox.position.x
 @onready var flipped_position = original_position * -1
+@onready var evil_wizard: CharacterBody2D = $"."
+@onready var area_2d: Area2D = $wizard_animation/Area2D
 
 @onready var fire_area: Area2D = $wizard_animation/fire_area
 
@@ -95,6 +97,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			print("Wizard has died")
 			GlobalVariables.xp += 1
 			wizard_animation.play("death")
+			area_2d.queue_free()
 			await get_tree().create_timer(1).timeout
 			wolves.queue_free()
 
@@ -112,3 +115,12 @@ func _on_fire_area_area_entered(area: Area2D) -> void:
 
 func _on_fire_area_area_exited(area: Area2D) -> void:
 	pass # Replace with function body.
+
+
+func _on_visible_on_screen_enabler_2d_screen_entered() -> void:
+	evil_wizard.show
+	print("wizard shows")
+
+func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
+	evil_wizard.hide
+	print("wizard hidden")

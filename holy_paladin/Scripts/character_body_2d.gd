@@ -222,17 +222,17 @@ func _physics_process(delta: float) -> void:
 	if !dashing:
 		if get_viewport().get_mouse_position().x >= get_viewport().size.x/2:
 			if first_time:
-				shadow.global_position += Vector2(8,0)
+				shadow.global_position += Vector2(7.5,0)
 				first_time = false
 			if shadow_changeable2 and !first_time:
-				shadow.global_position += Vector2(-8,0)
+				shadow.global_position += Vector2(-7.5,0)
 				shadow_changeable2 = false
 				shadow_changeable =true
 			player_animations.flip_h = false
 		elif get_viewport().get_mouse_position().x <= get_viewport().size.x/2:
 			player_animations.flip_h = true
 			if shadow_changeable:
-				shadow.global_position += Vector2(8,0)
+				shadow.global_position += Vector2(7.5,0)
 				shadow_changeable = false
 				shadow_changeable2 = true
 			first_time = false
@@ -451,6 +451,7 @@ func _on_action_5_pressed() -> void:
 		
 func tp_boss():
 	player.global_position = (Vector2(1974, 2272))
+	GlobalVariables.cerb_spawned = false
 	GlobalVariables.tp_boss = false
 
 func tp_hell(x):

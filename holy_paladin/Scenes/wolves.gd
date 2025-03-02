@@ -1,5 +1,6 @@
 extends CharacterBody2D
 @onready var wolves: CharacterBody2D = $"."
+@onready var area_2d: Area2D = $wolf_animation/Area2D
 
 var copy = false
 var returning = false
@@ -95,6 +96,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			print("Wolf has died")
 			GlobalVariables.xp += 1
 			wolf_animation.play(colour + "_death")
+			area_2d.queue_free()
 			await get_tree().create_timer(1).timeout
 			wolves.queue_free()
 	if area.is_in_group("player"):
@@ -106,3 +108,20 @@ func _on_aggro_off_body_exited(body: Node2D) -> void:
 		returning = true
 		player_chase = false
 		wolf_animation.play(colour + "_run")
+
+
+func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
+	print("wolf entered screen!")
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	print("wolf exited screen!")
+
+
+func _on_visible_on_screen_enabler_2d_screen_entered() -> void:
+	wolves.show
+	print("wolf showing")
+
+func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
+	wolves.hide
+	print("wolf hidden")

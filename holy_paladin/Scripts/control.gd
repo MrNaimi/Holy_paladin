@@ -67,5 +67,5 @@ func _process(delta: float) -> void:
 	characterspeed.text = "character speed: "+str(GlobalVariables.playerSpeed)
 	combotimer.text = "combo time left: "+str(float(combo_timer.time_left)).left(4)
 	pierucounter.text = str(player.pierucounter)
-	processpeed.text = str(Engine.get_frames_per_second())
+	processpeed.text = str("FPS: ", Engine.get_frames_per_second())
 	

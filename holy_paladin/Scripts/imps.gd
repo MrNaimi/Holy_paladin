@@ -2,6 +2,8 @@ extends CharacterBody2D
 @onready var enemy_animation: AnimatedSprite2D = $enemy_animation
 @onready var imp: CharacterBody2D = $"."
 @onready var soft_collision: Area2D = $soft_collision
+@onready var area_2d: Area2D = $enemy_animation/Area2D
+
 const FIREBALL = preload("res://Scenes/fireball.tscn")
 var shoot = true
 var fireball
@@ -68,6 +70,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			print("flying imp has died")
 			GlobalVariables.xp += 1
 			enemy_animation.play("death")
+			area_2d.queue_free()
 			await get_tree().create_timer(1).timeout
 			imp.queue_free()
 	if area.is_in_group("player"):
@@ -98,3 +101,12 @@ func _on_aggro_off_body_exited(body: Node2D) -> void:
 		player_chase = false
 		returning = true
 		enemy_animation.play("idle")
+
+
+func _on_visible_on_screen_enabler_2d_screen_entered() -> void:
+	imp.show
+	print("imp shown")
+
+func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
+	imp.hide
+	print("imp hidden")

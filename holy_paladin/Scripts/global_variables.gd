@@ -34,6 +34,7 @@ extends Node
 
 @onready var cerberus_health = 20
 @onready var cerb_hp_bar = false
+@onready var cerb_spawned = true
 
 @onready var portal_text = false
 @onready var tp_boss = false

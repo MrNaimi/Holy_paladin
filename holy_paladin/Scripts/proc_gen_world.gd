@@ -46,7 +46,6 @@ var tree_atlas = Vector2i(0,0)# puu kordinaatti
 @onready var portal_2_d
 @onready var portal_3_d
 @onready var portal_4_d
-
 #kamera, kyl te tiedätte
 @onready var camera_2d = $"../../Player/Camera2D"
 @onready var player: CharacterBody2D = $"../../Player"
@@ -109,7 +108,7 @@ func _ready():
 	#kohtaus = 1
 	#generate_world(-200)
 	#kohtaus = 0
-	spawn_cerberus(Vector2(2512,1915))
+	#spawn_cerberus(Vector2(2512,1915))
 	if kohtaus == 1:
 		GlobalVariables.player_spawn_location = get_ground_tile()
 	
@@ -148,7 +147,10 @@ func _ready():
 	#generate_road(START_POS, END_POS)
 
 func _process(delta: float) -> void:
-	pass
+	if GlobalVariables.cerb_spawned == false:
+		spawn_cerberus(Vector2(2512,1915))
+		GlobalVariables.cerb_spawned = true
+		
 	#if GlobalVariables.helled:
 		#player.global_position = get_ground_tile()
 func generate_world(offset):
