@@ -126,11 +126,11 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 
 
 func _on_visible_on_screen_enabler_2d_screen_entered() -> void:
-	wolves.visible = true
+	wolves.show
 	#print("wolf showing")
 
 func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
-	wolves.visible = false
+	wolves.hide
 	#print("wolf hidden")
 	
 func enableHitBox() -> void:

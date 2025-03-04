@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://di8slpjv0youj" path="res://Scenes/world.gd" id="1_hw8ua"]
 [ext_resource type="Texture2D" uid="uid://c1u7xxtpn8piw" path="res://Scenes/isometric_tilemap.tres" id="2_s8kvc"]
 [ext_resource type="Script" uid="uid://nit0nogq16oj" path="res://Scripts/character_body_2d.gd" id="2_srydx"]
-[ext_resource type="Script" uid="uid://c4frixdj0au7d" path="res://Scripts/proc_gen_world.gd" id="2_yevhn"]
+[ext_resource type="Script" uid="uid://v5exh5omlf5m" path="res://Scripts/proc_gen_world.gd" id="2_yevhn"]
 [ext_resource type="Texture2D" uid="uid://bi0tlkjtfs2y8" path="res://assets/main_char/spr_Dash_strip.png" id="3_02vde"]
 [ext_resource type="TileSet" uid="uid://cdawm2arl6lxb" path="res://Scenes/data/forest.tres" id="3_cpsns"]
 [ext_resource type="TileSet" uid="uid://6wmbxw5okxse" path="res://Scenes/data/isometric_tilemap.tres" id="3_kg52b"]
@@ -48,7 +48,7 @@
 [ext_resource type="FontFile" uid="uid://ofihhycy11m7" path="res://assets/fonts/scarbes.regular.ttf" id="23_wf48i"]
 [ext_resource type="AudioStream" uid="uid://dc8vkeh8kc0fe" path="res://assets/audio_assets/walking.ogg" id="25_ch77j"]
 [ext_resource type="Texture2D" uid="uid://5p8aha2knxya" path="res://assets/ui_assets/dashicon.png" id="26_4ffth"]
-[ext_resource type="Script" uid="uid://b6w5m2ubc4f7e" path="res://Scenes/canvas_layer.gd" id="26_j6tgg"]
+[ext_resource type="Script" uid="uid://c7xw5wxfvixku" path="res://Scenes/canvas_layer.gd" id="26_j6tgg"]
 [ext_resource type="Texture2D" uid="uid://ce55r2wn51p4o" path="res://assets/ui_assets/cooldownframe.png" id="27_mq58b"]
 [ext_resource type="Script" uid="uid://kkshkypwj3vc" path="res://Scenes/action_bar.gd" id="28_8xgnj"]
 [ext_resource type="Texture2D" uid="uid://dnd67rq2yqc5o" path="res://assets/ui_assets/spellicon.png" id="28_m34q7"]
@@ -3032,12 +3032,18 @@ process_mode = 3
 script = ExtResource("26_j6tgg")
 
 [node name="portal_spawn_text" type="Label" parent="CanvasLayer"]
-offset_left = 424.0
-offset_top = 45.0
-offset_right = 1407.0
-offset_bottom = 561.0
+visible = false
+offset_left = 445.0
+offset_top = 57.0
+offset_right = 1397.0
+offset_bottom = 753.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("23_wf48i")
 theme_override_font_sizes/font_size = 65
 text = "A portal has appeared on the map! Find it to fight the boss!"
+horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="portal_text" type="Label" parent="CanvasLayer"]

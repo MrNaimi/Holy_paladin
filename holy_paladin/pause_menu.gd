@@ -24,11 +24,13 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if visible:
+		pass
 		get_tree().paused = true
 		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear_to_db(sfxbusvolume.value/division_amount))
 		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear_to_db(musicbusvolume.value/division_amount))
 		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(masterbusvolume.value/division_amount))
 	elif !visible:
+		pass
 		get_tree().paused = false
 	
 	

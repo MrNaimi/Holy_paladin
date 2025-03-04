@@ -11,7 +11,7 @@ var width : int = 150
 var height : int = 150
 var y = 1
 
-@export var devmode = true
+@export var devmode = false
 #ENEMY REFERENCES
 
 const PORTAL = preload("res://Scenes/portal.tscn")
@@ -125,11 +125,11 @@ func _ready():
 		current_portal = max(portal_1_d, portal_2_d, portal_4_d, portal_3_d)
 			
 		print("Current distance to portal is ", current_portal)
-	for i in range (50):
+	for i in range (100):
 		spawn_wolf(get_grass_tile())
-	for i in range(20):
+	for i in range(50):
 		spawn_imp(get_grass_tile())
-	for i in range(5):
+	for i in range(25):
 		spawn_wizard(get_grass_tile())
 	
 	#Tien generointi

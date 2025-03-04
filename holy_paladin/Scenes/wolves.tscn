@@ -1,6 +1,6 @@
 [gd_scene load_steps=177 format=3 uid="uid://b21qq8m21n2us"]
 
-[ext_resource type="Script" uid="uid://dp62myouihrh" path="res://Scenes/wolves.gd" id="1_3onk2"]
+[ext_resource type="Script" uid="uid://ba63dbdbiac4n" path="res://Scenes/wolves.gd" id="1_3onk2"]
 [ext_resource type="Texture2D" uid="uid://ddgk6i0ixljc5" path="res://assets/enemies/wolves/Canine_Black_Attack.png" id="2_uuw2n"]
 [ext_resource type="Texture2D" uid="uid://bq88k1k4w7q70" path="res://assets/enemies/wolves/Canine_Black_Death.png" id="3_mi5eo"]
 [ext_resource type="Texture2D" uid="uid://jt5qb36i6nv3" path="res://assets/enemies/wolves/Canine_Black_Hit.png" id="4_pg6ut"]
