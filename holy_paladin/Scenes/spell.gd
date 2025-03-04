@@ -6,6 +6,7 @@ extends Area2D
 @onready var hit_box_timer: Timer = $HitBoxTimer
 @onready var hit_box_start_timer: Timer = $HitBoxStartTimer
 @onready var spell_animation: AnimatedSprite2D = $AnimatedSprite2D
+@onready var spellaudio: AudioStreamPlayer2D = $spellaudio
 
 
 # Called when the node enters the scene tree for the first time.
@@ -25,6 +26,7 @@ func _on_hit_box_start_timer_timeout() -> void:
 	hit_box_timer.wait_time = hitboxtime
 	hit_box_timer.start()
 	spell_animation.visible = true
+	spellaudio.play()
 	spell_animation.play("spell")
 	print("Spell has been used")
 

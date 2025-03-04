@@ -3,6 +3,7 @@ extends Area2D
 
 var speed = 200
 var move_direction
+var damage = GlobalVariables.spellDamage
 
 func _ready() -> void:
 	death.start()
