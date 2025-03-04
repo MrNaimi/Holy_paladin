@@ -10,20 +10,22 @@ var tween: Tween
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	label.hide()
-	camera_transition(camera_2d, "position",camera_2d.position +Vector2(240,0) , 1.5)
+	camera_transition(camera_2d, "position",camera_2d.position +Vector2(300,0) , 2)
 	sound_2.play()
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(4).timeout
 	#sound.stop()
-	camera_transition(camera_2d, "position",camera_2d.position +Vector2(240,0) , 1.5)
+	camera_transition(camera_2d, "position",camera_2d.position +Vector2(320,0) , 2)
 	#sound.play()
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(4).timeout
 	#sound.stop()
-	camera_transition(camera_2d, "position",camera_2d.position +Vector2(240,0) , 1.5)
+	camera_transition(camera_2d, "position",camera_2d.position +Vector2(320,0) , 2)
 	#sound.play()
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(4).timeout
 	#sound.stop()
-	camera_transition(camera_2d, "position",camera_2d.position +Vector2(240,0) , 1.5)
-	await get_tree().create_timer(3).timeout
+	camera_transition(camera_2d, "position",camera_2d.position +Vector2(330,0) , 2)
+	await get_tree().create_timer(4).timeout
+	camera_transition(camera_2d, "position",camera_2d.position +Vector2(330,0) , 2)
+	await get_tree().create_timer(4).timeout
 	#sound.stop()
 	label.show()
 	sound.play()
