@@ -3142,6 +3142,9 @@ layout_mode = 2
 text = "0s
 "
 
+[node name="player hp" type="Label" parent="CanvasLayer/BottomLeft/VBoxContainer"]
+layout_mode = 2
+
 [node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/BottomLeft"]
 layout_mode = 0
 offset_left = 2058.0
