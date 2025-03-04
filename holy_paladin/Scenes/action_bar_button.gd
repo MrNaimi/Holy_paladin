@@ -4,7 +4,8 @@ extends TextureButton
 @onready var timer: Timer = $Timer
 @onready var time: Label = $Time
 @onready var key: Label = $Key
-
+@onready var texture_changed = false
+@onready var ability_name = null
 var change_key = "":
 	set(value):
 		change_key = value

@@ -51,6 +51,8 @@ const IMPS = preload("res://Scenes/imps.tscn")
 @onready var action_4: TextureButton = $"../../CanvasLayer/BottomLeft/progressbars/ActionBar/Action4"
 @onready var action_5: TextureButton = $"../../CanvasLayer/BottomLeft/progressbars/ActionBar/Action5"
 
+@onready var actionbuttons = [action_1, action_2, action_3, action_4, action_5]
+
 
 #tässä määritellään timereihin viittaus
 @onready var animation_timer: Timer = $Timers/AnimationTimer
@@ -429,30 +431,41 @@ func useAbility(ability : String):
 				projectile.move_direction = player.global_position.direction_to(player.global_position + direction)
 				
 func _on_action_1_pressed() -> void:
+	if action_1.texture_changed:
+		useAbility(action_1.ability_name)
 	if !GlobalVariables.unlockedSkills.is_empty():
 		useAbility(GlobalVariables.unlockedSkills[0])
-		action_1.changeTexture(GlobalVariables.unlockedSkillsTextures[0])
+		
+		#action_1.changeTexture(GlobalVariables.unlockedSkillsTextures[0])
 
 func _on_action_2_pressed() -> void:
-	if GlobalVariables.unlockedSkills.size() >= 2:
-		useAbility(GlobalVariables.unlockedSkills[1])
-		action_2.changeTexture(GlobalVariables.unlockedSkillsTextures[1])
+	if action_2.texture_changed:
+		useAbility(action_2.ability_name)
+	#if GlobalVariables.unlockedSkills.size() >= 2:
+		#useAbility(GlobalVariables.unlockedSkills[1])
+		#action_2.changeTexture(GlobalVariables.unlockedSkillsTextures[1])
 		
 func _on_action_3_pressed() -> void:
-	if GlobalVariables.unlockedSkills.size() >= 3:
-		useAbility(GlobalVariables.unlockedSkills[2])
-		action_3.changeTexture(GlobalVariables.unlockedSkillsTextures[2])
+	if action_3.texture_changed:
+		useAbility(action_3.ability_name)
+	#if GlobalVariables.unlockedSkills.size() >= 3:
+		#useAbility(GlobalVariables.unlockedSkills[2])
+		#action_3.changeTexture(GlobalVariables.unlockedSkillsTextures[2])
 
 func _on_action_4_pressed() -> void:
-	if GlobalVariables.unlockedSkills.size() >= 4:
-		useAbility(GlobalVariables.unlockedSkills[3])
-		action_4.changeTexture(GlobalVariables.unlockedSkillsTextures[3])
+	if action_4.texture_changed:
+		useAbility(action_4.ability_name)
+	#if GlobalVariables.unlockedSkills.size() >= 4:
+		#useAbility(GlobalVariables.unlockedSkills[3])
+		#action_4.changeTexture(GlobalVariables.unlockedSkillsTextures[3])
 
 func _on_action_5_pressed() -> void:
-	tp_boss()
-	if GlobalVariables.unlockedSkills.size() == 5:
-		useAbility(GlobalVariables.unlockedSkills[4])
-		action_5.changeTexture(GlobalVariables.unlockedSkillsTextures[4])
+	if action_5.texture_changed:
+		useAbility(action_5.ability_name)
+	#tp_boss()
+	#if GlobalVariables.unlockedSkills.size() == 5:
+		#useAbility(GlobalVariables.unlockedSkills[4])
+		#action_5.changeTexture(GlobalVariables.unlockedSkillsTextures[4])
 		
 func tp_boss():
 	player.global_position = (Vector2(1974, 2272))
@@ -470,8 +483,14 @@ func _on_leap_animation_animation_finished() -> void:
 
 func _on_heal_animation_animation_finished() -> void:
 	heal_animation.visible = false
+	
+	
+	
 
 var is_dead = false
+
+
+
 func die():
 		is_dead = true
 		# Player Stats RESET
