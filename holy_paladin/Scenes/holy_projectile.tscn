@@ -21,7 +21,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_2hcp2"]
 radius = 16.0312
 
-[node name="HolyProjectile" type="Area2D"]
+[node name="HolyProjectile" type="Area2D" groups=["attack"]]
 scale = Vector2(-0.326094, -0.326094)
 script = ExtResource("1_o811c")
 

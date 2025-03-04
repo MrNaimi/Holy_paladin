@@ -6,6 +6,8 @@ extends TextureButton
 @onready var key: Label = $Key
 @onready var texture_changed = false
 @onready var ability_name = null
+var wait_time = 1.5
+
 var change_key = "":
 	set(value):
 		change_key = value
@@ -39,5 +41,24 @@ func _on_timer_timeout() -> void:
 	set_process(false)
 	
 func changeTexture(texture):
+	changeTimer(ability_name)
 	texture_progress_bar.texture_progress = texture
 	texture_normal = texture
+	
+func changeTimer(ability_name : String):
+	match ability_name:
+		"Dash":
+			wait_time = GlobalVariables.dashTimer
+		"Heal":
+			wait_time = GlobalVariables.healTimer
+		"Holy Projectile":
+			wait_time = GlobalVariables.projectileTimer
+		"Jump":
+			wait_time = GlobalVariables.jumpTimer
+		"Leap":
+			wait_time = GlobalVariables.leapTimer
+		"Spin":
+			wait_time = GlobalVariables.spinTimer
+		"AoE":
+			wait_time = GlobalVariables.AoETimer
+	timer.wait_time = wait_time

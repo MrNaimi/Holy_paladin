@@ -64,7 +64,7 @@ var Skills: Dictionary = {
 	"Holy Shield":{
 		"unlock": false,
 		"level": 0,
-		"ability": true
+		"ability": false
 	},
 	"+5% Attack Damage 2":{
 		"unlock": false,
@@ -139,9 +139,9 @@ func setUnlock(skill: String, level: int):
 			for button in get_parent().get_parent().get_child(0).get_child(1).actionbuttons:
 				if !button.texture_changed:
 					button.visible = true
+					button.ability_name =  Skills.keys()[Skills.keys().find(skill)]
 					button.changeTexture(Skills[skill]["texture"])
 					button.texture_changed = true
-					button.ability_name =  Skills.keys()[Skills.keys().find(skill)]
 					break
 				else:
 					continue

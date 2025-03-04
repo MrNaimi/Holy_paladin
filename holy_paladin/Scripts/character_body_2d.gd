@@ -63,12 +63,12 @@ const IMPS = preload("res://Scenes/imps.tscn")
 @onready var spell_cooldown_timer: Timer = $Timers/SpellCooldownTimer
 @onready var heal_cooldown_timer: Timer = $Timers/HealCooldownTimer
 @onready var holy_projectile_cooldown_timer: Timer = $Timers/HolyProjectileCooldownTimer
-@onready var AOE_cooldown_timer: Timer = $Timers/AoECooldownTimer
+@onready var aoe_cooldown_timer: Timer = $Timers/AoECooldownTimer
 
 
-@onready var jump_timer: Timer = $Timers/JumpTimer
-@onready var leap_timer: Timer = $Timers/LeapTimer
-@onready var spin_timer: Timer = $Timers/SpinTimer
+@onready var jump_cooldown_timer: Timer = $Timers/JumpTimer
+@onready var leap_cooldown_timer: Timer = $Timers/LeapTimer
+@onready var spin_cooldown_timer: Timer = $Timers/SpinTimer
 
 @onready var camdddddddddddddddddddera_2d: Camera2D = $Camera2D
 
@@ -88,6 +88,17 @@ var attacking = false
 
 @export var holy_projectile: PackedScene
 
+var cooldowns = {
+	"spellTimer" = GlobalVariables.spellTimer,
+	"dash_cooldown_timer" = GlobalVariables.dashTimer,
+	"heal_cooldown_timer" = GlobalVariables.healTimer,
+	"holy_projectile_cooldown_timer" = GlobalVariables.projectileTimer,
+	"jump_cooldown_timer" = GlobalVariables.jumpTimer,
+	"leap_cooldown_timer" = GlobalVariables.leapTimer,
+	"spin_cooldown_timer" = GlobalVariables.spinTimer,
+	"aoe_cooldown_timer" = GlobalVariables.AoETimer,
+}
+
 var current_speed = 0
 func _ready():
 	player.global_position = GlobalVariables.player_spawn_location
@@ -102,7 +113,12 @@ func get_input():
 
 	
 	if get_viewport().get_mouse_position().x >= get_viewport().size.x/2 and input_direction.x != 0:
-		if !dashing and !jumping and !attacking and !leaping and !spinning:
+		if !dashing and !attacking:
+			if spinning or leaping or jumping:
+				await get_tree().create_timer(1.7).timeout
+				spinning = false
+				leaping = false
+				jumping = false
 			player_animations.play("walk")
 			if !walking.playing:
 				walking.pitch_scale=RandomNumberGenerator.new().randf_range(0.9, 1.2)
@@ -110,7 +126,12 @@ func get_input():
 		else:
 			pass
 	elif get_viewport().get_mouse_position().x <= get_viewport().size.x/2 and input_direction.x != 0:
-		if !dashing and !jumping and !attacking and !leaping and !spinning:
+		if !dashing and !attacking:
+			if spinning or leaping or jumping:
+				await get_tree().create_timer(1.7).timeout
+				spinning =  false
+				leaping = false
+				jumping = false
 			player_animations.play("walk")
 			if !walking.playing:
 				walking.pitch_scale=RandomNumberGenerator.new().randf_range(0.9, 1.2)
@@ -118,7 +139,12 @@ func get_input():
 		else:
 			pass
 	if input_direction.y != 0:
-		if !dashing and !jumping and !attacking and !leaping and !spinning:
+		if !dashing and !attacking:
+			if spinning or leaping or jumping:
+				await get_tree().create_timer(1.7).timeout
+				spinning =  false
+				leaping = false
+				jumping = false
 			player_animations.play("walk")
 			if !walking.playing:
 				walking.pitch_scale=RandomNumberGenerator.new().randf_range(0.9, 1.2)
@@ -326,9 +352,9 @@ func useAbility(ability : String):
 				charge = 0
 		
 	if ability == "Jump":
-		if jump_timer.is_stopped():
-			jump_timer.wait_time = GlobalVariables.jumpTimer
-			jump_timer.start()
+		if jump_cooldown_timer.is_stopped():
+			jump_cooldown_timer.wait_time = GlobalVariables.jumpTimer
+			jump_cooldown_timer.start()
 			print("Player used jump")
 			invincibility_timer.start()
 			get_tree().create_tween().tween_property(self, "position", Vector2(position.x+velocity.x-5, position.y+velocity.y-5),1)
@@ -367,9 +393,9 @@ func useAbility(ability : String):
 		pass
 	if ability == "Leap":
 		#Needs to be implemented
-		if leap_timer.is_stopped():
-			leap_timer.wait_time = GlobalVariables.leapTimer
-			leap_timer.start()
+		if leap_cooldown_timer.is_stopped():
+			leap_cooldown_timer.wait_time = GlobalVariables.leapTimer
+			leap_cooldown_timer.start()
 			print("Player used Leap")
 			invincibility_timer.start()
 			if velocity.x > 0:
@@ -393,9 +419,9 @@ func useAbility(ability : String):
 				get_tree().create_tween().tween_property(self, "position", Vector2(position.x+90, position.y),0.1)
 			
 	if ability == "Spin":
-		if spin_timer.is_stopped():
-			spin_timer.wait_time = GlobalVariables.spinTimer
-			spin_timer.start()
+		if spin_cooldown_timer.is_stopped():
+			spin_cooldown_timer.wait_time = GlobalVariables.spinTimer
+			spin_cooldown_timer.start()
 			print("Player used Spin")
 			invincibility_timer.start()
 			#get_tree().create_tween().tween_property(self, "position", Vector2(position.x+velocity.x-5, position.y+velocity.y-5),0.8)
@@ -412,11 +438,11 @@ func useAbility(ability : String):
 			
 	if ability == "AoE":
 		#Needs to be implemented
-		if AOE_cooldown_timer.is_stopped():
-			AOE_cooldown_timer.wait_time = GlobalVariables.AoETimer
+		if aoe_cooldown_timer.is_stopped():
+			aoe_cooldown_timer.wait_time = GlobalVariables.AoETimer
 			player_animations.play("taunt")
 			await get_tree().create_timer(1).timeout
-			AOE_cooldown_timer.start()
+			aoe_cooldown_timer.start()
 			# Define the offsets as a list of vectors
 			var directions = [
 				Vector2(0, -20),
