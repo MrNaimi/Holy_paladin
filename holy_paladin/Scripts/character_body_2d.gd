@@ -22,7 +22,7 @@ var spinning
 #Viittaukset player attackkeihin
 
 const LEVEL_UP = preload("res://Scenes/level_up.tscn")
-
+const DIE = preload("res://Scenes/death.tscn")
 #Viittaukset player attackkeihin
 #@onready var spell_collision: CollisionShape2D = $AttackHitboxes/Spell/CollisionShape2D
 #@onready var spell: Area2D = $AttackHitboxes/Spell
@@ -91,7 +91,7 @@ func _ready():
 	var mouseposition = null
 	leap_animation.visible = false
 	heal_animation.visible = false
-	
+
 func get_input():
 	var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = input_direction * SPEED
@@ -127,6 +127,9 @@ func get_input():
 			
 #checkaa mouse inputin kun clickaa. toistaa atm vaan animaation kerran
 func _input(event):
+	if is_dead:
+		return  # Ignore all input
+	
 	if event.is_action_pressed("esc"):
 		if skill_tree.visible:
 			skill_tree.visible = false
@@ -205,6 +208,12 @@ func _physics_process(delta: float) -> void:
 	hp = GlobalVariables.playerHealth
 	if GlobalVariables.xp >= GlobalVariables.xp_threshold:
 		level_up()
+	if GlobalVariables.playerHealth <= 0:
+		is_dead = true
+		$Player_animations.play("death")
+		await get_tree().create_timer(2.5).timeout
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+		die()
 		
 	GlobalVariables.playerpos = position
 	get_input()
@@ -215,10 +224,6 @@ func _physics_process(delta: float) -> void:
 	processiterations += 1
 	current_speed = sqrt(velocity.x*velocity.x+velocity.y*velocity.y)
 	
-	#TÄRKEÄ PIERUÄÄNI
-	if RandomNumberGenerator.new().randi_range(0, 1000000)==9:
-		pierucounter+=1
-		pieru.play(0)
 	if !dashing:
 		if get_viewport().get_mouse_position().x >= get_viewport().size.x/2:
 			if first_time:
@@ -465,3 +470,57 @@ func _on_leap_animation_animation_finished() -> void:
 
 func _on_heal_animation_animation_finished() -> void:
 	heal_animation.visible = false
+
+var is_dead = false
+func die():
+		is_dead = true
+		# Player Stats RESET
+		GlobalVariables.xp = 0
+		GlobalVariables.enemies_killed = 0
+		GlobalVariables.level = 1
+		GlobalVariables.xp_threshold = 1
+		GlobalVariables.talentpoints = 0
+		GlobalVariables.skillpoints = 10
+		GlobalVariables.basicAttackDamage = 1
+		GlobalVariables.baseBasicAttackDamage = 1
+		GlobalVariables.spellDamage = 3
+		GlobalVariables.playerSpeed = Vector2(100, 100)
+		GlobalVariables.playerHealth = 100
+		GlobalVariables.playerArmor = 50
+
+		# Cooldown Timers
+		GlobalVariables.spellTimer = 5.0
+		GlobalVariables.dashTimer = 3.0
+		GlobalVariables.healTimer = 5.0
+		GlobalVariables.projectileTimer = 3.0
+		GlobalVariables.jumpTimer = 2.0
+		GlobalVariables.holyShieldTimer = 6.0
+		GlobalVariables.leapTimer = 10.0
+		GlobalVariables.spinTimer = 10.0
+		GlobalVariables.AoETimer = 10.0
+
+		# Unlocked Abilities
+		GlobalVariables.unlockedSkills = []
+		GlobalVariables.unlockedSkillsTextures = []
+
+		# Game State
+		GlobalVariables.helled = false
+		GlobalVariables.tween_direction = null
+		GlobalVariables.playerpos = null
+		GlobalVariables.flip_h = false
+
+		# Boss Data
+		GlobalVariables.cerberus_health = 20
+		GlobalVariables.cerb_hp_bar = false
+		GlobalVariables.cerb_spawned = true
+
+		# World State
+		GlobalVariables.portal_text = false
+		GlobalVariables.tp_boss = false
+		GlobalVariables.roadGenerated = false
+		GlobalVariables.player_spawn_location = Vector2(0, 0)
+
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		await get_tree().process_frame
+		get_tree().change_scene_to_file("res://Scenes/death.tscn")
+		

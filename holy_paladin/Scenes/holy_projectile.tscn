@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dayv5ugvahe68"]
 
-[ext_resource type="Script" uid="uid://de7fquh4n45lt" path="res://Scenes/holy_projectile.gd" id="1_o811c"]
+[ext_resource type="Script" uid="uid://c1yh2pxie0055" path="res://Scenes/holy_projectile.gd" id="1_o811c"]
 [ext_resource type="Texture2D" uid="uid://chjrlybch17va" path="res://assets/ui_assets/holy_projectile.png" id="2_28udm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8ggmw"]

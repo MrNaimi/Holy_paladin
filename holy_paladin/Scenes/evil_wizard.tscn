@@ -1,7 +1,7 @@
 [gd_scene load_steps=46 format=3 uid="uid://dny6hegjabm6k"]
 
 [ext_resource type="Texture2D" uid="uid://cjumo7jwc2yg" path="res://assets/enemies/evil_wizard/Attack.png" id="1_c5v3q"]
-[ext_resource type="Script" uid="uid://dtv3hfoorda8v" path="res://Scenes/evil_wizard.gd" id="1_x7cq1"]
+[ext_resource type="Script" uid="uid://c484jd6l403r8" path="res://Scenes/evil_wizard.gd" id="1_x7cq1"]
 [ext_resource type="Texture2D" uid="uid://ce3i0gffodtkl" path="res://assets/enemies/evil_wizard/Death.png" id="2_ng810"]
 [ext_resource type="Texture2D" uid="uid://c2bh2swhdvt6g" path="res://assets/enemies/evil_wizard/Take Hit.png" id="3_f1c5h"]
 [ext_resource type="Texture2D" uid="uid://b1t7wh64fsjtd" path="res://assets/enemies/evil_wizard/Idle.png" id="4_c8qbq"]
