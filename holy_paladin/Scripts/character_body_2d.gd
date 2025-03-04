@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var player: CharacterBody2D = $"."
 @onready var shadow: Sprite2D = $Player_animations/shadow
 
+
 var first_time = true
 var shadow_changeable2 = true
 var shadow_changeable = true
@@ -69,7 +70,7 @@ const IMPS = preload("res://Scenes/imps.tscn")
 @onready var leap_timer: Timer = $Timers/LeapTimer
 @onready var spin_timer: Timer = $Timers/SpinTimer
 
-@onready var camera_2d: Camera2D = $Camera2D
+@onready var camdddddddddddddddddddera_2d: Camera2D = $Camera2D
 
 @onready var spin_hit_box: Area2D = $AttackHitboxes/SpinHitBox
 @onready var jump_hit_box: Area2D = $AttackHitboxes/JumpHitBox
@@ -78,6 +79,7 @@ const IMPS = preload("res://Scenes/imps.tscn")
 @onready var light_attack_1: Area2D = $AttackHitboxes/Light_attack1
 @onready var light_attack_2: Area2D = $AttackHitboxes/Light_attack2
 @onready var light_attack_3: Area2D = $AttackHitboxes/Light_attack3
+@onready var dash: AudioStreamPlayer2D = $audios/dash
 #@onready var tween = get_tree().create_tween()
 @onready var tween_direction = 1
 var attacking = false
@@ -305,17 +307,20 @@ func useAbility(ability : String):
 			player_animations.play("dash")
 			animation_timer.start()
 			dashing = true
+			dash.play()
 	if ability == "Holy Projectile":
 		if holy_projectile_cooldown_timer.is_stopped():
 			holy_projectile_cooldown_timer.wait_time = GlobalVariables.projectileTimer
 			if charge < 5:
 				charge = charge + 1
 				print(charge)
+				$audios/holyprojectile.play()
 				player_animations.play("holy_projectile")
 				var h = holy_projectile.instantiate()
 				add_child(h)
 				h.position.y -= 15
 				h.move_direction = player.global_position.direction_to(get_global_mouse_position())
+				
 			else:
 				holy_projectile_cooldown_timer.start()
 				charge = 0

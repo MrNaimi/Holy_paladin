@@ -3,6 +3,7 @@ extends Area2D
 @onready var hitbox2: CollisionShape2D = $CollisionShape2D2
 @onready var leap_hit_box_timer_2: Timer = $LeapHitBoxTimer2
 @onready var leap_hit_box_start_timer_2: Timer = $LeapHitBoxStartTimer2
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 @onready var player_animations: AnimatedSprite2D = $"../../Player_animations"
 
@@ -20,7 +21,7 @@ func _ready() -> void:
 
 func enableHitBox():
 	leap_hit_box_start_timer_2.start()
-
+	audio_stream_player_2d.play()
 
 
 func _on_leap_hit_box_timer_2_timeout() -> void:

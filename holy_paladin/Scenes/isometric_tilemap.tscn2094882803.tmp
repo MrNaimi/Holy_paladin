@@ -1,4 +1,4 @@
-[gd_scene load_steps=338 format=4 uid="uid://ccxc8igku0gv2"]
+[gd_scene load_steps=337 format=4 uid="uid://ccxc8igku0gv2"]
 
 [ext_resource type="Script" uid="uid://bbs81ds823rcc" path="res://Scenes/world.gd" id="1_hw8ua"]
 [ext_resource type="Texture2D" uid="uid://c1u7xxtpn8piw" path="res://Scenes/isometric_tilemap.tres" id="2_s8kvc"]
@@ -59,7 +59,6 @@
 [ext_resource type="PackedScene" uid="uid://dhobm16afu2ww" path="res://tutorial.tscn" id="31_w85f4"]
 [ext_resource type="PackedScene" uid="uid://cevx55vdb0mcw" path="res://pause_menu.tscn" id="33_3m1pa"]
 [ext_resource type="AudioStream" uid="uid://y75i4ygnw7nv" path="res://assets/audio_assets/dash.ogg" id="35_x8d53"]
-[ext_resource type="AudioStream" uid="uid://b1nedsgpm0qtv" path="res://assets/audio_assets/holyprojectile.ogg" id="36_n26b1"]
 
 [sub_resource type="TileSet" id="TileSet_df3ou"]
 tile_shape = 1
@@ -3006,10 +3005,6 @@ bus = &"SFX"
 
 [node name="dash" type="AudioStreamPlayer2D" parent="Node2D/Player/audios"]
 stream = ExtResource("35_x8d53")
-
-[node name="holyprojectile" type="AudioStreamPlayer2D" parent="Node2D/Player/audios"]
-stream = ExtResource("36_n26b1")
-volume_db = -10.0
 
 [node name="pieru" type="AudioStreamPlayer2D" parent="Node2D"]
 stream = ExtResource("14_ti6kv")
