@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://b3od3wreqhnq0"]
 
-[ext_resource type="Script" path="res://Scenes/fireball.gd" id="1_fln21"]
+[ext_resource type="Script" uid="uid://o0pxtwnmiqk" path="res://Scenes/fireball.gd" id="1_fln21"]
 [ext_resource type="Texture2D" uid="uid://p5mb5tx7r58" path="res://assets/enemies/flying_imp/fireball.png" id="2_8544v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n6tso"]
@@ -82,8 +82,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_aw8in"]
 _data = {
-"RESET": SubResource("Animation_f0kca"),
-"penis": SubResource("Animation_qw5hf")
+&"RESET": SubResource("Animation_f0kca"),
+&"penis": SubResource("Animation_qw5hf")
 }
 
 [node name="Fireball" type="CharacterBody2D"]
@@ -107,7 +107,7 @@ autostart = true
 
 [node name="sizzler" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_aw8in")
+&"": SubResource("AnimationLibrary_aw8in")
 }
 
 [connection signal="area_entered" from="AnimatedSprite2D/Area2D" to="." method="_on_area_2d_area_entered"]

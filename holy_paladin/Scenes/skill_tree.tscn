@@ -1,7 +1,7 @@
 [gd_scene load_steps=24 format=3 uid="uid://bilnehhyjx6rq"]
 
 [ext_resource type="PackedScene" uid="uid://b3xkr34ohheb0" path="res://Scenes/skill_button.tscn" id="1_ae22c"]
-[ext_resource type="Script" path="res://Scenes/skill_tree.gd" id="1_tkq7q"]
+[ext_resource type="Script" uid="uid://bjd73v2oy7san" path="res://Scenes/skill_tree.gd" id="1_tkq7q"]
 [ext_resource type="Texture2D" uid="uid://bjrvyk1o673kv" path="res://assets/ui_assets/paladin_icons/Icon35.png" id="3_n4hk8"]
 [ext_resource type="Texture2D" uid="uid://ca2ancalc5hd" path="res://assets/ui_assets/paladin_icons/Icon6.png" id="4_gsegd"]
 [ext_resource type="Texture2D" uid="uid://bd3m2l4xl8sxi" path="res://assets/ui_assets/paladin_icons/Icon27.png" id="5_fl0g5"]

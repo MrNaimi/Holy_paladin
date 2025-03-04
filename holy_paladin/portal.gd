@@ -13,9 +13,13 @@ func _process(delta: float) -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	GlobalVariables.tp_boss = true
-	GlobalVariables.portal_text = true
+	if !GlobalVariables.boss_beaten:
+		GlobalVariables.tp_boss = true
+		GlobalVariables.portal_text = true
+	else:
+		GlobalVariables.game_won = true
 	
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	GlobalVariables.tp_boss = false
-	GlobalVariables.portal_text = false
+	if !GlobalVariables.boss_beaten:
+		GlobalVariables.tp_boss = false
+		GlobalVariables.portal_text = false

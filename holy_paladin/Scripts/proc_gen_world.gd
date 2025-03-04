@@ -20,6 +20,7 @@ const IMPS = preload("res://Scenes/imps.tscn")
 const EVIL_WIZARD = preload("res://Scenes/evil_wizard.tscn")
 const CERBERUS = preload("res://Scenes/cerberus.tscn")
 
+var portal_spawned = true
 var enemies_spawned = []
 var rng = RandomNumberGenerator.new()
 var source_id = 0 #helvetti Tilesetin id
@@ -74,7 +75,7 @@ var terrain_lava_int = 0 #Laavan layer numero
 var ground2_tiles_arr =[]
 var terrain_ground2_int = 2
 var enemy_spawn_locations = []
-
+var current_portal
 #Void tile
 var void_id = 9
 var void_tiles_arr =[]
@@ -121,19 +122,7 @@ func _ready():
 		portal_3_d = Vector2(23,-1147).distance_to(GlobalVariables.player_spawn_location)
 		portal_4_d = Vector2(-2154,2).distance_to(GlobalVariables.player_spawn_location)
 
-		var current_portal = max(portal_1_d, portal_2_d, portal_4_d, portal_3_d)
-		if current_portal == portal_1_d:
-			print("Portal 1")
-			spawn_portal(Vector2(22,1105))
-		elif current_portal == portal_2_d:
-			print("Portal 2")
-			spawn_portal(Vector2(1775, -166))
-		elif current_portal == portal_3_d:
-			print("Portal 3")
-			spawn_portal(Vector2(23, -1147))
-		elif current_portal == portal_4_d:
-			print("Portal 4")
-			spawn_portal(Vector2(-2154,2))
+		current_portal = max(portal_1_d, portal_2_d, portal_4_d, portal_3_d)
 			
 		print("Current distance to portal is ", current_portal)
 	for i in range (50):
@@ -150,6 +139,28 @@ func _process(delta: float) -> void:
 	if GlobalVariables.cerb_spawned == false:
 		spawn_cerberus(Vector2(2512,1915))
 		GlobalVariables.cerb_spawned = true
+		
+	if GlobalVariables.boss_beaten == true and portal_spawned:
+		portal_spawned = false
+		spawn_portal(Vector2(2512,1915))
+	
+	if GlobalVariables.enemies_killed == 21:
+		portal_spawned = true
+		
+	if GlobalVariables.enemies_killed == 20 and portal_spawned:
+		portal_spawned = false
+		if current_portal == portal_1_d:
+			print("Portal 1")
+			spawn_portal(Vector2(22,1105))
+		elif current_portal == portal_2_d:
+			print("Portal 2")
+			spawn_portal(Vector2(1775, -166))
+		elif current_portal == portal_3_d:
+			print("Portal 3")
+			spawn_portal(Vector2(23, -1147))
+		elif current_portal == portal_4_d:
+			print("Portal 4")
+			spawn_portal(Vector2(-2154,2))
 		
 	#if GlobalVariables.helled:
 		#player.global_position = get_ground_tile()

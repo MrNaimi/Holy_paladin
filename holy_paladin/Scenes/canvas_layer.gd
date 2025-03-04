@@ -1,7 +1,8 @@
 extends CanvasLayer
 
 @onready var portal_text: Label = $portal_text
-
+@onready var portal_spawn_text: Label = $portal_spawn_text
+var text_shown = true
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -13,4 +14,13 @@ func _process(delta: float) -> void:
 		portal_text.visible = true
 	else:
 		portal_text.visible = false
+	
+	if GlobalVariables.enemies_killed == 20 and text_shown:
+		portal_spawn_text.visible = true
+		await get_tree().create_timer(2).timeout
+		text_shown = false
+		portal_spawn_text.visible = false
+		
+	else:
+		portal_spawn_text.visible = false
 		

@@ -1,6 +1,8 @@
 extends Node
 @onready var xp = 0
+
 @onready var enemies_killed = 0
+
 @onready var level = 1
 @onready var xp_threshold = 1
 @onready var talentpoints = 0
@@ -10,9 +12,10 @@ extends Node
 @onready var spellDamage = 3
 @onready var playerSpeed = Vector2(100, 100)
 @onready var playerHealth = 100
-
 @onready var playerArmor = 50
 
+@onready var boss_beaten = false
+@onready var game_won = false
 #Cooldown timers
 @onready var spellTimer = 5.0
 @onready var dashTimer = 3.0

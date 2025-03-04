@@ -7,6 +7,7 @@ extends Control
 @onready var characterspeed: Label = $VBoxContainer/characterspeed
 @onready var combotimer: Label = $VBoxContainer/combotimer
 @onready var combo_timer: Timer = $"../../Node2D/Player/Timers/ComboTimer"
+@onready var enemies_killed: Label = $VBoxContainer/enemies_killed
 
 
 @onready var dash_cooldown_timer: Timer = $"../../Node2D/Player/Timers/DashCooldownTimer"
@@ -68,4 +69,5 @@ func _process(delta: float) -> void:
 	combotimer.text = "combo time left: "+str(float(combo_timer.time_left)).left(4)
 	pierucounter.text = str(player.pierucounter)
 	processpeed.text = str("FPS: ", Engine.get_frames_per_second())
+	enemies_killed.text = str(GlobalVariables.enemies_killed)
 	

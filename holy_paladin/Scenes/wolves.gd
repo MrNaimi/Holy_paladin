@@ -2,6 +2,9 @@ extends CharacterBody2D
 @onready var wolves: CharacterBody2D = $"."
 @onready var area_2d: Area2D = $wolf_animation/Area2D
 
+@onready var hit_box_start: Timer = $hit_box_start
+@export var hitboxtime = 0.5
+@export var hitboxdelay = 0.2
 var copy = false
 var returning = false
 var og_position
@@ -61,6 +64,7 @@ func _physics_process(delta: float) -> void:
 			if position.distance_to(player.position)<25:
 				print("Wolf attacked player")
 				wolf_animation.play(colour + "_attack")
+				
 		
 		#Palauttaa suden takaisin alkuperäisellä paikalleen
 		elif returning:
@@ -97,6 +101,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			GlobalVariables.xp += 1
 			wolf_animation.play(colour + "_death")
 			area_2d.queue_free()
+			GlobalVariables.enemies_killed += 1
 			await get_tree().create_timer(1).timeout
 			wolves.queue_free()
 	if area.is_in_group("player"):
@@ -111,17 +116,27 @@ func _on_aggro_off_body_exited(body: Node2D) -> void:
 
 
 func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
-	print("wolf entered screen!")
+	pass
+	#print("wolf entered screen!")
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	print("wolf exited screen!")
+	pass
+	#print("wolf exited screen!")
 
 
 func _on_visible_on_screen_enabler_2d_screen_entered() -> void:
-	wolves.show
-	print("wolf showing")
+	wolves.visible = true
+	#print("wolf showing")
 
 func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
-	wolves.hide
-	print("wolf hidden")
+	wolves.visible = false
+	#print("wolf hidden")
+	
+func enableHitBox() -> void:
+	hit_box_start.wait_time = hitboxdelay
+	hit_box_start.start()
+
+
+func _on_hit_box_start_timeout() -> void:
+	pass # Replace with function body.

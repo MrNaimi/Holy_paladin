@@ -2,7 +2,7 @@ extends CharacterBody2D
 @onready var wolves: CharacterBody2D = $"."
 @onready var boss_sound: AudioStreamPlayer2D = $Boss_sound
 
-const FIREBALL = preload("res://Scenes/fireball.tscn")
+const FIREWAVE = preload("res://firewave.tscn")
 var shoot = true
 var fireball
 
@@ -34,9 +34,6 @@ func _physics_process(delta: float) -> void:
 			wolf_animation.play(colour + "_idle")
 			
 		if player_chase and wolf_animation.animation not in [colour + "_hit", colour + "_death", colour + "_attack", "break"]:
-			
-			
-			
 			if cerb_charged:
 				var x = RandomNumberGenerator.new().randi_range(0, 1)
 				if x == 1:
@@ -57,13 +54,13 @@ func _physics_process(delta: float) -> void:
 					charg_d = direction
 					cerb_charged = false
 				else:
+					
+					#Bossin ampuminen on tässä.
 					if player.position[0] > position[0]:
 						wolf_animation.flip_h = true
 					else:
 						wolf_animation.flip_h = false
-					for i in range(13):
-						shoot_fireball()
-					
+					shoot_fireball()
 					wolf_animation.play("break")
 					#cerb_charged = false
 	
@@ -80,19 +77,14 @@ func _on_detection_area_body_entered(body: Node2D) -> void:
 		#boss_sound.play(0)
 	
 
-#Susi ottaa damagea kun siihen lyödään ja kuolee kun healtti menee nollaan.
+#Susi ottaa damagea kun siihen lyödään ja kuolwwee kun healtti menee nollaan.
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("attack"):
 		print("Cerb has taken damage")
 		print(GlobalVariables.cerberus_health)
 		health -= area.damage
 		if health <= 0:
-			print("Wolf has died")
-			GlobalVariables.xp += 1
-			wolf_animation.play(colour + "_death")
-			await get_tree().create_timer(1).timeout
-			GlobalVariables.cerb_hp_bar = false
-			wolves.queue_free()
+			cerb_dead()
 	if area.is_in_group("player"):
 		area.get_parent().hurt(damage)
 
@@ -112,20 +104,18 @@ func _on_timer_timeout() -> void:
 	cerb_charged = true
 
 func shoot_fireball():
-	shoot = false
-	var num_directions = 12  # Number of fireballs
-	var angle_step = TAU / num_directions  # TAU is 2 * PI (full circle)
-
-	for i in range(num_directions):
-		var fireball = FIREBALL.instantiate()
-		get_tree().current_scene.add_child(fireball)
-		fireball.global_position = global_position
-
-		# Calculate the angle for each fireball
-		var angle = i * angle_step  
-		fireball.direction = Vector2(cos(angle), sin(angle))  # Normalized by default
-
-		#print("Fireball", i, "Direction:", fireball.direction)
-	#print("Enemy position:", global_position)
-	#print("Player position:", player.global_position)
-	#print("Fireball direction:", fireball.direction)
+	var firewave = FIREWAVE.instantiate()
+	get_tree().current_scene.add_child(firewave)
+	firewave.global_position = global_position
+	firewave.direction = ((player.position + Vector2(0,-15)) - position ).normalized()
+	firewave.rotation = firewave.direction.angle()-90
+	
+func cerb_dead():
+	GlobalVariables.enemies_killed += 1
+	print("Wolf has died")
+	GlobalVariables.xp += 1
+	GlobalVariables.boss_beaten = true
+	wolf_animation.play(colour + "_death")
+	await get_tree().create_timer(1).timeout
+	GlobalVariables.cerb_hp_bar = false
+	wolves.queue_free()

@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://c23jplw2vgict"]
 
 [ext_resource type="Texture2D" uid="uid://cvfwtnor3oym5" path="res://assets/cinematics/animation.png" id="1_1j3fq"]
-[ext_resource type="Script" path="res://camera_2d.gd" id="2_i3koq"]
+[ext_resource type="Script" uid="uid://ch1j4uu7ywolm" path="res://camera_2d.gd" id="2_i3koq"]
 [ext_resource type="AudioStream" uid="uid://i3artsis04s7" path="res://assets/audio_assets/traimory-mega-horn-angry-siren-f-cinematic-trailer-sound-effects-193408.mp3" id="3_o8uws"]
 [ext_resource type="AudioStream" uid="uid://bs1b2jdcgfxtf" path="res://assets/audio_assets/epic-hybrid-logo-157092.mp3" id="4_ru2oh"]
 
@@ -37,8 +37,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xfdum"]
 _data = {
-"RESET": SubResource("Animation_skvh5"),
-"fade": SubResource("Animation_5jylp")
+&"RESET": SubResource("Animation_skvh5"),
+&"fade": SubResource("Animation_5jylp")
 }
 
 [node name="Cinematics" type="Node2D"]
