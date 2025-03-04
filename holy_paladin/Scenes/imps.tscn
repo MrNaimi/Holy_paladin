@@ -1,6 +1,6 @@
 [gd_scene load_steps=40 format=3 uid="uid://cj22l1hlo5ktv"]
 
-[ext_resource type="Script" path="res://Scripts/imps.gd" id="1_1p336"]
+[ext_resource type="Script" uid="uid://tg1mmp84320x" path="res://Scripts/imps.gd" id="1_1p336"]
 [ext_resource type="Texture2D" uid="uid://ckhqdljircvhb" path="res://assets/enemies/flying_imp/IDLE.png" id="1_pnewx"]
 [ext_resource type="Texture2D" uid="uid://qcq0avvu8sp8" path="res://assets/enemies/flying_imp/FLYING.png" id="2_by7ow"]
 [ext_resource type="Texture2D" uid="uid://bnarrg080m3de" path="res://assets/ui_assets/enemyicon.png" id="2_h8wkc"]

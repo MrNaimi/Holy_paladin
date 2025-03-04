@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b3xkr34ohheb0"]
 
 [ext_resource type="Texture2D" uid="uid://df4dvj5gw5qcx" path="res://assets/ui_assets/paladin_icons/Icon13.png" id="1_4sggb"]
-[ext_resource type="Script" path="res://Scenes/skill_button.gd" id="2_l2s1c"]
+[ext_resource type="Script" uid="uid://bp77v20eglm1t" path="res://Scenes/skill_button.gd" id="2_l2s1c"]
 
 [node name="SkillButton" type="TextureButton"]
 z_index = 6

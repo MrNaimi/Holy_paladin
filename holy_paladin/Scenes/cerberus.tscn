@@ -1,6 +1,6 @@
 [gd_scene load_steps=45 format=3 uid="uid://b2xx8mxpxmx6u"]
 
-[ext_resource type="Script" path="res://Scenes/cerberus.gd" id="1_ar32v"]
+[ext_resource type="Script" uid="uid://cddbc0c48yrcq" path="res://Scenes/cerberus.gd" id="1_ar32v"]
 [ext_resource type="Texture2D" uid="uid://baf4uh7dl7fet" path="res://assets/enemies/Cerberus/cerberus_attack.png" id="2_jo6yc"]
 [ext_resource type="Texture2D" uid="uid://b1yir01igm2e" path="res://assets/enemies/Cerberus/cerberus_hit.png" id="3_nfi3v"]
 [ext_resource type="Texture2D" uid="uid://biwbmsmd22ga" path="res://assets/enemies/Cerberus/cerberus_death.png" id="4_ccavs"]

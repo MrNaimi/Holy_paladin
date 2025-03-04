@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://h5wegxwjyhii"]
 
-[ext_resource type="Script" path="res://Scenes/death.gd" id="1_h0qg6"]
+[ext_resource type="Script" uid="uid://bo8cg38l0fvmv" path="res://Scenes/death.gd" id="1_h0qg6"]
 [ext_resource type="FontFile" uid="uid://ofihhycy11m7" path="res://assets/fonts/scarbes.regular.ttf" id="2_pgd3n"]
 
 [node name="Node2D" type="Node2D"]

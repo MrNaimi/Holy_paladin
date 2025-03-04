@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Holy_paladin"
 run/main_scene="res://Scenes/isometric_tilemap.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/features=PackedStringArray("4.4", "Forward Plus")
 
 [autoload]
 
