@@ -290,7 +290,7 @@ damage = 10
 sprite_frames = SubResource("SpriteFrames_b2x8r")
 animation = &"attack"
 
-[node name="Area2D" type="Area2D" parent="wizard_animation"]
+[node name="Area2D" type="Area2D" parent="wizard_animation" groups=["enemy"]]
 collision_layer = 2
 collision_mask = 3
 

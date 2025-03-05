@@ -20,7 +20,7 @@ extends Node
 @onready var spellTimer = 5.0
 @onready var dashTimer = 3.0
 @onready var healTimer = 5.0
-@onready var projectileTimer = 3.0
+@onready var projectileTimer = 1.0
 @onready var jumpTimer = 2.0
 @onready var holyShieldTimer = 6.0
 @onready var leapTimer = 10.0

@@ -138,7 +138,7 @@ grow_vertical = 1
 scale = Vector2(0.865112, 0.865112)
 texture_normal = ExtResource("8_jq6t2")
 MaxLevel = 1
-SkillName = "Holy Shield"
+SkillName = "+5% Spell Damage"
 
 [node name="Tier4_4" parent="Background/Tier1_3/Tier2_4/Tier3_5" node_paths=PackedStringArray("sharedParent") instance=ExtResource("1_ae22c")]
 layout_mode = 0
@@ -166,7 +166,7 @@ grow_vertical = 1
 scale = Vector2(1.00762, 1.00762)
 texture_normal = ExtResource("10_2tlk7")
 MaxLevel = 1
-SkillName = "Holy Shield Buff"
+SkillName = "+5% Spell Damage"
 
 [node name="Tier6_3" parent="Background/Tier1_3/Tier2_4/Tier3_5/Tier4_4/Tier5_3" instance=ExtResource("1_ae22c")]
 layout_mode = 0
@@ -250,7 +250,7 @@ grow_vertical = 1
 scale = Vector2(0.989955, 0.989955)
 texture_normal = ExtResource("18_50ymx")
 MaxLevel = 1
-SkillName = "Extra Dash"
+SkillName = "+5% Movement Speed"
 
 [node name="Tier6_1" parent="Background/Tier1_2/Tier2_2/Tier3_2/Tier4_1/Tier5_1" instance=ExtResource("1_ae22c")]
 layout_mode = 0
@@ -317,7 +317,7 @@ grow_horizontal = 1
 grow_vertical = 1
 scale = Vector2(1.01366, 1.01366)
 MaxLevel = 1
-SkillName = "Taunt Buff"
+SkillName = "+5% Attack Damage"
 shareParent = true
 sharedParent = NodePath("../../Tier4_2")
 

@@ -10,17 +10,21 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if GlobalVariables.game_won:
+		portal_spawn_text.text = "You have won the game! Thanks for playing this demo."
+		portal_spawn_text.visible = true
+		await get_tree().create_timer(3).timeout
+		get_tree().quit()
+		
 	if GlobalVariables.portal_text:
 		portal_text.visible = true
 	else:
 		portal_text.visible = false
-	
-	if GlobalVariables.enemies_killed == 20 and text_shown:
+		
+	if GlobalVariables.enemies_killed == 1 and text_shown:
 		portal_spawn_text.visible = true
-		await get_tree().create_timer(2).timeout
+		await get_tree().create_timer(5).timeout
 		text_shown = false
 		portal_spawn_text.visible = false
 		
-	else:
-		portal_spawn_text.visible = false
 		

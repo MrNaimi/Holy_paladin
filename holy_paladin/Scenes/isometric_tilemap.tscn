@@ -3053,12 +3053,18 @@ process_mode = 3
 script = ExtResource("26_j6tgg")
 
 [node name="portal_spawn_text" type="Label" parent="CanvasLayer"]
-offset_left = 424.0
-offset_top = 45.0
-offset_right = 1407.0
-offset_bottom = 561.0
+visible = false
+offset_left = 445.0
+offset_top = 57.0
+offset_right = 1397.0
+offset_bottom = 753.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("23_wf48i")
 theme_override_font_sizes/font_size = 65
 text = "A portal has appeared on the map! Find it to fight the boss!"
+horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="portal_text" type="Label" parent="CanvasLayer"]
@@ -3522,6 +3528,7 @@ libraries = {
 [connection signal="timeout" from="Node2D/Player/AttackHitboxes/LeapHitBox/LeapHitBoxStartTimer2" to="Node2D/Player/AttackHitboxes/LeapHitBox" method="_on_leap_hit_box_start_timer_2_timeout"]
 [connection signal="timeout" from="Node2D/Player/Timers/ComboTimer" to="Node2D/Player" method="_on_combo_timer_timeout"]
 [connection signal="timeout" from="Node2D/Player/Timers/AnimationTimer" to="Node2D/Player" method="_on_animation_timer_timeout"]
+[connection signal="timeout" from="Node2D/Player/Timers/HolyProjectileCooldownTimer" to="Node2D/Player" method="_on_holy_projectile_cooldown_timer_timeout"]
 [connection signal="timeout" from="Node2D/Player/Timers/JumpTimer" to="Node2D/Player" method="_on_jump_timer_timeout"]
 [connection signal="timeout" from="Node2D/Player/Timers/LeapTimer" to="Node2D/Player" method="_on_leap_timer_timeout"]
 [connection signal="timeout" from="Node2D/Player/Timers/SpinTimer" to="Node2D/Player" method="_on_spin_timer_timeout"]

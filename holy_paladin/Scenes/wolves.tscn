@@ -1185,7 +1185,7 @@ damage = 10
 sprite_frames = SubResource("SpriteFrames_7hcg4")
 animation = &"mushroom_attack"
 
-[node name="Area2D" type="Area2D" parent="wolf_animation"]
+[node name="Area2D" type="Area2D" parent="wolf_animation" groups=["enemy"]]
 collision_layer = 2
 collision_mask = 3
 

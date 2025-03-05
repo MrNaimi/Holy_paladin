@@ -335,10 +335,9 @@ func useAbility(ability : String):
 			dashing = true
 			dash.play()
 	if ability == "Holy Projectile":
+		holy_projectile_cooldown_timer.wait_time = GlobalVariables.projectileTimer
 		if holy_projectile_cooldown_timer.is_stopped():
-			holy_projectile_cooldown_timer.wait_time = GlobalVariables.projectileTimer
 			if charge < 5:
-				charge = charge + 1
 				print(charge)
 				$audios/holyprojectile.play()
 				player_animations.play("holy_projectile")
@@ -346,10 +345,9 @@ func useAbility(ability : String):
 				add_child(h)
 				h.position.y -= 15
 				h.move_direction = player.global_position.direction_to(get_global_mouse_position())
-				
+				charge += 1
 			else:
 				holy_projectile_cooldown_timer.start()
-				charge = 0
 		
 	if ability == "Jump":
 		if jump_cooldown_timer.is_stopped():
@@ -526,8 +524,16 @@ var is_dead = false
 func die():
 		is_dead = true
 		# Player Stats RESET
+		reset_globals()
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		await get_tree().process_frame
+		get_tree().change_scene_to_file("res://Scenes/death.tscn")
+
+func reset_globals():
 		GlobalVariables.xp = 0
+
 		GlobalVariables.enemies_killed = 0
+
 		GlobalVariables.level = 1
 		GlobalVariables.xp_threshold = 1
 		GlobalVariables.talentpoints = 0
@@ -539,7 +545,9 @@ func die():
 		GlobalVariables.playerHealth = 100
 		GlobalVariables.playerArmor = 50
 
-		# Cooldown Timers
+		GlobalVariables.boss_beaten = false
+		GlobalVariables.game_won = false
+		#Cooldown timers
 		GlobalVariables.spellTimer = 5.0
 		GlobalVariables.dashTimer = 3.0
 		GlobalVariables.healTimer = 5.0
@@ -550,28 +558,25 @@ func die():
 		GlobalVariables.spinTimer = 10.0
 		GlobalVariables.AoETimer = 10.0
 
-		# Unlocked Abilities
 		GlobalVariables.unlockedSkills = []
 		GlobalVariables.unlockedSkillsTextures = []
 
-		# Game State
 		GlobalVariables.helled = false
-		GlobalVariables.tween_direction = null
+		GlobalVariables.tween_direction
 		GlobalVariables.playerpos = null
 		GlobalVariables.flip_h = false
 
-		# Boss Data
 		GlobalVariables.cerberus_health = 20
 		GlobalVariables.cerb_hp_bar = false
 		GlobalVariables.cerb_spawned = true
 
-		# World State
 		GlobalVariables.portal_text = false
 		GlobalVariables.tp_boss = false
 		GlobalVariables.roadGenerated = false
-		GlobalVariables.player_spawn_location = Vector2(0, 0)
-
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		await get_tree().process_frame
-		get_tree().change_scene_to_file("res://Scenes/death.tscn")
+		GlobalVariables.player_spawn_location = Vector2(0,0)
+	
 		
+
+
+func _on_holy_projectile_cooldown_timer_timeout() -> void:
+	charge = 0

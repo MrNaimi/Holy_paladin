@@ -43,8 +43,6 @@ func _ready() -> void:
 	var tp_boss = false
 	var roadGenerated = false
 	var player_spawn_location = Vector2(0, 0)
-	pass # Replace with function body.
-	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
