@@ -3524,6 +3524,7 @@ libraries = {
 [connection signal="timeout" from="Node2D/Player/AttackHitboxes/LeapHitBox/LeapHitBoxStartTimer2" to="Node2D/Player/AttackHitboxes/LeapHitBox" method="_on_leap_hit_box_start_timer_2_timeout"]
 [connection signal="timeout" from="Node2D/Player/Timers/ComboTimer" to="Node2D/Player" method="_on_combo_timer_timeout"]
 [connection signal="timeout" from="Node2D/Player/Timers/AnimationTimer" to="Node2D/Player" method="_on_animation_timer_timeout"]
+[connection signal="timeout" from="Node2D/Player/Timers/HolyProjectileCooldownTimer" to="Node2D/Player" method="_on_holy_projectile_cooldown_timer_timeout"]
 [connection signal="timeout" from="Node2D/Player/Timers/JumpTimer" to="Node2D/Player" method="_on_jump_timer_timeout"]
 [connection signal="timeout" from="Node2D/Player/Timers/LeapTimer" to="Node2D/Player" method="_on_leap_timer_timeout"]
 [connection signal="timeout" from="Node2D/Player/Timers/SpinTimer" to="Node2D/Player" method="_on_spin_timer_timeout"]

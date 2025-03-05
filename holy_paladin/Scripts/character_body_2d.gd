@@ -335,10 +335,9 @@ func useAbility(ability : String):
 			dashing = true
 			dash.play()
 	if ability == "Holy Projectile":
+		holy_projectile_cooldown_timer.wait_time = GlobalVariables.projectileTimer
 		if holy_projectile_cooldown_timer.is_stopped():
-			holy_projectile_cooldown_timer.wait_time = GlobalVariables.projectileTimer
 			if charge < 5:
-				charge = charge + 1
 				print(charge)
 				$audios/holyprojectile.play()
 				player_animations.play("holy_projectile")
@@ -346,10 +345,9 @@ func useAbility(ability : String):
 				add_child(h)
 				h.position.y -= 15
 				h.move_direction = player.global_position.direction_to(get_global_mouse_position())
-				
+				charge += 1
 			else:
 				holy_projectile_cooldown_timer.start()
-				charge = 0
 		
 	if ability == "Jump":
 		if jump_cooldown_timer.is_stopped():
@@ -577,3 +575,7 @@ func reset_globals():
 		GlobalVariables.player_spawn_location = Vector2(0,0)
 	
 		
+
+
+func _on_holy_projectile_cooldown_timer_timeout() -> void:
+	charge = 0

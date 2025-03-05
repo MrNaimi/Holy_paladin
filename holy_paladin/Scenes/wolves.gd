@@ -100,7 +100,8 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			print("Wolf has died")
 			GlobalVariables.xp += 1
 			wolf_animation.play(colour + "_death")
-			area_2d.queue_free()
+			#area_2d.queue_free()
+			area_2d.visible = false
 			GlobalVariables.enemies_killed += 1
 			await get_tree().create_timer(1).timeout
 			wolves.queue_free()
