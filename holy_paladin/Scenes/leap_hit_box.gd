@@ -1,5 +1,5 @@
 extends Area2D
-@onready var damage = 5
+@onready var damage = 70
 @onready var hitbox2: CollisionShape2D = $CollisionShape2D2
 @onready var leap_hit_box_timer_2: Timer = $LeapHitBoxTimer2
 @onready var leap_hit_box_start_timer_2: Timer = $LeapHitBoxStartTimer2

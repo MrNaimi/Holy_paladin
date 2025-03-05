@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c1wj1wpmy3c3l"]
 
 [node name="dev_stats" type="VBoxContainer"]
+visible = false
 offset_left = 1932.0
 offset_top = 136.0
 offset_right = 2053.0

@@ -1,5 +1,5 @@
 extends Area2D
-@onready var damage = 7
+@onready var damage = 50
 @onready var hitboxtime = 1
 @onready var hitboxdelay = 0.5
 @onready var hitbox: CollisionShape2D = $CollisionShape2D

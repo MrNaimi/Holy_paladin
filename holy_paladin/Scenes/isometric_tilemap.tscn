@@ -3016,13 +3016,16 @@ volume_db = -10.0
 stream = ExtResource("37_fqs0p")
 
 [node name="pieru" type="AudioStreamPlayer2D" parent="Node2D"]
+visible = false
 stream = ExtResource("14_ti6kv")
+volume_db = -80.0
+area_mask = 0
 
 [node name="Spell" type="Area2D" parent="Node2D" groups=["attack"]]
 position = Vector2(445, 325)
 scale = Vector2(0.843261, 0.843261)
 script = ExtResource("15_61hig")
-damage = 2
+damage = 40
 hitboxtime = 0.8
 hitboxdelay = 0.9
 
@@ -3054,14 +3057,15 @@ script = ExtResource("26_j6tgg")
 
 [node name="portal_spawn_text" type="Label" parent="CanvasLayer"]
 visible = false
-offset_left = 445.0
-offset_top = 57.0
-offset_right = 1397.0
-offset_bottom = 753.0
+offset_left = 455.0
+offset_top = -202.0
+offset_right = 1407.0
+offset_bottom = 494.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
 theme_override_fonts/font = ExtResource("23_wf48i")
-theme_override_font_sizes/font_size = 65
+theme_override_font_sizes/font_size = 80
 text = "A portal has appeared on the map! Find it to fight the boss!"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -3069,12 +3073,14 @@ autowrap_mode = 3
 
 [node name="portal_text" type="Label" parent="CanvasLayer"]
 visible = false
-offset_left = 433.0
-offset_top = 118.0
-offset_right = 1560.0
-offset_bottom = 201.0
-theme_override_font_sizes/font_size = 60
-text = "Press G to enter into the boss chamber"
+offset_left = 381.0
+offset_top = 225.0
+offset_right = 1508.0
+offset_bottom = 308.0
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("23_wf48i")
+theme_override_font_sizes/font_size = 85
+text = "Press \"G\" to enter into the boss chamber"
 
 [node name="boss_health" type="ProgressBar" parent="CanvasLayer"]
 visible = false
@@ -3133,6 +3139,7 @@ offset_bottom = -46.0001
 script = ExtResource("12_vj80x")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/BottomLeft"]
+visible = false
 layout_mode = 0
 offset_left = 1932.0
 offset_top = 136.0
@@ -3192,6 +3199,7 @@ offset_right = 2145.0
 offset_bottom = 130.0
 
 [node name="quit_button" type="Button" parent="CanvasLayer/BottomLeft/VBoxContainer2"]
+visible = false
 layout_mode = 2
 text = "Exit Game"
 
@@ -3316,10 +3324,10 @@ tint_progress = Color(0.188235, 0.188235, 0.188235, 1)
 [node name="spellcooldowntext" type="Label" parent="CanvasLayer/BottomLeft/progressbars"]
 visible = false
 layout_mode = 0
-offset_left = 398.0
-offset_top = 682.0
-offset_right = 542.0
-offset_bottom = 824.0
+offset_left = 214.0
+offset_top = 613.0
+offset_right = 358.0
+offset_bottom = 755.0
 theme_override_font_sizes/font_size = 40
 text = "1"
 horizontal_alignment = 1
@@ -3332,67 +3340,62 @@ offset_bottom = 40.0
 script = ExtResource("28_8xgnj")
 
 [node name="Action1" parent="CanvasLayer/BottomLeft/progressbars/ActionBar" instance=ExtResource("28_ulse0")]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 264.0
-offset_top = 568.0
-offset_right = 247.0
-offset_bottom = 551.0
+offset_left = 255.0
+offset_top = 652.0
+offset_right = 238.0
+offset_bottom = 635.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Action2" parent="CanvasLayer/BottomLeft/progressbars/ActionBar" instance=ExtResource("28_ulse0")]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 433.0
-offset_top = 622.0
-offset_right = 416.0
-offset_bottom = 605.0
+offset_left = 385.0
+offset_top = 690.0
+offset_right = 368.0
+offset_bottom = 673.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Action3" parent="CanvasLayer/BottomLeft/progressbars/ActionBar" instance=ExtResource("28_ulse0")]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 589.0
-offset_top = 719.0
-offset_right = 572.0
-offset_bottom = 702.0
+offset_left = 502.0
+offset_top = 766.0
+offset_right = 485.0
+offset_bottom = 749.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Action4" parent="CanvasLayer/BottomLeft/progressbars/ActionBar" instance=ExtResource("28_ulse0")]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 719.0
-offset_top = 857.0
-offset_right = 702.0
-offset_bottom = 840.0
+offset_left = 600.0
+offset_top = 886.0
+offset_right = 583.0
+offset_bottom = 869.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Action5" parent="CanvasLayer/BottomLeft/progressbars/ActionBar" instance=ExtResource("28_ulse0")]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 755.0
-offset_top = 1030.0
-offset_right = 738.0
-offset_bottom = 1013.0
+offset_left = 663.0
+offset_top = 1040.0
+offset_right = 646.0
+offset_bottom = 1023.0
 grow_horizontal = 2
 grow_vertical = 2
 

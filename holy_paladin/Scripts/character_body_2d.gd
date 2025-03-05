@@ -374,12 +374,12 @@ func useAbility(ability : String):
 			heal_cooldown_timer.start()
 			$audios/heal.play()
 			player_animations.play("taunt")
-			if GlobalVariables.playerHealth <= 95:
-				GlobalVariables.playerHealth += 5
+			if GlobalVariables.playerHealth <= 80:
+				GlobalVariables.playerHealth += 20
 				heal_animation.visible = true
 				heal_animation.play("heal")
 				print("Health is now", GlobalVariables.playerHealth)
-			elif GlobalVariables.playerHealth > 95 and GlobalVariables.playerHealth < 100:
+			elif GlobalVariables.playerHealth > 80 and GlobalVariables.playerHealth < 100:
 				GlobalVariables.playerHealth = 100
 				heal_animation.visible = true
 				heal_animation.play("heal")

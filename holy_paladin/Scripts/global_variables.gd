@@ -7,9 +7,9 @@ extends Node
 @onready var xp_threshold = 1
 @onready var talentpoints = 0
 @onready var skillpoints = 10
-@onready var basicAttackDamage = 1
-@onready var baseBasicAttackDamage = 1
-@onready var spellDamage = 3
+@onready var basicAttackDamage = 15
+@onready var baseBasicAttackDamage = 15
+@onready var spellDamage = 30
 @onready var playerSpeed = Vector2(100, 100)
 @onready var playerHealth = 100
 @onready var playerArmor = 50
@@ -35,7 +35,7 @@ extends Node
 @onready var playerpos = null
 @onready var flip_h = false
 
-@onready var cerberus_health = 20
+@onready var cerberus_health = 150
 @onready var cerb_hp_bar = false
 @onready var cerb_spawned = true
 

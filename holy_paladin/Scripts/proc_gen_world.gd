@@ -29,10 +29,10 @@ var land_atlas = Vector2i(1,0) #maan kordinaatti tilesetissä
 var ground2_atlas = Vector2i(9,4)
 
 var forest_id = 1
-var tree_id = 2
+var tree_id = 1
 var water_atlas = Vector2i(4,8) #veden kordinaatti tilesetissä
 var grass_atlas = Vector2i(5,2) #ruohon kordinaatti tilesetissä
-var tree_atlas = Vector2i(0,0)# puu kordinaatti
+var tree_atlas = Vector2i(5,5)# puu kordinaatti
 
 #tileset kytkin
 @export var kohtaus = 0
@@ -87,7 +87,7 @@ var terrain_grass_int = 1
 var water_tiles_arr =[]
 var terrain_water_int = 0
 var tree_tiles_arr = []
-var terrain_tree_int = 3
+var terrain_tree_int = 2
 
 var noise_val_arr =[]
 

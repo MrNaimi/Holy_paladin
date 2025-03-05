@@ -14,8 +14,8 @@ var og_position
 var speed = 75.0
 var player_chase = false
 var player = null
-@export var health = 3
-@export var damage = 1
+@export var health = 30
+@export var damage = 10
 var idle = ""
 @onready var wizard_animation: AnimatedSprite2D = $wizard_animation
 var colour = ""

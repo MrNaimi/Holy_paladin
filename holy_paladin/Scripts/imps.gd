@@ -13,8 +13,8 @@ var player_chase = false
 var og_position
 
 var player = null
-@export var health = 3
-@export var damage = 10
+@export var health = 30
+@export var damage = 8
 var player_cpos
 @onready var shoot_cd: Timer = $shoot_cd
 

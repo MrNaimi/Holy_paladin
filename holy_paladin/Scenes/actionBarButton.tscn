@@ -11,11 +11,11 @@ events = [SubResource("InputEventKey_k7fox")]
 
 [node name="ActionBarButton" type="TextureButton"]
 anchors_preset = -1
-anchor_right = 0.083
-anchor_bottom = 0.148
-offset_right = -136.36
-offset_bottom = -136.84
-scale = Vector2(5, 5)
+anchor_right = 0.048
+anchor_bottom = 0.085
+offset_right = -69.16
+offset_bottom = -68.8
+scale = Vector2(4, 4)
 shortcut = SubResource("Shortcut_f5px4")
 texture_normal = ExtResource("1_0fk0a")
 ignore_texture_size = true
@@ -23,6 +23,7 @@ stretch_mode = 0
 script = ExtResource("2_06ywg")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

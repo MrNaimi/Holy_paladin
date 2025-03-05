@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dcdytor3y1hb0"]
 
 [node name="VBoxContainer" type="VBoxContainer"]
+visible = false
 offset_left = 1932.0
 offset_top = 136.0
 offset_right = 2053.0
