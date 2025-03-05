@@ -374,6 +374,7 @@ func useAbility(ability : String):
 		if heal_cooldown_timer.is_stopped():
 			heal_cooldown_timer.wait_time = GlobalVariables.healTimer
 			heal_cooldown_timer.start()
+			$audios/heal.play()
 			player_animations.play("taunt")
 			if GlobalVariables.playerHealth <= 95:
 				GlobalVariables.playerHealth += 5

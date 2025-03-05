@@ -82,6 +82,7 @@ func shoot_fireball():
 	shoot_cd.start()
 	var fireball = FIREBALL.instantiate()
 	get_tree().current_scene.add_child(fireball)
+	$fireball.play()
 	fireball.global_position = global_position
 	fireball.direction = ((player.position + Vector2(0,-15)) - position ).normalized()
 	#print("Enemy position:", global_position)

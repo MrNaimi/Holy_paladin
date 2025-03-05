@@ -55,10 +55,12 @@ func _physics_process(delta: float) -> void:
 			# Hyökkää pelaajaan jos etäisyys on alle 25
 			if position.distance_to(player.position)<80:
 				wizard_animation.play("attack")
+				$fire.play()
 				direction = ((player.position-Vector2(0, 20)) - position).normalized()
 				speed = 30
 
 			if position.distance_to(player.position)>120:
+				$fire.stop()
 				wizard_animation.play("run")
 				speed = 75
 			

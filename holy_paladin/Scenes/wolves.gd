@@ -63,6 +63,10 @@ func _physics_process(delta: float) -> void:
 			# Hyökkää pelaajaan jos etäisyys on alle 25
 			if position.distance_to(player.position)<25:
 				print("Wolf attacked player")
+				if colour == "mushroom":
+					$punch.play()
+				else:
+					$bite.play()
 				wolf_animation.play(colour + "_attack")
 				
 		

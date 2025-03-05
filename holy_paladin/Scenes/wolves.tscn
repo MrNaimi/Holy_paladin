@@ -1,6 +1,6 @@
-[gd_scene load_steps=177 format=3 uid="uid://b21qq8m21n2us"]
+[gd_scene load_steps=179 format=3 uid="uid://b21qq8m21n2us"]
 
-[ext_resource type="Script" uid="uid://dp62myouihrh" path="res://Scenes/wolves.gd" id="1_3onk2"]
+[ext_resource type="Script" uid="uid://ba63dbdbiac4n" path="res://Scenes/wolves.gd" id="1_3onk2"]
 [ext_resource type="Texture2D" uid="uid://ddgk6i0ixljc5" path="res://assets/enemies/wolves/Canine_Black_Attack.png" id="2_uuw2n"]
 [ext_resource type="Texture2D" uid="uid://bq88k1k4w7q70" path="res://assets/enemies/wolves/Canine_Black_Death.png" id="3_mi5eo"]
 [ext_resource type="Texture2D" uid="uid://jt5qb36i6nv3" path="res://assets/enemies/wolves/Canine_Black_Hit.png" id="4_pg6ut"]
@@ -27,6 +27,8 @@
 [ext_resource type="Texture2D" uid="uid://c3p1ce380anti" path="res://assets/enemies/mushroom/Run.png" id="21_88lob"]
 [ext_resource type="Texture2D" uid="uid://6ochuam5d1ul" path="res://assets/enemies/wolves/Canine_White_Run.png" id="21_tssfl"]
 [ext_resource type="Texture2D" uid="uid://bnarrg080m3de" path="res://assets/ui_assets/enemyicon.png" id="22_x1i8y"]
+[ext_resource type="AudioStream" uid="uid://biglcoqjatujw" path="res://assets/audio_assets/punch-41105.ogg" id="28_roh6m"]
+[ext_resource type="AudioStream" uid="uid://dwc44ov61kvk3" path="res://assets/audio_assets/wolf.ogg" id="29_a7tpi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0updl"]
 atlas = ExtResource("2_uuw2n")
@@ -1223,6 +1225,12 @@ texture = ExtResource("22_x1i8y")
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
 position = Vector2(-1, 6)
 scale = Vector2(2.25, 2.35)
+
+[node name="punch" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("28_roh6m")
+
+[node name="bite" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("29_a7tpi")
 
 [connection signal="area_entered" from="wolf_animation/Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
