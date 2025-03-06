@@ -21,7 +21,7 @@ func _process(delta: float) -> void:
 	else:
 		portal_text.visible = false
 		
-	if GlobalVariables.enemies_killed == 1 and text_shown:
+	if GlobalVariables.enemies_killed == 20 and text_shown:
 		portal_spawn_text.visible = true
 		await get_tree().create_timer(5).timeout
 		text_shown = false

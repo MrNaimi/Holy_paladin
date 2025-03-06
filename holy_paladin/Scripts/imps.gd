@@ -61,22 +61,23 @@ func _on_detection_area_body_entered(body: Node2D) -> void:
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area.is_in_group("attack"):
-		print("flying imp has taken damage")
-		health -= area.damage
-		if health > 0:
-			enemy_animation.play("hurt")
-		if health <= 0:
-			print("flying imp has died")
-			GlobalVariables.xp += 1
-			enemy_animation.play("death")
-			area_2d.queue_free()
-			GlobalVariables.enemies_killed += 1
-			await get_tree().create_timer(1).timeout
-			imp.queue_free()
-	if area.is_in_group("player"):
-		area.get_parent().hurt(damage)
-		
+	if is_instance_valid(area):
+		if area.is_in_group("attack"):
+			print("flying imp has taken damage")
+			health -= area.damage
+			if health > 0:
+				enemy_animation.play("hurt")
+			if health <= 0:
+				print("flying imp has died")
+				GlobalVariables.xp += 1
+				enemy_animation.play("death")
+				area_2d.queue_free()
+				GlobalVariables.enemies_killed += 1
+				await get_tree().create_timer(1).timeout
+				imp.queue_free()
+		if area.is_in_group("player"):
+			area.get_parent().hurt(damage)
+			
 func shoot_fireball():
 	shoot = false
 	shoot_cd.start()

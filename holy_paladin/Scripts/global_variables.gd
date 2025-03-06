@@ -6,7 +6,7 @@ extends Node
 @onready var level = 1
 @onready var xp_threshold = 1
 @onready var talentpoints = 0
-@onready var skillpoints = 10
+@onready var skillpoints = 1
 @onready var basicAttackDamage = 15
 @onready var baseBasicAttackDamage = 15
 @onready var spellDamage = 30
@@ -21,7 +21,7 @@ extends Node
 @onready var dashTimer = 3.0
 @onready var healTimer = 5.0
 @onready var projectileTimer = 1.0
-@onready var jumpTimer = 2.0
+@onready var jumpTimer = 5.0
 @onready var holyShieldTimer = 6.0
 @onready var leapTimer = 10.0
 @onready var spinTimer = 10.0

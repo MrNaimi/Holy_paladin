@@ -79,11 +79,9 @@ func _process(delta: float) -> void:
 		if Input.is_action_pressed("heavy_attack") and m2_key.get_self_modulate() == Color(1,1,1,1):
 			m2_key.set_self_modulate(modulate_color)
 			buttonspressed+=1
-		if Input.is_action_pressed("dash") and space_key.get_self_modulate() == Color(1,1,1,1):
-			space_key.set_self_modulate(modulate_color)
-			buttonspressed+=1
+
 			
-		if buttonspressed>=3 && combattutorialhider.is_stopped():
+		if buttonspressed>=2 && combattutorialhider.is_stopped():
 			combattutorialhider.start()
 			
 	if skilltutorial.visible:

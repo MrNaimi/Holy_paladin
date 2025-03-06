@@ -344,6 +344,7 @@ func useAbility(ability : String):
 				var h = holy_projectile.instantiate()
 				add_child(h)
 				h.position.y -= 15
+				h.position.x += 20
 				h.move_direction = player.global_position.direction_to(get_global_mouse_position())
 				charge += 1
 			else:

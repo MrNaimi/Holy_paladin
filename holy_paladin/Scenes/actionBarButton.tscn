@@ -23,7 +23,6 @@ stretch_mode = 0
 script = ExtResource("2_06ywg")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

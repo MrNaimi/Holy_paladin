@@ -109,8 +109,9 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			GlobalVariables.enemies_killed += 1
 			await get_tree().create_timer(1).timeout
 			wolves.queue_free()
-	if area.is_in_group("player"):
-		area.get_parent().hurt(damage)
+	if is_instance_valid(area):
+		if area.is_in_group("player"):
+			area.get_parent().hurt(damage)
 
 #Antaa signaalin, jonka jälkeen susi alkaa palaamaan alkuperäiselle paikalleen 
 func _on_aggro_off_body_exited(body: Node2D) -> void:
