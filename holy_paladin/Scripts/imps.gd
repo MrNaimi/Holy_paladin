@@ -75,8 +75,9 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 				GlobalVariables.enemies_killed += 1
 				await get_tree().create_timer(1).timeout
 				imp.queue_free()
-		if area.is_in_group("player"):
-			area.get_parent().hurt(damage)
+		if is_instance_valid(area):
+			if area.is_in_group("player"):
+				area.get_parent().hurt(damage)
 			
 func shoot_fireball():
 	shoot = false

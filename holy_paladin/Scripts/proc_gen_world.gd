@@ -35,7 +35,7 @@ var grass_atlas = Vector2i(5,2) #ruohon kordinaatti tilesetissä
 var tree_atlas = Vector2i(5,5)# puu kordinaatti
 
 #tileset kytkin
-@export var kohtaus = 0
+@export var kohtaus = 1
 
 @onready var portal: Node2D = $"../../portal"
 @onready var portal_2: Node2D = $"../../portal2"
@@ -110,11 +110,11 @@ func _ready():
 	#generate_world(-200)
 	#kohtaus = 0
 	#spawn_cerberus(Vector2(2512,1915))
-	if kohtaus == 1:
+	if kohtaus == 0:
 		GlobalVariables.player_spawn_location = get_ground_tile()
 	
-	if kohtaus == 0:
-		GlobalVariables.player_spawn_location = get_grass_tile()
+	if kohtaus == 1:
+		GlobalVariables.player_spawn_location = get_ground_tile()
 		print("PLayer position is ", GlobalVariables.player_spawn_location)
 		#Tässä on joku ongelma, ettei ikinä ota portal_1 tai 3
 		portal_1_d = Vector2(22,1105).distance_to(GlobalVariables.player_spawn_location)
@@ -126,11 +126,11 @@ func _ready():
 			
 		print("Current distance to portal is ", current_portal)
 	for i in range (100):
-		spawn_wolf(get_grass_tile())
+		spawn_wolf(get_ground_tile())
 	for i in range(50):
-		spawn_imp(get_grass_tile())
+		spawn_imp(get_ground_tile())
 	for i in range(25):
-		spawn_wizard(get_grass_tile())
+		spawn_wizard(get_ground_tile())
 	
 	#Tien generointi
 	#generate_road(START_POS, END_POS)

@@ -25,8 +25,8 @@
 [ext_resource type="Texture2D" uid="uid://d1o5ycm0wmn73" path="res://assets/main_char/spr_SpinAttack_strip_final.png" id="13_mc170"]
 [ext_resource type="AudioStream" uid="uid://cx3aaej2luowt" path="res://Sounds/pieru.ogg" id="14_ti6kv"]
 [ext_resource type="Script" uid="uid://cfycg7csoy1g1" path="res://Scenes/spell.gd" id="15_61hig"]
-[ext_resource type="Script" uid="uid://bpq85u1xuestv" path="res://Scenes/dash_cooldown_timer.gd" id="15_jysi1"]
-[ext_resource type="Script" uid="uid://b8fdcg3c0vrdx" path="res://Scenes/spell_cooldown_timer.gd" id="16_fxrdo"]
+[ext_resource type="Script" uid="uid://bt7r5y3i5xo8i" path="res://Scenes/dash_cooldown_timer.gd" id="15_jysi1"]
+[ext_resource type="Script" uid="uid://q0tfseupae61" path="res://Scenes/spell_cooldown_timer.gd" id="16_fxrdo"]
 [ext_resource type="Texture2D" uid="uid://dy7py0ogwtnt3" path="res://assets/main_char/spell_effect.png" id="16_hwrqj"]
 [ext_resource type="Texture2D" uid="uid://diajx13vkcvx1" path="res://assets/ui_assets/side_panel.png" id="16_vxlxv"]
 [ext_resource type="Texture2D" uid="uid://w55iapkw6ded" path="res://assets/ui_assets/heal_icon.png" id="17_ebpba"]
@@ -50,11 +50,11 @@
 [ext_resource type="Texture2D" uid="uid://5p8aha2knxya" path="res://assets/ui_assets/dashicon.png" id="26_4ffth"]
 [ext_resource type="Script" uid="uid://c7xw5wxfvixku" path="res://Scenes/canvas_layer.gd" id="26_j6tgg"]
 [ext_resource type="Texture2D" uid="uid://ce55r2wn51p4o" path="res://assets/ui_assets/cooldownframe.png" id="27_mq58b"]
-[ext_resource type="Script" uid="uid://rtk7nh4do27b" path="res://Scenes/action_bar.gd" id="28_8xgnj"]
+[ext_resource type="Script" uid="uid://kkshkypwj3vc" path="res://Scenes/action_bar.gd" id="28_8xgnj"]
 [ext_resource type="Texture2D" uid="uid://dnd67rq2yqc5o" path="res://assets/ui_assets/spellicon.png" id="28_m34q7"]
 [ext_resource type="PackedScene" uid="uid://dhs2r34b1plbb" path="res://Scenes/actionBarButton.tscn" id="28_ulse0"]
 [ext_resource type="Texture2D" uid="uid://b486rd107mtba" path="res://assets/ui_assets/talent-tree.png" id="29_0uu7g"]
-[ext_resource type="Script" uid="uid://uijqevn15m7e" path="res://Scenes/minimap.gd" id="31_6a4dr"]
+[ext_resource type="Script" uid="uid://by3k2fl18k456" path="res://Scenes/minimap.gd" id="31_6a4dr"]
 [ext_resource type="AudioStream" uid="uid://d2aq4ncg6sfxu" path="res://assets/audio_assets/leapattack.ogg" id="31_06064"]
 [ext_resource type="PackedScene" uid="uid://dhobm16afu2ww" path="res://tutorial.tscn" id="31_w85f4"]
 [ext_resource type="PackedScene" uid="uid://cevx55vdb0mcw" path="res://pause_menu.tscn" id="33_3m1pa"]
@@ -3092,7 +3092,8 @@ offset_right = 1430.0
 offset_bottom = 114.0
 theme_override_constants/outline_size = 20
 theme_override_styles/fill = SubResource("StyleBoxFlat_gdefn")
-max_value = 20.0
+max_value = 500.0
+step = 0.1
 value = 15.0
 show_percentage = false
 script = ExtResource("18_5ctoa")
@@ -3109,7 +3110,7 @@ offset_right = 832.0
 offset_bottom = 38.0
 theme_override_styles/background = SubResource("StyleBoxFlat_484rr")
 theme_override_styles/fill = SubResource("StyleBoxFlat_3nlwv")
-max_value = 20.0
+max_value = 500.0
 value = 18.0
 show_percentage = false
 

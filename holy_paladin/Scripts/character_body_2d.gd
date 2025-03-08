@@ -493,7 +493,6 @@ func _on_action_4_pressed() -> void:
 func _on_action_5_pressed() -> void:
 	if action_5.texture_changed:
 		useAbility(action_5.ability_name)
-	#tp_boss()
 	#if GlobalVariables.unlockedSkills.size() == 5:
 		#useAbility(GlobalVariables.unlockedSkills[4])
 		#action_5.changeTexture(GlobalVariables.unlockedSkillsTextures[4])
@@ -538,12 +537,12 @@ func reset_globals():
 		GlobalVariables.level = 1
 		GlobalVariables.xp_threshold = 1
 		GlobalVariables.talentpoints = 0
-		GlobalVariables.skillpoints = 10
-		GlobalVariables.basicAttackDamage = 1
-		GlobalVariables.baseBasicAttackDamage = 1
-		GlobalVariables.spellDamage = 3
+		GlobalVariables.skillpoints = 3
+		GlobalVariables.basicAttackDamage = 15
+		GlobalVariables.baseBasicAttackDamage = 15
+		GlobalVariables.spellDamage = 30
 		GlobalVariables.playerSpeed = Vector2(100, 100)
-		GlobalVariables.playerHealth = 100
+		GlobalVariables.playerHealth = 150
 		GlobalVariables.playerArmor = 50
 
 		GlobalVariables.boss_beaten = false

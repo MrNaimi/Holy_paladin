@@ -8,12 +8,12 @@ func _ready() -> void:
 	var level = 1
 	var xp_threshold = 1
 	var talentpoints = 0
-	var skillpoints = 10
-	var basicAttackDamage = 1
-	var baseBasicAttackDamage = 1
-	var spellDamage = 3
+	var skillpoints = 3
+	var basicAttackDamage = 15
+	var baseBasicAttackDamage = 15
+	var spellDamage = 30
 	var playerSpeed = Vector2(100, 100)
-	var playerHealth = 100
+	var playerHealth = 150
 	var playerArmor = 50
 
 	# Cooldown timers
