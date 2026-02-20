@@ -1,2 +1,2 @@
-# Holy_paladin
-Holy paladin peli
+# Peter, Go to Hell -game demo
+A game demo built in Godot game engine. The game features Peter, a man who got laid off but misunderstood it and decided to go purge Hell of its inhabitants. The demo is not built to be opened by itself as it was only used to showcase the game's current state in class as well as the ICT Showroom event. Thus, you need to install the Godot engine, clone this repository to your machine and run it from Godot.
